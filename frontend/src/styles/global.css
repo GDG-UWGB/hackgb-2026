@@ -1,0 +1,407 @@
+@import "tailwindcss";
+
+/* #region Google Fonts */
+
+/* --- GoogleSans --- */
+/* Regular */
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('../assets/fonts/GoogleSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Italic */
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('../assets/fonts/GoogleSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Medium */
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('../assets/fonts/GoogleSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Medium Italic */
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('../assets/fonts/GoogleSans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('../assets/fonts/GoogleSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: 'GoogleSans';
+  src: url('../assets/fonts/GoogleSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* --- Google Sans Mono --- */
+/* Regular */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Italic */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+/* Medium */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+/* Medium Italic */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+/* SemiBold Italic */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+/* Bold */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+/* Bold Italic */
+@font-face {
+  font-family: 'GoogleSansMono';
+  src: url('../assets/fonts/GoogleSansMono-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* --- Google Sans Text --- */
+/* Regular */
+@font-face {
+  font-family: 'GoogleSansText';
+  src: url('../assets/fonts/GoogleSansText-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Italic */
+@font-face {
+  font-family: 'GoogleSansText';
+  src: url('../assets/fonts/GoogleSansText-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Medium */
+@font-face {
+  font-family: 'GoogleSansText';
+  src: url('../assets/fonts/GoogleSansText-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Medium Italic */
+@font-face {
+  font-family: 'GoogleSansText';
+  src: url('../assets/fonts/GoogleSansText-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'GoogleSansText';
+  src: url('../assets/fonts/GoogleSansText-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: 'GoogleSansText';
+  src: url('../assets/fonts/GoogleSansText-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+/* #endregion Google Fonts */
+
+/* #region Google Theme Variables */
+@theme { 
+  /* MAPPING FONTS */
+  --font-google: "GoogleSans", ui-sans-serif, system-ui, sans-serif;
+  --font-google-mono: "GoogleSansMono", ui-monospace, monospace;
+  --font-google-text: "GoogleSansText", ui-sans-serif, system-ui, sans-serif;
+
+  /* MAPPING COLORS */
+  /* Core Colors */
+  --color-google-blue: #4285f4;
+  --color-google-green: #34a853;
+  --color-google-yellow: #f9ab00;
+  --color-google-red: #ea4335;
+
+  /* Halftones */
+  --color-google-blue-halftone: #57caff;
+  --color-google-green-halftone: #5cdb6d;
+  --color-google-yellow-halftone: #ffd427;
+  --color-google-red-halftone: #ff7daf;
+
+  /* Pastels */
+  --color-google-blue-pastel: #c3ecf6;
+  --color-google-green-pastel: #ccf6c5;
+  --color-google-yellow-pastel: #ffe7a5;
+  --color-google-red-pastel: #f8d8d8;
+
+  /* Grayscale */
+  --color-google-off-white: #f0f0f0;
+  --color-google-black: #1e1e1e;
+}
+
+
+/* Todo: Implement Dark Theme */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+/* #endregion Google Theme Variables */
+
+/* ----------------------------------------- Standard Page Design ------------------------------------------------------------- */
+
+/* #region Utils */
+body {
+  background-color: var(--color-neutral2);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'GoogleSans', sans-serif;
+}
+
+p {
+  font-family: 'GoogleSansText', sans-serif;
+}
+
+.title {
+  font-family: 'BebasNeue', sans-serif;
+  text-transform: capitalize;
+}
+
+  /* On hover animation for buttons inside paragraphs (underline) with smooth transition */
+p button{
+  text-decoration: underline solid transparent;
+  text-underline-offset: 4px;  
+  transition: text-decoration-color 0.3s ease-in-out; 
+}
+p button:hover{
+  text-decoration-color: currentColor; 
+}
+/* #endregion Utils */
+
+/* #region Markdown formating */
+.markdown {
+  /* font-family: 'CaviarDreams', sans-serif; */
+  color: var(--color-text1);
+  line-height: 1.6;
+
+  > p {
+    margin-bottom: 1em;
+  }
+
+  > h2 {
+  font-size: x-large;
+  font-weight: bold;
+  line-height: 1.35;
+  color: var(--color-primary1);
+  margin-bottom: 0.5em;
+  }
+
+  > ol {
+    margin-bottom: 1em;
+
+    > li {
+      margin-left: 1em;
+      margin-bottom: 1em;
+      list-style-type: disc;
+    }
+  }
+
+  > ul {
+    margin-bottom: 1em;
+
+    > li {
+      margin-left: 1em;
+      margin-bottom: 1em;
+      list-style-type: disc;
+    }
+  }
+}
+/* #endregion Markdown formating */
+
+/* --- Other Classes --- */
+.selected-item {
+  /* background-color: #2274A5 !important;  */
+  color: white !important;
+}
+
+.outlined-text {
+  filter: drop-shadow(1px 1px black) drop-shadow(-1px -1px black) drop-shadow(1px -1px black) drop-shadow(-1px 1px black);
+  color: #F9F6EE;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+
+
+/* #region Embla Carousel Styles  */
+.embla {
+  max-width: 48rem;
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+}
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+.embla__slide__number {
+  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  border-radius: 1.8rem;
+  font-size: 4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--slide-height);
+  user-select: none;
+}
+.embla__controls {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+}
+.embla__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+}
+.embla__button {
+  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  width: 3.6rem;
+  height: 3.6rem;
+  z-index: 1;
+  border-radius: 50%;
+  color: var(--text-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.embla__button:disabled {
+  color: var(--detail-high-contrast);
+}
+.embla__button__svg {
+  width: 35%;
+  height: 35%;
+}
+.embla__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+}
+.embla__dot {
+  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.embla__dot:after {
+  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  content: '';
+}
+.embla__dot--selected:after {
+  box-shadow: inset 0 0 0 0.2rem var(--text-body);
+}
+/* #endregion Embla Carousel Styles  */
