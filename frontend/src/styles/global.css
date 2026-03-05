@@ -175,6 +175,11 @@
   --color-google-yellow: #f9ab00;
   --color-google-red: #ea4335;
 
+  /* UWGB Colors */
+  --color-uwgb-green: #006a4d;
+  --color-uwgb-white: #ffffff;
+  --color-uwgb-gold: #ffcc00;
+
   /* Halftones */
   --color-google-blue-halftone: #57caff;
   --color-google-green-halftone: #5cdb6d;
@@ -190,16 +195,14 @@
   /* Grayscale */
   --color-google-off-white: #f0f0f0;
   --color-google-black: #1e1e1e;
-}
-
-
-/* Todo: Implement Dark Theme */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  
+  /* Animations */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-} */
+  --animate-fade-in: fade-in 0.6s ease-out;
+}
 /* #endregion Google Theme Variables */
 
 /* ----------------------------------------- Standard Page Design ------------------------------------------------------------- */
