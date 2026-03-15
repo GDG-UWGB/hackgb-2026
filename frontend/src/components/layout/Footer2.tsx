@@ -19,12 +19,12 @@ const Footer = () => {
 
   return (
     <footer id='footer' className="bg-white pt-8 mx-0 px-0 bottom-0 ">
-      
+
       <hr className="w-full text-google-off-white border-b-2" />
-      
+
       <div className="container my-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between pl-2">
-          
+
           <div className="w-full md:w-1/3 lg:w-1/4 mb-8 -ml-2">
             <Link to="/" className="flex items-center gap-3">
               <img
@@ -33,18 +33,18 @@ const Footer = () => {
                 className='object-cover h-12 w-auto'
               />
             </Link>
-            
+
           </div>
 
           {/* -------------------------------------------------------------- */}
-          
+
           <div id="Contact" className="w-full md:w-1/3 lg:w-1/4 mb-8">
             <h6 className="text-google-black/75 font-google text-lg mb-4">Contact Us</h6>
             <div className="w-full max-w-xs">
               <p className="text-google-black font-google-text pb-2">Email Address:</p>
               <div className="relative">
                 <label htmlFor="email-copy-text" className="sr-only">email</label>
-                
+
                 <button
                   onClick={handleCopy}
                   id="email-copy-text"
@@ -92,7 +92,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          
+
 
           {/* -------------------------------------------------------------- */}
 

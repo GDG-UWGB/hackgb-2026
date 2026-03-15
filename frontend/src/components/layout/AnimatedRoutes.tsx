@@ -21,7 +21,7 @@ const pageTransition: Transition = {
 const AnimatedRoutes = () => {
 
     const location = useLocation();
-    
+
     useScrollToTop(); // Custom hook to scroll to top on route change
 
     const PageWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -29,7 +29,7 @@ const AnimatedRoutes = () => {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }} 
+                exit={{ opacity: 0, y: -20 }}
                 transition={pageTransition}
                 className="w-full h-full"
             >
@@ -41,11 +41,11 @@ const AnimatedRoutes = () => {
 
     return (
         <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname} > 
-                
-                <Route path="/" element={ <PageWrapper> <Home /> </PageWrapper>} />
-                <Route path="/faqs" element={ <PageWrapper> <Faqs /> </PageWrapper>} />
-            
+            <Routes location={location} key={location.pathname} >
+
+                <Route path="/" element={<PageWrapper> <Home /> </PageWrapper>} />
+                <Route path="/faqs" element={<PageWrapper> <Faqs /> </PageWrapper>} />
+
             </Routes>
         </AnimatePresence>
     );

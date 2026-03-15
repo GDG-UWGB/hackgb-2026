@@ -2,16 +2,20 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Tracks from '../components/Tracks';
 import Schedule from '../components/Schedule';
-import FAQ from '../components/FAQ';
+import FAQ from '../components/sections/FAQ';
 import Eligibility from '../components/Eligibility';
 import Registration from '../components/Registration';
-
+import Travel from '../components/sections/Travel';
 import Sponsors from '../components/Sponsors';
 
 const Home = () => {
   return (
     <main className="overflow-hidden">
       <Hero />
+
+      <section id="travel">
+        <Travel />
+      </section>
 
       <section id="about">
         <About />

@@ -67,6 +67,7 @@
   font-weight: 400;
   font-style: italic;
 }
+
 /* Medium */
 @font-face {
   font-family: 'GoogleSansMono';
@@ -74,6 +75,7 @@
   font-weight: 500;
   font-style: normal;
 }
+
 /* Medium Italic */
 @font-face {
   font-family: 'GoogleSansMono';
@@ -89,6 +91,7 @@
   font-weight: 600;
   font-style: normal;
 }
+
 /* SemiBold Italic */
 @font-face {
   font-family: 'GoogleSansMono';
@@ -96,6 +99,7 @@
   font-weight: 600;
   font-style: italic;
 }
+
 /* Bold */
 @font-face {
   font-family: 'GoogleSansMono';
@@ -103,6 +107,7 @@
   font-weight: 700;
   font-style: normal;
 }
+
 /* Bold Italic */
 @font-face {
   font-family: 'GoogleSansMono';
@@ -159,10 +164,11 @@
   font-weight: 700;
   font-style: italic;
 }
+
 /* #endregion Google Fonts */
 
 /* #region Google Theme Variables */
-@theme { 
+@theme {
   /* MAPPING FONTS */
   --font-google: "GoogleSans", ui-sans-serif, system-ui, sans-serif;
   --font-google-mono: "GoogleSansMono", ui-monospace, monospace;
@@ -180,6 +186,12 @@
   --color-uwgb-white: #ffffff;
   --color-uwgb-gold: #ffcc00;
 
+  /* Darktones */
+  --color-google-green-darktone: #188038;
+  --color-google-blue-darktone: #1967d2;
+  --color-google-yellow-darktone: #c27b00;
+  --color-google-red-darktone: #c5221f;
+
   /* Halftones */
   --color-google-blue-halftone: #57caff;
   --color-google-green-halftone: #5cdb6d;
@@ -195,14 +207,23 @@
   /* Grayscale */
   --color-google-off-white: #f0f0f0;
   --color-google-black: #1e1e1e;
-  
+
   /* Animations */
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
   --animate-fade-in: fade-in 0.6s ease-out;
 }
+
 /* #endregion Google Theme Variables */
 
 /* ----------------------------------------- Standard Page Design ------------------------------------------------------------- */
@@ -212,7 +233,12 @@ body {
   background-color: var(--color-neutral2);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'GoogleSans', sans-serif;
 }
 
@@ -225,15 +251,17 @@ p {
   text-transform: capitalize;
 }
 
-  /* On hover animation for buttons inside paragraphs (underline) with smooth transition */
-p button{
+/* On hover animation for buttons inside paragraphs (underline) with smooth transition */
+p button {
   text-decoration: underline solid transparent;
-  text-underline-offset: 4px;  
-  transition: text-decoration-color 0.3s ease-in-out; 
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.3s ease-in-out;
 }
-p button:hover{
-  text-decoration-color: currentColor; 
+
+p button:hover {
+  text-decoration-color: currentColor;
 }
+
 /* #endregion Utils */
 
 /* #region Markdown formating */
@@ -242,38 +270,39 @@ p button:hover{
   color: var(--color-text1);
   line-height: 1.6;
 
-  > p {
+  >p {
     margin-bottom: 1em;
   }
 
-  > h2 {
-  font-size: x-large;
-  font-weight: bold;
-  line-height: 1.35;
-  color: var(--color-primary1);
-  margin-bottom: 0.5em;
+  >h2 {
+    font-size: x-large;
+    font-weight: bold;
+    line-height: 1.35;
+    color: var(--color-primary1);
+    margin-bottom: 0.5em;
   }
 
-  > ol {
+  >ol {
     margin-bottom: 1em;
 
-    > li {
+    >li {
       margin-left: 1em;
       margin-bottom: 1em;
       list-style-type: disc;
     }
   }
 
-  > ul {
+  >ul {
     margin-bottom: 1em;
 
-    > li {
+    >li {
       margin-left: 1em;
       margin-bottom: 1em;
       list-style-type: disc;
     }
   }
 }
+
 /* #endregion Markdown formating */
 
 /* --- Other Classes --- */
@@ -302,20 +331,24 @@ p button:hover{
   --slide-spacing: 1rem;
   --slide-size: 100%;
 }
+
 .embla__viewport {
   overflow: hidden;
 }
+
 .embla__container {
   display: flex;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing) * -1);
 }
+
 .embla__slide {
   transform: translate3d(0, 0, 0);
   flex: 0 0 var(--slide-size);
   min-width: 0;
   padding-left: var(--slide-spacing);
 }
+
 .embla__slide__number {
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
   border-radius: 1.8rem;
@@ -327,6 +360,7 @@ p button:hover{
   height: var(--slide-height);
   user-select: none;
 }
+
 .embla__controls {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -334,12 +368,14 @@ p button:hover{
   gap: 1.2rem;
   margin-top: 1.8rem;
 }
+
 .embla__buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
   align-items: center;
 }
+
 .embla__button {
   -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
   -webkit-appearance: none;
@@ -362,13 +398,16 @@ p button:hover{
   align-items: center;
   justify-content: center;
 }
+
 .embla__button:disabled {
   color: var(--detail-high-contrast);
 }
+
 .embla__button__svg {
   width: 35%;
   height: 35%;
 }
+
 .embla__dots {
   display: flex;
   flex-wrap: wrap;
@@ -376,6 +415,7 @@ p button:hover{
   align-items: center;
   margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
 }
+
 .embla__dot {
   -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
   -webkit-appearance: none;
@@ -395,6 +435,7 @@ p button:hover{
   justify-content: center;
   border-radius: 50%;
 }
+
 .embla__dot:after {
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
   width: 1.4rem;
@@ -404,7 +445,9 @@ p button:hover{
   align-items: center;
   content: '';
 }
+
 .embla__dot--selected:after {
   box-shadow: inset 0 0 0 0.2rem var(--text-body);
 }
+
 /* #endregion Embla Carousel Styles  */

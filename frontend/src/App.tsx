@@ -2,18 +2,18 @@
 
 import { BrowserRouter } from 'react-router-dom';
 import AnimatedRoutes from './components/layout/AnimatedRoutes';
-// import Navbar from './components/layout/Navbar2';
-// import Footer from './components/layout/Footer2';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Navbar/> */}
+        <Navbar />
 
         <AnimatedRoutes />
 
-        {/* <Footer/> */}
+        <Footer />
       </BrowserRouter>
 
     </>
