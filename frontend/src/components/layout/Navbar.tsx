@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/images/HGBL - DKGN.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,56 +16,57 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'About', to: 'about' },
-    { name: 'Schedule', to: 'schedule' },
     { name: 'Tracks', to: 'tracks' },
+    { name: 'Schedule', to: 'schedule' },
     { name: 'FAQs', to: 'faqs' },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/90 border-b border-black/5 shadow-md backdrop-blur-md py-3'
+          : 'bg-transparent py-5'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0 flex items-center gap-6">
-            <Link to="hero" smooth={true} className="flex items-center gap-2 group cursor-pointer">
-              <img src={logo} alt="HackGB Logo" className="h-16 w-auto object-contain" />
-            </Link>
-
-            {/* Top-Left Register Now Button */}
-            <Link
-              to="register"
-              smooth={true}
-              className="bg-google-blue hover:bg-google-blue/90 text-white px-5 py-2.5 rounded-full font-google font-bold text-sm transition-all shadow-[0_4px_14px_0_rgba(66,133,244,0.39)] hover:shadow-[0_6px_20px_rgba(66,133,244,0.23)] cursor-pointer flex items-center gap-2 transform hover:scale-105"
-            >
-              <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-              Register Now
-            </Link>
-          </div>
-
-          {/* Desktop Nav Links (Moved to the right) */}
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-1">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="flex justify-between items-center h-12">
+          {/* Logo */}
+          <Link to="hero" smooth={true} className="flex items-center gap-2 cursor-pointer">
+            <img src={logo} alt="HackGB Phoenix Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" />
+          </Link>
+ 
+          {/* Links & CTA */}
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.to}
                   smooth={true}
                   duration={500}
-                  className="px-4 py-2 text-google-black/70 hover:text-google-blue hover:bg-google-blue/5 rounded-full font-google-text font-medium transition-all cursor-pointer text-sm"
+                  className="px-4 py-2 rounded-full font-google-text font-medium text-sm text-slate-700 hover:text-[#61A644] hover:bg-slate-100 transition-all cursor-pointer"
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
+            
+            <Link
+              to="register"
+              smooth={true}
+              duration={500}
+              className="bg-[#61A644] hover:bg-[#61A644]/95 text-white px-6 py-2.5 rounded-full font-google font-bold text-sm transition-all shadow-[0_4px_14px_rgba(97,166,68,0.4)] hover:shadow-[0_6px_20px_rgba(97,166,68,0.3)] cursor-pointer transform hover:-translate-y-0.5"
+            >
+              Apply Now
+            </Link>
           </div>
-
+ 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-google-black p-2 rounded-md focus:outline-none"
+              className="p-1.5 rounded-md focus:outline-none text-slate-800 hover:text-[#61A644] transition-colors"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {mobileMenuOpen ? (
@@ -77,31 +78,31 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Mobile Nav */}
-      <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'} bg-white border-t`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {navLinks.map((link) => (
+ 
+        {/* Mobile Nav Drawer */}
+        <div className={`md:hidden ${mobileMenuOpen ? 'max-h-72 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'} transition-all duration-300 rounded-2xl bg-white border border-black/5 p-4 shadow-xl`}>
+          <div className="space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.to}
+                smooth={true}
+                duration={500}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-slate-700 hover:bg-slate-100 hover:text-[#61A644] block px-4 py-2.5 rounded-xl font-google-text font-medium text-sm cursor-pointer"
+              >
+                {link.name}
+              </Link>
+            ))}
             <Link
-              key={link.name}
-              to={link.to}
+              to="register"
               smooth={true}
-              duration={500}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-google-black hover:bg-google-blue/10 hover:text-google-blue block px-3 py-2 rounded-md font-google-text font-medium"
+              className="w-full bg-[#61A644] text-white block px-4 py-3 rounded-xl font-google font-bold text-center text-sm mt-3 shadow-lg active:scale-95 transition-all cursor-pointer"
             >
-              {link.name}
+              Apply Now
             </Link>
-          ))}
-          <Link
-            to="register"
-            smooth={true}
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full bg-google-blue text-white block px-3 py-3 rounded-xl font-google font-medium text-center mt-4 shadow-lg active:scale-95 transition-all"
-          >
-            Register Now
-          </Link>
+          </div>
         </div>
       </div>
     </nav>

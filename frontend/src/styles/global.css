@@ -176,33 +176,33 @@
 
   /* MAPPING COLORS */
   /* Core Colors */
-  --color-google-blue: #4285f4;
-  --color-google-green: #34a853;
-  --color-google-yellow: #f9ab00;
-  --color-google-red: #ea4335;
+  --color-google-blue: #0C3C34;      /* Dark Green */
+  --color-google-green: #61A644;     /* Light Green */
+  --color-google-yellow: #E37100;    /* UWGB Orange/Yellow */
+  --color-google-red: #ffcc00;       /* UWGB Gold/Yellow */
 
   /* UWGB Colors */
-  --color-uwgb-green: #006a4d;
+  --color-uwgb-green: #0C3C34;
   --color-uwgb-white: #ffffff;
   --color-uwgb-gold: #ffcc00;
 
   /* Darktones */
-  --color-google-green-darktone: #188038;
-  --color-google-blue-darktone: #1967d2;
-  --color-google-yellow-darktone: #c27b00;
-  --color-google-red-darktone: #c5221f;
+  --color-google-green-darktone: #4d8932;
+  --color-google-blue-darktone: #072520;
+  --color-google-yellow-darktone: #b55a00;
+  --color-google-red-darktone: #cca200;
 
   /* Halftones */
-  --color-google-blue-halftone: #57caff;
-  --color-google-green-halftone: #5cdb6d;
-  --color-google-yellow-halftone: #ffd427;
-  --color-google-red-halftone: #ff7daf;
+  --color-google-blue-halftone: #185c51;
+  --color-google-green-halftone: #80c463;
+  --color-google-yellow-halftone: #ff9127;
+  --color-google-red-halftone: #ffe260;
 
   /* Pastels */
-  --color-google-blue-pastel: #c3ecf6;
-  --color-google-green-pastel: #ccf6c5;
-  --color-google-yellow-pastel: #ffe7a5;
-  --color-google-red-pastel: #f8d8d8;
+  --color-google-blue-pastel: #e3ebea;
+  --color-google-green-pastel: #eff6eb;
+  --color-google-yellow-pastel: #ffebd5;
+  --color-google-red-pastel: #fffbdf;
 
   /* Grayscale */
   --color-google-off-white: #f0f0f0;
@@ -319,6 +319,73 @@ p button:hover {
 .bg-dots {
   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 2px);
   background-size: 20px 20px;
+}
+
+.bg-gradient-phoenix {
+  background: linear-gradient(135deg, #0C3C34 0%, #185c51 50%, #61A644 100%);
+}
+
+.text-gradient-phoenix {
+  background: linear-gradient(135deg, #61A644, #E37100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+.wave-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+/* Bay Beach flowing waves */
+@keyframes bay-wave-flow {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.bay-wave-track {
+  animation: bay-wave-flow linear infinite;
+  will-change: transform;
+}
+
+.bay-wave-divider {
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bay-wave-track {
+    animation: none;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(97, 166, 68, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(97, 166, 68, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 

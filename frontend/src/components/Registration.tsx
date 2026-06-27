@@ -1,77 +1,103 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Registration = () => {
-    const [activeTab, setActiveTab] = useState<'hacker' | 'mentor' | 'volunteer' | 'sponsor'>('hacker');
+    const [email, setEmail] = useState('');
+    const [submitted, setSubmitted] = useState(false);
 
-    const forms = {
-        hacker: "https://docs.google.com/forms/d/e/1FAIpQLSdU_Xp8hE_M_N_P_Q_R_S_T_U_V_W_X_Y_Z/viewform?embedded=true",
-        mentor: null,
-        volunteer: "https://docs.google.com/forms/d/e/1FAIpQLSg_A_B_C_D_E_F_G_H_I_J_K_L_M_N_O/viewform?embedded=true",
-        sponsor: null,
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (email) {
+            setSubmitted(true);
+        }
     };
 
-    const isComingSoon = forms[activeTab] === null;
-
     return (
-        <section className="py-24 px-4 bg-white" id="register">
-            <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-google font-bold mb-4 text-google-black">
-                        Register <span className="text-google-blue">Now</span>
-                    </h2>
-                    <p className="text-xl text-google-black/60">
-                        Join us for a historic weekend of innovation.
-                    </p>
-                </div>
+        <section className="py-24 px-4 relative overflow-hidden bg-transparent" id="register">
+            {/* Subtle glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none" />
 
-                {/* Tab Selector */}
-                <div className="flex flex-wrap justify-center gap-2 mb-8 bg-google-off-white/50 p-2 rounded-2xl w-fit mx-auto">
-                    {(['hacker', 'mentor', 'volunteer', 'sponsor'] as const).map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`px-6 py-2 rounded-xl font-google font-medium transition-all capitalize ${activeTab === tab
-                                ? 'bg-white text-google-blue shadow-sm'
-                                : 'text-google-black/40 hover:text-google-black/60'
-                                }`}
-                        >
-                            {tab === 'mentor' ? 'Judge/Mentor' : tab}
-                        </button>
-                    ))}
-                </div>
+            <div className="max-w-3xl mx-auto text-center relative z-10 pt-8">
+                {/* Badge */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#E37100]/20 border border-[#E37100]/30 text-[#E37100] font-google font-bold text-sm uppercase tracking-widest mb-8">
+                        <span className="w-2 h-2 bg-[#E37100] rounded-full animate-pulse" />
+                        Coming Soon
+                    </span>
+                </motion.div>
 
-                {/* Content Container */}
-                <div className="relative w-full bg-white rounded-3xl border border-google-off-white shadow-xl overflow-hidden min-h-[400px] flex items-center justify-center">
-                    {isComingSoon ? (
-                        <div className="text-center p-12 animate-fade-in">
-                            <div className="bg-google-blue/10 p-4 rounded-2xl mb-6 inline-block text-google-blue">
-                                <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <h3 className="text-2xl font-google font-bold text-google-black mb-2">Coming Soon</h3>
-                            <p className="text-google-black/60 font-google-text">
-                                Interest forms for {activeTab === 'mentor' ? 'judges and mentors' : 'sponsors'} will be available shortly.
-                            </p>
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-4xl md:text-5xl font-google font-bold mb-4 text-slate-900"
+                >
+                    Applications Opening Soon
+                </motion.h2>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="text-lg text-slate-500 mb-12 max-w-xl mx-auto font-google-text"
+                >
+                    Be the first to know when hacker, mentor, volunteer, and sponsor applications go live. Drop your email and we'll notify you.
+                </motion.p>
+
+                {/* Email Form */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
+                >
+                    {submitted ? (
+                        <div className="bg-white/70 border border-black/5 rounded-2xl p-8 backdrop-blur-md shadow-md text-slate-800">
+                            <div className="text-[#61A644] text-5xl mb-4">🎉</div>
+                            <h3 className="text-2xl font-google font-bold text-slate-900 mb-2">You're on the list!</h3>
+                            <p className="text-slate-600 font-google-text">We'll send you an email when applications open. Get ready for the Phoenix to rise.</p>
                         </div>
                     ) : (
-                        <>
-                            <div className="absolute inset-0 flex items-center justify-center -z-10">
-                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-google-blue"></div>
-                            </div>
-                            <iframe
-                                src={forms[activeTab]!}
-                                width="100%"
-                                height="1000"
-                                style={{ border: 0 }}
-                                className="w-full h-[1000px]"
-                                title={`${activeTab} Registration Form`}
+                        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email"
+                                required
+                                className="flex-1 px-6 py-4 rounded-full bg-white/70 border border-black/5 text-slate-850 placeholder-slate-400 font-google-text focus:outline-none focus:border-[#61A644]/50 focus:bg-white transition-all backdrop-blur-md shadow-sm"
+                            />
+                            <button
+                                type="submit"
+                                className="px-8 py-4 bg-[#61A644] hover:bg-[#61A644]/90 text-white rounded-full font-google font-bold transition-all shadow-[0_10px_30px_-10px_rgba(97,166,68,0.3)] hover:shadow-[0_20px_40px_-10px_rgba(97,166,68,0.2)] transform hover:-translate-y-0.5"
                             >
-                                Loading...
-                            </iframe>
-                        </>
+                                Join Waiting List
+                            </button>
+                        </form>
                     )}
-                </div>
+                </motion.div>
+
+                {/* Role pills */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    viewport={{ once: true }}
+                    className="flex flex-wrap justify-center gap-3 mt-10"
+                >
+                    {['Hacker', 'Mentor', 'Volunteer', 'Sponsor'].map((role) => (
+                        <span key={role} className="px-4 py-2 rounded-full bg-slate-100 border border-black/5 text-slate-500 font-google-text text-sm">
+                            {role}
+                        </span>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );
