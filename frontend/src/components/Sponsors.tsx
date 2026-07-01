@@ -16,18 +16,24 @@ const Sponsors = () => {
     const gold = sponsors.filter(s => s.tier === 'Gold');
     const silver = sponsors.filter(s => s.tier === 'Silver');
 
-    // Create a smooth loop by duplicating the array
     const marqueeItems = [...platinum, ...platinum, ...platinum, ...platinum];
 
     return (
-        <section className="py-24 px-4 bg-transparent overflow-hidden" id="sponsors">
-            <div className="max-w-7xl mx-auto text-center">
-                <h2 className="text-4xl md:text-5xl font-google font-bold mb-4 text-slate-900">
-                    Our <span className="text-gradient-phoenix">Sponsors</span>
-                </h2>
-                <p className="text-lg text-slate-500 mb-20 max-w-2xl mx-auto font-google-text">
-                    Empowering the next generation of innovators in Green Bay through partnership and support.
-                </p>
+        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="sponsors">
+            <div className="max-w-7xl mx-auto text-center relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Our Sponsors
+                    </h2>
+                    <p className="text-lg text-slate-800 mb-20 max-w-2xl mx-auto font-google-text">
+                        Empowering the next generation of innovators in Green Bay through partnership and support.
+                    </p>
+                </motion.div>
 
                 {/* Platinum Tier - Smooth Marquee */}
                 <div className="mb-24">
@@ -38,7 +44,6 @@ const Sponsors = () => {
                     </div>
 
                     <div className="relative w-full overflow-hidden">
-                        {/* Edge Fades for the marquee matching our background gradient */}
                         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
                         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
@@ -59,7 +64,7 @@ const Sponsors = () => {
                                     <img
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="h-20 w-auto object-contain opacity-75 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110"
+                                        className="h-20 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110"
                                     />
                                 </div>
                             ))}
@@ -81,7 +86,7 @@ const Sponsors = () => {
                                     <img
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="h-16 w-auto object-contain opacity-75 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
+                                        className="h-16 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
                                     />
                                 </div>
                             ))}
@@ -103,7 +108,7 @@ const Sponsors = () => {
                                     <img
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="h-14 w-auto object-contain opacity-75 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
+                                        className="h-14 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
                                     />
                                 </div>
                             ))}
@@ -112,14 +117,20 @@ const Sponsors = () => {
                 )}
 
                 {/* Call to Action */}
-                <div className="mt-20 p-10 border border-black/5 rounded-[3rem] bg-white/70 shadow-md max-w-4xl mx-auto backdrop-blur-md">
-                    <p className="text-slate-700 text-lg font-google-text">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="mt-20 glass-card p-10 max-w-4xl mx-auto bg-white/85 border border-black/5 shadow-sm text-slate-700"
+                >
+                    <p className="text-slate-600 text-lg font-google-text">
                         Interested in showcasing your brand at HackGB 2026?{' '}
-                        <a href="mailto:sponsorship@hackgb.com" className="text-[#61A644] font-bold hover:underline ml-1">
+                        <a href="mailto:sponsor@hackgb.com" className="text-[#61A644] font-bold hover:underline ml-1">
                             Download Sponsor Prospectus
                         </a>
                     </p>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

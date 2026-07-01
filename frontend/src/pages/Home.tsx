@@ -7,61 +7,60 @@ import Eligibility from '../components/Eligibility';
 import Registration from '../components/Registration';
 import Travel from '../components/sections/Travel';
 import Sponsors from '../components/Sponsors';
-import BayWave from '../components/common/BayWave';
+import CityDivider from '../components/common/CityDivider';
 
 const Home = () => {
   return (
-    <main className="relative overflow-hidden w-full text-slate-900" style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #f8faf5 25%, #eff6eb 55%, #f8faf5 100%)' }}>
-      {/* Global developer grid layout background overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(12,60,52,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(12,60,52,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-
+    <main className="relative overflow-hidden w-full noise-overlay bg-white">
       <Hero />
 
-      <BayWave />
+      <CityDivider variant="stadium" />
 
       <section id="about">
         <About />
       </section>
 
-      <BayWave />
+      <CityDivider variant="bridge" />
 
       <section id="tracks">
         <Tracks />
       </section>
 
-      <BayWave />
+      <CityDivider variant="waves" />
 
       <Sponsors />
 
-      <BayWave />
+      <CityDivider variant="skyline" />
 
       <section id="schedule">
         <Schedule />
       </section>
 
-      <BayWave />
+      <CityDivider variant="trees" />
 
       <section id="travel">
         <Travel />
       </section>
 
-      <BayWave />
+      <CityDivider variant="bridge" flip />
 
       <section id="eligibility">
         <Eligibility />
       </section>
 
-      <BayWave />
+      <CityDivider variant="waves" />
 
       <section id="faqs">
         <FAQ />
       </section>
 
-      <BayWave />
+      <CityDivider variant="skyline" flip />
 
       <section id="register">
         <Registration />
       </section>
+
+      <CityDivider variant="waves" />
     </main>
   );
 };

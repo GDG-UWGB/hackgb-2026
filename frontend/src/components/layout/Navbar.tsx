@@ -18,24 +18,24 @@ const Navbar = () => {
     { name: 'About', to: 'about' },
     { name: 'Tracks', to: 'tracks' },
     { name: 'Schedule', to: 'schedule' },
+    { name: 'Travel', to: 'travel' },
     { name: 'FAQs', to: 'faqs' },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/90 border-b border-black/5 shadow-md backdrop-blur-md py-3'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-350 ${isScrolled
+          ? 'bg-[#eff6eb]/90 border-b border-black/5 shadow-md backdrop-blur-md py-3'
           : 'bg-transparent py-5'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <Link to="hero" smooth={true} className="flex items-center gap-2 cursor-pointer">
-            <img src={logo} alt="HackGB Phoenix Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105 drop-shadow-sm" />
+            <img src={logo} alt="HackGB Phoenix Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
           </Link>
- 
+
           {/* Links & CTA */}
           <div className="hidden md:flex items-center gap-8">
             <div className="flex items-center gap-1">
@@ -51,17 +51,17 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-            
+
             <Link
               to="register"
               smooth={true}
               duration={500}
-              className="bg-[#61A644] hover:bg-[#61A644]/95 text-white px-6 py-2.5 rounded-full font-google font-bold text-sm transition-all shadow-[0_4px_14px_rgba(97,166,68,0.4)] hover:shadow-[0_6px_20px_rgba(97,166,68,0.3)] cursor-pointer transform hover:-translate-y-0.5"
+              className="bg-[#61A644] hover:bg-[#61A644]/90 text-white px-6 py-2.5 rounded-full font-google font-bold text-sm transition-all shadow-[0_4px_14px_rgba(97,166,68,0.35)] hover:shadow-[0_6px_20px_rgba(97,166,68,0.25)] cursor-pointer transform hover:-translate-y-0.5"
             >
               Apply Now
             </Link>
           </div>
- 
+
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
@@ -78,9 +78,9 @@ const Navbar = () => {
             </button>
           </div>
         </div>
- 
+
         {/* Mobile Nav Drawer */}
-        <div className={`md:hidden ${mobileMenuOpen ? 'max-h-72 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'} transition-all duration-300 rounded-2xl bg-white border border-black/5 p-4 shadow-xl`}>
+        <div className={`md:hidden ${mobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'} transition-all duration-350 rounded-2xl bg-white border border-black/5 p-4 shadow-xl`}>
           <div className="space-y-2">
             {navLinks.map((link) => (
               <Link
