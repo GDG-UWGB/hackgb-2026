@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import logo from '../assets/images/logo.gif';
 import foxRiverImg from '../assets/images/fox-river.png';
@@ -323,15 +324,13 @@ const Hero = () => {
                     transition={{ duration: 0.9, delay: 1.0, ease: spring }}
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 >
-                    <Link
-                        to="register"
-                        smooth={true}
-                        duration={500}
-                        className="btn-primary w-full sm:w-auto px-10 py-4 rounded-full font-google font-bold text-lg cursor-pointer group"
+                    <RouterLink
+                        to="/apply"
+                        className="btn-primary w-full sm:w-auto px-10 py-4 rounded-full font-google font-bold text-lg cursor-pointer group flex items-center justify-center gap-2"
                     >
                         Apply Now
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    </RouterLink>
                     <Link
                         to="about"
                         smooth={true}

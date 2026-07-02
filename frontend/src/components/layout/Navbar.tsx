@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/HGBL - DKGN.png';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -13,6 +16,18 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (to: string) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(to);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
 
   const navLinks = [
     { name: 'About', to: 'about' },
@@ -32,7 +47,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
-          <Link to="hero" smooth={true} className="flex items-center gap-2 cursor-pointer">
+          <Link to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
             <img src={logo} alt="HackGB Phoenix Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
           </Link>
 
@@ -45,6 +60,7 @@ const Navbar = () => {
                   to={link.to}
                   smooth={true}
                   duration={500}
+                  onClick={() => handleNavClick(link.to)}
                   className="px-4 py-2 rounded-full font-google-text font-medium text-sm text-slate-700 hover:text-[#61A644] hover:bg-slate-100 transition-all cursor-pointer"
                 >
                   {link.name}
@@ -52,14 +68,12 @@ const Navbar = () => {
               ))}
             </div>
 
-            <Link
-              to="register"
-              smooth={true}
-              duration={500}
+            <button
+              onClick={() => navigate('/apply')}
               className="bg-[#61A644] hover:bg-[#61A644]/90 text-white px-6 py-2.5 rounded-full font-google font-bold text-sm transition-all shadow-[0_4px_14px_rgba(97,166,68,0.35)] hover:shadow-[0_6px_20px_rgba(97,166,68,0.25)] cursor-pointer transform hover:-translate-y-0.5"
             >
               Apply Now
-            </Link>
+            </button>
           </div>
 
           {/* Mobile menu and MLH badge */}
@@ -91,20 +105,24 @@ const Navbar = () => {
                 to={link.to}
                 smooth={true}
                 duration={500}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleNavClick(link.to);
+                }}
                 className="text-slate-700 hover:bg-slate-100 hover:text-[#61A644] block px-4 py-2.5 rounded-xl font-google-text font-medium text-sm cursor-pointer"
               >
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="register"
-              smooth={true}
-              onClick={() => setMobileMenuOpen(false)}
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                navigate('/apply');
+              }}
               className="w-full bg-[#61A644] text-white block px-4 py-3 rounded-xl font-google font-bold text-center text-sm mt-3 shadow-lg active:scale-95 transition-all cursor-pointer"
             >
               Apply Now
-            </Link>
+            </button>
           </div>
         </div>
       </div>
