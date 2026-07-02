@@ -19,7 +19,7 @@ const Sponsors = () => {
     const marqueeItems = [...platinum, ...platinum, ...platinum, ...platinum];
 
     return (
-        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="sponsors">
+        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="sponsors">
             <div className="max-w-7xl mx-auto text-center relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

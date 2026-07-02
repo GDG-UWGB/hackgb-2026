@@ -249,7 +249,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 pb-32 overflow-hidden bg-transparent">
+        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 overflow-hidden bg-transparent">
             {/* Background landmark image */}
             <div className="absolute inset-0 z-0">
                 <img src={foxRiverImg} alt="" className="w-full h-full object-cover opacity-[0.35]" />
@@ -277,7 +277,7 @@ const Hero = () => {
                     <img
                         src={logo}
                         alt="HackGB Phoenix Logo"
-                        className="h-40 md:h-56 lg:h-64 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
+                        className="h-32 sm:h-40 md:h-56 lg:h-64 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
                     />
                 </motion.div>
 
@@ -299,7 +299,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-google font-bold mb-6 tracking-tight text-[#0C3C34]"
+                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-google font-bold mb-6 tracking-tight text-[#0C3C34]"
                 >
                     HackGB <span className="text-gradient-phoenix">2026</span>
                 </motion.h1>
@@ -358,8 +358,8 @@ const Hero = () => {
             </motion.div>
 
             {/* MLH Badge */}
-            <div className="fixed top-0 right-0 p-4 z-[60]">
-                <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '100px', minWidth: '60px', width: '10%' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
+            <div className="fixed top-14 md:top-0 right-0 p-3 md:p-4 z-60">
+                <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '80px', minWidth: '50px', width: '10%' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
                     <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} />
                 </a>
             </div>

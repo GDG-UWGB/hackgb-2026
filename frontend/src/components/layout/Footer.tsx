@@ -66,11 +66,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <p className="text-slate-500 text-sm font-google-text">
             © 2026 GDG on Campus UW-Green Bay. All rights reserved.
           </p>
-          <div className="flex gap-8 text-slate-500 text-sm font-google-text">
+          <div className="flex flex-wrap justify-center gap-6 text-slate-500 text-sm font-google-text">
             <a href="https://mlh.io/code-of-conduct" target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 transition-colors">MLH Code of Conduct</a>
             <a href="#" className="hover:text-slate-800 transition-colors">Privacy Policy</a>
           </div>

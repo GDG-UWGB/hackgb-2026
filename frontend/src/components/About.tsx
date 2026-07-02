@@ -33,7 +33,7 @@ const phoenixRight = {
 
 const About = () => {
     return (
-        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="about">
+        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="about">
             {/* Background landmark image */}
             <div className="absolute inset-0 z-0">
                 <img src={lambeauImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
@@ -71,18 +71,18 @@ const About = () => {
                     transition={{ ...phoenixRise.transition, delay: 0.15 }}
                     className="glass-card p-6 md:p-8 mb-20 bg-white/94 border border-black/5 shadow-sm max-w-5xl mx-auto"
                 >
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 divide-y-2 lg:divide-y-0 lg:divide-x divide-[#61A644]/10 text-center">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-y-2 lg:divide-y-0 lg:divide-x divide-[#61A644]/10 text-center">
                         {stats.map((stat, i) => {
                             const IconComponent = stat.icon;
                             return (
-                                <div key={i} className="flex flex-col items-center justify-center p-4 first:border-t-0 lg:first:border-l-0 pt-6 first:pt-4 lg:pt-4 lg:first:pt-4">
+                                <div key={i} className="flex flex-col items-center justify-center p-4 py-6 lg:py-4">
                                     <div className="flex items-center gap-2 mb-2">
                                         <IconComponent className="w-5 h-5" style={{ color: stat.color }} />
                                         <span className="text-slate-500 font-google-text text-xs font-semibold uppercase tracking-widest">
                                             {stat.label}
                                         </span>
                                     </div>
-                                    <div className="text-4xl md:text-5xl font-google font-bold text-[#0C3C34] tracking-tight">
+                                    <div className="text-3xl md:text-4xl lg:text-5xl font-google font-bold text-[#0C3C34] tracking-tight">
                                         {stat.number}
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ const About = () => {
 
                     <motion.div
                         {...phoenixRight}
-                        className="glass-card overflow-hidden h-[400px] lg:h-auto border border-black/5 shadow-sm bg-white"
+                        className="glass-card overflow-hidden h-70 sm:h-87.5 lg:h-auto border border-black/5 shadow-sm bg-white"
                     >
                         <iframe
                             title="STEM Innovation Center Map"

@@ -14,7 +14,7 @@ const Registration = () => {
     };
 
     return (
-        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="register">
+        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="register">
             <div className="max-w-3xl mx-auto text-center relative z-10 pt-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -71,11 +71,11 @@ const Registration = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter your email"
                                 required
-                                className="flex-1 px-6 py-4 rounded-full bg-white border border-black/10 text-slate-800 placeholder-slate-400 font-google-text focus:outline-none focus:border-[#61A644]/55 focus:bg-white transition-all shadow-sm"
+                                className="flex-1 px-5 py-4 rounded-full bg-white border border-black/10 text-slate-800 placeholder-slate-400 font-google-text focus:outline-none focus:border-[#61A644]/55 focus:bg-white transition-all shadow-sm w-full"
                             />
                             <button
                                 type="submit"
-                                className="btn-primary px-8 py-4 rounded-full font-google font-bold"
+                                className="btn-primary px-8 py-4 rounded-full font-google font-bold w-full sm:w-auto"
                             >
                                 Join Waiting List
                             </button>

@@ -18,7 +18,7 @@ const Schedule = () => {
     ];
 
     return (
-        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="schedule">
+        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="schedule">
             {/* Background landmark image */}
             <div className="absolute inset-0 z-0">
                 <img src={downtownImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
@@ -56,17 +56,17 @@ const Schedule = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7, delay: 0.1 }}
                         viewport={{ once: true }}
-                        className="glass-card p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
+                        className="glass-card p-5 sm:p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
                     >
                         <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/5">
-                            <h3 className="text-2xl font-google font-bold text-slate-900">Saturday, Oct 17</h3>
+                            <h3 className="text-xl sm:text-2xl font-google font-bold text-slate-900">Saturday, Oct 17</h3>
                             <span className="px-4 py-1 bg-[#61A644]/15 text-[#61A644] rounded-full font-google font-bold text-xs uppercase tracking-wider">Day 1</span>
                         </div>
                         <div className="space-y-6">
                             {saturdayEvents.map((evt, idx) => (
-                                <div key={idx} className="flex gap-4 md:gap-6 group">
-                                    <div className="min-w-[120px] md:min-w-[140px] pt-1">
-                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#E37100] bg-[#E37100]/10 px-3 py-1.5 rounded-lg block text-center">
+                                <div key={idx} className="flex flex-col sm:flex-row gap-2 sm:gap-6 group">
+                                    <div className="sm:min-w-35 pt-1">
+                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#E37100] bg-[#E37100]/10 px-3 py-1.5 rounded-lg inline-block sm:block sm:text-center">
                                             {evt.time}
                                         </span>
                                     </div>
@@ -85,17 +85,17 @@ const Schedule = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="glass-card p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
+                        className="glass-card p-5 sm:p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
                     >
                         <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/5">
-                            <h3 className="text-2xl font-google font-bold text-slate-900">Sunday, Oct 18</h3>
+                            <h3 className="text-xl sm:text-2xl font-google font-bold text-slate-900">Sunday, Oct 18</h3>
                             <span className="px-4 py-1 bg-[#E37100]/15 text-[#E37100] rounded-full font-google font-bold text-xs uppercase tracking-wider">Day 2</span>
                         </div>
                         <div className="space-y-6">
                             {sundayEvents.map((evt, idx) => (
-                                <div key={idx} className="flex gap-4 md:gap-6 group">
-                                    <div className="min-w-[120px] md:min-w-[140px] pt-1">
-                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#61A644] bg-[#61A644]/10 px-3 py-1.5 rounded-lg block text-center">
+                                <div key={idx} className="flex flex-col sm:flex-row gap-2 sm:gap-6 group">
+                                    <div className="sm:min-w-35 pt-1">
+                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#61A644] bg-[#61A644]/10 px-3 py-1.5 rounded-lg inline-block sm:block sm:text-center">
                                             {evt.time}
                                         </span>
                                     </div>

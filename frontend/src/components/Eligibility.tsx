@@ -4,7 +4,7 @@ import CanvasParticles from './common/CanvasParticles';
 
 const Eligibility = () => {
     return (
-        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="eligibility">
+        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="eligibility">
             {/* Background landmark image */}
             <div className="absolute inset-0 z-0">
                 <img src={uwgbStemImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
