@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PartyPopper } from 'lucide-react';
+import titletownImg from '../assets/images/titletown-district.png';
+
+/* Premium spring easing */
+const spring = [0.22, 1, 0.36, 1] as const;
 
 const Registration = () => {
     const [email, setEmail] = useState('');
@@ -15,23 +19,32 @@ const Registration = () => {
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="register">
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={titletownImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
+            </div>
+
+            {/* Ambient glow */}
+            <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+
             <div className="max-w-3xl mx-auto text-center relative z-10 pt-8">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
                 >
                     <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#E37100]/10 border border-[#E37100]/15 text-[#E37100] font-google font-bold text-sm uppercase tracking-widest mb-8">
-                        <span className="w-2 h-2 bg-[#E37100] rounded-full animate-pulse" />
+                        <span className="w-2 h-2 bg-[#E37100] rounded-full animate-ambient-glow" />
                         Coming Soon
                     </span>
                 </motion.div>
 
                 <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
+                    initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.1, ease: spring }}
                     viewport={{ once: true }}
                     className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]"
                 >
@@ -39,9 +52,9 @@ const Registration = () => {
                 </motion.h2>
 
                 <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.2, ease: spring }}
                     viewport={{ once: true }}
                     className="text-lg text-slate-800 mb-12 max-w-xl mx-auto font-google-text"
                 >
@@ -50,9 +63,9 @@ const Registration = () => {
 
                 {/* Email Form */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.3, ease: spring }}
                     viewport={{ once: true }}
                 >
                     {submitted ? (
@@ -87,7 +100,7 @@ const Registration = () => {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
+                    transition={{ duration: 0.9, delay: 0.5, ease: spring }}
                     viewport={{ once: true }}
                     className="flex flex-wrap justify-center gap-3 mt-10"
                 >

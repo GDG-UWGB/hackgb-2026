@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import UUnion from '../../assets/images/UUnion-square.jpg';
 import bayBeachImg from '../../assets/images/bay-beach.png';
 import TransportationInfo from './TransportationInfo';
-import CanvasParticles from '../common/CanvasParticles';
+
+/* Premium spring easing */
+const spring = [0.22, 1, 0.36, 1] as const;
 
 const Travel = () => {
     const destinationQuery = encodeURIComponent("University of Wisconsin-Green Bay");
@@ -12,25 +14,20 @@ const Travel = () => {
 
     return (
         <section className='relative pt-28 pb-48 px-4 overflow-hidden' id="travel">
-            {/* Background landmark image */}
-            <div className="absolute inset-0 z-0">
-                <img src={bayBeachImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={bayBeachImg} alt="" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
-            {/* Canvas Animated Constellation Background */}
-            <CanvasParticles
-                color1="rgba(12, 60, 52, 0.18)"
-                color2="rgba(97, 166, 68, 0.18)"
-                lineColor="rgba(12, 60, 52, 0.08)"
-                particleCount={35}
-            />
+            {/* Ambient glow */}
+            <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[#0C3C34]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className='max-w-7xl mx-auto relative z-10'>
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
                     className="mb-16"
                 >
@@ -41,9 +38,9 @@ const Travel = () => {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.1 }}
+                    initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.1, ease: spring }}
                     viewport={{ once: true }}
                     className='flex flex-col lg:flex-row gap-8 text-lg text-slate-900 font-google-text leading-relaxed mb-16'
                 >
@@ -55,9 +52,9 @@ const Travel = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 h-auto lg:h-[80vh]'>
                     {/* Left (large): Google Maps container */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
+                        initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.9, delay: 0.2, ease: spring }}
                         viewport={{ once: true }}
                         className="relative min-h-[400px] lg:col-span-2 lg:min-h-0 glass-card overflow-hidden bg-white border border-black/5 shadow-sm"
                     >
@@ -86,9 +83,9 @@ const Travel = () => {
                     {/* Right: Address (top) and image (bottom) */}
                     <div className='flex flex-col gap-6 lg:h-full'>
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.3 }}
+                            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+                            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            transition={{ duration: 0.9, delay: 0.3, ease: spring }}
                             viewport={{ once: true }}
                             className='glass-card py-10 lg:py-0 flex flex-col justify-center items-center lg:flex-1 text-center font-google font-bold text-2xl md:text-xl 2xl:text-2xl leading-snug bg-white/94 border border-black/5 shadow-sm'
                         >
@@ -98,9 +95,9 @@ const Travel = () => {
                             <h3 className="text-slate-900">WI 54311</h3>
                         </motion.div>
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.4 }}
+                            initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+                            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            transition={{ duration: 0.9, delay: 0.4, ease: spring }}
                             viewport={{ once: true }}
                             className='lg:flex-1 hidden md:block glass-card overflow-hidden border border-black/5 shadow-sm bg-white'
                         >

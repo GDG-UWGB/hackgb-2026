@@ -3,6 +3,10 @@ import uwgbLogo from '../assets/images/sponsors/UWGB-logo.webp';
 import csetLogo from '../assets/images/sponsors/cset-logo.webp';
 import googleLogo from '../assets/images/sponsors/google-logo.webp';
 import sgaLogo from '../assets/images/sponsors/sga-logo.webp';
+import gbWaterfrontImg from '../assets/images/gb-waterfront.png';
+
+/* Premium spring easing */
+const spring = [0.22, 1, 0.36, 1] as const;
 
 const sponsors = [
     { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'Platinum' },
@@ -20,11 +24,20 @@ const Sponsors = () => {
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="sponsors">
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={gbWaterfrontImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
+            </div>
+
+            {/* Ambient glow */}
+            <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+
             <div className="max-w-7xl mx-auto text-center relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
                 >
                     <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
@@ -118,9 +131,9 @@ const Sponsors = () => {
 
                 {/* Call to Action */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
                     className="mt-20 glass-card p-10 max-w-4xl mx-auto bg-white/85 border border-black/5 shadow-sm text-slate-700"
                 >

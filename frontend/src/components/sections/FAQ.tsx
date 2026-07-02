@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { faqs } from '../../data/faqsData';
+import cheeseHeritageImg from '../../assets/images/cheese-heritage.png';
+
+/* Premium spring easing */
+const spring = [0.22, 1, 0.36, 1] as const;
 
 const FAQ = () => {
     const [openIndices, setOpenIndices] = useState<number[]>([0]);
@@ -14,12 +18,21 @@ const FAQ = () => {
     };
 
     return (
-        <section className="relative pt-28 pb-48 px-4" id="faqs">
+        <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="faqs">
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={cheeseHeritageImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
+            </div>
+
+            {/* Ambient glow */}
+            <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+
             <div className="max-w-4xl mx-auto relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
@@ -38,11 +51,11 @@ const FAQ = () => {
                         return (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: index * 0.05 }}
+                                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                transition={{ duration: 0.6, delay: index * 0.05, ease: spring }}
                                 viewport={{ once: true }}
-                                className={`overflow-hidden rounded-2xl px-7 md:px-10 transition-all duration-300 ${isOpen
+                                className={`overflow-hidden rounded-2xl px-5 sm:px-7 md:px-10 transition-all duration-300 ${isOpen
                                     ? 'glass-card bg-white/95 border-black/10 shadow-sm'
                                     : 'bg-white/70 border border-black/5 hover:bg-white'
                                     }`}

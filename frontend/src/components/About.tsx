@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import lambeauImg from '../assets/images/lambeau-field.png';
-import CanvasParticles from './common/CanvasParticles';
 import { Users, Clock, Compass, Trophy } from 'lucide-react';
 
 const stats = [
@@ -10,46 +9,41 @@ const stats = [
     { number: '$5K+', label: 'In Prizes', icon: Trophy, color: '#ffcc00' },
 ];
 
+/* Premium spring easing — Apple-style curve */
+const spring = [0.22, 1, 0.36, 1] as const;
+
 const phoenixRise = {
-    initial: { opacity: 0, y: 50, scale: 0.96, filter: "blur(4px)" },
+    initial: { opacity: 0, y: 40, scale: 0.97, filter: "blur(8px)" },
     whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-40px" },
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.9, ease: spring }
 };
 
 const phoenixLeft = {
-    initial: { opacity: 0, x: -50, scale: 0.97, filter: "blur(4px)" },
+    initial: { opacity: 0, x: -40, scale: 0.97, filter: "blur(8px)" },
     whileInView: { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-40px" },
-    transition: { duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.9, delay: 0.1, ease: spring }
 };
 
 const phoenixRight = {
-    initial: { opacity: 0, x: 50, scale: 0.97, filter: "blur(4px)" },
+    initial: { opacity: 0, x: 40, scale: 0.97, filter: "blur(8px)" },
     whileInView: { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-40px" },
-    transition: { duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.9, delay: 0.2, ease: spring }
 };
 
 const About = () => {
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="about">
-            {/* Background landmark image */}
-            <div className="absolute inset-0 z-0">
-                <img src={lambeauImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={lambeauImg} alt="" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
-            {/* Canvas Animated Constellation Background */}
-            <CanvasParticles
-                color1="rgba(97, 166, 68, 0.25)"
-                color2="rgba(12, 60, 52, 0.2)"
-                lineColor="rgba(97, 166, 68, 0.08)"
-                particleCount={35}
-            />
-
             {/* Ambient glow */}
-            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-7xl mx-auto z-10 relative">
                 {/* Section header */}
@@ -77,7 +71,7 @@ const About = () => {
                             return (
                                 <div key={i} className="flex flex-col items-center justify-center p-4 py-6 lg:py-4">
                                     <div className="flex items-center gap-2 mb-2">
-                                        <IconComponent className="w-5 h-5" style={{ color: stat.color }} />
+                                        <IconComponent className="w-5 h-5 animate-gentle-float" style={{ color: stat.color }} />
                                         <span className="text-slate-500 font-google-text text-xs font-semibold uppercase tracking-widest">
                                             {stat.label}
                                         </span>
@@ -98,7 +92,7 @@ const About = () => {
                         className="glass-card p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
                     >
                         <div className="flex items-start gap-4 mb-6">
-                            <div className="bg-[#61A644]/10 p-3 rounded-xl shrink-0 border border-[#61A644]/15 animate-pulse-glow">
+                            <div className="bg-[#61A644]/10 p-3 rounded-xl shrink-0 border border-[#61A644]/15 animate-gentle-float">
                                 <svg className="w-6 h-6 text-[#61A644]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />

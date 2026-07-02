@@ -5,6 +5,9 @@ import logo from '../assets/images/logo.gif';
 import foxRiverImg from '../assets/images/fox-river.png';
 import { ArrowRight } from 'lucide-react';
 
+/* Premium spring easing — Apple-style curve */
+const spring = [0.22, 1, 0.36, 1] as const;
+
 const Hero = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const mouseRef = useRef({ x: -1000, y: -1000, active: false });
@@ -250,9 +253,9 @@ const Hero = () => {
 
     return (
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 overflow-hidden bg-transparent">
-            {/* Background landmark image */}
+            {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0">
-                <img src={foxRiverImg} alt="" className="w-full h-full object-cover opacity-[0.35]" />
+                <img src={foxRiverImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
@@ -269,9 +272,9 @@ const Hero = () => {
             <div className="max-w-5xl mx-auto z-10 flex flex-col items-center">
                 {/* Phoenix Logo */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, type: "spring", stiffness: 80 }}
+                    initial={{ opacity: 0, scale: 0.85, filter: "blur(12px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 1.2, ease: spring }}
                     className="mb-10"
                 >
                     <img
@@ -283,31 +286,31 @@ const Hero = () => {
 
                 {/* Event badge */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.4, ease: spring }}
                     className="mb-6"
                 >
                     <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full glass-card text-[#0C3C34] font-google font-bold text-sm uppercase tracking-widest border border-black/5 bg-white">
-                        <span className="w-2 h-2 bg-[#61A644] rounded-full animate-pulse" />
+                        <span className="w-2 h-2 bg-[#61A644] rounded-full animate-ambient-glow" />
                         Oct 17-18, 2026 • UWGB
                     </span>
                 </motion.div>
 
                 {/* Title */}
                 <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.5, ease: spring }}
                     className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-google font-bold mb-6 tracking-tight text-[#0C3C34]"
                 >
                     HackGB <span className="text-gradient-phoenix">2026</span>
                 </motion.h1>
 
                 <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
+                    initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 0.7, ease: spring }}
                     className="text-base md:text-lg text-slate-800 max-w-2xl mx-auto mb-12 font-google-text"
                 >
                     A mythical 24-hour coding journey from Bay Beach to the STEM Innovation Center. Build, learn, and innovate across Green Bay.
@@ -315,9 +318,9 @@ const Hero = () => {
 
                 {/* CTA Buttons */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.0 }}
+                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 1.0, ease: spring }}
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 >
                     <Link
@@ -357,9 +360,9 @@ const Hero = () => {
                 </Link>
             </motion.div>
 
-            {/* MLH Badge */}
-            <div className="fixed top-14 md:top-0 right-0 p-3 md:p-4 z-60">
-                <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '80px', minWidth: '50px', width: '10%' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
+            {/* MLH Badge — fixed for mobile: positioned below navbar, properly sized */}
+            <div className="fixed top-[70px] md:top-0 right-2 md:right-4 z-40 md:z-60 md:p-4">
+                <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '70px', minWidth: '40px', width: '10vw' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
                     <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} />
                 </a>
             </div>

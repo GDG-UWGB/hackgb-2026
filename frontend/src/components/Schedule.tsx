@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import downtownImg from '../assets/images/downtown-gb.png';
-import CanvasParticles from './common/CanvasParticles';
+
+/* Premium spring easing */
+const spring = [0.22, 1, 0.36, 1] as const;
 
 const Schedule = () => {
     const saturdayEvents = [
@@ -19,25 +21,20 @@ const Schedule = () => {
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="schedule">
-            {/* Background landmark image */}
-            <div className="absolute inset-0 z-0">
-                <img src={downtownImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={downtownImg} alt="" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
-            {/* Canvas Animated Constellation Background */}
-            <CanvasParticles
-                color1="rgba(255, 204, 0, 0.25)"
-                color2="rgba(227, 113, 0, 0.2)"
-                lineColor="rgba(255, 204, 0, 0.08)"
-                particleCount={35}
-            />
+            {/* Ambient glow */}
+            <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-[#ffcc00]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
@@ -52,21 +49,21 @@ const Schedule = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Saturday Card */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.7, delay: 0.1 }}
+                        initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.9, delay: 0.1, ease: spring }}
                         viewport={{ once: true }}
                         className="glass-card p-5 sm:p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
                     >
                         <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/5">
                             <h3 className="text-xl sm:text-2xl font-google font-bold text-slate-900">Saturday, Oct 17</h3>
-                            <span className="px-4 py-1 bg-[#61A644]/15 text-[#61A644] rounded-full font-google font-bold text-xs uppercase tracking-wider">Day 1</span>
+                            <span className="px-3 sm:px-4 py-1 bg-[#61A644]/15 text-[#61A644] rounded-full font-google font-bold text-xs uppercase tracking-wider shrink-0 ml-2">Day 1</span>
                         </div>
                         <div className="space-y-6">
                             {saturdayEvents.map((evt, idx) => (
                                 <div key={idx} className="flex flex-col sm:flex-row gap-2 sm:gap-6 group">
-                                    <div className="sm:min-w-35 pt-1">
-                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#E37100] bg-[#E37100]/10 px-3 py-1.5 rounded-lg inline-block sm:block sm:text-center">
+                                    <div className="sm:w-36 shrink-0 pt-1">
+                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#E37100] bg-[#E37100]/10 px-3 py-1.5 rounded-lg inline-block whitespace-nowrap">
                                             {evt.time}
                                         </span>
                                     </div>
@@ -79,23 +76,23 @@ const Schedule = () => {
                         </div>
                     </motion.div>
 
-                    {/* Sunday Card */}
+                    {/* Sunday Card — fixed: x: 30 → x: 0 properly in whileInView */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
+                        initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.9, delay: 0.2, ease: spring }}
                         viewport={{ once: true }}
                         className="glass-card p-5 sm:p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
                     >
                         <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/5">
                             <h3 className="text-xl sm:text-2xl font-google font-bold text-slate-900">Sunday, Oct 18</h3>
-                            <span className="px-4 py-1 bg-[#E37100]/15 text-[#E37100] rounded-full font-google font-bold text-xs uppercase tracking-wider">Day 2</span>
+                            <span className="px-3 sm:px-4 py-1 bg-[#E37100]/15 text-[#E37100] rounded-full font-google font-bold text-xs uppercase tracking-wider shrink-0 ml-2">Day 2</span>
                         </div>
                         <div className="space-y-6">
                             {sundayEvents.map((evt, idx) => (
                                 <div key={idx} className="flex flex-col sm:flex-row gap-2 sm:gap-6 group">
-                                    <div className="sm:min-w-35 pt-1">
-                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#61A644] bg-[#61A644]/10 px-3 py-1.5 rounded-lg inline-block sm:block sm:text-center">
+                                    <div className="sm:w-36 shrink-0 pt-1">
+                                        <span className="font-google font-bold text-xs uppercase tracking-wider text-[#61A644] bg-[#61A644]/10 px-3 py-1.5 rounded-lg inline-block whitespace-nowrap">
                                             {evt.time}
                                         </span>
                                     </div>

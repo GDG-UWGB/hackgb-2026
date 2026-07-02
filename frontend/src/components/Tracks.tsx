@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import foxRiverImg from '../assets/images/fox-river.png';
-import CanvasParticles from './common/CanvasParticles';
+import gbTrailImg from '../assets/images/gb-trail.png';
 import { Leaf, BookOpen, Settings, HeartPulse } from 'lucide-react';
 
 const tracks = [
@@ -30,29 +29,27 @@ const tracks = [
     },
 ];
 
+/* Premium spring easing */
+const spring = [0.22, 1, 0.36, 1] as const;
+
 const phoenixRise = {
-    initial: { opacity: 0, y: 50, scale: 0.96, filter: "blur(4px)" },
+    initial: { opacity: 0, y: 40, scale: 0.97, filter: "blur(8px)" },
     whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-40px" },
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.9, ease: spring }
 };
 
 const Tracks = () => {
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="tracks">
-            {/* Background landmark image */}
-            <div className="absolute inset-0 z-0">
-                <img src={foxRiverImg} alt="" className="w-full h-full object-cover opacity-[0.45]" />
+            {/* Background landmark image with parallax drift */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <img src={gbTrailImg} alt="" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
-            {/* Canvas Animated Constellation Background */}
-            <CanvasParticles
-                color1="rgba(227, 113, 0, 0.22)"
-                color2="rgba(97, 166, 68, 0.22)"
-                lineColor="rgba(227, 113, 0, 0.08)"
-                particleCount={40}
-            />
+            {/* Ambient glow */}
+            <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <motion.div
