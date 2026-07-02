@@ -1,4 +1,4 @@
-import { faLocationDot, faDiamondTurnRight } from '@fortawesome/free-solid-svg-icons';
+import { faDiamondTurnRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import UUnion from '../../assets/images/UUnion-square.jpg';
