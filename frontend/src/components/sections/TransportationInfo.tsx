@@ -11,31 +11,31 @@ const TransportationInfo = () => {
     return (
         <div className="flex flex-col md:flex-row gap-8 lg:gap-16 w-full mt-24 font-google-text">
             {/* Left side: Navigation */}
-            <div className="flex flex-col w-full md:w-1/3 shrink-0">
-                <h3 className="text-slate-400 text-sm font-bold tracking-wider mb-6 uppercase font-google">
+            <div className="flex flex-col w-full md:w-1/3 shrink-0 glass-card p-5 md:p-6 bg-white/95 border border-black/5 shadow-sm rounded-[2rem]">
+                <h3 className="text-slate-400 text-sm font-bold tracking-wider mb-4 uppercase font-google">
                     Transportation Tips
                 </h3>
-                <nav className="flex flex-col gap-2">
+                <nav className="flex flex-col gap-1.5">
                     {transportationData.map((item) => {
                         const isActive = item.id === selectedId;
                         return (
                             <button
                                 key={item.id}
                                 onClick={() => setSelectedId(item.id)}
-                                className={`group flex items-center gap-6 text-left transition-colors duration-200 py-2 ${isActive ? 'text-[#E37100] font-bold' : 'text-slate-600 hover:text-slate-900'
+                                className={`group flex items-center gap-4 text-left transition-colors duration-200 py-1.5 ${isActive ? 'text-[#E37100] font-bold' : 'text-slate-700 hover:text-slate-900'
                                     }`}
                             >
                                 <div
-                                    className={`flex items-center justify-center w-14 h-14 rounded-full transition-all duration-300 ${isActive ? 'glass-card border-[#E37100]/20 bg-white' : 'bg-transparent group-hover:bg-black/[0.04]'
+                                    className={`flex items-center justify-center w-11 h-11 rounded-full transition-all duration-300 ${isActive ? 'glass-card border-[#E37100]/20 bg-white' : 'bg-transparent group-hover:bg-black/[0.04]'
                                         }`}
                                     style={{ color: isActive ? '#E37100' : '#61A644' }}
                                 >
                                     <FontAwesomeIcon
                                         icon={item.icon}
-                                        className="text-xl"
+                                        className="text-lg"
                                     />
                                 </div>
-                                <span className="text-lg">{item.title}</span>
+                                <span className="text-base">{item.title}</span>
                             </button>
                         );
                     })}
@@ -44,7 +44,7 @@ const TransportationInfo = () => {
 
             {/* Right side: Content */}
             <div className="flex-1">
-                <div className="glass-card p-8 md:p-10 min-h-[350px] bg-white/80 border border-black/5 shadow-sm">
+                <div className="glass-card h-full p-6 md:p-8 min-h-[300px] bg-white/95 border border-black/5 shadow-sm rounded-[2rem]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={selectedId}

@@ -25,8 +25,8 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-350 ${isScrolled
-          ? 'bg-[#eff6eb]/90 border-b border-black/5 shadow-md backdrop-blur-md py-3'
-          : 'bg-transparent py-5'
+        ? 'bg-[#eff6eb]/90 border-b border-black/5 shadow-md backdrop-blur-md py-3'
+        : 'bg-transparent py-5'
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -62,8 +62,11 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile menu and MLH badge */}
+          <div className="md:hidden flex items-center gap-2">
+            <a className="mt-1.5" style={{ display: 'block', width: '36px' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
+              <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} className="drop-shadow-sm" />
+            </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-1.5 rounded-md focus:outline-none text-slate-800 hover:text-[#61A644] transition-colors"

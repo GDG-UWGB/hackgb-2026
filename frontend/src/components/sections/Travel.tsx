@@ -29,12 +29,11 @@ const Travel = () => {
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, ease: spring }}
                     viewport={{ once: true }}
-                    className="mb-16"
+                    className="text-center mb-16"
                 >
-                    <div className='flex items-center gap-6 text-4xl md:text-6xl font-google'>
-                        <span className="text-[#E37100]"><FontAwesomeIcon icon={faLocationDot} /></span>
-                        <h2 className='text-[#0C3C34]'>Find Your Way</h2>
-                    </div>
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Find Your Way
+                    </h2>
                 </motion.div>
 
                 <motion.div
@@ -42,10 +41,12 @@ const Travel = () => {
                     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.1, ease: spring }}
                     viewport={{ once: true }}
-                    className='flex flex-col lg:flex-row gap-8 text-lg text-slate-900 font-google-text leading-relaxed mb-16'
+                    className='glass-card p-8 md:p-10 bg-white/95 border border-black/5 shadow-sm mb-16'
                 >
-                    <p>The University of Wisconsin-Green Bay is located in Green Bay, Wisconsin. It is a medium-sized institution with a beautiful campus located on the shores of the Fox River and Green Bay.</p>
-                    <p>Green Bay is a city in northeastern Wisconsin, located on the western shore of Lake Michigan. It is the third-largest city in Wisconsin, with a population of about 107,000 people.</p>
+                    <div className='flex flex-col lg:flex-row gap-8 text-lg text-slate-800 font-google-text leading-relaxed'>
+                        <p className="flex-1">The University of Wisconsin-Green Bay is located in Green Bay, Wisconsin. It is a medium-sized institution with a beautiful campus located on the shores of the Fox River and Green Bay.</p>
+                        <p className="flex-1">Green Bay is a city in northeastern Wisconsin, located on the western shore of Lake Michigan. It is the third-largest city in Wisconsin, with a population of about 107,000 people.</p>
+                    </div>
                 </motion.div>
 
                 {/* Bento Grid */}

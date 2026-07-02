@@ -8,9 +8,9 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 export default defineConfig({
   plugins: [react(), tailwindcss(), cloudflare()],
   server: {
-    host: true, 
+    host: true,
   },
   build: {
-    outDir: 'dist',  
+    outDir: 'dist',
   },
 })

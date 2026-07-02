@@ -4,6 +4,7 @@ import csetLogo from '../assets/images/sponsors/cset-logo.webp';
 import googleLogo from '../assets/images/sponsors/google-logo.webp';
 import sgaLogo from '../assets/images/sponsors/sga-logo.webp';
 import gbWaterfrontImg from '../assets/images/gb-waterfront.png';
+import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -50,15 +51,13 @@ const Sponsors = () => {
 
                 {/* Platinum Tier - Smooth Marquee */}
                 <div className="mb-24">
-                    <div className="flex items-center justify-center gap-4 mb-10">
-                        <div className="h-px w-16 bg-gradient-to-r from-transparent to-black/10" />
-                        <span className="text-sm font-google font-bold uppercase tracking-[0.4em] text-[#61A644]">Platinum Partners</span>
-                        <div className="h-px w-16 bg-gradient-to-l from-transparent to-black/10" />
+                    <div className="flex justify-center mb-10">
+                        <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-[0.3em] text-[#61A644] shadow-sm">
+                            Platinum Partners
+                        </span>
                     </div>
 
                     <div className="relative w-full overflow-hidden">
-                        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
                         <motion.div
                             className="flex items-center gap-20 py-4"
@@ -77,7 +76,7 @@ const Sponsors = () => {
                                     <img
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="h-20 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110"
+                                        className="h-20 w-auto object-contain transition-all duration-500 transform group-hover:scale-110"
                                     />
                                 </div>
                             ))}
@@ -88,10 +87,10 @@ const Sponsors = () => {
                 {/* Gold Tier Section */}
                 {gold.length > 0 && (
                     <div className="mb-24">
-                        <div className="flex items-center justify-center gap-4 mb-10">
-                            <div className="h-px w-12 bg-black/10" />
-                            <span className="text-sm font-google font-bold uppercase tracking-[0.3em] text-[#E37100]">Gold Partners</span>
-                            <div className="h-px w-12 bg-black/10" />
+                        <div className="flex justify-center mb-10">
+                            <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-[0.3em] text-[#E37100] shadow-sm">
+                                Gold Partners
+                            </span>
                         </div>
                         <div className="flex flex-wrap justify-center gap-20 text-center">
                             {gold.map((sponsor) => (
@@ -99,7 +98,7 @@ const Sponsors = () => {
                                     <img
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="h-16 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
+                                        className="h-16 w-auto object-contain transition-all duration-500 transform group-hover:scale-105"
                                     />
                                 </div>
                             ))}
@@ -110,10 +109,10 @@ const Sponsors = () => {
                 {/* Silver Tier Section */}
                 {silver.length > 0 && (
                     <div className="mb-24">
-                        <div className="flex items-center justify-center gap-4 mb-10">
-                            <div className="h-px w-12 bg-black/10" />
-                            <span className="text-sm font-google font-bold uppercase tracking-[0.3em] text-slate-400">Silver Partners</span>
-                            <div className="h-px w-12 bg-black/10" />
+                        <div className="flex justify-center mb-10">
+                            <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-[0.3em] text-slate-600 shadow-sm">
+                                Silver Partners
+                            </span>
                         </div>
                         <div className="flex flex-wrap justify-center gap-16">
                             {silver.map((sponsor) => (
@@ -121,7 +120,7 @@ const Sponsors = () => {
                                     <img
                                         src={sponsor.logo}
                                         alt={sponsor.name}
-                                        className="h-14 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
+                                        className="h-14 w-auto object-contain transition-all duration-500 transform group-hover:scale-105"
                                     />
                                 </div>
                             ))}
@@ -139,7 +138,7 @@ const Sponsors = () => {
                 >
                     <p className="text-slate-600 text-lg font-google-text">
                         Interested in showcasing your brand at HackGB 2026?{' '}
-                        <a href="mailto:sponsor@hackgb.com" className="text-[#61A644] font-bold hover:underline ml-1">
+                        <a href={prospectusPdf} target="_blank" rel="noopener noreferrer" className="text-[#61A644] font-bold hover:underline ml-1">
                             Download Sponsor Prospectus
                         </a>
                     </p>

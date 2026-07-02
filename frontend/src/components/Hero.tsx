@@ -190,12 +190,12 @@ const Hero = () => {
             ctx.lineWidth = 1.2;
             for (let j = 0; j < 3; j++) {
                 ctx.beginPath();
-                ctx.strokeStyle = j === 0 
-                    ? 'rgba(97, 166, 68, 0.04)' 
-                    : j === 1 
-                        ? 'rgba(227, 113, 0, 0.03)' 
+                ctx.strokeStyle = j === 0
+                    ? 'rgba(97, 166, 68, 0.04)'
+                    : j === 1
+                        ? 'rgba(227, 113, 0, 0.03)'
                         : 'rgba(12, 60, 52, 0.04)';
-                
+
                 for (let x = 0; x < w; x += 5) {
                     const waveOffset = Math.sin(x * 0.003 + time * 8 + j * 200) * 45;
                     const cosOffset = Math.cos(x * 0.002 - time * 5 + j * 100) * 20;
@@ -360,9 +360,9 @@ const Hero = () => {
                 </Link>
             </motion.div>
 
-            {/* MLH Badge — fixed for mobile: positioned below navbar, properly sized */}
-            <div className="fixed top-[70px] md:top-0 right-2 md:right-4 z-40 md:z-60 md:p-4">
-                <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '70px', minWidth: '40px', width: '10vw' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
+            {/* MLH Badge — fixed for desktop, hidden on mobile (moved to navbar) */}
+            <div className="hidden md:block fixed top-0 right-4 z-60 p-4">
+                <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '80px', minWidth: '50px', width: '10vw' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
                     <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} />
                 </a>
             </div>
