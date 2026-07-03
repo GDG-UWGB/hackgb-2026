@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import logo from '../assets/images/logo.gif';
-import foxRiverImg from '../assets/images/fox-river.png';
+import logo from '../assets/images/logos/logo.gif';
+import foxRiverImg from '../assets/images/background/fox-river.png';
 import { ArrowRight } from 'lucide-react';
 
 /* Premium spring easing — Apple-style curve */

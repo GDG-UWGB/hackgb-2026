@@ -1,8 +1,8 @@
 import { faDiamondTurnRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import UUnion from '../../assets/images/UUnion-square.jpg';
-import bayBeachImg from '../../assets/images/bay-beach.png';
+import UUnion from '../../assets/images/others/UUnion-square.jpg';
+import bayBeachImg from '../../assets/images/background/bay-beach.png';
 import TransportationInfo from './TransportationInfo';
 
 /* Premium spring easing */

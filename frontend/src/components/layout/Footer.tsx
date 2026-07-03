@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import logo from '../../assets/images/HGBL - DKGN.png';
+import logo from '../../assets/images/logos/HGBL - DKGN.png';
+import gdgLogo from '../../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
 
 const Footer = () => {
   const socialLinks = [
@@ -18,7 +19,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
-            <img src={logo} alt="HackGB Phoenix Logo" className="h-14 w-auto mb-4 opacity-90" />
+            <div className="flex flex-wrap items-center gap-3.5 mb-4">
+              <img src={logo} alt="HackGB Logo" className="h-12 w-auto object-contain opacity-90" />
+              <div className="h-8 w-[1px] bg-slate-300" />
+              <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <img src={gdgLogo} alt="GDG UWGB Logo" className="h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
             <span className="font-google text-3xl font-bold text-[#0C3C34] mb-2 block">
               HackGB 2026
             </span>

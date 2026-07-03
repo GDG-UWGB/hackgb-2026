@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import gbTrailImg from '../assets/images/gb-trail.png';
+import gbTrailImg from '../assets/images/background/gb-trail.png';
 import { Leaf, BookOpen, Settings, HeartPulse } from 'lucide-react';
 
 const tracks = [

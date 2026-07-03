@@ -3,7 +3,7 @@ import uwgbLogo from '../assets/images/sponsors/UWGB-logo.webp';
 import csetLogo from '../assets/images/sponsors/cset-logo.webp';
 import googleLogo from '../assets/images/sponsors/google-logo.webp';
 import sgaLogo from '../assets/images/sponsors/sga-logo.webp';
-import gbWaterfrontImg from '../assets/images/gb-waterfront.png';
+import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
 /* Premium spring easing */

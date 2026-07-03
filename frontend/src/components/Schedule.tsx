@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import downtownImg from '../assets/images/downtown-gb.png';
+import downtownImg from '../assets/images/background/downtown-gb.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;

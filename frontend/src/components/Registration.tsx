@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import titletownImg from '../assets/images/titletown-district.png';
+import titletownImg from '../assets/images/background/titletown-district.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;

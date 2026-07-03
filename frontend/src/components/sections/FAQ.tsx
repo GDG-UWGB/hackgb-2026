@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { faqs } from '../../data/faqsData';
-import cheeseHeritageImg from '../../assets/images/cheese-heritage.png';
+import cheeseHeritageImg from '../../assets/images/background/cheese-heritage.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;

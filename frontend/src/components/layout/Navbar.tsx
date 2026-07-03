@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../../assets/images/HGBL - DKGN.png';
+import logo from '../../assets/images/logos/HGBL - DKGN.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <Link to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
-            <img src={logo} alt="HackGB Phoenix Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
+            <img src={logo} alt="HackGB Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
           </Link>
 
           {/* Links & CTA */}

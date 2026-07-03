@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import lambeauImg from '../assets/images/lambeau-field.png';
+import lambeauImg from '../assets/images/background/lambeau-field.png';
+import gdgLogo from '../assets/images/gdg/GDG On Campus - Horizontal - Dark.png';
 import { Users, Clock, Compass, Trophy } from 'lucide-react';
 
 const stats = [
@@ -57,6 +58,12 @@ const About = () => {
                     <p className="text-xl text-slate-900 max-w-3xl font-google-text leading-relaxed">
                         Organized by GDG on Campus at UW-Green Bay in partnership with MLH, HackGB is a historic 24-hour hackathon experience. We invite 200+ students to embark on a mythical coding journey at the STEM Innovation Center — where the Phoenix rises.
                     </p>
+                    <div className="flex flex-wrap items-center gap-4 mt-8">
+                        <span className="text-slate-700 font-google font-bold text-sm uppercase tracking-wider">Organized by</span>
+                        <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity">
+                            <img src={gdgLogo} alt="GDG on Campus Logo" className="h-13 w-auto object-contain" />
+                        </a>
+                    </div>
                 </motion.div>
 
                 {/* Unified stats strip */}

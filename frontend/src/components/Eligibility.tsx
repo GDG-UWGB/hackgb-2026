@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import uwgbStemImg from '../assets/images/uwgb-stem.png';
+import uwgbStemImg from '../assets/images/background/uwgb-stem.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
