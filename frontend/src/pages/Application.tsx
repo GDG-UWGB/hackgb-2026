@@ -243,7 +243,7 @@ const Application = () => {
         <div className="text-center mb-10">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#61A644]/10 border border-[#61A644]/15 text-[#61A644] font-google font-bold text-xs uppercase tracking-widest mb-4">
             <span className="w-2 h-2 bg-[#61A644] rounded-full" />
-            Rise of the Phoenix
+            UWGB's Premier Collegiate Hackathon
           </span>
           <h1 className="text-4xl md:text-5xl font-google font-bold text-[#0C3C34] tracking-tight">
             HackGB 2026 Application

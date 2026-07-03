@@ -314,7 +314,7 @@ const Hero = () => {
                     transition={{ duration: 0.9, delay: 0.7, ease: spring }}
                     className="text-base md:text-lg text-slate-800 max-w-2xl mx-auto mb-12 font-google-text"
                 >
-                    A mythical 24-hour coding journey from Bay Beach to the STEM Innovation Center. Build, learn, and innovate across Green Bay.
+                    UWGB's premier 24-hour collegiate hackathon. Join 200+ students at the STEM Innovation Center to build, learn, and innovate.
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -342,22 +342,7 @@ const Hero = () => {
                 </motion.div>
             </div>
 
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
-            >
-                <Link to="about" smooth={true} duration={800} className="cursor-pointer">
-                    <div className="flex flex-col items-center gap-2 text-slate-600 animate-scroll-indicator">
-                        <span className="text-xs font-google uppercase tracking-widest">Scroll</span>
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7" />
-                        </svg>
-                    </div>
-                </Link>
-            </motion.div>
+
 
             {/* MLH Badge — fixed for desktop, hidden on mobile (moved to navbar) */}
             <div className="hidden md:block fixed top-0 right-4 z-60 p-4">

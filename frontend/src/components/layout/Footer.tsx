@@ -22,8 +22,8 @@ const Footer = () => {
             <span className="font-google text-3xl font-bold text-[#0C3C34] mb-2 block">
               HackGB 2026
             </span>
-            <p className="text-[#E37100] text-sm font-google font-bold uppercase tracking-widest mb-4">
-              Rise of the Phoenix
+            <p className="text-[#E37100] text-xs font-google font-bold uppercase tracking-wider mb-4">
+              UWGB's Premier Collegiate Hackathon
             </p>
             <p className="text-slate-600 max-w-sm mb-6 font-google-text">
               A mythical 24-hour coding journey across Green Bay. Building a better future at the STEM Innovation Center.
