@@ -1,27 +1,36 @@
 import { motion } from 'framer-motion';
-import uwgbLogo from '../assets/images/sponsors/UWGB-logo.webp';
-import csetLogo from '../assets/images/sponsors/cset-logo.webp';
-import googleLogo from '../assets/images/sponsors/google-logo.webp';
-import sgaLogo from '../assets/images/sponsors/sga-logo.webp';
+import uwgbLogo from '../assets/images/sponsors/phoenix/UWGB-logo.webp';
+import csetLogo from '../assets/images/sponsors/phoenix/cset-logo.webp';
+import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+import sgaLogo from '../assets/images/sponsors/spark/sga-logo.png';
+import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
+import campusCatalystsLogo from '../assets/images/sponsors/flame/campus-catalysts.png';
 import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
-const sponsors = [
-    { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'Platinum' },
-    { name: 'Google', logo: googleLogo, tier: 'Platinum' },
-    { name: 'CSET', logo: csetLogo, tier: 'Platinum' },
-    { name: 'SGA', logo: sgaLogo, tier: 'Silver' },
+interface Sponsor {
+    name: string;
+    logo: string;
+    tier: 'phoenix' | 'flame' | 'ember' | 'spark';
+    group: 'partner' | 'sponsor';
+    link?: string;
+}
+
+const sponsors: Sponsor[] = [
+    { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', group: 'partner', link: 'https://www.uwgb.edu/' },
+    { name: 'Google', logo: googleLogo, tier: 'phoenix', group: 'partner', link: 'https://google.com/' },
+    { name: 'CSET', logo: csetLogo, tier: 'phoenix', group: 'partner', link: 'https://www.uwgb.edu/cset/' },
+    { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', group: 'sponsor', link: 'https://www.gener8tor.com/' },
+    { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', group: 'sponsor' },
+    { name: 'SGA', logo: sgaLogo, tier: 'spark', group: 'sponsor', link: 'https://www.uwgb.edu/sga/' },
 ];
 
 const Sponsors = () => {
-    const platinum = sponsors.filter(s => s.tier === 'Platinum');
-    const gold = sponsors.filter(s => s.tier === 'Gold');
-    const silver = sponsors.filter(s => s.tier === 'Silver');
-
-    const marqueeItems = [...platinum, ...platinum, ...platinum, ...platinum];
+    const partners = sponsors.filter(s => s.group === 'partner');
+    const otherSponsors = sponsors.filter(s => s.group === 'sponsor');
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="sponsors">
@@ -49,84 +58,88 @@ const Sponsors = () => {
                     </p>
                 </motion.div>
 
-                {/* Platinum Tier - Smooth Marquee */}
+                {/* Partners Section (Phoenix Tier) */}
                 <div className="mb-24">
                     <div className="flex justify-center mb-10">
-                        <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-[0.3em] text-[#61A644] shadow-sm">
-                            Platinum Partners
+                        <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-wider text-[#61A644] shadow-sm">
+                            Partners
                         </span>
                     </div>
 
-                    <div className="relative w-full overflow-hidden">
-
-                        <motion.div
-                            className="flex items-center gap-20 py-4"
-                            animate={{
-                                x: ["0%", "-50%"]
-                            }}
-                            transition={{
-                                duration: 20,
-                                repeat: Infinity,
-                                ease: "linear"
-                            }}
-                            style={{ width: "max-content" }}
-                        >
-                            {marqueeItems.map((sponsor, idx) => (
-                                <div key={`${sponsor.name}-${idx}`} className="w-64 flex items-center justify-center group">
-                                    <img
-                                        src={sponsor.logo}
-                                        alt={sponsor.name}
-                                        className="h-20 w-auto object-contain transition-all duration-500 transform group-hover:scale-110"
-                                    />
+                    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 max-w-4xl mx-auto">
+                        {partners.map((sponsor) => {
+                            const imgElement = (
+                                <img
+                                    src={sponsor.logo}
+                                    alt={sponsor.name}
+                                    className="h-20 sm:h-22 md:h-24 w-auto object-contain transition-all duration-500 transform group-hover:scale-110"
+                                />
+                            );
+                            return (
+                                <div key={sponsor.name} className="group flex items-center justify-center p-4">
+                                    {sponsor.link ? (
+                                        <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                                            {imgElement}
+                                        </a>
+                                    ) : (
+                                        imgElement
+                                    )}
                                 </div>
-                            ))}
-                        </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
 
-                {/* Gold Tier Section */}
-                {gold.length > 0 && (
-                    <div className="mb-24">
-                        <div className="flex justify-center mb-10">
-                            <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-[0.3em] text-[#E37100] shadow-sm">
-                                Gold Partners
-                            </span>
-                        </div>
-                        <div className="flex flex-wrap justify-center gap-20 text-center">
-                            {gold.map((sponsor) => (
-                                <div key={sponsor.name} className="group">
-                                    <img
-                                        src={sponsor.logo}
-                                        alt={sponsor.name}
-                                        className="h-16 w-auto object-contain transition-all duration-500 transform group-hover:scale-105"
-                                    />
-                                </div>
-                            ))}
-                        </div>
+                {/* Sponsors Section (Ember & Spark Tiers) */}
+                <div className="mb-24">
+                    <div className="flex justify-center mb-10">
+                        <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-wider text-[#E37100] shadow-sm">
+                            Sponsors
+                        </span>
                     </div>
-                )}
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
+                        {otherSponsors.map((sponsor) => {
+                            // Sizing hierarchy: phoenix > flame > ember > spark
+                            let sizeClass = "h-8 sm:h-10 md:h-12"; // spark default
+                            if (sponsor.tier === 'ember') {
+                                sizeClass = "h-12 sm:h-14 md:h-16";
+                            } else if (sponsor.tier === 'flame') {
+                                sizeClass = "h-16 sm:h-18 md:h-20";
+                            } else if (sponsor.tier === 'phoenix') {
+                                sizeClass = "h-20 sm:h-22 md:h-24";
+                            }
 
-                {/* Silver Tier Section */}
-                {silver.length > 0 && (
-                    <div className="mb-24">
-                        <div className="flex justify-center mb-10">
-                            <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-[0.3em] text-slate-600 shadow-sm">
-                                Silver Partners
-                            </span>
-                        </div>
-                        <div className="flex flex-wrap justify-center gap-16">
-                            {silver.map((sponsor) => (
-                                <div key={sponsor.name} className="group">
-                                    <img
-                                        src={sponsor.logo}
-                                        alt={sponsor.name}
-                                        className="h-14 w-auto object-contain transition-all duration-500 transform group-hover:scale-105"
-                                    />
+                            const imgElement = (
+                                <img
+                                    src={sponsor.logo}
+                                    alt={sponsor.name}
+                                    className={`${sizeClass} w-auto object-contain transition-all duration-500 transform group-hover:scale-110`}
+                                />
+                            );
+
+                            return (
+                                <div key={sponsor.name} className="group flex items-center justify-center p-2">
+                                    {sponsor.link ? (
+                                        <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                                            {imgElement}
+                                        </a>
+                                    ) : (
+                                        imgElement
+                                    )}
                                 </div>
-                            ))}
+                            );
+                        })}
+
+                        {/* More coming soon indicator styled like a logo card */}
+                        <div className="flex items-center justify-center p-2">
+                            <div className="h-12 sm:h-14 md:h-16 px-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50/30 flex items-center justify-center hover:bg-slate-50/60 hover:border-[#61A644]/50 transition-all duration-300 group">
+                                <span className="text-slate-500 group-hover:text-[#61A644] font-google font-medium text-sm md:text-base tracking-wide transition-colors duration-300">
+                                    More coming soon...
+                                </span>
+                            </div>
                         </div>
                     </div>
-                )}
+                </div>
 
                 {/* Call to Action */}
                 <motion.div
