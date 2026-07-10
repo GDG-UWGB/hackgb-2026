@@ -332,7 +332,7 @@ const JudgeApplication = () => {
       });
 
       data.append('fvv', '1');
-      data.append('pageHistory', '0,1,2,3');
+      data.append('pageHistory', '0,1,2,3,4,5,6');
 
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
@@ -486,10 +486,10 @@ const JudgeApplication = () => {
                       <div className="flex flex-col md:flex-row items-center gap-2">
                         <div
                           className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-google font-bold transition-all duration-350 ${isActive
-                              ? 'bg-[#0C3C34] text-white ring-4 ring-[#0C3C34]/10 scale-105 shadow-md'
-                              : isCompleted
-                                ? 'bg-[#61A644] text-white'
-                                : 'bg-slate-100 text-slate-400'
+                            ? 'bg-[#0C3C34] text-white ring-4 ring-[#0C3C34]/10 scale-105 shadow-md'
+                            : isCompleted
+                              ? 'bg-[#61A644] text-white'
+                              : 'bg-slate-100 text-slate-400'
                             }`}
                         >
                           {isCompleted ? <FontAwesomeIcon icon={faCheck} className="text-xs" /> : s.id}
@@ -808,8 +808,8 @@ const JudgeApplication = () => {
                                     <label
                                       key={opt}
                                       className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border text-sm transition-all cursor-pointer ${isChecked
-                                          ? 'bg-[#61A644]/10 border-[#61A644] text-[#0C3C34] font-bold'
-                                          : 'bg-white/50 border-black/5 text-slate-700 hover:bg-slate-50'
+                                        ? 'bg-[#61A644]/10 border-[#61A644] text-[#0C3C34] font-bold'
+                                        : 'bg-white/50 border-black/5 text-slate-700 hover:bg-slate-50'
                                         }`}
                                     >
                                       <input
@@ -987,10 +987,10 @@ const JudgeApplication = () => {
                                   onDragLeave={() => setIsDragging(false)}
                                   onDrop={handleFileDrop}
                                   className={`relative flex flex-col items-center justify-center py-6 px-4 rounded-xl border border-dashed text-center cursor-pointer transition-all ${isDragging
-                                      ? 'bg-[#61A644]/10 border-[#61A644] scale-[1.01]'
-                                      : errors.resumeUrl
-                                        ? 'bg-red-50/30 border-red-300 hover:bg-red-50/50'
-                                        : 'bg-white/50 border-black/15 hover:bg-slate-50'
+                                    ? 'bg-[#61A644]/10 border-[#61A644] scale-[1.01]'
+                                    : errors.resumeUrl
+                                      ? 'bg-red-50/30 border-red-300 hover:bg-red-50/50'
+                                      : 'bg-white/50 border-black/15 hover:bg-slate-50'
                                     }`}
                                 >
                                   <input
@@ -1081,8 +1081,8 @@ const JudgeApplication = () => {
                       onClick={handleBack}
                       disabled={step === 1 || isSubmitting}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-google font-bold text-sm transition-all hover:scale-[1.01] ${step === 1
-                          ? 'opacity-0 pointer-events-none'
-                          : 'border border-black/10 hover:bg-slate-50 text-slate-600'
+                        ? 'opacity-0 pointer-events-none'
+                        : 'border border-black/10 hover:bg-slate-50 text-slate-600'
                         }`}
                     >
                       <FontAwesomeIcon icon={faArrowLeft} />
