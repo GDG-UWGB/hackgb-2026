@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ArrowUpRight, FolderHeart, Heart } from 'lucide-react';
 import uwgbLogo from '../assets/images/sponsors/phoenix/UWGB-logo.webp';
 import csetLogo from '../assets/images/sponsors/phoenix/cset-logo.webp';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
@@ -11,26 +12,63 @@ import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, margin: '-40px' },
+    transition: { duration: 0.8, delay, ease: spring },
+});
+
 interface Sponsor {
     name: string;
     logo: string;
     tier: 'phoenix' | 'flame' | 'ember' | 'spark';
-    group: 'partner' | 'sponsor';
     link?: string;
 }
 
 const sponsors: Sponsor[] = [
-    { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', group: 'partner', link: 'https://www.uwgb.edu/' },
-    { name: 'Google', logo: googleLogo, tier: 'phoenix', group: 'partner', link: 'https://google.com/' },
-    { name: 'CSET', logo: csetLogo, tier: 'phoenix', group: 'partner', link: 'https://www.uwgb.edu/cset/' },
-    { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', group: 'sponsor', link: 'https://www.gener8tor.com/' },
-    { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', group: 'sponsor' },
-    { name: 'SGA', logo: sgaLogo, tier: 'spark', group: 'sponsor', link: 'https://www.uwgb.edu/sga/' },
+    { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
+    { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
+    { name: 'CSET', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
+    { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame' },
+    { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
+    { name: 'SGA', logo: sgaLogo, tier: 'spark', link: 'https://www.uwgb.edu/sga/' },
 ];
 
 const Sponsors = () => {
-    const partners = sponsors.filter(s => s.group === 'partner');
-    const otherSponsors = sponsors.filter(s => s.group === 'sponsor');
+    const phoenixSponsors = sponsors.filter(s => s.tier === 'phoenix');
+    const flameSponsors = sponsors.filter(s => s.tier === 'flame');
+    const emberSponsors = sponsors.filter(s => s.tier === 'ember');
+    const sparkSponsors = sponsors.filter(s => s.tier === 'spark');
+
+    const renderSponsorCards = (list: Sponsor[], cardWidthClass: string, imgHeightClass: string) => {
+        return (
+            <div className="flex flex-wrap gap-6 justify-center items-center">
+                {list.map((sponsor, idx) => {
+                    const card = (
+                        <motion.div
+                            key={sponsor.name}
+                            {...fadeUp(0.05 * (idx + 1))}
+                            className={`group bg-white border border-black/5 rounded-xl p-6 flex items-center justify-center ${cardWidthClass} hover:border-[#61A644]/30 hover:shadow-sm transition-all duration-300`}
+                        >
+                            <img
+                                src={sponsor.logo}
+                                alt={sponsor.name}
+                                className={`${imgHeightClass} w-auto object-contain transition-transform duration-500 group-hover:scale-105`}
+                            />
+                        </motion.div>
+                    );
+                    return sponsor.link ? (
+                        <a key={sponsor.name} href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                            {card}
+                        </a>
+                    ) : (
+                        card
+                    );
+                })}
+            </div>
+        );
+    };
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="sponsors">
@@ -43,118 +81,123 @@ const Sponsors = () => {
             {/* Ambient glow */}
             <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
-            <div className="max-w-7xl mx-auto text-center relative z-10">
+            <div className="max-w-5xl mx-auto text-center relative z-10">
+                {/* Integrated IDE Sponsors Card */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, ease: spring }}
-                    viewport={{ once: true }}
+                    {...fadeUp(0.15)}
+                    className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-xl overflow-hidden flex flex-col min-h-[460px] relative text-left"
                 >
-                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
-                        Our Sponsors
-                    </h2>
-                    <p className="text-lg text-slate-800 mb-20 max-w-2xl mx-auto font-google-text">
-                        Empowering the next generation of innovators in Green Bay through partnership and support.
-                    </p>
-                </motion.div>
-
-                {/* Partners Section (Phoenix Tier) */}
-                <div className="mb-24">
-                    <div className="flex justify-center mb-10">
-                        <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-wider text-[#61A644] shadow-sm">
-                            Partners
-                        </span>
-                    </div>
-
-                    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 max-w-4xl mx-auto">
-                        {partners.map((sponsor) => {
-                            const imgElement = (
-                                <img
-                                    src={sponsor.logo}
-                                    alt={sponsor.name}
-                                    className="h-20 sm:h-22 md:h-24 w-auto object-contain transition-all duration-500 transform group-hover:scale-110"
-                                />
-                            );
-                            return (
-                                <div key={sponsor.name} className="group flex items-center justify-center p-4">
-                                    {sponsor.link ? (
-                                        <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                                            {imgElement}
-                                        </a>
-                                    ) : (
-                                        imgElement
-                                    )}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Sponsors Section (Ember & Spark Tiers) */}
-                <div className="mb-24">
-                    <div className="flex justify-center mb-10">
-                        <span className="px-6 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-sm font-google font-bold uppercase tracking-wider text-[#E37100] shadow-sm">
-                            Sponsors
-                        </span>
-                    </div>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
-                        {otherSponsors.map((sponsor) => {
-                            // Sizing hierarchy: phoenix > flame > ember > spark
-                            let sizeClass = "h-8 sm:h-10 md:h-12"; // spark default
-                            if (sponsor.tier === 'ember') {
-                                sizeClass = "h-12 sm:h-14 md:h-16";
-                            } else if (sponsor.tier === 'flame') {
-                                sizeClass = "h-16 sm:h-18 md:h-20";
-                            } else if (sponsor.tier === 'phoenix') {
-                                sizeClass = "h-20 sm:h-22 md:h-24";
-                            }
-
-                            const imgElement = (
-                                <img
-                                    src={sponsor.logo}
-                                    alt={sponsor.name}
-                                    className={`${sizeClass} w-auto object-contain transition-all duration-500 transform group-hover:scale-110`}
-                                />
-                            );
-
-                            return (
-                                <div key={sponsor.name} className="group flex items-center justify-center p-2">
-                                    {sponsor.link ? (
-                                        <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                                            {imgElement}
-                                        </a>
-                                    ) : (
-                                        imgElement
-                                    )}
-                                </div>
-                            );
-                        })}
-
-                        {/* More coming soon indicator styled like a logo card */}
-                        <div className="flex items-center justify-center p-2">
-                            <div className="h-12 sm:h-14 md:h-16 px-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50/30 flex items-center justify-center hover:bg-slate-50/60 hover:border-[#61A644]/50 transition-all duration-300 group">
-                                <span className="text-slate-500 group-hover:text-[#61A644] font-google font-medium text-sm md:text-base tracking-wide transition-colors duration-300">
-                                    More coming soon...
-                                </span>
-                            </div>
+                    {/* IDE Top Window Bar */}
+                    <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30">
+                        <div className="flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                            <span className="text-[10px] font-google-mono text-slate-500 ml-3">Our Sponsors</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-slate-450 bg-slate-200/50 px-2 py-0.5 rounded border border-black/5">
+                            <FolderHeart className="w-3.5 h-3.5 text-[#61A644]" />
+                            <span>dependencies.json</span>
                         </div>
                     </div>
-                </div>
 
-                {/* Call to Action */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, ease: spring }}
-                    viewport={{ once: true }}
-                    className="mt-20 glass-card p-10 max-w-4xl mx-auto bg-white/85 border border-black/5 shadow-sm text-slate-700"
-                >
-                    <p className="text-slate-600 text-lg font-google-text">
-                        Interested in showcasing your brand at HackGB 2026?{' '}
-                        <a href={prospectusPdf} target="_blank" rel="noopener noreferrer" className="text-[#61A644] font-bold hover:underline ml-1">
-                            Download Sponsor Prospectus
-                        </a>
-                    </p>
+                    {/* Editor Tab Bar */}
+                    <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none">
+                        <div className="flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-xs font-medium bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644] flex-1 justify-center">
+                            <Heart className="w-3.5 h-3.5 text-[#61A644] fill-current" />
+                            dependencies.json
+                        </div>
+                    </div>
+
+                    {/* Workspace Editor Body */}
+                    <div className="p-6 md:p-10 bg-transparent space-y-12">
+                        {/* Phoenix Tier */}
+                        {phoenixSponsors.length > 0 && (
+                            <div className="text-center">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#61A644]" />
+                                    <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"phoenix-tier-dependencies" : [</span>
+                                </div>
+                                {renderSponsorCards(phoenixSponsors, 'w-48 h-24', 'h-12')}
+                            </div>
+                        )}
+
+                        {/* Flame Tier */}
+                        {flameSponsors.length > 0 && (
+                            <div className="text-center">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#E37100]" />
+                                    <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"flame-tier-dependencies" : [</span>
+                                </div>
+                                {renderSponsorCards(flameSponsors, 'w-44 h-20', 'h-10')}
+                            </div>
+                        )}
+
+                        {/* Ember Tier */}
+                        {emberSponsors.length > 0 && (
+                            <div className="text-center">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#ffcc00]" />
+                                    <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"ember-tier-dependencies" : [</span>
+                                </div>
+                                {renderSponsorCards(emberSponsors, 'w-40 h-16', 'h-8')}
+                            </div>
+                        )}
+
+                        {/* Spark Tier */}
+                        {(sparkSponsors.length > 0 || prospectusPdf) && (
+                            <div className="text-center">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#0C3C34]" />
+                                    <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"spark-tier-dependencies" : [</span>
+                                </div>
+                                <div className="flex flex-wrap gap-6 justify-center items-center">
+                                    {/* SGA Spark Sponsor */}
+                                    {sparkSponsors.map((sponsor, idx) => (
+                                        <a key={sponsor.name} href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                                            <motion.div
+                                                {...fadeUp(0.05 * (idx + 1))}
+                                                className="group bg-white border border-black/5 rounded-xl px-5 py-4 flex items-center justify-center gap-3 w-36 h-16 hover:border-slate-350 hover:shadow-sm transition-all duration-300"
+                                            >
+                                                <img
+                                                    src={sponsor.logo}
+                                                    alt={sponsor.name}
+                                                    className="h-8 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                                                />
+                                            </motion.div>
+                                        </a>
+                                    ))}
+
+                                    {/* Become a Sponsor CTA */}
+                                    <motion.a
+                                        {...fadeUp(0.25)}
+                                        href={prospectusPdf}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group rounded-xl px-5 h-16 border border-dashed border-[#61A644]/40 hover:border-[#61A644]/70 bg-white hover:bg-white/90 transition-all duration-300 flex flex-col items-center justify-center gap-1 w-36 cursor-pointer"
+                                    >
+                                        <ArrowUpRight className="w-4 h-4 text-[#61A644]/60 group-hover:text-[#61A644] transition-colors" />
+                                        <span className="font-google font-bold text-[11px] text-[#61A644]/80 group-hover:text-[#61A644] transition-colors">
+                                            Become Sponsor
+                                        </span>
+                                    </motion.a>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* IDE Bottom Status Bar */}
+                    <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
+                        <div className="flex items-center gap-3">
+                            <span className="font-bold">DEPS: verified</span>
+                            <span className="opacity-80">Sponsors active</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <span className="opacity-80">JSON</span>
+                            <span className="opacity-80">UTF-8</span>
+                            <span className="opacity-80">Ln {sponsors.length + 8}, Col 4</span>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
         </section>

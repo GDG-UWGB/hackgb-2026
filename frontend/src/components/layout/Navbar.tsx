@@ -48,11 +48,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <Link to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
-            <img src={logo} alt="HackGB Logo" className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
+            <img src={logo} alt="HackGB Logo" className="h-10 lg:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
           </Link>
 
           {/* Links & CTA */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             <div className="flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
@@ -77,7 +77,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu and MLH badge */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <a className="mt-1.5" style={{ display: 'block', width: '36px' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
               <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} className="drop-shadow-sm" />
             </a>
@@ -97,7 +97,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Nav Drawer */}
-        <div className={`md:hidden ${mobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'} transition-all duration-350 rounded-2xl bg-white border border-black/5 p-4 shadow-xl`}>
+        <div className={`lg:hidden ${mobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'} transition-all duration-350 rounded-2xl bg-white border border-black/5 p-4 shadow-xl`}>
           <div className="space-y-2">
             {navLinks.map((link) => (
               <Link

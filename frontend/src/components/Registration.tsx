@@ -1,10 +1,17 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import titletownImg from '../assets/images/background/titletown-district.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
+
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, margin: '-40px' },
+    transition: { duration: 0.8, delay, ease: spring },
+});
 
 const Registration = () => {
     const navigate = useNavigate();
@@ -21,53 +28,75 @@ const Registration = () => {
             <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-3xl mx-auto text-center relative z-10 pt-8">
+                {/* Integrated IDE Terminal Registration Card */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, ease: spring }}
-                    viewport={{ once: true }}
+                    {...fadeUp()}
+                    className="bg-[#0f0f16] border border-white/5 rounded-2xl shadow-2xl overflow-hidden flex flex-col text-left font-google-mono text-xs text-slate-350 min-h-[380px]"
                 >
-                    <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card bg-white/95 border border-black/5 text-[#61A644] font-google font-bold text-sm uppercase tracking-widest mb-8 shadow-sm">
-                        <span className="w-2 h-2 bg-[#61A644] rounded-full animate-ambient-glow" />
-                        Applications Open
-                    </span>
-                </motion.div>
+                    {/* Top window bar */}
+                    <div className="flex items-center justify-between px-4 py-2 bg-slate-900 border-b border-white/5 select-none">
+                        <div className="flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                            <span className="text-[10px] text-slate-500 ml-3">bash - apply.sh</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[9px] text-[#61A644] font-bold bg-[#61A644]/10 px-2 py-0.5 rounded border border-[#61A644]/25">
+                            <Terminal className="w-3.5 h-3.5" />
+                            <span>tty1</span>
+                        </div>
+                    </div>
 
-                <motion.h2
-                    initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, delay: 0.1, ease: spring }}
-                    viewport={{ once: true }}
-                    className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]"
-                >
-                    Join the Tour
-                </motion.h2>
+                    {/* Terminal body */}
+                    <div className="p-6 md:p-8 flex flex-col justify-between flex-1 gap-6">
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[#61A644] font-bold">sachin@uwgb:~$</span>
+                                <span className="text-slate-200">./apply.sh --now</span>
+                            </div>
+                            <div className="text-slate-400 space-y-1 bg-black/30 p-4 rounded-xl border border-white/5">
+                                <div>[INFO] Loading HackGB registration parameters...</div>
+                                <div>[INFO] Target: UW-Green Bay STEM Innovation Center</div>
+                                <div>[INFO] Date: October 17 - 18, 2026</div>
+                                <div className="text-[#61A644] font-bold">[SUCCESS] Registration pipelines active. 200+ slots available.</div>
+                            </div>
+                            <div className="text-slate-300 font-google text-sm font-bold pt-4 text-center border-t border-white/5">
+                                Ready to join UWGB's premier collegiate hackathon?
+                            </div>
+                        </div>
 
-                <motion.p
-                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, delay: 0.2, ease: spring }}
-                    viewport={{ once: true }}
-                    className="text-lg text-slate-800 mb-12 max-w-xl mx-auto font-google-text"
-                >
-                    Applications are officially open! Submit your details now to join us as a hacker, mentor, or volunteer for an unforgettable weekend of coding and community.
-                </motion.p>
+                        {/* Interactive triggers in editor layout */}
+                        <div className="flex flex-wrap justify-center items-center gap-4">
+                            <button
+                                onClick={() => navigate('/apply')}
+                                className="bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
+                            >
+                                <span>Apply Now</span>
+                                <ArrowRight className="w-4 h-4" />
+                            </button>
+                            <button
+                                onClick={() => {
+                                    const el = document.getElementById('about');
+                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-google font-bold text-sm px-5 py-3 rounded-xl cursor-pointer transition-all bg-white/5"
+                            >
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
 
-                {/* Apply Button */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, delay: 0.3, ease: spring }}
-                    viewport={{ once: true }}
-                    className="flex justify-center"
-                >
-                    <button
-                        onClick={() => navigate('/apply')}
-                        className="btn-primary px-10 py-4 rounded-full font-google font-bold text-lg cursor-pointer shadow-lg transform hover:-translate-y-0.5 active:scale-95 transition-all inline-flex items-center gap-2"
-                    >
-                        Apply Now
-                        <ArrowRight className="w-5 h-5" />
-                    </button>
+                    {/* Bottom Status bar */}
+                    <div className="flex justify-between items-center px-4 py-1.5 bg-[#61A644] text-white text-[9px] select-none">
+                        <div className="flex items-center gap-2 font-bold">
+                            <span>APPLY: active</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <span>Bash</span>
+                            <span>UTF-8</span>
+                            <span>tty1</span>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
         </section>

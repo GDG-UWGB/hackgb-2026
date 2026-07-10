@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faInstagram, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faXTwitter, faInstagram, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import logo from '../../assets/images/logos/logo-phx.png';
 import gdgLogo from '../../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
 
@@ -9,10 +9,10 @@ const Footer = () => {
   const location = useLocation();
 
   const socialLinks = [
-    { name: 'Twitter', icon: faTwitter, href: '#' },
-    { name: 'Instagram', icon: faInstagram, href: '#' },
-    { name: 'LinkedIn', icon: faLinkedinIn, href: '#' },
-    { name: 'YouTube', icon: faYoutube, href: '#' },
+    { name: 'X', icon: faXTwitter, href: '#', hoverColor: '#000000' },
+    { name: 'Instagram', icon: faInstagram, href: '#', hoverColor: '#E4405F' },
+    { name: 'LinkedIn', icon: faLinkedinIn, href: '#', hoverColor: '#0A66C2' },
+    { name: 'YouTube', icon: faYoutube, href: '#', hoverColor: '#FF0000' },
   ];
 
   const handleQuickLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
@@ -34,7 +34,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-[#eff6eb] text-slate-800 py-20 px-4 overflow-hidden border-t border-black/5">
+    <footer className="relative bg-[#eff6eb] text-slate-800 py-20 px-4 overflow-hidden">
+      {/* Gradient top border */}
+      <div className="absolute top-0 left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#61A644] to-transparent rounded-full" />
+
       {/* Subtle glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none" />
 
@@ -57,15 +60,24 @@ const Footer = () => {
             <p className="text-slate-600 max-w-sm mb-6 font-google-text">
               A mythical 24-hour coding journey across Green Bay. Building a better future at the STEM Innovation Center.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-white border border-black/5 flex items-center justify-center hover:bg-[#61A644]/10 hover:border-[#61A644]/20 transition-all duration-300 transform hover:-translate-y-1 text-slate-500 hover:text-[#61A644]"
+                  className="w-10 h-10 rounded-full bg-white border border-black/5 flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1 text-slate-400 hover:shadow-md"
+                  style={{ ['--hover-color' as string]: social.hoverColor }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget.querySelector('.social-icon') as HTMLElement)?.style.setProperty('color', social.hoverColor);
+                    e.currentTarget.style.borderColor = `${social.hoverColor}30`;
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget.querySelector('.social-icon') as HTMLElement)?.style.setProperty('color', '');
+                    e.currentTarget.style.borderColor = '';
+                  }}
                 >
                   <span className="sr-only">{social.name}</span>
-                  <FontAwesomeIcon icon={social.icon} className="text-lg" />
+                  <FontAwesomeIcon icon={social.icon} className="text-lg social-icon transition-colors duration-300" />
                 </a>
               ))}
             </div>
@@ -96,9 +108,14 @@ const Footer = () => {
         </div>
 
         <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p className="text-slate-500 text-sm font-google-text">
-            © 2026 GDG on Campus UW-Green Bay. All rights reserved.
-          </p>
+          <div>
+            <p className="text-slate-500 text-sm font-google-text">
+              © 2026 GDG on Campus UW-Green Bay. All rights reserved.
+            </p>
+            <p className="text-slate-400 text-xs font-google-text mt-1">
+              Built with 💚 at UW-Green Bay
+            </p>
+          </div>
           <div className="flex flex-wrap justify-center gap-6 text-slate-500 text-sm font-google-text">
             <Link to="/code-of-conduct" className="hover:text-slate-800 transition-colors">HackGB Code of Conduct</Link>
             <a href="https://mlh.io/code-of-conduct" target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 transition-colors">MLH Code of Conduct</a>

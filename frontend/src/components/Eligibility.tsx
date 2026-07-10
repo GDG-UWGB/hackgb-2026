@@ -1,8 +1,16 @@
 import { motion } from 'framer-motion';
 import uwgbStemImg from '../assets/images/background/uwgb-stem.png';
+import { CheckCircle, AlertCircle, FileText, Settings } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
+
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, margin: '-40px' },
+    transition: { duration: 0.8, delay, ease: spring },
+});
 
 const Eligibility = () => {
     return (
@@ -16,82 +24,113 @@ const Eligibility = () => {
             {/* Ambient glow */}
             <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[400px] h-[400px] bg-[#ffcc00]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="max-w-5xl mx-auto relative z-10">
+                {/* Integrated IDE Eligibility Card */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, ease: spring }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
+                    {...fadeUp(0.1)}
+                    className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-xl overflow-hidden flex flex-col min-h-[440px] relative"
                 >
-                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
-                        Who Can Join
-                    </h2>
-                </motion.div>
+                    {/* IDE Top Window Bar */}
+                    <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30">
+                        <div className="flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                            <span className="text-[10px] font-google-mono text-slate-500 ml-3">Who Can Join</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-slate-450 bg-slate-200/50 px-2 py-0.5 rounded border border-black/5">
+                            <Settings className="w-3 h-3 text-[#61A644]" />
+                            <span>rules.cfg</span>
+                        </div>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30, filter: "blur(8px)" }}
-                        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                        transition={{ duration: 0.9, delay: 0.1, ease: spring }}
-                        viewport={{ once: true }}
-                        className="glass-card p-6 sm:p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
-                        style={{ background: 'linear-gradient(170deg, rgba(97,166,68,0.06) 0%, rgba(255,255,255,0.96) 100%)' }}
-                    >
-                        <h3 className="text-2xl font-google font-bold mb-8 text-slate-900">Travel & Eligibility</h3>
-                        <div className="space-y-6">
-                            <div className="flex gap-4">
-                                <div className="bg-[#61A644]/12 p-2.5 rounded-xl h-fit border border-[#61A644]/20 shrink-0 animate-gentle-float">
-                                    <svg className="w-5 h-5 text-[#61A644]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 className="font-google font-bold text-lg mb-2 text-slate-900">Who can join?</h4>
-                                    <p className="text-slate-900 font-google-text">Open to all university students and recent graduates (within 12 months).</p>
-                                </div>
-                            </div>
+                    {/* Editor Tab Bar */}
+                    <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none">
+                        <div className="flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-xs font-medium bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644] flex-1 justify-center">
+                            <FileText className="w-3.5 h-3.5 text-[#61A644]" />
+                            rules.cfg
+                        </div>
+                    </div>
 
-                            <div className="flex gap-4">
-                                <div className="bg-[#E37100]/12 p-2.5 rounded-xl h-fit border border-[#E37100]/20 shrink-0">
-                                    <svg className="w-5 h-5 text-[#E37100]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
+                    {/* Split Card Content */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 flex-1">
+                        {/* Left Column: Config list */}
+                        <div className="p-8 md:p-10 bg-transparent flex flex-col justify-center">
+                            <h3 className="text-xl font-google font-bold mb-6 text-[#0C3C34] flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-[#61A644]" />
+                                Travel & Eligibility
+                            </h3>
+                            <div className="space-y-6">
+                                <div className="flex gap-4">
+                                    <div className="bg-[#61A644]/15 p-2.5 rounded-xl h-fit shrink-0 border border-[#61A644]/20">
+                                        <CheckCircle className="w-5 h-5 text-[#61A644]" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-google font-bold text-base mb-1 text-[#0C3C34]">Who can join?</h4>
+                                        <p className="text-slate-700 font-google-text text-sm leading-relaxed font-semibold">Open to all university students and recent graduates (within 12 months).</p>
+                                    </div>
                                 </div>
-                                <div className="min-w-0">
-                                    <h4 className="font-google font-bold text-lg mb-2 text-slate-900">Travel Reimbursement</h4>
-                                    <div className="text-slate-900 leading-relaxed font-google-text">
-                                        To receive travel stipends, hackers must:
-                                        <ul className="list-disc ml-4 mt-2 text-slate-800">
-                                            <li>Check-in physically at the event</li>
-                                            <li>Submit a functional project to the official Devpost gallery by Sunday morning</li>
+
+                                <div className="flex gap-4">
+                                    <div className="bg-[#E37100]/15 p-2.5 rounded-xl h-fit shrink-0 border border-[#E37100]/20">
+                                        <AlertCircle className="w-5 h-5 text-[#E37100]" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-google font-bold text-base mb-1 text-[#0C3C34]">Travel Reimbursement</h4>
+                                        <p className="text-slate-700 font-google-text text-sm leading-relaxed mb-2 font-semibold">
+                                            To receive travel stipends, hackers must:
+                                        </p>
+                                        <ul className="list-none text-slate-700 font-google-text text-sm flex flex-col gap-2 font-semibold">
+                                            <li className="flex items-start gap-2">
+                                                <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#E37100] shrink-0" />
+                                                Check-in physically at the event
+                                            </li>
+                                            <li className="flex items-start gap-2">
+                                                <span className="w-1.5 h-1.5 mt-2 rounded-full bg-[#E37100] shrink-0" />
+                                                Submit a functional project to the official Devpost gallery by Sunday morning
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
 
-                    {/* Fixed: properly animate x back to 0 (was x:30 → y:0, now x:30 → x:0) */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30, filter: "blur(8px)" }}
-                        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                        transition={{ duration: 0.9, delay: 0.2, ease: spring }}
-                        viewport={{ once: true }}
-                        className="glass-card p-6 sm:p-8 md:p-10 flex flex-col justify-center bg-white/94 border border-black/5 shadow-sm"
-                    >
-                        <h3 className="text-2xl font-google font-bold mb-6 text-slate-900">Important Notice</h3>
-                        <p className="text-slate-700 font-google-text leading-relaxed mb-8">
-                            We are committed to making HackGB accessible to everyone. If you have any specific travel needs or accessibility requirements, please let us know in your registration form.
-                        </p>
-                        <div className="p-5 sm:p-6 rounded-2xl bg-[#E37100]/10 border border-[#E37100]/15">
-                            <span className="block text-sm font-google font-bold text-[#E37100] uppercase tracking-widest mb-2">Did you know?</span>
-                            <p className="text-slate-800 font-google-text text-sm sm:text-base">
-                                Green Bay is known as "Titletown" and we're excited to show you why during our first-ever collegiate hackathon — where the Phoenix rises!
+                        {/* Right Column: Code block layout with orange sidebar */}
+                        <div className="p-8 md:p-10 bg-black/5 lg:border-l border-t lg:border-t-0 border-black/5 flex flex-col justify-center relative">
+                            {/* Orange vertical sidebar highlight */}
+                            <div className="hidden lg:block absolute left-0 top-8 bottom-8 w-[3px] bg-gradient-to-b from-[#E37100] to-[#ffcc00] rounded-full" />
+                            
+                            <h3 className="text-xl font-google font-bold mb-4 text-[#0C3C34] flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-[#E37100]" />
+                                Important Notice
+                            </h3>
+                            <p className="text-slate-700 font-google-text leading-relaxed text-sm mb-6 font-semibold">
+                                We are committed to making HackGB accessible to everyone. If you have any specific travel needs or accessibility requirements, please let us know in your registration form.
                             </p>
+                            <div className="bg-white/80 border border-black/5 rounded-2xl p-5 shadow-sm">
+                                <span className="inline-block font-google-mono text-[9px] font-bold text-[#E37100] tracking-wider mb-2 bg-[#E37100]/10 px-2 py-0.5 rounded">
+                                    DID_YOU_KNOW.log
+                                </span>
+                                <p className="text-slate-700 font-google-text text-xs leading-relaxed font-semibold">
+                                    Green Bay is known as "Titletown" and we're excited to show you why during our first-ever collegiate hackathon — where the Phoenix rises!
+                                </p>
+                            </div>
                         </div>
-                    </motion.div>
-                </div>
+                    </div>
+
+                    {/* IDE Bottom Status Bar */}
+                    <div className="flex justify-between items-center px-4 py-1.5 bg-[#ffcc00] text-slate-800 font-google-mono text-[10px] select-none">
+                        <div className="flex items-center gap-3">
+                            <span className="font-bold">CONFIG: checked</span>
+                            <span className="opacity-80">Rules verified</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <span className="opacity-80">INI/CFG</span>
+                            <span className="opacity-80">UTF-8</span>
+                            <span className="opacity-80">Ln 42, Col 8</span>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

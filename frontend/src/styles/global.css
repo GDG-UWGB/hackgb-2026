@@ -656,6 +656,15 @@ p {
   isolation: isolate;
 }
 
+/* High-contrast text glow for dark text on top of photographic backgrounds */
+.text-glow-dark {
+  text-shadow: 
+    0 0 16px #eff6eb,
+    0 0 10px #eff6eb,
+    0 0 4px #eff6eb,
+    0 1px 1px #eff6eb;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .bay-wave-track,

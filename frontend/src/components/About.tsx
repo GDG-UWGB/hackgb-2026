@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import lambeauImg from '../assets/images/background/lambeau-field.png';
-import gdgLogo from '../assets/images/gdg/GDG On Campus - Horizontal - Dark.png';
-import { Users, Clock, Compass, Trophy } from 'lucide-react';
+import gdgLogo from '../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
+import { Users, Clock, Compass, Trophy, MapPin, Calendar } from 'lucide-react';
 
 const stats = [
     { number: '200+', label: 'Hackers', icon: Users, color: '#61A644' },
@@ -13,21 +13,12 @@ const stats = [
 /* Premium spring easing — Apple-style curve */
 const spring = [0.22, 1, 0.36, 1] as const;
 
-const phoenixRise = {
-    initial: { opacity: 0, y: 40, scale: 0.97, filter: "blur(8px)" },
-    whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-60px" },
-    transition: { duration: 0.9, ease: spring }
-};
-
-const phoenixLeft = {
-    initial: { opacity: 0, x: -40, scale: 0.97, filter: "blur(8px)" },
-    whileInView: { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-60px" },
-    transition: { duration: 0.9, delay: 0.1, ease: spring }
-};
-
-
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, margin: '-40px' },
+    transition: { duration: 0.8, delay, ease: spring },
+});
 
 const About = () => {
     return (
@@ -42,87 +33,143 @@ const About = () => {
             <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-7xl mx-auto z-10 relative">
-                {/* Section header */}
-                <motion.div
-                    {...phoenixRise}
-                    className="mb-20"
-                >
-                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-6 text-[#0C3C34]">
-                        Welcome to HackGB
-                    </h2>
-                    <p className="text-xl text-slate-900 max-w-3xl font-google-text leading-relaxed">
-                        Organized by GDG on Campus at UW-Green Bay in partnership with MLH, HackGB is a historic 24-hour hackathon experience. We invite 200+ students to embark on a mythical coding journey at the STEM Innovation Center — where the Phoenix rises.
-                    </p>
-                    <div className="flex flex-wrap items-center gap-4 mt-8">
-                        <span className="text-slate-700 font-google font-bold text-sm uppercase tracking-wider">Organized by</span>
-                        <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity">
-                            <img src={gdgLogo} alt="GDG on Campus Logo" className="h-13 w-auto object-contain" />
-                        </a>
-                    </div>
-                </motion.div>
-
-                {/* Unified stats strip */}
-                <motion.div
-                    {...phoenixRise}
-                    transition={{ ...phoenixRise.transition, delay: 0.15 }}
-                    className="glass-card p-6 md:p-8 mb-20 bg-white/94 border border-black/5 shadow-sm max-w-5xl mx-auto"
-                >
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-y-2 lg:divide-y-0 lg:divide-x divide-[#61A644]/10 text-center">
-                        {stats.map((stat, i) => {
-                            const IconComponent = stat.icon;
-                            return (
-                                <div key={i} className="flex flex-col items-center justify-center p-4 py-6 lg:py-4">
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <IconComponent className="w-5 h-5 animate-gentle-float" style={{ color: stat.color }} />
-                                        <span className="text-slate-500 font-google-text text-xs font-semibold uppercase tracking-widest">
-                                            {stat.label}
-                                        </span>
-                                    </div>
-                                    <div className="text-3xl md:text-4xl lg:text-5xl font-google font-bold text-[#0C3C34] tracking-tight">
-                                        {stat.number}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </motion.div>
-
-                {/* Info cards row */}
-                <div className="max-w-xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
+                    {/* Left: welcome.md editor card */}
                     <motion.div
-                        {...phoenixLeft}
-                        className="glass-card p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
+                        {...fadeUp()}
+                        className="lg:col-span-3 bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-lg overflow-hidden flex flex-col"
                     >
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="bg-[#61A644]/10 p-3 rounded-xl shrink-0 border border-[#61A644]/15 animate-gentle-float">
-                                <svg className="w-6 h-6 text-[#61A644]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
+                        <div className="flex items-center gap-1.5 px-4 py-2 border-b border-black/5 bg-white/30">
+                            <div className="flex gap-1.5">
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
                             </div>
+                            <span className="text-[10px] font-google-mono text-slate-500 ml-3">welcome.md</span>
+                        </div>
+                        <div className="p-6 md:p-8 flex flex-col justify-between flex-1">
                             <div>
-                                <h3 className="font-google font-bold text-lg text-slate-900 mb-1">Location</h3>
-                                <p className="text-slate-700 font-google-text">UW-Green Bay STEM Innovation Center, Green Bay, WI</p>
+                                <h2 className="text-3xl md:text-5xl font-google font-bold mb-4 text-[#0C3C34] leading-tight">
+                                    Welcome to HackGB
+                                </h2>
+                                <p className="text-base text-slate-805 max-w-2xl font-google-text leading-relaxed mb-6 font-medium">
+                                    Organized by GDG on Campus at UW-Green Bay in partnership with MLH, HackGB is a historic 24-hour hackathon experience. We invite 200+ students to embark on a mythical coding journey at the STEM Innovation Center — where the Phoenix rises.
+                                </p>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-black/5">
+                                <span className="text-slate-600 font-google font-bold text-xs">Organized by</span>
+                                <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity bg-white/80 p-1 rounded-lg">
+                                    <img src={gdgLogo} alt="GDG on Campus Logo" className="h-9 w-auto object-contain" />
+                                </a>
                             </div>
                         </div>
-                        <div className="flex items-start gap-4 mb-6">
-                            <div className="bg-[#E37100]/10 p-3 rounded-xl shrink-0 border border-[#E37100]/15">
-                                <svg className="w-6 h-6 text-[#E37100]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
+                    </motion.div>
+
+                    {/* Right: Quick info badges */}
+                    <motion.div {...fadeUp(0.15)} className="lg:col-span-2 flex flex-col gap-4 justify-center">
+                        {/* location.cfg */}
+                        <div className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-lg overflow-hidden flex flex-col">
+                            <div className="flex items-center gap-1.5 px-4 py-1.5 border-b border-black/5 bg-white/30">
+                                <div className="flex gap-1.5">
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                </div>
+                                <span className="text-[9px] font-google-mono text-slate-500 ml-3">location.cfg</span>
                             </div>
-                            <div>
-                                <h3 className="font-google font-bold text-lg text-slate-900 mb-1">Date</h3>
-                                <p className="text-slate-700 font-google-text">Oct 17 - 18, 2026 — 24 Hours of Innovation</p>
+                            <div className="p-4 flex items-center gap-4">
+                                <div className="bg-[#61A644]/15 p-2.5 rounded-xl shrink-0 border border-[#61A644]/20">
+                                    <MapPin className="w-5 h-5 text-[#61A644]" />
+                                </div>
+                                <div>
+                                    <span className="font-google font-bold text-xs text-[#0C3C34] block">Location</span>
+                                    <span className="text-slate-700 font-google-text text-sm font-semibold">UW-Green Bay STEM Innovation Center</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="p-6 rounded-2xl bg-[#0C3C34]/5 border border-[#0C3C34]/10">
-                            <p className="text-slate-850 italic font-google-text text-sm leading-relaxed">
-                                "Our mission is to foster innovation and community in Green Bay by providing a platform for collegiate developers of all levels to build, learn, and grow — where every hacker can rise like the Phoenix."
-                            </p>
+
+                        {/* date.env */}
+                        <div className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-lg overflow-hidden flex flex-col">
+                            <div className="flex items-center gap-1.5 px-4 py-1.5 border-b border-black/5 bg-white/30">
+                                <div className="flex gap-1.5">
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                </div>
+                                <span className="text-[9px] font-google-mono text-slate-500 ml-3">date.env</span>
+                            </div>
+                            <div className="p-4 flex items-center gap-4">
+                                <div className="bg-[#E37100]/15 p-2.5 rounded-xl shrink-0 border border-[#E37100]/20">
+                                    <Calendar className="w-5 h-5 text-[#E37100]" />
+                                </div>
+                                <div>
+                                    <span className="font-google font-bold text-xs text-[#0C3C34] block">Date</span>
+                                    <span className="text-slate-700 font-google-text text-sm font-semibold">Oct 17 – 18, 2026 · 24 Hours</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* mission.txt */}
+                        <div className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-lg overflow-hidden flex flex-col">
+                            <div className="flex items-center gap-1.5 px-4 py-1.5 border-b border-black/5 bg-white/30">
+                                <div className="flex gap-1.5">
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                    <span className="w-2 h-2 rounded-full bg-slate-400" />
+                                </div>
+                                <span className="text-[9px] font-google-mono text-slate-500 ml-3">mission.txt</span>
+                            </div>
+                            <div className="p-4">
+                                <p className="text-[#0C3C34] italic font-google-text text-sm leading-relaxed font-semibold">
+                                    "Our mission is to foster innovation and community in Green Bay — where every hacker can rise like the Phoenix."
+                                </p>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Stats row — styled as metrics.json editor card (squeezed width) */}
+                <motion.div
+                    {...fadeUp(0.2)}
+                    className="max-w-3xl mx-auto w-full bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-lg overflow-hidden flex flex-col"
+                >
+                    <div className="flex items-center gap-1.5 px-4 py-1.5 border-b border-black/5 bg-white/30">
+                        <div className="flex gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+                            <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+                            <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+                        </div>
+                        <span className="text-[10px] font-google-mono text-slate-500 ml-3">metrics.json</span>
+                    </div>
+                    <div className="p-4 md:p-5">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 divide-y lg:divide-y-0 lg:divide-x divide-black/5">
+                            {stats.map((stat, i) => {
+                                const IconComponent = stat.icon;
+                                return (
+                                    <div key={i} className="flex flex-col sm:flex-row items-center gap-3 p-2 lg:p-0 lg:pl-4 first:pl-0 pt-3 first:pt-2 lg:pt-0">
+                                        <div
+                                            className="p-2 rounded-lg flex items-center justify-center border shrink-0 bg-white/60"
+                                            style={{
+                                                color: stat.color,
+                                                borderColor: `${stat.color}30`
+                                            }}
+                                        >
+                                            <IconComponent className="w-4 h-4" />
+                                        </div>
+                                        <div className="text-center sm:text-left">
+                                            <div className="text-xl md:text-2xl font-google font-bold text-[#0C3C34] tracking-tight leading-none mb-1">
+                                                {stat.number}
+                                            </div>
+                                            <span className="text-slate-500 font-google-text text-[9px] font-bold uppercase tracking-wider block">
+                                                {stat.label}
+                                            </span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
