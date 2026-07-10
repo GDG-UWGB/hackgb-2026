@@ -1,6 +1,7 @@
 interface Env {
-  GOOGLE_SERVICE_ACCOUNT_EMAIL?: string;
-  GOOGLE_PRIVATE_KEY?: string;
+  GOOGLE_CLIENT_ID?: string;
+  GOOGLE_CLIENT_SECRET?: string;
+  GOOGLE_REFRESH_TOKEN?: string;
   GOOGLE_DRIVE_FOLDER_ID?: string;
 }
 
@@ -16,86 +17,22 @@ function arrayBufferToBase64(buffer: ArrayBuffer | Uint8Array): string {
   return btoa(binary);
 }
 
-function pemToDer(pem: string): ArrayBuffer {
-  const cleanedPem = pem
-    .replace(/\\n/g, "\n")
-    .replace(/\\r/g, "\r")
-    .replace(/"/g, "")
-    .trim();
-
-  const pemHeader = "-----BEGIN PRIVATE KEY-----";
-  const pemFooter = "-----END PRIVATE KEY-----";
-  const pemContents = cleanedPem
-    .replace(pemHeader, "")
-    .replace(pemFooter, "")
-    .replace(/\s+/g, "");
-
-  const binary = atob(pemContents);
-  const len = binary.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binary.charCodeAt(i);
-  }
-  return bytes.buffer;
-}
-
-function base64UrlEncode(arrayBuffer: ArrayBuffer | Uint8Array): string {
-  const base64 = arrayBufferToBase64(arrayBuffer);
-  return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
-async function generateJwt(email: string, privateKeyPem: string): Promise<string> {
-  const header = {
-    alg: "RS256",
-    typ: "JWT",
-  };
-
-  const now = Math.floor(Date.now() / 1000);
-  const claim = {
-    iss: email,
-    scope: "https://www.googleapis.com/auth/drive",
-    aud: "https://oauth2.googleapis.com/token",
-    exp: now + 3600,
-    iat: now,
-  };
-
-  const textEncoder = new TextEncoder();
-  const headerStr = base64UrlEncode(textEncoder.encode(JSON.stringify(header)));
-  const claimStr = base64UrlEncode(textEncoder.encode(JSON.stringify(claim)));
-
-  const tokenInput = `${headerStr}.${claimStr}`;
-  const inputBuffer = textEncoder.encode(tokenInput);
-
-  const privateKeyBuffer = pemToDer(privateKeyPem);
-  const privateKey = await crypto.subtle.importKey(
-    "pkcs8",
-    privateKeyBuffer,
-    {
-      name: "RSASSA-PKCS1-v1_5",
-      hash: { name: "SHA-256" },
-    },
-    false,
-    ["sign"]
-  );
-
-  const signature = await crypto.subtle.sign(
-    "RSASSA-PKCS1-v1_5",
-    privateKey,
-    inputBuffer
-  );
-
-  const signatureStr = base64UrlEncode(signature);
-  return `${tokenInput}.${signatureStr}`;
-}
-
-async function getAccessToken(email: string, privateKeyPem: string): Promise<string> {
-  const jwt = await generateJwt(email, privateKeyPem);
+async function getAccessToken(
+  clientId: string,
+  clientSecret: string,
+  refreshToken: string
+): Promise<string> {
   const response = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`,
+    body: new URLSearchParams({
+      client_id: clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+      grant_type: "refresh_token",
+    }).toString(),
   });
 
   const data: any = await response.json();
@@ -189,14 +126,15 @@ async function makeFilePublic(token: string, fileId: string): Promise<void> {
 export const onRequestPost = async (context: { request: Request; env: Env }) => {
   const { request, env } = context;
 
-  const email = env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const privateKey = env.GOOGLE_PRIVATE_KEY;
+  const clientId = env.GOOGLE_CLIENT_ID;
+  const clientSecret = env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = env.GOOGLE_REFRESH_TOKEN;
   const folderId = env.GOOGLE_DRIVE_FOLDER_ID;
 
-  if (!email || !privateKey) {
+  if (!clientId || !clientSecret || !refreshToken) {
     return new Response(
       JSON.stringify({
-        error: "Google Drive service account credentials are not configured on Cloudflare. Please set GOOGLE_SERVICE_ACCOUNT_EMAIL and GOOGLE_PRIVATE_KEY environment variables.",
+        error: "Google Drive OAuth credentials are not configured on Cloudflare. Please set GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and GOOGLE_REFRESH_TOKEN environment variables.",
       }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
@@ -214,7 +152,7 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
     }
 
     const arrayBuffer = await file.arrayBuffer();
-    const token = await getAccessToken(email, privateKey);
+    const token = await getAccessToken(clientId, clientSecret, refreshToken);
 
     const fileId = await uploadToGoogleDrive(
       token,
