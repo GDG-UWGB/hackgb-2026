@@ -312,6 +312,17 @@ const Application = () => {
         body: data.toString(),
       });
 
+      // Send confirmation email (fire-and-forget, don't block success)
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: formData.email,
+          name: formData.fullName,
+          type: 'hacker',
+        }),
+      }).catch((emailErr) => console.warn('Confirmation email failed:', emailErr));
+
       setIsSuccess(true);
     } catch (err) {
       console.error('Error submitting form', err);
