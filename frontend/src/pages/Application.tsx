@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBriefcase, faMapPin, faFileSignature } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBriefcase, faMapPin, faFileSignature, faUpload, faFilePdf, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 /* Premium spring easing */
@@ -11,12 +11,18 @@ interface FormState {
   fullName: string;
   email: string;
   phone: string;
+  dob: string;
+  gender: string;
+  race: string;
+  tShirtSize: string;
   attendedHackathon: string;
   university: string;
   status: string;
   major: string;
+  graduationDate: string;
   experienceAreas: string[];
   projectExperience: string;
+  resumeLink: string;
   travelState: string;
   stipend: string;
   housing: string;
@@ -29,12 +35,18 @@ const initialFormState: FormState = {
   fullName: '',
   email: '',
   phone: '',
+  dob: '',
+  gender: '',
+  race: '',
+  tShirtSize: '',
   attendedHackathon: '',
   university: '',
   status: '',
   major: '',
+  graduationDate: '',
   experienceAreas: [],
   projectExperience: '',
+  resumeLink: '',
   travelState: '',
   stipend: '',
   housing: '',
@@ -57,6 +69,83 @@ const Application = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // File Upload State
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [fileName, setFileName] = useState('');
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  const handleFileUpload = async (file: File) => {
+    setUploadError(null);
+
+    const allowedExtensions = ['pdf', 'doc', 'docx'];
+    const fileExtension = file.name.split('.').pop()?.toLowerCase() || '';
+    if (!allowedExtensions.includes(fileExtension)) {
+      setUploadError('Only PDF or Word document (.doc, .docx) formats are supported.');
+      return;
+    }
+
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      setUploadError('File size exceeds the 5MB limit.');
+      return;
+    }
+
+    setUploading(true);
+    setFileName(file.name);
+
+    try {
+      const data = new FormData();
+      data.append('file', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = (await response.json()) as { url?: string; error?: string };
+      if (!response.ok || result.error) {
+        throw new Error(result.error || 'Failed to upload file.');
+      }
+
+      setFormData((prev) => ({ ...prev, resumeLink: result.url || '' }));
+      if (errors.resumeLink) {
+        setErrors((prev) => ({ ...prev, resumeLink: '' }));
+      }
+    } catch (err) {
+      console.error('File upload error:', err);
+      const errMsg = err instanceof Error ? err.message : 'An error occurred during upload. Please try again.';
+      setUploadError(errMsg);
+      setFileName('');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (uploading) return;
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      handleFileUpload(files[0]);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (uploading) return;
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      handleFileUpload(files[0]);
+    }
+  };
+
+  const removeUploadedFile = () => {
+    setFormData((prev) => ({ ...prev, resumeLink: '' }));
+    setFileName('');
+    setUploadError(null);
+  };
 
   const steps = [
     { id: 1, name: 'Basic Info', icon: faCompass },
@@ -101,6 +190,10 @@ const Application = () => {
         newErrors.email = 'Please enter a valid email address.';
       }
       if (!formData.phone.trim()) newErrors.phone = 'Phone Number is required.';
+      if (!formData.dob.trim()) newErrors.dob = 'Date of Birth is required.';
+      if (!formData.gender) newErrors.gender = 'Gender is required.';
+      if (!formData.race) newErrors.race = 'Race selection is required.';
+      if (!formData.tShirtSize) newErrors.tShirtSize = 'T-Shirt Size is required.';
       if (!formData.attendedHackathon) newErrors.attendedHackathon = 'Please answer this question.';
     }
 
@@ -108,6 +201,7 @@ const Application = () => {
       if (!formData.university.trim()) newErrors.university = 'University / Institution Name is required.';
       if (!formData.status) newErrors.status = 'Please select your current status.';
       if (!formData.major.trim()) newErrors.major = 'Major / Field of Study is required.';
+      if (!formData.graduationDate.trim()) newErrors.graduationDate = 'Expected Graduation Date is required.';
     }
 
     if (currentStep === 3) {
@@ -115,6 +209,9 @@ const Application = () => {
         newErrors.projectExperience = 'Please describe your project experience.';
       } else if (formData.projectExperience.length > 600) {
         newErrors.projectExperience = 'Your response is too long. Please keep it under 600 characters.';
+      }
+      if (!formData.resumeLink.trim()) {
+        newErrors.resumeLink = 'Please upload your resume.';
       }
     }
 
@@ -154,11 +251,29 @@ const Application = () => {
       data.append('entry.42047240', formData.fullName);
       data.append('entry.1275623371', formData.email);
       data.append('entry.599449600', formData.phone);
+      
+      // Date of Birth
+      const [dobYear, dobMonth, dobDay] = formData.dob.split('-');
+      data.append('entry.417968283_year', dobYear);
+      data.append('entry.417968283_month', dobMonth);
+      data.append('entry.417968283_day', dobDay);
+
+      data.append('entry.1126864347', formData.gender);
+      data.append('entry.422755813', formData.race);
+      data.append('entry.192630081', formData.tShirtSize);
       data.append('entry.217234878', formData.university);
       data.append('entry.1822819348', formData.status);
       data.append('entry.810774861', formData.major);
+
+      // Expected Graduation Date
+      const [gradYear, gradMonth, gradDay] = formData.graduationDate.split('-');
+      data.append('entry.505391914_year', gradYear);
+      data.append('entry.505391914_month', gradMonth);
+      data.append('entry.505391914_day', gradDay);
+
       data.append('entry.1768303647', formData.attendedHackathon);
       data.append('entry.486006868', formData.projectExperience);
+      data.append('entry.1413584166', formData.resumeLink);
 
       // Checkbox multi-select (multiple appends of same key)
       if (formData.experienceAreas.length > 0) {
@@ -343,7 +458,7 @@ const Application = () => {
                       >
                         {step === 1 && (
                           /* STEP 1: Basic Info */
-                          <div className="flex flex-col gap-5">
+                          <div className="flex flex-col gap-5 overflow-y-auto max-h-[420px] pr-2">
                             <h2 className="text-xl font-google font-bold text-[#0C3C34] border-b border-black/5 pb-2">
                               Basic Information
                             </h2>
@@ -395,6 +510,84 @@ const Application = () => {
                                   }`}
                                 />
                                 {errors.phone && <span className="text-red-500 text-xs mt-0.5">{errors.phone}</span>}
+                              </div>
+
+                              <div className="flex-1 flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">Date of Birth *</label>
+                                <input
+                                  type="date"
+                                  name="dob"
+                                  value={formData.dob}
+                                  onChange={handleInputChange}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
+                                    errors.dob ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  }`}
+                                />
+                                {errors.dob && <span className="text-red-500 text-xs mt-0.5">{errors.dob}</span>}
+                              </div>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-4">
+                              <div className="flex-1 flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">Gender *</label>
+                                <select
+                                  name="gender"
+                                  value={formData.gender}
+                                  onChange={handleInputChange}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
+                                    errors.gender ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  }`}
+                                >
+                                  <option value="" disabled>Select your gender</option>
+                                  <option value="Male">Male</option>
+                                  <option value="Female">Female</option>
+                                  <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                                {errors.gender && <span className="text-red-500 text-xs mt-0.5">{errors.gender}</span>}
+                              </div>
+
+                              <div className="flex-1 flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">Race *</label>
+                                <select
+                                  name="race"
+                                  value={formData.race}
+                                  onChange={handleInputChange}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
+                                    errors.race ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  }`}
+                                >
+                                  <option value="" disabled>Select your race/ethnicity</option>
+                                  <option value="Asian">Asian</option>
+                                  <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+                                  <option value="Black or African American">Black or African American</option>
+                                  <option value="Hispanic or Latino">Hispanic or Latino</option>
+                                  <option value="White">White</option>
+                                  <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                                {errors.race && <span className="text-red-500 text-xs mt-0.5">{errors.race}</span>}
+                              </div>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-4">
+                              <div className="flex-1 flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">T-Shirt Size *</label>
+                                <select
+                                  name="tShirtSize"
+                                  value={formData.tShirtSize}
+                                  onChange={handleInputChange}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
+                                    errors.tShirtSize ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  }`}
+                                >
+                                  <option value="" disabled>Select your size</option>
+                                  <option value="XS">XS</option>
+                                  <option value="S">S</option>
+                                  <option value="M">M</option>
+                                  <option value="L">L</option>
+                                  <option value="XL">XL</option>
+                                  <option value="XXL">XXL</option>
+                                </select>
+                                {errors.tShirtSize && <span className="text-red-500 text-xs mt-0.5">{errors.tShirtSize}</span>}
                               </div>
 
                               <div className="flex-1 flex flex-col gap-1.5">
@@ -495,6 +688,22 @@ const Application = () => {
                                   {errors.major && <span className="text-red-500 text-xs mt-0.5">{errors.major}</span>}
                                 </div>
                               </div>
+
+                              <div className="flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">
+                                  Expected Graduation Date *
+                                </label>
+                                <input
+                                  type="date"
+                                  name="graduationDate"
+                                  value={formData.graduationDate}
+                                  onChange={handleInputChange}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
+                                    errors.graduationDate ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  }`}
+                                />
+                                {errors.graduationDate && <span className="text-red-500 text-xs mt-0.5">{errors.graduationDate}</span>}
+                              </div>
                             </div>
                           </div>
                         )}
@@ -557,6 +766,81 @@ const Application = () => {
                                 />
                                 {errors.projectExperience && (
                                   <span className="text-red-500 text-xs mt-0.5">{errors.projectExperience}</span>
+                                )}
+                              </div>
+
+                              <div className="flex flex-col gap-1.5 mt-2">
+                                <label className="text-slate-700 text-sm font-google font-bold">
+                                  Resume Upload *
+                                </label>
+
+                                {formData.resumeLink ? (
+                                  /* File Upload Success State */
+                                  <div className="flex items-center justify-between p-4 rounded-xl border border-[#61A644]/30 bg-[#61A644]/5 transition-all">
+                                    <div className="flex items-center gap-3">
+                                      <div className="w-10 h-10 rounded-lg bg-[#61A644]/15 flex items-center justify-center text-[#61A644]">
+                                        <FontAwesomeIcon icon={faFilePdf} className="text-lg" />
+                                      </div>
+                                      <div className="flex flex-col">
+                                        <span className="text-sm font-google font-bold text-[#0C3C34] truncate max-w-[200px] sm:max-w-xs">
+                                          {fileName || 'resume.pdf'}
+                                        </span>
+                                        <span className="text-[10px] text-slate-500">
+                                          Upload complete
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={removeUploadedFile}
+                                      className="p-1.5 rounded-lg hover:bg-black/5 text-slate-400 hover:text-red-500 transition-colors"
+                                    >
+                                      <FontAwesomeIcon icon={faTimes} />
+                                    </button>
+                                  </div>
+                                ) : uploading ? (
+                                  /* File Uploading State */
+                                  <div className="flex flex-col items-center justify-center py-6 rounded-xl border border-[#61A644]/30 bg-[#61A644]/5 gap-2.5">
+                                    <FontAwesomeIcon icon={faSpinner} className="text-2xl text-[#61A644] animate-spin" />
+                                    <span className="text-xs text-slate-600 font-google font-medium">
+                                      Uploading your resume...
+                                    </span>
+                                  </div>
+                                ) : (
+                                  /* File Uploader Input Zone */
+                                  <div
+                                    onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                                    onDragLeave={() => setIsDragging(false)}
+                                    onDrop={handleFileDrop}
+                                    className={`relative flex flex-col items-center justify-center py-6 px-4 rounded-xl border border-dashed text-center cursor-pointer transition-all ${
+                                      isDragging
+                                        ? 'bg-[#61A644]/10 border-[#61A644] scale-[1.01]'
+                                        : errors.resumeLink
+                                        ? 'bg-red-50/30 border-red-300 hover:bg-red-50/50'
+                                        : 'bg-white/50 border-black/15 hover:bg-slate-50'
+                                    }`}
+                                  >
+                                    <input
+                                      type="file"
+                                      accept=".pdf,.doc,.docx"
+                                      onChange={handleFileSelect}
+                                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                    />
+                                    <FontAwesomeIcon icon={faUpload} className={`text-xl mb-2 ${errors.resumeLink ? 'text-red-400' : 'text-slate-400'}`} />
+                                    <span className="text-xs font-google font-bold text-slate-700">
+                                      Drag & drop your resume, or <span className="text-[#61A644] underline">browse</span>
+                                    </span>
+                                    <span className="text-[10px] text-slate-400 mt-1">
+                                      Supports PDF, DOC, DOCX up to 5MB
+                                    </span>
+                                  </div>
+                                )}
+
+                                {uploadError && (
+                                  <span className="text-red-500 text-[11px] font-medium mt-0.5">{uploadError}</span>
+                                )}
+                                {errors.resumeLink && !uploadError && (
+                                  <span className="text-red-500 text-xs mt-0.5">{errors.resumeLink}</span>
                                 )}
                               </div>
                             </div>
