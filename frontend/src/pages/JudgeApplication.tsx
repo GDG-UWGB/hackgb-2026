@@ -8,7 +8,7 @@ import {
   faCompass,
   faBriefcase,
   faFileSignature,
-  faCloudUploadAlt,
+  faUpload,
   faFilePdf,
   faTimes,
   faSpinner,
@@ -86,7 +86,7 @@ const JudgeApplication = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Resume Upload States
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -143,83 +143,82 @@ const JudgeApplication = () => {
   };
 
   // Resume File Upload Handlers
-  const triggerFileInput = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      processFile(e.target.files[0]);
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFileUpload(e.target.files[0]);
     }
   };
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
+  const handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      processFile(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileUpload(e.dataTransfer.files[0]);
     }
   };
 
-  const processFile = async (file: File) => {
-    const allowedTypes = [
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    ];
-    if (!allowedTypes.includes(file.type)) {
-      setUploadError('Only PDF, DOC, and DOCX files are allowed.');
+  const handleFileUpload = async (file: File) => {
+    setUploadError(null);
+
+    const allowedExtensions = ['pdf', 'doc', 'docx'];
+    const fileExtension = file.name.split('.').pop()?.toLowerCase() || '';
+    if (!allowedExtensions.includes(fileExtension)) {
+      setUploadError('Only PDF or Word document (.doc, .docx) formats are supported.');
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
+
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
       setUploadError('File size exceeds the 5MB limit.');
       return;
     }
 
-    setResumeFile(file);
-    setUploadError(null);
     setUploading(true);
+    setFileName(file.name);
 
     try {
-      const uploadData = new FormData();
-      uploadData.append('file', file);
+      const data = new FormData();
+      data.append('file', file);
 
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: uploadData,
+        body: data,
       });
 
-      const resJson = await response.json();
-      if (!response.ok || resJson.error) {
-        throw new Error(resJson.error || 'Server upload failed');
+      if (!response.ok) {
+        const errText = await response.text();
+        let errMsg = 'Server upload failed. Make sure your local Wrangler pages dev server is running.';
+        try {
+          const errJson = JSON.parse(errText);
+          errMsg = errJson.error || errMsg;
+        } catch {
+          if (errText) {
+            errMsg = errText.substring(0, 100);
+          } else if (response.status === 404) {
+            errMsg = 'Upload endpoint not found (404). Run the app with wrangler pages dev to test serverless functions locally.';
+          }
+        }
+        throw new Error(errMsg);
       }
 
-      setFormData((prev) => ({ ...prev, resumeUrl: resJson.url }));
+      const result = await response.json();
+      setFormData((prev) => ({ ...prev, resumeUrl: result.url || '' }));
       if (errors.resumeUrl) {
         setErrors((prev) => ({ ...prev, resumeUrl: '' }));
       }
     } catch (err) {
-      console.error(err);
-      const errMsg = err instanceof Error ? err.message : 'Failed to upload file to Google Drive. Please try again.';
+      console.error('File upload error:', err);
+      const errMsg = err instanceof Error ? err.message : 'An error occurred during upload. Please try again.';
       setUploadError(errMsg);
-      setResumeFile(null);
+      setFileName('');
     } finally {
       setUploading(false);
     }
   };
 
-  const removeResume = () => {
-    setResumeFile(null);
+  const removeUploadedFile = () => {
     setFormData((prev) => ({ ...prev, resumeUrl: '' }));
+    setFileName('');
     setUploadError(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
@@ -949,71 +948,73 @@ const JudgeApplication = () => {
                             <div className="flex flex-col gap-1.5 mt-2">
                               <label className="text-slate-700 text-sm font-google font-bold">Resume Upload *</label>
 
-                              {!resumeFile ? (
-                                <div
-                                  onDragOver={handleDragOver}
-                                  onDragLeave={handleDragLeave}
-                                  onDrop={handleDrop}
-                                  onClick={triggerFileInput}
-                                  className={`border-2 border-dashed rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all duration-350 bg-white/40 ${isDragging
-                                      ? 'border-[#61A644] bg-[#61A644]/5 scale-[0.99]'
-                                      : errors.resumeUrl
-                                        ? 'border-red-500 hover:border-red-600 hover:bg-red-50/10'
-                                        : 'border-black/10 hover:border-[#61A644]/40 hover:bg-slate-50/50'
-                                    }`}
-                                >
-                                  <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    onChange={handleFileChange}
-                                    accept=".pdf,.doc,.docx"
-                                    className="hidden"
-                                  />
-                                  <FontAwesomeIcon
-                                    icon={faCloudUploadAlt}
-                                    className={`text-3xl mb-3 transition-colors ${isDragging ? 'text-[#61A644]' : 'text-slate-400'
-                                      }`}
-                                  />
-                                  <p className="text-slate-600 font-google-text text-sm font-bold">
-                                    Drag & drop your resume here, or <span className="text-[#61A644] hover:underline">browse</span>
-                                  </p>
-                                  <p className="text-slate-400 font-google-text text-xs mt-1">
-                                    Supports PDF, DOC, DOCX up to 5MB
-                                  </p>
-                                </div>
-                              ) : (
-                                <div className="flex items-center justify-between border border-black/10 rounded-2xl p-4 bg-white/80 shadow-sm relative overflow-hidden">
-                                  {uploading && (
-                                    <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px] flex items-center justify-center gap-3">
-                                      <FontAwesomeIcon icon={faSpinner} className="animate-spin text-[#61A644] text-lg" />
-                                      <span className="text-slate-600 text-sm font-google-text font-bold">Uploading to Drive...</span>
-                                    </div>
-                                  )}
+                              {formData.resumeUrl ? (
+                                /* File Upload Success State */
+                                <div className="flex items-center justify-between p-4 rounded-xl border border-[#61A644]/30 bg-[#61A644]/5 transition-all">
                                   <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-lg">
-                                      <FontAwesomeIcon icon={faFilePdf} />
+                                    <div className="w-10 h-10 rounded-lg bg-[#61A644]/15 flex items-center justify-center text-[#61A644]">
+                                      <FontAwesomeIcon icon={faFilePdf} className="text-lg" />
                                     </div>
                                     <div className="flex flex-col">
-                                      <span className="text-slate-700 text-sm font-google-text font-bold truncate max-w-[200px] sm:max-w-[300px]">
-                                        {resumeFile.name}
+                                      <span className="text-sm font-google font-bold text-[#0C3C34] truncate max-w-[200px] sm:max-w-xs">
+                                        {fileName || 'resume.pdf'}
                                       </span>
-                                      <span className="text-slate-400 text-xs font-google-text">
-                                        {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB
+                                      <span className="text-[10px] text-slate-500">
+                                        Upload complete
                                       </span>
                                     </div>
                                   </div>
                                   <button
                                     type="button"
-                                    onClick={removeResume}
-                                    className="w-8 h-8 rounded-full border border-black/5 hover:bg-slate-50 text-slate-400 hover:text-slate-600 flex items-center justify-center transition-colors"
+                                    onClick={removeUploadedFile}
+                                    className="p-1.5 rounded-lg hover:bg-black/5 text-slate-400 hover:text-red-500 transition-colors cursor-pointer"
                                   >
-                                    <FontAwesomeIcon icon={faTimes} className="text-xs" />
+                                    <FontAwesomeIcon icon={faTimes} />
                                   </button>
+                                </div>
+                              ) : uploading ? (
+                                /* File Uploading State */
+                                <div className="flex flex-col items-center justify-center py-6 rounded-xl border border-[#61A644]/30 bg-[#61A644]/5 gap-2.5">
+                                  <FontAwesomeIcon icon={faSpinner} className="text-2xl text-[#61A644] animate-spin" />
+                                  <span className="text-xs text-slate-600 font-google font-medium">
+                                    Uploading your resume...
+                                  </span>
+                                </div>
+                              ) : (
+                                /* File Uploader Input Zone */
+                                <div
+                                  onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                                  onDragLeave={() => setIsDragging(false)}
+                                  onDrop={handleFileDrop}
+                                  className={`relative flex flex-col items-center justify-center py-6 px-4 rounded-xl border border-dashed text-center cursor-pointer transition-all ${isDragging
+                                      ? 'bg-[#61A644]/10 border-[#61A644] scale-[1.01]'
+                                      : errors.resumeUrl
+                                        ? 'bg-red-50/30 border-red-300 hover:bg-red-50/50'
+                                        : 'bg-white/50 border-black/15 hover:bg-slate-50'
+                                    }`}
+                                >
+                                  <input
+                                    type="file"
+                                    accept=".pdf,.doc,.docx"
+                                    onChange={handleFileSelect}
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                  />
+                                  <FontAwesomeIcon icon={faUpload} className={`text-xl mb-2 ${errors.resumeUrl ? 'text-red-400' : 'text-slate-400'}`} />
+                                  <span className="text-xs font-google font-bold text-slate-700">
+                                    Drag & drop your resume, or <span className="text-[#61A644] underline">browse</span>
+                                  </span>
+                                  <span className="text-[10px] text-slate-400 mt-1">
+                                    Supports PDF, DOC, DOCX up to 5MB
+                                  </span>
                                 </div>
                               )}
 
-                              {uploadError && <span className="text-red-500 text-xs mt-1">{uploadError}</span>}
-                              {errors.resumeUrl && <span className="text-red-500 text-xs mt-1">{errors.resumeUrl}</span>}
+                              {uploadError && (
+                                <span className="text-red-500 text-[11px] font-medium mt-0.5">{uploadError}</span>
+                              )}
+                              {errors.resumeUrl && !uploadError && (
+                                <span className="text-red-500 text-xs mt-0.5">{errors.resumeUrl}</span>
+                              )}
                             </div>
 
                             {/* Code of Conduct Checklist */}
