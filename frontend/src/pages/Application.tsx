@@ -27,7 +27,6 @@ interface FormState {
   stipend: string;
   housing: string;
   mlhConduct: boolean;
-  mlhTerms: boolean;
   hackgbWaiver: boolean;
 }
 
@@ -51,7 +50,6 @@ const initialFormState: FormState = {
   stipend: '',
   housing: '',
   mlhConduct: false,
-  mlhTerms: false,
   hackgbWaiver: false,
 };
 
@@ -172,7 +170,7 @@ const Application = () => {
     });
   };
 
-  const handleAgreementChange = (name: 'mlhConduct' | 'mlhTerms' | 'hackgbWaiver') => {
+  const handleAgreementChange = (name: 'mlhConduct' | 'hackgbWaiver') => {
     setFormData((prev) => ({ ...prev, [name]: !prev[name] }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
@@ -220,7 +218,6 @@ const Application = () => {
       if (!formData.stipend) newErrors.stipend = 'Please select if you require a travel stipend.';
       if (!formData.housing) newErrors.housing = 'Please select if you require accommodations.';
       if (!formData.mlhConduct) newErrors.mlhConduct = 'You must agree to the MLH Code of Conduct.';
-      if (!formData.mlhTerms) newErrors.mlhTerms = 'You must agree to the MLH Contest Terms & Privacy Policy.';
       if (!formData.hackgbWaiver) newErrors.hackgbWaiver = 'You must agree to the HackGB Waiver.';
     }
 
@@ -290,9 +287,6 @@ const Application = () => {
 
       if (formData.mlhConduct) {
         data.append('entry.318526633', 'I have read and agree to the MLH Code of Conduct.');
-      }
-      if (formData.mlhTerms) {
-        data.append('entry.318526633', 'I agree to the terms and conditions of the MLH Contest Terms and Conditions and the MLH Privacy Policy.');
       }
       if (formData.hackgbWaiver) {
         data.append('entry.318526633', 'I agree to the HackGB Liability and Media Waiver.');
@@ -964,39 +958,7 @@ const Application = () => {
                                   {errors.mlhConduct && <span className="text-red-500 text-[10px] pl-7">{errors.mlhConduct}</span>}
                                 </div>
 
-                                {/* MLH Terms */}
-                                <div className="flex flex-col gap-1">
-                                  <label className="flex items-start gap-3 text-xs text-slate-650 cursor-pointer select-none leading-relaxed">
-                                    <input
-                                      type="checkbox"
-                                      checked={formData.mlhTerms}
-                                      onChange={() => handleAgreementChange('mlhTerms')}
-                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer"
-                                    />
-                                    <span>
-                                      I agree to the terms and conditions of the{' '}
-                                      <a
-                                        href="https://mlh.io/privacy"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-[#61A644] hover:underline font-bold"
-                                      >
-                                        MLH Contest Terms & Conditions
-                                      </a>{' '}
-                                      and the{' '}
-                                      <a
-                                        href="https://mlh.io/privacy"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-[#61A644] hover:underline font-bold"
-                                      >
-                                        MLH Privacy Policy
-                                      </a>
-                                      . *
-                                    </span>
-                                  </label>
-                                  {errors.mlhTerms && <span className="text-red-500 text-[10px] pl-7">{errors.mlhTerms}</span>}
-                                </div>
+
 
                                 {/* HackGB Waiver */}
                                 <div className="flex flex-col gap-1">
