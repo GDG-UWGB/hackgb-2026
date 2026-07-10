@@ -1007,7 +1007,27 @@ const Application = () => {
                                       onChange={() => handleAgreementChange('hackgbWaiver')}
                                       className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer"
                                     />
-                                    <span>I agree to the HackGB Liability and Media Waiver. *</span>
+                                    <span>
+                                      I agree to the HackGB Liability and Media Waiver, and have read and agree to the{' '}
+                                      <a
+                                        href="/code-of-conduct"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[#61A644] hover:underline font-bold"
+                                      >
+                                        HackGB Code of Conduct
+                                      </a>{' '}
+                                      and{' '}
+                                      <a
+                                        href="/privacy-policy"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[#61A644] hover:underline font-bold"
+                                      >
+                                        HackGB Privacy Policy
+                                      </a>
+                                      . *
+                                    </span>
                                   </label>
                                   {errors.hackgbWaiver && <span className="text-red-500 text-[10px] pl-7">{errors.hackgbWaiver}</span>}
                                 </div>

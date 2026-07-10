@@ -8,8 +8,11 @@ import { useScrollToTop } from '../../hooks/useScrollToTop';
 // Import Page components (The different pages of the app)
 import Home from '../../pages/Home';
 import Faqs from '../../pages/Faqs';
+import ApplyOptions from '../../pages/ApplyOptions';
 import Application from '../../pages/Application';
 import JudgeApplication from '../../pages/JudgeApplication';
+import CodeOfConduct from '../../pages/CodeOfConduct';
+import PrivacyPolicy from '../../pages/PrivacyPolicy';
 
 
 // Define the transition properties for page animations
@@ -47,8 +50,11 @@ const AnimatedRoutes = () => {
 
                 <Route path="/" element={<PageWrapper> <Home /> </PageWrapper>} />
                 <Route path="/faqs" element={<PageWrapper> <Faqs /> </PageWrapper>} />
-                <Route path="/apply" element={<PageWrapper> <Application /> </PageWrapper>} />
+                <Route path="/apply" element={<PageWrapper> <ApplyOptions /> </PageWrapper>} />
+                <Route path="/apply/hacker" element={<PageWrapper> <Application /> </PageWrapper>} />
                 <Route path="/apply/judge" element={<PageWrapper> <JudgeApplication /> </PageWrapper>} />
+                <Route path="/code-of-conduct" element={<PageWrapper> <CodeOfConduct /> </PageWrapper>} />
+                <Route path="/privacy-policy" element={<PageWrapper> <PrivacyPolicy /> </PageWrapper>} />
 
             </Routes>
         </AnimatePresence>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import logo from '../../assets/images/logos/HGBL - DKGN.png';
@@ -78,8 +79,9 @@ const Footer = () => {
             © 2026 GDG on Campus UW-Green Bay. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-slate-500 text-sm font-google-text">
+            <Link to="/code-of-conduct" className="hover:text-slate-800 transition-colors">HackGB Code of Conduct</Link>
             <a href="https://mlh.io/code-of-conduct" target="_blank" rel="noopener noreferrer" className="hover:text-slate-800 transition-colors">MLH Code of Conduct</a>
-            <a href="#" className="hover:text-slate-800 transition-colors">Privacy Policy</a>
+            <Link to="/privacy-policy" className="hover:text-slate-800 transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

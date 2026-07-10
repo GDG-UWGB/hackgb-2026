@@ -69,21 +69,6 @@ const Registration = () => {
                         <ArrowRight className="w-5 h-5" />
                     </button>
                 </motion.div>
-
-                {/* Role pills */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.9, delay: 0.5, ease: spring }}
-                    viewport={{ once: true }}
-                    className="flex flex-wrap justify-center gap-3 mt-12"
-                >
-                    {['Hacker', 'Mentor', 'Volunteer', 'Sponsor'].map((role) => (
-                        <span key={role} className="px-4 py-2 rounded-full bg-slate-100 border border-black/5 text-slate-500 font-google-text text-sm">
-                            {role}
-                        </span>
-                    ))}
-                </motion.div>
             </div>
         </section>
     );

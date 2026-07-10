@@ -1071,7 +1071,41 @@ const JudgeApplication = () => {
                                         className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer"
                                       />
                                       <span className="text-xs text-slate-600 font-google-text leading-normal">
-                                        {item}
+                                        {item === 'I have read and agree to the MLH Code of Conduct.' ? (
+                                          <span>
+                                            I have read and agree to the{' '}
+                                            <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">
+                                              MLH Code of Conduct
+                                            </a>
+                                            .
+                                          </span>
+                                        ) : item === 'I agree to the terms and conditions of the MLH Contest Terms and Conditions and the MLH Privacy Policy.' ? (
+                                          <span>
+                                            I agree to the terms and conditions of the{' '}
+                                            <a href="https://mlh.io/privacy" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">
+                                              MLH Contest Terms & Conditions
+                                            </a>{' '}
+                                            and the{' '}
+                                            <a href="https://mlh.io/privacy" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">
+                                              MLH Privacy Policy
+                                            </a>
+                                            .
+                                          </span>
+                                        ) : item === 'I agree to the HackGB Liability and Media Waiver.' ? (
+                                          <span>
+                                            I agree to the HackGB Liability and Media Waiver, and have read and agree to the{' '}
+                                            <a href="/code-of-conduct" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">
+                                              HackGB Code of Conduct
+                                            </a>{' '}
+                                            and{' '}
+                                            <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">
+                                              HackGB Privacy Policy
+                                            </a>
+                                            .
+                                          </span>
+                                        ) : (
+                                          item
+                                        )}
                                       </span>
                                     </label>
                                   );
