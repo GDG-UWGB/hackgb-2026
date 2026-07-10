@@ -372,6 +372,35 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
       );
     }
 
+    // 2. Send notification email to info@hackgb.com (non-blocking)
+    const adminSubject = `[Notification] New ${body.type === 'judge' ? 'Judge' : 'Hacker'} Application - ${body.name}`;
+    const adminHtml = `
+      <div style="font-family: sans-serif; padding: 20px; color: #333;">
+        <h2 style="color: #0C3C34; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Application Submitted</h2>
+        <p><strong>Name:</strong> ${body.name}</p>
+        <p><strong>Email:</strong> ${body.to}</p>
+        <p><strong>Role:</strong> ${body.type === 'judge' ? 'Judge' : 'Hacker'}</p>
+        <p style="color: #888; font-size: 12px; margin-top: 20px;">Submitted at: ${new Date().toISOString()}</p>
+      </div>
+    `;
+
+    fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'HackGB System <info@hackgb.com>',
+        to: ['info@hackgb.com'],
+        subject: adminSubject,
+        html: adminHtml,
+        reply_to: body.to,
+      }),
+    }).catch((adminErr) => {
+      console.error('Failed to send admin notification email:', adminErr);
+    });
+
     return new Response(
       JSON.stringify({ status: 'sent', id: result.id }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
