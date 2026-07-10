@@ -251,7 +251,7 @@ const Application = () => {
       data.append('entry.42047240', formData.fullName);
       data.append('entry.1275623371', formData.email);
       data.append('entry.599449600', formData.phone);
-      
+
       // Date of Birth
       const [dobYear, dobMonth, dobDay] = formData.dob.split('-');
       data.append('entry.417968283_year', dobYear);
@@ -407,13 +407,12 @@ const Application = () => {
                     <div key={s.id} className="flex-1 flex items-center">
                       <div className="flex flex-col items-center mx-auto relative group">
                         <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center border font-google font-bold text-sm transition-all duration-350 ${
-                            isActive
+                          className={`w-10 h-10 rounded-full flex items-center justify-center border font-google font-bold text-sm transition-all duration-350 ${isActive
                               ? 'bg-[#0C3C34] text-white border-[#0C3C34] scale-110 shadow-[0_0_15px_rgba(12,60,52,0.25)]'
                               : isCompleted
-                              ? 'bg-[#61A644]/10 text-[#61A644] border-[#61A644]/30'
-                              : 'bg-slate-50 text-slate-400 border-black/5'
-                          }`}
+                                ? 'bg-[#61A644]/10 text-[#61A644] border-[#61A644]/30'
+                                : 'bg-slate-50 text-slate-400 border-black/5'
+                            }`}
                         >
                           {isCompleted ? (
                             <FontAwesomeIcon icon={faCheck} className="text-xs" />
@@ -422,18 +421,16 @@ const Application = () => {
                           )}
                         </div>
                         <span
-                          className={`hidden md:block text-[11px] mt-2 font-google font-bold uppercase tracking-wider transition-colors duration-350 ${
-                            isActive ? 'text-[#0C3C34]' : isCompleted ? 'text-[#61A644]' : 'text-slate-400'
-                          }`}
+                          className={`hidden md:block text-[11px] mt-2 font-google font-bold uppercase tracking-wider transition-colors duration-350 ${isActive ? 'text-[#0C3C34]' : isCompleted ? 'text-[#61A644]' : 'text-slate-400'
+                            }`}
                         >
                           {s.name}
                         </span>
                       </div>
                       {index < steps.length - 1 && (
                         <div
-                          className={`flex-1 h-[2px] transition-all duration-500 ${
-                            step > s.id ? 'bg-[#61A644]/40' : 'bg-slate-100'
-                          }`}
+                          className={`flex-1 h-[2px] transition-all duration-500 ${step > s.id ? 'bg-[#61A644]/40' : 'bg-slate-100'
+                            }`}
                         />
                       )}
                     </div>
@@ -472,9 +469,8 @@ const Application = () => {
                                   value={formData.fullName}
                                   onChange={handleInputChange}
                                   placeholder="John Doe"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.fullName ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.fullName ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.fullName && <span className="text-red-500 text-xs mt-0.5">{errors.fullName}</span>}
                               </div>
@@ -487,9 +483,8 @@ const Application = () => {
                                   value={formData.email}
                                   onChange={handleInputChange}
                                   placeholder="john.doe@edu.com"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 <span className="text-slate-400 text-[10px]">Use your .edu email if you are a student.</span>
                                 {errors.email && <span className="text-red-500 text-xs mt-0.5">{errors.email}</span>}
@@ -505,9 +500,8 @@ const Application = () => {
                                   value={formData.phone}
                                   onChange={handleInputChange}
                                   placeholder="(123) 456-7890"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.phone && <span className="text-red-500 text-xs mt-0.5">{errors.phone}</span>}
                               </div>
@@ -519,9 +513,8 @@ const Application = () => {
                                   name="dob"
                                   value={formData.dob}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.dob ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.dob ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.dob && <span className="text-red-500 text-xs mt-0.5">{errors.dob}</span>}
                               </div>
@@ -534,9 +527,8 @@ const Application = () => {
                                   name="gender"
                                   value={formData.gender}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.gender ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.gender ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 >
                                   <option value="" disabled>Select your gender</option>
                                   <option value="Male">Male</option>
@@ -552,9 +544,8 @@ const Application = () => {
                                   name="race"
                                   value={formData.race}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.race ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.race ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 >
                                   <option value="" disabled>Select your race/ethnicity</option>
                                   <option value="Asian">Asian</option>
@@ -575,9 +566,8 @@ const Application = () => {
                                   name="tShirtSize"
                                   value={formData.tShirtSize}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.tShirtSize ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.tShirtSize ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 >
                                   <option value="" disabled>Select your size</option>
                                   <option value="XS">XS</option>
@@ -644,9 +634,8 @@ const Application = () => {
                                   value={formData.university}
                                   onChange={handleInputChange}
                                   placeholder="University of Wisconsin-Green Bay"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.university ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.university ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.university && <span className="text-red-500 text-xs mt-0.5">{errors.university}</span>}
                               </div>
@@ -658,9 +647,8 @@ const Application = () => {
                                     name="status"
                                     value={formData.status}
                                     onChange={handleInputChange}
-                                    className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                      errors.status ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                    }`}
+                                    className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.status ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                      }`}
                                   >
                                     <option value="" disabled>Select your status</option>
                                     <option value="Undergraduate Student">Undergraduate Student</option>
@@ -681,9 +669,8 @@ const Application = () => {
                                     value={formData.major}
                                     onChange={handleInputChange}
                                     placeholder="Computer Science"
-                                    className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                      errors.major ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                    }`}
+                                    className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.major ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                      }`}
                                   />
                                   {errors.major && <span className="text-red-500 text-xs mt-0.5">{errors.major}</span>}
                                 </div>
@@ -698,9 +685,8 @@ const Application = () => {
                                   name="graduationDate"
                                   value={formData.graduationDate}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.graduationDate ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.graduationDate ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.graduationDate && <span className="text-red-500 text-xs mt-0.5">{errors.graduationDate}</span>}
                               </div>
@@ -726,11 +712,10 @@ const Application = () => {
                                     return (
                                       <label
                                         key={exp}
-                                        className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border text-sm transition-all cursor-pointer ${
-                                          isChecked
+                                        className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border text-sm transition-all cursor-pointer ${isChecked
                                             ? 'bg-[#61A644]/10 border-[#61A644] text-[#0C3C34] font-bold'
                                             : 'bg-white/50 border-black/5 text-slate-700 hover:bg-slate-50'
-                                        }`}
+                                          }`}
                                       >
                                         <input
                                           type="checkbox"
@@ -760,9 +745,8 @@ const Application = () => {
                                   onChange={handleInputChange}
                                   rows={4}
                                   placeholder="Briefly describe a project you have worked on. This helps us understand your technical background. (Max 100 words / 600 characters)"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all resize-none ${
-                                    errors.projectExperience ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all resize-none ${errors.projectExperience ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.projectExperience && (
                                   <span className="text-red-500 text-xs mt-0.5">{errors.projectExperience}</span>
@@ -812,13 +796,12 @@ const Application = () => {
                                     onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                                     onDragLeave={() => setIsDragging(false)}
                                     onDrop={handleFileDrop}
-                                    className={`relative flex flex-col items-center justify-center py-6 px-4 rounded-xl border border-dashed text-center cursor-pointer transition-all ${
-                                      isDragging
+                                    className={`relative flex flex-col items-center justify-center py-6 px-4 rounded-xl border border-dashed text-center cursor-pointer transition-all ${isDragging
                                         ? 'bg-[#61A644]/10 border-[#61A644] scale-[1.01]'
                                         : errors.resumeLink
-                                        ? 'bg-red-50/30 border-red-300 hover:bg-red-50/50'
-                                        : 'bg-white/50 border-black/15 hover:bg-slate-50'
-                                    }`}
+                                          ? 'bg-red-50/30 border-red-300 hover:bg-red-50/50'
+                                          : 'bg-white/50 border-black/15 hover:bg-slate-50'
+                                      }`}
                                   >
                                     <input
                                       type="file"
@@ -865,9 +848,8 @@ const Application = () => {
                                   value={formData.travelState}
                                   onChange={handleInputChange}
                                   placeholder="e.g. Wisconsin, Illinois"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${
-                                    errors.travelState ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                  }`}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.travelState ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
                                 />
                                 {errors.travelState && <span className="text-red-500 text-xs mt-0.5">{errors.travelState}</span>}
                               </div>
@@ -1032,11 +1014,10 @@ const Application = () => {
                       type="button"
                       onClick={handleBack}
                       disabled={step === 1 || isSubmitting}
-                      className={`flex items-center gap-2 px-6 py-3 rounded-full font-google font-bold text-sm transition-all ${
-                        step === 1
+                      className={`flex items-center gap-2 px-6 py-3 rounded-full font-google font-bold text-sm transition-all ${step === 1
                           ? 'opacity-0 pointer-events-none'
                           : 'bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer'
-                      }`}
+                        }`}
                     >
                       <FontAwesomeIcon icon={faArrowLeft} />
                       Back

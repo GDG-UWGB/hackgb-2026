@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:wrangler": "npx wrangler pages dev --port 5173 -- npm run dev",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "npm run build && wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+    "preview": "npm run build && npx wrangler dev",
+    "deploy": "npm run build && npx wrangler deploy"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.2.0",

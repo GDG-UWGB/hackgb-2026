@@ -9,6 +9,7 @@ import { useScrollToTop } from '../../hooks/useScrollToTop';
 import Home from '../../pages/Home';
 import Faqs from '../../pages/Faqs';
 import Application from '../../pages/Application';
+import JudgeApplication from '../../pages/JudgeApplication';
 
 
 // Define the transition properties for page animations
@@ -47,6 +48,7 @@ const AnimatedRoutes = () => {
                 <Route path="/" element={<PageWrapper> <Home /> </PageWrapper>} />
                 <Route path="/faqs" element={<PageWrapper> <Faqs /> </PageWrapper>} />
                 <Route path="/apply" element={<PageWrapper> <Application /> </PageWrapper>} />
+                <Route path="/apply/judge" element={<PageWrapper> <JudgeApplication /> </PageWrapper>} />
 
             </Routes>
         </AnimatePresence>

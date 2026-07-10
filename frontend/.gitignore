@@ -29,3 +29,7 @@ dist-ssr
 !.dev.vars.example
 .env*
 !.env.example
+
+# Form data files
+form_data.js
+judge_form_data.js
