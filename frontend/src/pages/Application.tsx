@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBriefcase, faMapPin, faFileSignature, faUpload, faFilePdf, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import stemImg from '../assets/images/background/uwgb-stem.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -354,14 +355,16 @@ const Application = () => {
 
   return (
     <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-[#eff6eb] noise-overlay flex flex-col items-center justify-center">
-      {/* Background Decorative Rings */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#61A644]/5 rounded-full blur-[180px] pointer-events-none animate-ambient-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+      {/* Background Landmark Image */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img src={stemImg} alt="" className="w-full h-full object-cover opacity-[0.25] parallax-bg" />
+        <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
+      </div>
 
       <div className="w-full max-w-3xl z-10">
         {/* Title */}
         <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#61A644]/10 border border-[#61A644]/15 text-[#61A644] font-google font-bold text-xs uppercase tracking-widest mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#61A644]/10 border border-[#61A644]/15 text-[#61A644] font-google font-bold text-xs mb-4">
             <span className="w-2 h-2 bg-[#61A644] rounded-full" />
             UWGB's Premier Collegiate Hackathon
           </span>

@@ -25,7 +25,7 @@ const CodeOfConduct = () => {
 
         {/* Conduct Rules List */}
         <div className="w-full bg-white/90 border border-black/5 rounded-[2rem] shadow-xl p-8 md:p-10 flex flex-col gap-8">
-          
+
           {/* Core Goal */}
           <div className="flex flex-col gap-2">
             <h2 className="text-xl font-google font-bold text-[#0C3C34]">

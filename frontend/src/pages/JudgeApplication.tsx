@@ -13,6 +13,7 @@ import {
   faTimes,
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
+import titletownImg from '../assets/images/background/titletown-district.png';
 import { useNavigate } from 'react-router-dom';
 
 /* Premium spring easing */
@@ -447,9 +448,11 @@ const JudgeApplication = () => {
 
   return (
     <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-[#eff6eb] noise-overlay flex flex-col items-center justify-center">
-      {/* Background Decorative Rings */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#61A644]/5 rounded-full blur-[180px] pointer-events-none animate-ambient-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+      {/* Background Landmark Image */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img src={titletownImg} alt="" className="w-full h-full object-cover opacity-[0.25] parallax-bg" />
+        <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
+      </div>
 
       <div className="w-full max-w-4xl z-10">
         {/* Form Container */}

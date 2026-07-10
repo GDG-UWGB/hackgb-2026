@@ -27,12 +27,7 @@ const phoenixLeft = {
     transition: { duration: 0.9, delay: 0.1, ease: spring }
 };
 
-const phoenixRight = {
-    initial: { opacity: 0, x: 40, scale: 0.97, filter: "blur(8px)" },
-    whileInView: { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" },
-    viewport: { once: true, margin: "-60px" },
-    transition: { duration: 0.9, delay: 0.2, ease: spring }
-};
+
 
 const About = () => {
     return (
@@ -93,7 +88,7 @@ const About = () => {
                 </motion.div>
 
                 {/* Info cards row */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="max-w-xl mx-auto">
                     <motion.div
                         {...phoenixLeft}
                         className="glass-card p-8 md:p-10 bg-white/94 border border-black/5 shadow-sm"
@@ -126,22 +121,6 @@ const About = () => {
                                 "Our mission is to foster innovation and community in Green Bay by providing a platform for collegiate developers of all levels to build, learn, and grow — where every hacker can rise like the Phoenix."
                             </p>
                         </div>
-                    </motion.div>
-
-                    <motion.div
-                        {...phoenixRight}
-                        className="glass-card overflow-hidden h-70 sm:h-87.5 lg:h-auto border border-black/5 shadow-sm bg-white"
-                    >
-                        <iframe
-                            title="STEM Innovation Center Map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2839.293417937397!2d-87.92552692348545!3d44.53065609559388!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!4t4.1!3m3!1m2!1s0x8802fb69986b208b%3A0xc6e4b8686705504d!2sSTEM%20Innovation%20Center!5e0!3m2!1sen!2sus!4v1709600000000!5m2!1sen!2sus"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            allowFullScreen={true}
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
                     </motion.div>
                 </div>
             </div>

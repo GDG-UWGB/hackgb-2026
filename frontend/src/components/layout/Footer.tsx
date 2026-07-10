@@ -1,16 +1,37 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import logo from '../../assets/images/logos/HGBL - DKGN.png';
+import logo from '../../assets/images/logos/logo-phx.png';
 import gdgLogo from '../../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const socialLinks = [
     { name: 'Twitter', icon: faTwitter, href: '#' },
     { name: 'Instagram', icon: faInstagram, href: '#' },
     { name: 'LinkedIn', icon: faLinkedinIn, href: '#' },
     { name: 'YouTube', icon: faYoutube, href: '#' },
   ];
+
+  const handleQuickLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(to);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(to);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <footer className="relative bg-[#eff6eb] text-slate-800 py-20 px-4 overflow-hidden border-t border-black/5">
@@ -30,7 +51,7 @@ const Footer = () => {
             <span className="font-google text-3xl font-bold text-[#0C3C34] mb-2 block">
               HackGB 2026
             </span>
-            <p className="text-[#E37100] text-xs font-google font-bold uppercase tracking-wider mb-4">
+            <p className="text-[#E37100] text-xs font-google font-bold mb-4">
               UWGB's Premier Collegiate Hackathon
             </p>
             <p className="text-slate-600 max-w-sm mb-6 font-google-text">
@@ -53,10 +74,10 @@ const Footer = () => {
           <div>
             <h4 className="font-google font-bold mb-6 text-[#61A644]">Quick Links</h4>
             <ul className="space-y-4 text-slate-600 font-google-text">
-              <li><a href="#about" className="hover:text-[#61A644] transition-colors">About</a></li>
-              <li><a href="#tracks" className="hover:text-[#61A644] transition-colors">Tracks</a></li>
-              <li><a href="#schedule" className="hover:text-[#61A644] transition-colors">Schedule</a></li>
-              <li><a href="#faqs" className="hover:text-[#61A644] transition-colors">FAQs</a></li>
+              <li><a href="#about" onClick={(e) => handleQuickLinkClick(e, 'about')} className="hover:text-[#61A644] transition-colors">About</a></li>
+              <li><a href="#tracks" onClick={(e) => handleQuickLinkClick(e, 'tracks')} className="hover:text-[#61A644] transition-colors">Tracks</a></li>
+              <li><a href="#schedule" onClick={(e) => handleQuickLinkClick(e, 'schedule')} className="hover:text-[#61A644] transition-colors">Schedule</a></li>
+              <li><a href="#faqs" onClick={(e) => handleQuickLinkClick(e, 'faqs')} className="hover:text-[#61A644] transition-colors">FAQs</a></li>
             </ul>
           </div>
 
