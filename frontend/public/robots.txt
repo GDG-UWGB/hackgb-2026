@@ -1,0 +1,5 @@
+# robots.txt for HackGB 2026
+User-agent: *
+Allow: /
+
+Sitemap: https://hackgb.com/sitemap.xml

@@ -1,0 +1,20 @@
+# HackGB 2026
+
+UW-Green Bay's premier 24-hour collegiate hackathon experience, organized by GDG on Campus at UW-Green Bay.
+
+## Event Details
+- **Date:** October 17 - 18, 2026
+- **Location:** STEM Innovation Center, UW-Green Bay (2420 Nicolet Dr, Green Bay, WI 54311)
+- **Eligibility:** Undergraduate and graduate college students.
+- **Prizes:** $5,000+ in prizes across multiple tracks.
+
+## Registration & Applications
+- [Hacker Application](https://hackgb.com/apply/hacker) - Apply to participate as a hacker.
+- [Judge Application](https://hackgb.com/apply/judge) - Register to evaluate projects as a judge.
+
+## Key Sections
+- [About](https://hackgb.com/#about) - Learn about HackGB, dates, location, and organizers.
+- [Tracks](https://hackgb.com/#tracks) - Discover the hackathon tracks (Environment, Education, Industrial, Healthcare).
+- [Schedule](https://hackgb.com/#schedule) - View the weekend timeline and activity list.
+- [Travel](https://hackgb.com/#travel) - Travel directions, transportation tips, parking, and logistics.
+- [FAQs](https://hackgb.com/#faq) - Frequently asked questions about registration, rules, and teams.

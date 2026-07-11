@@ -335,6 +335,7 @@ const Hero = () => {
                         to="about"
                         smooth={true}
                         duration={500}
+                        href="#about"
                         className="w-full sm:w-auto text-slate-800 hover:text-[#0C3C34] border border-slate-350 hover:border-slate-400 bg-white/60 hover:bg-white px-8 py-4 rounded-full font-google-text font-medium transition-all text-center cursor-pointer backdrop-blur-sm shadow-sm"
                     >
                         Explore the Tour
