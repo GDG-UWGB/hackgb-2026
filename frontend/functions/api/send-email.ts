@@ -8,12 +8,13 @@ interface EmailRequest {
   type: 'hacker' | 'judge';
 }
 
-const LOGO_URL = 'https://hackgb.com/hackgb-logo-white.png';
+const LOGO_URL = 'https://hackgb.com/hackgb-logo-dark.png';
 const DECISION_DATE = 'early September 2026';
 
 /* ── Shared email scaffolding ─────────────────────────────── */
 
 function emailWrapper(headerSubtitle: string, bodyContent: string): string {
+  const filename = headerSubtitle.toLowerCase().replace(/\s+/g, '_') + '.md';
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -22,80 +23,81 @@ function emailWrapper(headerSubtitle: string, bodyContent: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light">
   <meta name="supported-color-schemes" content="light">
-  <!--[if mso]>
-  <noscript>
-    <xml>
-      <o:OfficeDocumentSettings>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-      </o:OfficeDocumentSettings>
-    </xml>
-  </noscript>
-  <![endif]-->
 </head>
-<body style="margin:0;padding:0;background-color:#f0f2f5;font-family:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+<body style="margin:0;padding:0;background-color:#eff6eb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 
   <!-- Outer wrapper -->
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f0f2f5;padding:32px 16px;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#eff6eb;padding:32px 16px;">
     <tr>
       <td align="center">
 
-        <!-- Email container -->
-        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.08);">
+        <!-- Mock IDE Window Container -->
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;width:100%;background-color:#ffffff;border:1px solid rgba(12,60,52,0.15);border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(12,60,52,0.06);">
 
-          <!-- ═══ HEADER ═══ -->
+          <!-- ═══ IDE Top Window Title Bar ═══ -->
           <tr>
-            <td style="background:linear-gradient(145deg,#0a2f28 0%,#0C3C34 40%,#145740 100%);padding:0;">
+            <td style="background-color:rgba(12,60,52,0.04);border-bottom:1px solid rgba(12,60,52,0.1);padding:12px 20px;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td style="padding:36px 40px 20px;text-align:center;">
-                    <img src="${LOGO_URL}" alt="HackGB" width="160" style="display:block;margin:0 auto;max-width:160px;height:auto;" />
+                  <!-- macOS control dots -->
+                  <td width="50" style="vertical-align:middle;line-height:0;">
+                    <span style="display:inline-block;width:9px;height:9px;background-color:#ff5f56;border-radius:50%;margin-right:6px;"></span>
+                    <span style="display:inline-block;width:9px;height:9px;background-color:#ffbd2e;border-radius:50%;margin-right:6px;"></span>
+                    <span style="display:inline-block;width:9px;height:9px;background-color:#27c93f;border-radius:50%;"></span>
                   </td>
-                </tr>
-                <tr>
-                  <td style="padding:0 40px 8px;text-align:center;">
-                    <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 auto;">
-                      <tr>
-                        <td style="background:rgba(97,166,68,0.2);border:1px solid rgba(97,166,68,0.35);border-radius:20px;padding:5px 16px;">
-                          <span style="color:#8fd473;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">${headerSubtitle}</span>
-                        </td>
-                      </tr>
-                    </table>
+                  <!-- Tab Filename -->
+                  <td align="center" style="font-family:'Courier New',Courier,monospace;font-size:11px;color:#0C3C34;font-weight:bold;vertical-align:middle;">
+                    📄 ${filename}
                   </td>
-                </tr>
-                <tr>
-                  <td style="padding:12px 40px 6px;text-align:center;">
-                    <p style="color:rgba(255,255,255,0.55);font-size:12px;margin:0;letter-spacing:0.3px;">October 17–18, 2026 · STEM Innovation Center · UW–Green Bay</p>
+                  <!-- Editor Type label -->
+                  <td width="50" align="right" style="font-family:'Courier New',Courier,monospace;font-size:9px;color:#61A644;font-weight:bold;vertical-align:middle;text-transform:uppercase;">
+                    markdown
                   </td>
-                </tr>
-                <tr>
-                  <td style="padding:12px 40px 0;text-align:center;">
-                    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(97,166,68,0.4),transparent);"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="height:28px;"></td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- ═══ BODY ═══ -->
+          <!-- ═══ IDE File Subtitle Tab ═══ -->
           <tr>
-            <td style="padding:36px 40px 24px;">
+            <td style="background-color:rgba(12,60,52,0.015);border-bottom:1px solid rgba(12,60,52,0.05);padding:14px 24px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>
+                    <img src="${LOGO_URL}" alt="HackGB" width="120" style="display:block;max-width:120px;height:auto;border:0;" />
+                  </td>
+                  <td align="right" style="vertical-align:middle;">
+                    <table role="presentation" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="background:rgba(97,166,68,0.12);border:1px solid rgba(97,166,68,0.2);border-radius:6px;padding:4px 10px;">
+                          <span style="color:#3e7d23;font-family:'Courier New',Courier,monospace;font-size:10px;font-weight:bold;letter-spacing:0.5px;text-transform:uppercase;">${headerSubtitle}</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ═══ BODY CONTENT (IDE Code Area) ═══ -->
+          <tr>
+            <td style="padding:32px 40px 24px;background-color:#ffffff;">
               ${bodyContent}
             </td>
           </tr>
 
-          <!-- ═══ FOOTER ═══ -->
+          <!-- ═══ FOOTER DIVIDER ═══ -->
           <tr>
             <td style="padding:0 40px;">
-              <div style="height:1px;background:linear-gradient(90deg,transparent,#e0e0e0,transparent);"></div>
+              <div style="height:1px;background-color:rgba(12,60,52,0.08);"></div>
             </td>
           </tr>
+
+          <!-- ═══ FOOTER SIGNATURE & LINKS ═══ -->
           <tr>
-            <td style="padding:28px 40px 20px;text-align:center;">
-              <!-- Social links -->
-              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 auto 16px;">
+            <td style="padding:24px 40px 20px;text-align:center;background-color:#ffffff;">
+              <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 auto 12px;">
                 <tr>
                   <td style="padding:0 8px;">
                     <a href="https://www.instagram.com/hackgb_uwgb/" style="color:#61A644;text-decoration:none;font-size:12px;font-weight:600;">Instagram</a>
@@ -110,26 +112,35 @@ function emailWrapper(headerSubtitle: string, bodyContent: string): string {
                   </td>
                 </tr>
               </table>
-              <p style="color:#999;font-size:12px;margin:0 0 6px;line-height:1.6;">
-                Questions? Contact us at <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;font-weight:600;">info@hackgb.com</a>
+              <p style="color:#666666;font-size:11px;margin:0 0 6px;line-height:1.5;">
+                Have questions? Reach us at <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;font-weight:bold;">info@hackgb.com</a>
               </p>
-              <p style="color:#bbb;font-size:11px;margin:0;line-height:1.5;">
-                © 2026 HackGB · University of Wisconsin–Green Bay
+              <p style="color:#999999;font-size:10px;margin:0;line-height:1.4;">
+                © 2026 HackGB · STEM Innovation Center · University of Wisconsin-Green Bay
               </p>
             </td>
           </tr>
+
+          <!-- ═══ IDE Bottom Status Bar ═══ -->
           <tr>
-            <td style="height:8px;"></td>
+            <td style="background-color:#0C3C34;color:#ffffff;padding:8px 20px;font-family:'Courier New',Courier,monospace;font-size:9px;letter-spacing:0.3px;line-height:1;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="color:#8fd473;font-weight:bold;">● COMPILER: SUCCESS</td>
+                  <td align="right" style="color:rgba(255,255,255,0.65);">UTF-8 · tty0 · Ln 1, Col 1</td>
+                </tr>
+              </table>
+            </td>
           </tr>
 
         </table>
 
-        <!-- Below-card note -->
+        <!-- Small below-card notice -->
         <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;width:100%;">
           <tr>
             <td style="padding:16px 20px 0;text-align:center;">
-              <p style="color:#aaa;font-size:10px;margin:0;">
-                You're receiving this because you submitted an application on hackgb.com
+              <p style="color:#a5bba0;font-size:10px;margin:0;font-family:sans-serif;">
+                You are receiving this because an application was submitted on <a href="https://hackgb.com" style="color:#61A644;text-decoration:none;">hackgb.com</a>
               </p>
             </td>
           </tr>
@@ -347,7 +358,7 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
     const { subject, html } =
       body.type === 'judge' ? buildJudgeEmail(body.name) : buildHackerEmail(body.name);
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
+    let resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -362,7 +373,27 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
       }),
     });
 
-    const result: any = await resendResponse.json();
+    let result: any = await resendResponse.json();
+
+    // Fallback: If domain is not verified in Resend, retry sending using the onboarding@resend.dev sandbox domain
+    if (!resendResponse.ok && (resendResponse.status === 403 || (result.message && result.message.toLowerCase().includes('verified domain')))) {
+      console.warn('Domain hackgb.com is not verified in Resend. Retrying using onboarding@resend.dev fallback...');
+      resendResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'HackGB <onboarding@resend.dev>',
+          to: [body.to],
+          subject,
+          html,
+          reply_to: 'info@hackgb.com',
+        }),
+      });
+      result = await resendResponse.json();
+    }
 
     if (!resendResponse.ok) {
       console.error('Resend API error:', result);
@@ -397,6 +428,27 @@ export const onRequestPost = async (context: { request: Request; env: Env }) => 
         html: adminHtml,
         reply_to: body.to,
       }),
+    }).then(async (adminRes) => {
+      if (!adminRes.ok) {
+        const errObj: any = await adminRes.json().catch(() => ({}));
+        if (adminRes.status === 403 || (errObj.message && errObj.message.toLowerCase().includes('verified domain'))) {
+          console.warn('Admin domain not verified. Retrying admin email via onboarding@resend.dev...');
+          fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              from: 'HackGB System <onboarding@resend.dev>',
+              to: ['info@hackgb.com'],
+              subject: adminSubject,
+              html: adminHtml,
+              reply_to: body.to,
+            }),
+          });
+        }
+      }
     }).catch((adminErr) => {
       console.error('Failed to send admin notification email:', adminErr);
     });
