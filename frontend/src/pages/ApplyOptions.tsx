@@ -5,18 +5,23 @@ import { Terminal, ArrowRight, Compass, Landmark } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
+const HACKER_APPLICATION_DEADLINE = new Date('2026-10-12T04:59:59Z'); // Oct 11, 2026 11:59 PM CST
 
 const ApplyOptions = () => {
   const navigate = useNavigate();
+  const isHackerDeadlinePassed = new Date() > HACKER_APPLICATION_DEADLINE;
 
   const options = [
     {
       title: 'Hacker Application',
-      description: 'Submit your application to participate in the hackathon as a builder or creator.',
+      description: isHackerDeadlinePassed
+        ? 'Applications closed on October 11, 2026.'
+        : 'Submit your application to participate in the hackathon as a builder or creator.',
       icon: Compass,
       path: '/apply/hacker',
-      themeColor: '#61A644', // HackGB Green
-      badge: 'Hacker',
+      themeColor: isHackerDeadlinePassed ? '#ff5f56' : '#61A644', // Red if closed
+      badge: isHackerDeadlinePassed ? 'Closed' : 'Hacker',
+      disabled: isHackerDeadlinePassed,
     },
     {
       title: 'Judge Application',
@@ -25,6 +30,7 @@ const ApplyOptions = () => {
       path: '/apply/judge',
       themeColor: '#E37100', // Phoenix Orange/Amber
       badge: 'Judge',
+      disabled: false,
     },
   ];
 
@@ -87,9 +93,17 @@ const ApplyOptions = () => {
                 return (
                   <motion.div
                     key={opt.title}
-                    whileHover={{ y: -2, scale: 1.01 }}
-                    className="group cursor-pointer p-5 rounded-xl bg-white/70 hover:bg-white border border-black/5 hover:border-[#61A644]/20 shadow-sm transition-all duration-300 flex flex-col justify-between min-h-[140px]"
-                    onClick={() => navigate(opt.path)}
+                    whileHover={opt.disabled ? {} : { y: -2, scale: 1.01 }}
+                    className={`group p-5 rounded-xl border shadow-sm transition-all duration-300 flex flex-col justify-between min-h-[140px] ${
+                      opt.disabled
+                        ? 'opacity-60 cursor-not-allowed bg-slate-100/50 border-black/5'
+                        : 'cursor-pointer bg-white/70 hover:bg-white border-black/5 hover:border-[#61A644]/20'
+                    }`}
+                    onClick={() => {
+                      if (!opt.disabled) {
+                        navigate(opt.path);
+                      }
+                    }}
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span
@@ -122,8 +136,8 @@ const ApplyOptions = () => {
                     </div>
 
                     <div className="flex items-center gap-1.5 mt-3 font-google font-bold text-xs" style={{ color: opt.themeColor }}>
-                      <span>Initialize Apply</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      <span>{opt.disabled ? 'Applications Closed' : 'Initialize Apply'}</span>
+                      {!opt.disabled && <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />}
                     </div>
                   </motion.div>
                 );
