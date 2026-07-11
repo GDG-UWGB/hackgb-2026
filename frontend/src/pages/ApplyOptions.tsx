@@ -5,7 +5,7 @@ import { Terminal, ArrowRight, Compass, Landmark } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
-const HACKER_APPLICATION_DEADLINE = new Date('2026-10-12T04:59:59Z'); // Oct 11, 2026 11:59 PM CST
+const HACKER_APPLICATION_DEADLINE = new Date('2026-10-08T04:59:59Z'); // Oct 7, 2026 11:59 PM CST
 
 const ApplyOptions = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const ApplyOptions = () => {
     {
       title: 'Hacker Application',
       description: isHackerDeadlinePassed
-        ? 'Applications closed on October 11, 2026.'
+        ? 'Applications closed on October 7, 2026.'
         : 'Submit your application to participate in the hackathon as a builder or creator.',
       icon: Compass,
       path: '/apply/hacker',

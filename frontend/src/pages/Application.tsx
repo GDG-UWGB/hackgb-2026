@@ -59,7 +59,7 @@ interface FormErrors {
   [key: string]: string;
 }
 
-const HACKER_APPLICATION_DEADLINE = new Date('2026-10-12T04:59:59Z'); // Oct 11, 2026 11:59 PM CST
+const HACKER_APPLICATION_DEADLINE = new Date('2026-10-08T04:59:59Z'); // Oct 7, 2026 11:59 PM CST
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6WdbARvaFg3BJmFi5QmVggW6zr9M_9-sNODzz-RYDmbJLvA/formResponse';
 
 const Application = () => {
@@ -402,7 +402,7 @@ const Application = () => {
                   Applications are Closed
                 </h2>
                 <p className="text-slate-650 font-google-text text-sm max-w-md mb-8">
-                  Hacker applications for HackGB 2026 closed on October 11, 2026 at 11:59 PM CST. We are no longer accepting new submissions.
+                  Hacker applications for HackGB 2026 closed on October 7, 2026 at 11:59 PM CST. We are no longer accepting new submissions.
                 </p>
                 <button
                   onClick={() => navigate('/')}
