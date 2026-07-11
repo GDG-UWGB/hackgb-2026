@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
-          <Link to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
+          <Link href="#hero" to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
             <img src={logo} alt="HackGB Logo" className="h-10 lg:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105" />
           </Link>
 
@@ -57,6 +57,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
+                  href={`#${link.to}`}
                   to={link.to}
                   smooth={true}
                   duration={500}
@@ -83,6 +84,8 @@ const Navbar = () => {
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
+              aria-expanded={mobileMenuOpen}
               className="p-1.5 rounded-md focus:outline-none text-slate-800 hover:text-[#61A644] transition-colors"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,6 +105,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
+                href={`#${link.to}`}
                 to={link.to}
                 smooth={true}
                 duration={500}

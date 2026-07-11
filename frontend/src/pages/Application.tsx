@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBriefcase, faMapPin, faFileSignature, faUpload, faFilePdf, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/uwgb-stem.png';
+import { Terminal } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -147,10 +148,10 @@ const Application = () => {
   };
 
   const steps = [
-    { id: 1, name: 'Basic Info', icon: faCompass },
-    { id: 2, name: 'Education', icon: faBuildingColumns },
-    { id: 3, name: 'Experience', icon: faBriefcase },
-    { id: 4, name: 'Travel & Rules', icon: faMapPin },
+    { id: 1, name: 'basic_info.json', icon: faCompass },
+    { id: 2, name: 'education.json', icon: faBuildingColumns },
+    { id: 3, name: 'experience.json', icon: faBriefcase },
+    { id: 4, name: 'travel_rules.json', icon: faMapPin },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -354,7 +355,7 @@ const Application = () => {
   ];
 
   return (
-    <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-[#eff6eb] noise-overlay flex flex-col items-center justify-center">
+    <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-transparent flex flex-col items-center justify-center">
       {/* Background Landmark Image */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img src={stemImg} alt="" className="w-full h-full object-cover opacity-[0.25] parallax-bg" />
@@ -362,23 +363,29 @@ const Application = () => {
       </div>
 
       <div className="w-full max-w-3xl z-10">
-        {/* Title */}
-        <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#61A644]/10 border border-[#61A644]/15 text-[#61A644] font-google font-bold text-xs mb-4">
-            <span className="w-2 h-2 bg-[#61A644] rounded-full" />
-            UWGB's Premier Collegiate Hackathon
-          </span>
-          <h1 className="text-4xl md:text-5xl font-google font-bold text-[#0C3C34] tracking-tight">
-            HackGB 2026 Application
-          </h1>
-          <p className="text-slate-600 mt-2 font-google-text text-sm md:text-base max-w-lg mx-auto">
-            Fill out your details to join us for an incredible weekend of creation, learning, and local innovation.
-          </p>
-        </div>
+        {/* Integrated IDE Application Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: spring }}
+          className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-2xl overflow-hidden flex flex-col min-h-[520px] relative text-left"
+        >
+          {/* IDE Top Window Bar */}
+          <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+              <span className="text-[10px] font-google-mono text-slate-500 ml-3">Hacker Application Wizard</span>
+            </div>
+            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#61A644] font-bold bg-[#61A644]/10 px-2 py-0.5 rounded border border-[#61A644]/25">
+              <Terminal className="w-3.5 h-3.5" />
+              <span>hacker_signup.json</span>
+            </div>
+          </div>
 
-        {/* Form Container */}
-        <div className="glass-card bg-white/95 border border-black/5 rounded-[2rem] shadow-2xl p-6 md:p-10 relative overflow-hidden min-h-[500px] flex flex-col">
-          {isSuccess ? (
+          <div className="flex-1 flex flex-col relative overflow-hidden min-h-[500px]">
+            {isSuccess ? (
             /* Branded Success State */
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -406,48 +413,35 @@ const Application = () => {
             </motion.div>
           ) : (
             <>
-              {/* Progress Steps Header */}
-              <div className="flex justify-between items-center mb-10 border-b border-black/5 pb-6">
-                {steps.map((s, index) => {
+              {/* Progress Steps Header — Styled as file explorer tabs */}
+              <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none select-none">
+                {steps.map((s) => {
                   const isActive = step === s.id;
                   const isCompleted = step > s.id;
                   return (
-                    <div key={s.id} className="flex-1 flex items-center">
-                      <div className="flex flex-col items-center mx-auto relative group">
-                        <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center border font-google font-bold text-sm transition-all duration-350 ${isActive
-                              ? 'bg-[#0C3C34] text-white border-[#0C3C34] scale-110 shadow-[0_0_15px_rgba(12,60,52,0.25)]'
-                              : isCompleted
-                                ? 'bg-[#61A644]/10 text-[#61A644] border-[#61A644]/30'
-                                : 'bg-slate-50 text-slate-400 border-black/5'
-                            }`}
-                        >
-                          {isCompleted ? (
-                            <FontAwesomeIcon icon={faCheck} className="text-xs" />
-                          ) : (
-                            s.id
-                          )}
-                        </div>
-                        <span
-                          className={`hidden md:block text-[11px] mt-2 font-google font-bold uppercase tracking-wider transition-colors duration-350 ${isActive ? 'text-[#0C3C34]' : isCompleted ? 'text-[#61A644]' : 'text-slate-400'
-                            }`}
-                        >
-                          {s.name}
-                        </span>
-                      </div>
-                      {index < steps.length - 1 && (
-                        <div
-                          className={`flex-1 h-[2px] transition-all duration-500 ${step > s.id ? 'bg-[#61A644]/40' : 'bg-slate-100'
-                            }`}
-                        />
-                      )}
+                    <div
+                      key={s.id}
+                      className={`flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-[11px] font-medium transition-all flex-1 justify-center whitespace-nowrap ${
+                        isActive
+                          ? 'bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644]'
+                          : isCompleted
+                          ? 'text-[#61A644] hover:bg-white/30 font-semibold'
+                          : 'text-slate-400 hover:bg-white/30'
+                      }`}
+                    >
+                      <FontAwesomeIcon 
+                        icon={s.icon} 
+                        className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#61A644]' : isCompleted ? 'text-[#61A644]' : 'text-slate-400'}`} 
+                      />
+                      <span>{s.name}</span>
+                      {isCompleted && <span className="text-[10px] text-[#61A644] font-bold">✓</span>}
                     </div>
                   );
                 })}
               </div>
 
               {/* Form Content Steps */}
-              <div className="flex-1 overflow-hidden relative flex flex-col justify-between">
+              <div className="p-6 md:p-8 flex-1 overflow-hidden relative flex flex-col justify-between">
                 <form onSubmit={handleSubmit} className="flex-1 flex flex-col">
                   <div className="relative flex-1">
                     <AnimatePresence mode="wait" custom={direction}>
@@ -1043,7 +1037,21 @@ const Application = () => {
               </div>
             </>
           )}
-        </div>
+          </div>
+          
+          {/* IDE Bottom Status Bar */}
+          <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
+            <div className="flex items-center gap-3">
+              <span className="font-bold">APPLY: step {step}</span>
+              <span className="opacity-80">Writing data...</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>JSON</span>
+              <span>UTF-8</span>
+              <span>Ln {step * 25}, Col 12</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </main>
   );

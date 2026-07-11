@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faCompass, faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/uwgb-stem.png';
+import { Terminal, ArrowRight, Compass, Landmark } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -13,16 +12,16 @@ const ApplyOptions = () => {
   const options = [
     {
       title: 'Hacker Application',
-      description: 'Submit your application to participate in the hackathon as a hacker.',
-      icon: faCompass,
+      description: 'Submit your application to participate in the hackathon as a builder or creator.',
+      icon: Compass,
       path: '/apply/hacker',
       themeColor: '#61A644', // HackGB Green
       badge: 'Hacker',
     },
     {
       title: 'Judge Application',
-      description: 'Submit your application to participate in the hackathon as a judge.',
-      icon: faBuildingColumns,
+      description: 'Submit your application to participate in the hackathon as a professional evaluator.',
+      icon: Landmark,
       path: '/apply/judge',
       themeColor: '#E37100', // Phoenix Orange/Amber
       badge: 'Judge',
@@ -30,7 +29,7 @@ const ApplyOptions = () => {
   ];
 
   return (
-    <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-[#eff6eb] noise-overlay flex flex-col items-center justify-center">
+    <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-transparent flex flex-col items-center justify-center">
       {/* Background Landmark Image */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img src={stemImg} alt="" className="w-full h-full object-cover opacity-[0.25] parallax-bg" />
@@ -38,92 +37,118 @@ const ApplyOptions = () => {
       </div>
 
       <div className="w-full max-w-4xl z-10 flex flex-col items-center">
-        {/* Title Section */}
-        <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#61A644]/10 border border-[#61A644]/15 text-[#61A644] font-google font-bold text-xs uppercase tracking-widest mb-4">
-            <span className="w-2 h-2 bg-[#61A644] rounded-full" />
-            Apply Now
-          </span>
-          <h1 className="text-4xl md:text-5xl font-google font-bold text-[#0C3C34] tracking-tight">
-            HackGB 2026 Registration
-          </h1>
-          <p className="text-slate-600 mt-3 font-google-text text-sm md:text-base max-w-lg mx-auto">
-            Please choose whether you would like to apply as a hacker or as a judge.
-          </p>
-        </div>
+        {/* Integrated IDE Selector Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: spring }}
+          className="w-full bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-2xl overflow-hidden flex flex-col text-left min-h-[420px]"
+        >
+          {/* IDE Top Window Bar */}
+          <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+              <span className="text-[10px] font-google-mono text-slate-500 ml-3">Registration Setup</span>
+            </div>
+            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#61A644] font-bold bg-[#61A644]/10 px-2 py-0.5 rounded border border-[#61A644]/25">
+              <Terminal className="w-3.5 h-3.5" />
+              <span>apply_options.sh</span>
+            </div>
+          </div>
 
-        {/* Option Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl">
-          {options.map((opt, index) => {
-            const isHacker = opt.path.includes('hacker');
-            return (
-              <motion.div
-                key={opt.title}
-                initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.8, delay: index * 0.15, ease: spring }}
-                whileHover={{ y: -6, scale: 1.01 }}
-                className="group relative cursor-pointer flex flex-col justify-between p-8 rounded-[2rem] bg-white/95 border border-black/5 hover:border-black/10 shadow-xl transition-all duration-350 min-h-[320px]"
-                onClick={() => navigate(opt.path)}
-              >
-                {/* Visual hover glow effect */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[2rem] blur-xl -z-10"
-                  style={{
-                    background: `radial-gradient(circle at center, ${opt.themeColor}12 0%, transparent 70%)`,
-                  }}
-                />
+          {/* IDE Workspace split body */}
+          <div className="flex flex-col md:flex-row flex-1">
+            {/* Left Column: Heading and metadata info */}
+            <div className="flex-1 p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-black/5">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#61A644]/10 text-[#61A644] font-google-mono font-bold text-[10px] uppercase tracking-wider mb-4 border border-[#61A644]/20">
+                  <span className="w-1.5 h-1.5 bg-[#61A644] rounded-full animate-pulse" />
+                  Apply Now
+                </span>
+                <h1 className="text-3xl sm:text-4xl font-google font-bold text-[#0C3C34] leading-tight mb-4">
+                  HackGB 2026 Registration
+                </h1>
+                <p className="text-slate-705 font-google-text text-sm font-semibold leading-relaxed">
+                  Join us at the STEM Innovation Center for Green Bay's premier collegiate hackathon. Please select whether you are participating as an active builder (hacker) or evaluative expert (judge).
+                </p>
+              </div>
 
-                <div>
-                  {/* Badge & Icon Row */}
-                  <div className="flex justify-between items-start mb-6">
-                    <span
-                      className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-google font-bold uppercase tracking-wider"
-                      style={{
-                        backgroundColor: `${opt.themeColor}15`,
-                        color: opt.themeColor,
-                        border: `1px solid ${opt.themeColor}20`,
-                      }}
-                    >
-                      {opt.badge}
-                    </span>
-                    <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center text-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
-                      style={{
-                        backgroundColor: isHacker ? '#61A64415' : '#E3710015',
-                        color: opt.themeColor,
-                      }}
-                    >
-                      <FontAwesomeIcon icon={opt.icon} />
+              <div className="text-[10px] font-google-mono text-slate-400 mt-8 pt-4 border-t border-black/5">
+                Pipelines established · select target parameters
+              </div>
+            </div>
+
+            {/* Right Column: Path Cards */}
+            <div className="w-full md:w-96 p-6 md:p-8 flex flex-col justify-center gap-4 bg-white/10 select-none">
+              {options.map((opt) => {
+                const OptIcon = opt.icon;
+                return (
+                  <motion.div
+                    key={opt.title}
+                    whileHover={{ y: -2, scale: 1.01 }}
+                    className="group cursor-pointer p-5 rounded-xl bg-white/70 hover:bg-white border border-black/5 hover:border-[#61A644]/20 shadow-sm transition-all duration-300 flex flex-col justify-between min-h-[140px]"
+                    onClick={() => navigate(opt.path)}
+                  >
+                    <div className="flex justify-between items-center mb-2">
+                      <span
+                        className="inline-flex items-center px-2 py-0.5 rounded text-[9px] font-google-mono font-bold uppercase tracking-wider"
+                        style={{
+                          backgroundColor: `${opt.themeColor}15`,
+                          color: opt.themeColor,
+                        }}
+                      >
+                        {opt.badge}
+                      </span>
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform duration-500 group-hover:scale-105"
+                        style={{
+                          backgroundColor: `${opt.themeColor}10`,
+                          color: opt.themeColor,
+                        }}
+                      >
+                        <OptIcon className="w-4 h-4" />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Title & Description */}
-                  <h2 className="text-2xl font-google font-bold text-[#0C3C34] mb-3 group-hover:text-black transition-colors">
-                    {opt.title}
-                  </h2>
-                  <p className="text-slate-600 font-google-text text-sm leading-relaxed">
-                    {opt.description}
-                  </p>
-                </div>
+                    <div>
+                      <h2 className="text-base font-google font-bold text-[#0C3C34] mb-1 group-hover:text-black transition-colors">
+                        {opt.title}
+                      </h2>
+                      <p className="text-slate-550 font-google-text text-xs leading-relaxed font-semibold">
+                        {opt.description}
+                      </p>
+                    </div>
 
-                {/* CTA Action Bar */}
-                <div className="flex items-center gap-2 mt-8 font-google font-bold text-sm" style={{ color: opt.themeColor }}>
-                  <span>Apply to participate</span>
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className="text-xs transition-transform duration-350 group-hover:translate-x-1.5"
-                  />
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                    <div className="flex items-center gap-1.5 mt-3 font-google font-bold text-xs" style={{ color: opt.themeColor }}>
+                      <span>Initialize Apply</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* IDE Bottom Status Bar */}
+          <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
+            <div className="flex items-center gap-3">
+              <span className="font-bold">HACKGB: setup</span>
+              <span className="opacity-80">Ready</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>Bash</span>
+              <span>UTF-8</span>
+              <span>tty0</span>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Back link */}
         <button
           onClick={() => navigate('/')}
-          className="mt-12 text-slate-500 hover:text-[#0C3C34] font-google font-bold text-sm cursor-pointer transition-all hover:underline"
+          className="mt-8 text-slate-500 hover:text-[#0C3C34] font-google font-bold text-sm cursor-pointer transition-all hover:underline"
         >
           ← Back to Homepage
         </button>

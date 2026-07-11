@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import titletownImg from '../assets/images/background/titletown-district.png';
 import { useNavigate } from 'react-router-dom';
+import { Terminal } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -94,9 +95,9 @@ const JudgeApplication = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const steps = [
-    { id: 1, name: 'Personal & Professional', icon: faCompass },
-    { id: 2, name: 'Experience & Details', icon: faBriefcase },
-    { id: 3, name: 'Logistics & Waivers', icon: faFileSignature },
+    { id: 1, name: 'personal_info.json', icon: faCompass },
+    { id: 2, name: 'experience.json', icon: faBriefcase },
+    { id: 3, name: 'logistics_rules.json', icon: faFileSignature },
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -447,7 +448,7 @@ const JudgeApplication = () => {
   };
 
   return (
-    <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-[#eff6eb] noise-overlay flex flex-col items-center justify-center">
+    <main className="relative min-h-screen pt-28 pb-20 px-4 overflow-hidden bg-transparent flex flex-col items-center justify-center">
       {/* Background Landmark Image */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img src={titletownImg} alt="" className="w-full h-full object-cover opacity-[0.25] parallax-bg" />
@@ -455,19 +456,29 @@ const JudgeApplication = () => {
       </div>
 
       <div className="w-full max-w-4xl z-10">
-        {/* Form Container */}
-        <div className="glass-card bg-white/95 border border-black/5 rounded-[2rem] shadow-2xl p-6 md:p-10 relative overflow-hidden min-h-[500px] flex flex-col">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl font-google font-bold text-[#0C3C34] tracking-tight">
-              HackGB 2026 Judge Registration
-            </h1>
-            <p className="text-slate-500 font-google-text text-sm mt-2">
-              Join us as a judge to evaluate innovative projects and guide the next generation of creators.
-            </p>
+        {/* Integrated IDE Application Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: spring }}
+          className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-2xl overflow-hidden flex flex-col min-h-[520px] relative text-left"
+        >
+          {/* IDE Top Window Bar */}
+          <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+              <span className="text-[10px] font-google-mono text-slate-500 ml-3">Judge Application Wizard</span>
+            </div>
+            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#E37100] font-bold bg-[#E37100]/10 px-2 py-0.5 rounded border border-[#E37100]/25">
+              <Terminal className="w-3.5 h-3.5" />
+              <span>judge_signup.json</span>
+            </div>
           </div>
 
-          {isSuccess ? (
+          <div className="flex-1 flex flex-col relative overflow-hidden min-h-[500px]">
+            {isSuccess ? (
             /* Success Screen */
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
               <div className="w-16 h-16 rounded-full bg-[#61A644]/10 flex items-center justify-center text-[#61A644] text-2xl mb-6">
@@ -487,46 +498,36 @@ const JudgeApplication = () => {
               </button>
             </div>
           ) : (
-            /* Form wizard */
-            <div className="flex-1 flex flex-col md:flex-row gap-8">
-              {/* Sidebar Steps progress */}
-              <div className="md:w-64 flex flex-row md:flex-col justify-between md:justify-start gap-4 md:border-r border-black/5 md:pr-6">
-                {steps.map((s, index) => {
+            <>
+              {/* Progress Steps Header — Styled as file explorer tabs */}
+              <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none select-none">
+                {steps.map((s) => {
                   const isActive = step === s.id;
                   const isCompleted = step > s.id;
                   return (
-                    <div key={s.id} className="flex-1 md:flex-initial flex items-center gap-3">
-                      <div className="flex flex-col md:flex-row items-center gap-2">
-                        <div
-                          className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-google font-bold transition-all duration-350 ${isActive
-                            ? 'bg-[#0C3C34] text-white ring-4 ring-[#0C3C34]/10 scale-105 shadow-md'
-                            : isCompleted
-                              ? 'bg-[#61A644] text-white'
-                              : 'bg-slate-100 text-slate-400'
-                            }`}
-                        >
-                          {isCompleted ? <FontAwesomeIcon icon={faCheck} className="text-xs" /> : s.id}
-                        </div>
-                        <span
-                          className={`hidden md:block text-[11px] mt-2 md:mt-0 font-google font-bold uppercase tracking-wider transition-colors duration-350 ${isActive ? 'text-[#0C3C34]' : isCompleted ? 'text-[#61A644]' : 'text-slate-400'
-                            }`}
-                        >
-                          {s.name}
-                        </span>
-                      </div>
-                      {index < steps.length - 1 && (
-                        <div
-                          className={`hidden md:block flex-1 h-[2px] transition-all duration-500 ${step > s.id ? 'bg-[#61A644]/40' : 'bg-slate-100'
-                            }`}
-                        />
-                      )}
+                    <div
+                      key={s.id}
+                      className={`flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-[11px] font-medium transition-all flex-1 justify-center whitespace-nowrap ${
+                        isActive
+                          ? 'bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644]'
+                          : isCompleted
+                          ? 'text-[#61A644] hover:bg-white/30 font-semibold'
+                          : 'text-slate-400 hover:bg-white/30'
+                      }`}
+                    >
+                      <FontAwesomeIcon 
+                        icon={s.icon} 
+                        className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#E37100]' : isCompleted ? 'text-[#61A644]' : 'text-slate-400'}`} 
+                      />
+                      <span>{s.name}</span>
+                      {isCompleted && <span className="text-[10px] text-[#61A644] font-bold">✓</span>}
                     </div>
                   );
                 })}
               </div>
 
-              {/* Form Content Steps */}
-              <div className="flex-1 overflow-hidden relative flex flex-col justify-between">
+              {/* Form Content */}
+              <div className="p-6 md:p-8 flex-1 overflow-hidden relative flex flex-col justify-between">
                 <form onSubmit={handleSubmit} className="flex-1 flex flex-col">
                   <div className="relative flex-1">
                     <AnimatePresence mode="wait" custom={direction}>
@@ -1158,9 +1159,23 @@ const JudgeApplication = () => {
                   </div>
                 </form>
               </div>
-            </div>
+            </>
           )}
-        </div>
+          </div>
+
+          {/* IDE Bottom Status Bar */}
+          <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
+            <div className="flex items-center gap-3">
+              <span className="font-bold">APPLY: step {step}</span>
+              <span className="opacity-80">Writing data...</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>JSON</span>
+              <span>UTF-8</span>
+              <span>Ln {step * 25}, Col 12</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </main>
   );
