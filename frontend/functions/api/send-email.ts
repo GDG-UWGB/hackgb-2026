@@ -160,29 +160,29 @@ function buildJudgeEmail(name: string): { subject: string; html: string } {
   const firstName = name.split(' ')[0];
 
   const body = `
-    <p style="color:#1a1a1a;font-size:17px;margin:0 0 22px;font-weight:600;line-height:1.4;">
+    <p style="color:#1a1a1a;font-size:15px;margin:0 0 20px;font-weight:bold;line-height:1.4;">
       Hello ${firstName},
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 18px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 16px;">
       Thank you for applying to serve as a judge for <strong style="color:#0C3C34;">HackGB 2026</strong> at the University of Wisconsin–Green Bay.
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 18px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 16px;">
       We have successfully received your application and appreciate your interest in supporting student innovation and entrepreneurship. Our organizing team will review your application, professional experience, and areas of expertise as part of our selection process.
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 22px;">
-      HackGB will take place on <strong style="color:#0C3C34;">October 17–18, 2026</strong> at the <strong style="color:#0C3C34;">STEM Innovation Center at UW–Green Bay</strong>, bringing together students from across the region for a weekend of building, learning, and collaboration.
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 20px;">
+      HackGB will take place on <strong style="color:#0C3C34;">October 17–18, 2026</strong> at the <strong style="color:#0C3C34;">STEM Innovation Center at UW–Green Bay</strong>.
     </p>
 
-    <!-- Info card -->
+    <!-- Info card (Console Logs) -->
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 24px;">
       <tr>
-        <td style="background:linear-gradient(135deg,#f6faf4 0%,#edf5ea 100%);border:1px solid #d4e8cc;border-radius:14px;padding:22px 24px;">
-          <p style="color:#0C3C34;font-size:13px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.8px;">If selected, you will receive details on:</p>
+        <td style="background-color:#fafafa;border:1px solid #e0e0e0;border-left:4px solid #61A644;border-radius:6px;padding:20px;font-family:'Courier New',Courier,monospace;text-align:left;">
+          <p style="color:#0C3C34;font-size:11px;font-weight:bold;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.8px;">[LOG] STAGES TO EXTRACT:</p>
           <table role="presentation" cellspacing="0" cellpadding="0">
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Judging schedule and logistics</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Event agenda and judging criteria</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Parking and campus information</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Travel reimbursement or accommodations (if applicable)</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Judging schedule and logistics</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Event agenda and judging criteria</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Parking and campus directions</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Accommodations & details setup</td></tr>
           </table>
         </td>
       </tr>
@@ -192,11 +192,11 @@ function buildJudgeEmail(name: string): { subject: string; html: string } {
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 24px;">
       <tr>
         <td align="center">
-          <table role="presentation" cellspacing="0" cellpadding="0">
+          <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 auto;display:inline-table;">
             <tr>
-              <td style="background:#0C3C34;border-radius:10px;padding:12px 24px;text-align:center;">
-                <p style="color:rgba(255,255,255,0.65);font-size:11px;margin:0 0 2px;letter-spacing:0.5px;text-transform:uppercase;">Decisions expected by</p>
-                <p style="color:#ffffff;font-size:15px;font-weight:700;margin:0;">${DECISION_DATE}</p>
+              <td style="background-color:#fafafa;border:1px solid rgba(12,60,52,0.1);border-radius:8px;padding:12px 24px;text-align:center;">
+                <p style="color:#666666;font-family:'Courier New',Courier,monospace;font-size:9px;margin:0 0 2px;letter-spacing:0.5px;text-transform:uppercase;">Decisions expected by</p>
+                <p style="color:#0C3C34;font-family:'Courier New',Courier,monospace;font-size:13px;font-weight:bold;margin:0;">${DECISION_DATE}</p>
               </td>
             </tr>
           </table>
@@ -204,20 +204,20 @@ function buildJudgeEmail(name: string): { subject: string; html: string } {
       </tr>
     </table>
 
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 18px;">
-      If you have any questions in the meantime, please feel free to contact us at <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;font-weight:600;">info@hackgb.com</a>.
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 16px;">
+      If you have any questions in the meantime, please feel free to contact us at <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;font-weight:bold;">info@hackgb.com</a>.
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 28px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 24px;">
       Thank you again for your willingness to support the next generation of builders and innovators. We hope to welcome you to HackGB this fall.
     </p>
 
     <!-- Sign-off -->
-    <table role="presentation" cellspacing="0" cellpadding="0" style="border-top:1px solid #eee;padding-top:20px;">
+    <table role="presentation" cellspacing="0" cellpadding="0" style="border-top:1px solid #eeeeee;padding-top:16px;width:100%;">
       <tr>
-        <td>
-          <p style="color:#1a1a1a;font-size:14px;font-weight:600;margin:0 0 2px;">Best regards,</p>
-          <p style="color:#666;font-size:13px;margin:0 0 1px;">HackGB Organizing Team</p>
-          <p style="color:#999;font-size:12px;margin:0;">University of Wisconsin–Green Bay</p>
+        <td style="text-align:left;">
+          <p style="color:#1a1a1a;font-size:13px;font-weight:bold;margin:0 0 2px;">Best regards,</p>
+          <p style="color:#666;font-size:12px;margin:0 0 1px;">HackGB Organizing Team</p>
+          <p style="color:#999;font-size:11px;margin:0;">University of Wisconsin–Green Bay</p>
         </td>
       </tr>
     </table>`;
@@ -234,54 +234,53 @@ function buildHackerEmail(name: string): { subject: string; html: string } {
   const firstName = name.split(' ')[0];
 
   const body = `
-    <p style="color:#1a1a1a;font-size:17px;margin:0 0 22px;font-weight:600;line-height:1.4;">
+    <p style="color:#1a1a1a;font-size:15px;margin:0 0 20px;font-weight:bold;line-height:1.4;">
       Hello ${firstName},
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 18px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 16px;">
       Thank you for applying to participate in <strong style="color:#0C3C34;">HackGB 2026</strong>!
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 18px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 16px;">
       We're excited that you're interested in joining us at the University of Wisconsin–Green Bay for a weekend of building, learning, and innovation alongside students from across the region and beyond.
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 22px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 20px;">
       We have successfully received your application and our team will review submissions as we work to build an engaging and diverse hacker community for our inaugural event.
     </p>
 
-    <!-- Event details card -->
+    <!-- Event details card (JSON output) -->
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 22px;">
       <tr>
-        <td style="background:#0C3C34;border-radius:14px;padding:22px 24px;">
-          <p style="color:#8fd473;font-size:11px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:1.2px;">Event Details</p>
+        <td style="background-color:#0C3C34;border-radius:8px;padding:20px 24px;font-family:'Courier New',Courier,monospace;color:#ffffff;text-align:left;">
+          <p style="color:#8fd473;font-size:11px;font-weight:bold;margin:0 0 12px;text-transform:uppercase;letter-spacing:1px;line-height:1;">$ cat event_details.json</p>
           <table role="presentation" cellspacing="0" cellpadding="0" width="100%">
             <tr>
-              <td style="padding:4px 0;color:rgba(255,255,255,0.7);font-size:13px;width:80px;vertical-align:top;">Date</td>
-              <td style="padding:4px 0;color:#ffffff;font-size:13.5px;font-weight:600;">October 17–18, 2026</td>
+              <td style="padding:4px 0;color:rgba(255,255,255,0.65);font-size:12px;width:100px;vertical-align:top;">"date":</td>
+              <td style="padding:4px 0;color:#ffffff;font-size:12px;font-weight:bold;">"October 17–18, 2026",</td>
             </tr>
             <tr>
-              <td style="padding:4px 0;color:rgba(255,255,255,0.7);font-size:13px;vertical-align:top;">Location</td>
-              <td style="padding:4px 0;color:#ffffff;font-size:13.5px;font-weight:600;">STEM Innovation Center, UW–Green Bay</td>
+              <td style="padding:4px 0;color:rgba(255,255,255,0.65);font-size:12px;vertical-align:top;">"location":</td>
+              <td style="padding:4px 0;color:#ffffff;font-size:12px;font-weight:bold;">"STEM Innovation Center",</td>
             </tr>
             <tr>
-              <td style="padding:4px 0;color:rgba(255,255,255,0.7);font-size:13px;vertical-align:top;">Website</td>
-              <td style="padding:4px 0;"><a href="https://hackgb.com" style="color:#8fd473;font-size:13.5px;font-weight:600;text-decoration:none;">hackgb.com</a></td>
+              <td style="padding:4px 0;color:rgba(255,255,255,0.65);font-size:12px;vertical-align:top;">"url":</td>
+              <td style="padding:4px 0;"><a href="https://hackgb.com" style="color:#8fd473;font-size:12px;font-weight:bold;text-decoration:none;">"https://hackgb.com"</a></td>
             </tr>
           </table>
         </td>
       </tr>
     </table>
 
-    <!-- What's next card -->
+    <!-- What's next card (Checklists) -->
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 24px;">
       <tr>
-        <td style="background:linear-gradient(135deg,#f6faf4 0%,#edf5ea 100%);border:1px solid #d4e8cc;border-radius:14px;padding:22px 24px;">
-          <p style="color:#0C3C34;font-size:13px;font-weight:700;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.8px;">Selected participants will receive info on:</p>
+        <td style="background-color:#fafafa;border:1px solid #e0e0e0;border-left:4px solid #61A644;border-radius:6px;padding:20px;font-family:'Courier New',Courier,monospace;text-align:left;">
+          <p style="color:#0C3C34;font-size:11px;font-weight:bold;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.8px;">[LOG] TASKS_TO_CONFIRM:</p>
           <table role="presentation" cellspacing="0" cellpadding="0">
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Admission decisions and confirmation deadlines</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Travel reimbursement opportunities (if available)</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Event schedule and workshops</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Team formation resources</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;Parking, housing, and campus logistics</td></tr>
-            <tr><td style="padding:4px 0;color:#3a6b32;font-size:13.5px;line-height:1.5;">✦&nbsp;&nbsp;What to bring and how to prepare</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Admission decisions & confirmation</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Travel reimbursement logistics</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Event schedule and workshops list</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] Team formation & Discord setup</td></tr>
+            <tr><td style="padding:3px 0;color:#333333;font-size:12px;line-height:1.4;">[x] What to bring checklist</td></tr>
           </table>
         </td>
       </tr>
@@ -291,11 +290,11 @@ function buildHackerEmail(name: string): { subject: string; html: string } {
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0 0 24px;">
       <tr>
         <td align="center">
-          <table role="presentation" cellspacing="0" cellpadding="0">
+          <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 auto;display:inline-table;">
             <tr>
-              <td style="background:#0C3C34;border-radius:10px;padding:12px 24px;text-align:center;">
-                <p style="color:rgba(255,255,255,0.65);font-size:11px;margin:0 0 2px;letter-spacing:0.5px;text-transform:uppercase;">Decisions begin releasing by</p>
-                <p style="color:#ffffff;font-size:15px;font-weight:700;margin:0;">${DECISION_DATE}</p>
+              <td style="background-color:#fafafa;border:1px solid rgba(12,60,52,0.1);border-radius:8px;padding:12px 24px;text-align:center;">
+                <p style="color:#666666;font-family:'Courier New',Courier,monospace;font-size:9px;margin:0 0 2px;letter-spacing:0.5px;text-transform:uppercase;">Decisions begin releasing by</p>
+                <p style="color:#0C3C34;font-family:'Courier New',Courier,monospace;font-size:13px;font-weight:bold;margin:0;">${DECISION_DATE}</p>
               </td>
             </tr>
           </table>
@@ -303,21 +302,21 @@ function buildHackerEmail(name: string): { subject: string; html: string } {
       </tr>
     </table>
 
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 18px;">
-      If you have any questions in the meantime, please don't hesitate to reach out to us at <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;font-weight:600;">info@hackgb.com</a>.
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 16px;">
+      If you have any questions in the meantime, please don't hesitate to reach out to us at <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;font-weight:bold;">info@hackgb.com</a>.
     </p>
-    <p style="color:#444;font-size:14.5px;line-height:1.75;margin:0 0 28px;">
+    <p style="color:#444;font-size:13.5px;line-height:1.6;margin:0 0 24px;">
       Thank you again for your interest in being part of the first-ever HackGB. We look forward to reviewing your application and hope to see you in Green Bay this October.
     </p>
 
     <!-- Sign-off -->
-    <table role="presentation" cellspacing="0" cellpadding="0" style="border-top:1px solid #eee;padding-top:20px;">
+    <table role="presentation" cellspacing="0" cellpadding="0" style="border-top:1px solid #eeeeee;padding-top:16px;width:100%;">
       <tr>
-        <td>
-          <p style="color:#1a1a1a;font-size:14px;font-weight:600;margin:0 0 2px;">Best regards,</p>
-          <p style="color:#666;font-size:13px;margin:0 0 1px;">HackGB Organizing Team</p>
-          <p style="color:#888;font-size:12px;margin:0 0 1px;">HackGB 2026 · University of Wisconsin–Green Bay</p>
-          <p style="color:#999;font-size:12px;margin:0;">
+        <td style="text-align:left;">
+          <p style="color:#1a1a1a;font-size:13px;font-weight:bold;margin:0 0 2px;">Best regards,</p>
+          <p style="color:#666;font-size:12px;margin:0 0 1px;">HackGB Organizing Team</p>
+          <p style="color:#999;font-size:11px;margin:0 0 2px;">HackGB 2026 · University of Wisconsin–Green Bay</p>
+          <p style="color:#61A644;font-size:11px;margin:0;">
             <a href="mailto:info@hackgb.com" style="color:#61A644;text-decoration:none;">info@hackgb.com</a>
             &nbsp;·&nbsp;
             <a href="https://hackgb.com" style="color:#61A644;text-decoration:none;">hackgb.com</a>

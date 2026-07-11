@@ -59,10 +59,12 @@ interface FormErrors {
   [key: string]: string;
 }
 
+const HACKER_APPLICATION_DEADLINE = new Date('2026-10-08T04:59:59Z'); // Oct 7, 2026 11:59 PM CST
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6WdbARvaFg3BJmFi5QmVggW6zr9M_9-sNODzz-RYDmbJLvA/formResponse';
 
 const Application = () => {
   const navigate = useNavigate();
+  const isDeadlinePassed = new Date() > HACKER_APPLICATION_DEADLINE;
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const [formData, setFormData] = useState<FormState>(initialFormState);
@@ -385,7 +387,31 @@ const Application = () => {
           </div>
 
           <div className="flex-1 flex flex-col relative overflow-hidden min-h-[500px]">
-            {isSuccess ? (
+            {isDeadlinePassed ? (
+              /* Branded Deadline Passed State */
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: spring }}
+                className="flex-1 flex flex-col items-center justify-center text-center py-12 px-6"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#ff5f56]/10 flex items-center justify-center text-[#ff5f56] text-2xl mb-6 animate-gentle-float">
+                  <FontAwesomeIcon icon={faTimes} />
+                </div>
+                <h2 className="text-2xl font-google font-bold text-[#0C3C34] mb-3">
+                  Applications are Closed
+                </h2>
+                <p className="text-slate-650 font-google-text text-sm max-w-md mb-8">
+                  Hacker applications for HackGB 2026 closed on October 7, 2026 at 11:59 PM CST. We are no longer accepting new submissions.
+                </p>
+                <button
+                  onClick={() => navigate('/')}
+                  className="bg-[#0C3C34] hover:bg-[#0c3c34]/90 text-white font-google font-bold px-8 py-3 rounded-full transition-all cursor-pointer hover:shadow-lg active:scale-95"
+                >
+                  Back to Home
+                </button>
+              </motion.div>
+            ) : isSuccess ? (
             /* Branded Success State */
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
