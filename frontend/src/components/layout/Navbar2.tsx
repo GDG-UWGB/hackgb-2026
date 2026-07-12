@@ -186,9 +186,9 @@ const Navbar = () => {
            {/* Social Icons */}
            <div className="flex gap-6 mb-6 text-gray-500">
               <a href="https://github.com/GDG-UWGB" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} style={{fontSize: '22px'}} /></a>
-              <a href="https://linkedin.com/company/gdg-uwgb" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} style={{fontSize: '22px'}} /></a>
-              <a href="https://instagram.com/gdg.uwgb" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} style={{fontSize: '22px'}} /></a>
-              <a href="https://facebook.com/gdg.uwgb" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} style={{fontSize: '22px'}} /></a>
+              <a href="https://www.linkedin.com/showcase/hackgb/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} style={{fontSize: '22px'}} /></a>
+              <a href="https://www.instagram.com/hack.gb/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} style={{fontSize: '22px'}} /></a>
+              <a href="https://www.facebook.com/hackgb" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} style={{fontSize: '22px'}} /></a>
            </div>
 
            {/* Mobile CTA Button */}
