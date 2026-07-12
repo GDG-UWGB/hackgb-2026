@@ -98,11 +98,15 @@ function emailWrapper(headerSubtitle: string, bodyContent: string): string {
               <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 auto 16px;">
                 <tr>
                   <td style="padding:0 8px;">
-                    <a href="https://www.instagram.com/hackgb_uwgb/" style="color:#61A644;text-decoration:none;font-size:12px;font-weight:600;">Instagram</a>
+                    <a href="https://www.instagram.com/hack.gb/" style="color:#61A644;text-decoration:none;font-size:12px;font-weight:600;">Instagram</a>
                   </td>
                   <td style="color:#ccc;font-size:12px;">·</td>
                   <td style="padding:0 8px;">
-                    <a href="https://www.linkedin.com/company/hackgb/" style="color:#61A644;text-decoration:none;font-size:12px;font-weight:600;">LinkedIn</a>
+                    <a href="https://www.facebook.com/hackgb" style="color:#61A644;text-decoration:none;font-size:12px;font-weight:600;">Facebook</a>
+                  </td>
+                  <td style="color:#ccc;font-size:12px;">·</td>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.linkedin.com/showcase/hackgb/" style="color:#61A644;text-decoration:none;font-size:12px;font-weight:600;">LinkedIn</a>
                   </td>
                   <td style="color:#ccc;font-size:12px;">·</td>
                   <td style="padding:0 8px;">

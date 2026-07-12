@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXTwitter, faInstagram, faLinkedinIn, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import logo from '../../assets/images/logos/logo-phx.png';
 import gdgLogo from '../../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
 
@@ -9,10 +9,9 @@ const Footer = () => {
   const location = useLocation();
 
   const socialLinks = [
-    { name: 'X', icon: faXTwitter, href: '#', hoverColor: '#000000' },
-    { name: 'Instagram', icon: faInstagram, href: '#', hoverColor: '#E4405F' },
-    { name: 'LinkedIn', icon: faLinkedinIn, href: '#', hoverColor: '#0A66C2' },
-    { name: 'YouTube', icon: faYoutube, href: '#', hoverColor: '#FF0000' },
+    { name: 'Facebook', icon: faFacebook, href: 'https://www.facebook.com/hackgb', hoverColor: '#1877F2' },
+    { name: 'Instagram', icon: faInstagram, href: 'https://www.instagram.com/hack.gb/', hoverColor: '#E4405F' },
+    { name: 'LinkedIn', icon: faLinkedinIn, href: 'https://www.linkedin.com/showcase/hackgb/', hoverColor: '#0A66C2' },
   ];
 
   const handleQuickLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {

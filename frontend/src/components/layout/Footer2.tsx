@@ -109,20 +109,20 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="https://www.linkedin.com/company/gdg-uwgb/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <Link to="https://www.linkedin.com/showcase/hackgb/" target="_blank" rel="noopener noreferrer" className="flex items-center">
                   <FontAwesomeIcon icon={faLinkedin} className="text-google-black/75 text-2xl hover:scale-110 transition-transform duration-300" />
                   {/* <span className="text-sm">LinkedIn</span> */}
                 </Link>
               </li>
               <li>
-                <Link to="https://www.instagram.com/gdg_uwgb/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <Link to="https://www.instagram.com/hack.gb/" target="_blank" rel="noopener noreferrer" className="flex items-center">
                   <FontAwesomeIcon icon={faInstagram} className="text-google-black/75 text-2xl hover:scale-110 transition-transform duration-300" />
                   {/* <span className="text-sm">Instagram</span> */}
                 </Link>
               </li>
               <li>
                 {/*  */}
-                <Link to="https://www.facebook.com/gdg.uwgb/" target="_blank" rel="noopener noreferrer" className="flex items-center group-[]:">
+                <Link to="https://www.facebook.com/hackgb" target="_blank" rel="noopener noreferrer" className="flex items-center group-[]:">
                   <FontAwesomeIcon icon={faFacebook} className="text-google-black/75 text-2xl hover:scale-110 transition-transform duration-300 " />
                   {/* <span className="text-sm">Facebook</span> */}
                 </Link>
