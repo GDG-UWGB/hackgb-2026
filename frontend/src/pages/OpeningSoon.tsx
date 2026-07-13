@@ -7,9 +7,6 @@ import { Terminal, ArrowRight, Sparkles, CheckCircle2, Mail, ArrowLeft } from 'l
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
-// Target date for applications opening: August 15, 2026
-const LAUNCH_DATE = new Date('2026-08-15T00:00:00Z');
-
 const OpeningSoon = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -17,35 +14,6 @@ const OpeningSoon = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [terminalStep, setTerminalStep] = useState(0);
-
-  // Countdown timer state
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  // Calculate countdown time
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const difference = +LAUNCH_DATE - +new Date();
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
-
-    calculateTimeLeft();
-    const interval = setInterval(calculateTimeLeft, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Animate terminal commands sequence
   useEffect(() => {
@@ -71,11 +39,20 @@ const OpeningSoon = () => {
 
     setIsSubmitting(true);
 
-    // Simulate premium API call duration
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-
     try {
-      // Save subscription to local storage for administrator retrieval
+      // Post to serverless API endpoint
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to subscribe.');
+      }
+
+      // Save subscription to local storage for local verification backup
       const existingWaitlist = JSON.parse(localStorage.getItem('hackgb_waitlist') || '[]');
       if (!existingWaitlist.includes(email)) {
         existingWaitlist.push(email);
@@ -143,24 +120,7 @@ const OpeningSoon = () => {
                   We are finalising the registration pipelines for HackGB 2026. Official signups for hackers, mentors, and judges will launch shortly. Join our priority notification list to secure your spot the moment we open.
                 </p>
 
-                {/* Countdown Timer Block */}
-                <div className="grid grid-cols-4 gap-2.5 max-w-sm mt-2">
-                  {[
-                    { label: 'Days', val: timeLeft.days },
-                    { label: 'Hours', val: timeLeft.hours },
-                    { label: 'Mins', val: timeLeft.minutes },
-                    { label: 'Secs', val: timeLeft.seconds },
-                  ].map((unit) => (
-                    <div key={unit.label} className="bg-white/60 border border-black/5 rounded-xl p-2.5 text-center flex flex-col justify-center items-center shadow-sm">
-                      <span className="font-google-mono font-bold text-lg md:text-xl text-[#0C3C34]">
-                        {String(unit.val).padStart(2, '0')}
-                      </span>
-                      <span className="text-[9px] font-google-text text-slate-500 font-bold uppercase tracking-wider mt-0.5">
-                        {unit.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+
               </div>
 
               <div className="text-[10px] font-google-mono text-slate-400 mt-8 pt-4 border-t border-black/5">
@@ -191,7 +151,7 @@ const OpeningSoon = () => {
                     <div className="text-slate-500">[System] Verifying connection to GoogleForms... OK</div>
                   )}
                   {terminalStep >= 3 && (
-                    <div className="text-slate-400 font-bold">[Status] Portal offline. Opening August 15, 2026.</div>
+                    <div className="text-slate-400 font-bold">[Status] Portal offline. Awaiting deployment.</div>
                   )}
                   {terminalStep >= 4 && (
                     <div className="text-[#E37100] font-bold animate-pulse">
