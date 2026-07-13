@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import titletownImg from '../assets/images/background/titletown-district.png';
+import { APPLICATIONS_OPEN } from '../data/constants';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -58,7 +59,11 @@ const Registration = () => {
                                 <div>[INFO] Loading HackGB registration parameters...</div>
                                 <div>[INFO] Target: UW-Green Bay STEM Innovation Center</div>
                                 <div>[INFO] Date: October 17 - 18, 2026</div>
-                                <div className="text-[#61A644] font-bold">[SUCCESS] Registration pipelines active. 200+ slots available.</div>
+                                {APPLICATIONS_OPEN ? (
+                                    <div className="text-[#61A644] font-bold">[SUCCESS] Registration pipelines active. 200+ slots available.</div>
+                                ) : (
+                                    <div className="text-[#E37100] font-bold">[PENDING] Registration pipeline offline. Launching soon!</div>
+                                )}
                             </div>
                             <div className="text-slate-300 font-google text-sm font-bold pt-4 text-center border-t border-white/5">
                                 Ready to join UWGB's premier collegiate hackathon?
@@ -71,7 +76,7 @@ const Registration = () => {
                                 onClick={() => navigate('/apply')}
                                 className="bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
                             >
-                                <span>Apply Now</span>
+                                <span>{APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}</span>
                                 <ArrowRight className="w-4 h-4" />
                             </button>
                             <button
