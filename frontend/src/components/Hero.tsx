@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import logo from '../assets/images/logos/logo.gif';
 import foxRiverImg from '../assets/images/background/fox-river.png';
 import { ArrowRight } from 'lucide-react';
+import { APPLICATIONS_OPEN } from '../data/constants';
 
 /* Premium spring easing — Apple-style curve */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -328,7 +329,7 @@ const Hero = () => {
                         to="/apply"
                         className="btn-primary w-full sm:w-auto px-10 py-4 rounded-full font-google font-bold text-lg cursor-pointer group flex items-center justify-center gap-2"
                     >
-                        Apply Now
+                        {APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </RouterLink>
                     <Link

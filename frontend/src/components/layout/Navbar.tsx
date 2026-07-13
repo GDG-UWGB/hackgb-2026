@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logos/HGBL - DKGN.png';
+import { APPLICATIONS_OPEN } from '../../data/constants';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const Navbar = () => {
               onClick={() => navigate('/apply')}
               className="bg-[#61A644] hover:bg-[#61A644]/90 text-white px-6 py-2.5 rounded-full font-google font-bold text-sm transition-all shadow-[0_4px_14px_rgba(97,166,68,0.35)] hover:shadow-[0_6px_20px_rgba(97,166,68,0.25)] cursor-pointer transform hover:-translate-y-0.5"
             >
-              Apply Now
+              {APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}
             </button>
           </div>
 
@@ -125,7 +126,7 @@ const Navbar = () => {
               }}
               className="w-full bg-[#61A644] text-white block px-4 py-3 rounded-xl font-google font-bold text-center text-sm mt-3 shadow-lg active:scale-95 transition-all cursor-pointer"
             >
-              Apply Now
+              {APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}
             </button>
           </div>
         </div>

@@ -13,6 +13,8 @@ import Application from '../../pages/Application';
 import JudgeApplication from '../../pages/JudgeApplication';
 import CodeOfConduct from '../../pages/CodeOfConduct';
 import PrivacyPolicy from '../../pages/PrivacyPolicy';
+import OpeningSoon from '../../pages/OpeningSoon';
+import { APPLICATIONS_OPEN } from '../../data/constants';
 
 
 // Define the transition properties for page animations
@@ -50,9 +52,9 @@ const AnimatedRoutes = () => {
 
                 <Route path="/" element={<PageWrapper> <Home /> </PageWrapper>} />
                 <Route path="/faqs" element={<PageWrapper> <Faqs /> </PageWrapper>} />
-                <Route path="/apply" element={<PageWrapper> <ApplyOptions /> </PageWrapper>} />
-                <Route path="/apply/hacker" element={<PageWrapper> <Application /> </PageWrapper>} />
-                <Route path="/apply/judge" element={<PageWrapper> <JudgeApplication /> </PageWrapper>} />
+                <Route path="/apply" element={<PageWrapper> {APPLICATIONS_OPEN ? <ApplyOptions /> : <OpeningSoon />} </PageWrapper>} />
+                <Route path="/apply/hacker" element={<PageWrapper> {APPLICATIONS_OPEN ? <Application /> : <OpeningSoon />} </PageWrapper>} />
+                <Route path="/apply/judge" element={<PageWrapper> {APPLICATIONS_OPEN ? <JudgeApplication /> : <OpeningSoon />} </PageWrapper>} />
                 <Route path="/code-of-conduct" element={<PageWrapper> <CodeOfConduct /> </PageWrapper>} />
                 <Route path="/privacy-policy" element={<PageWrapper> <PrivacyPolicy /> </PageWrapper>} />
 
