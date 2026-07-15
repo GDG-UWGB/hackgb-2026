@@ -346,12 +346,13 @@ const Hero = () => {
 
 
 
-            {/* MLH Badge — fixed for desktop, hidden on mobile (moved to navbar) */}
+            {/* MLH Badge — fixed for desktop, hidden on mobile (moved to navbar) — removed for now
             <div className="hidden md:block fixed top-0 right-4 z-60 p-4">
                 <a id="mlh-trust-badge" style={{ display: 'block', maxWidth: '80px', minWidth: '50px', width: '10vw' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
                     <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} />
                 </a>
             </div>
+            */}
         </section>
     );
 };
