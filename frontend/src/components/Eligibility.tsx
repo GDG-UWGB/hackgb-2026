@@ -25,6 +25,16 @@ const Eligibility = () => {
             <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[400px] h-[400px] bg-[#ffcc00]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-5xl mx-auto relative z-10">
+                {/* Header */}
+                <motion.div
+                    {...fadeUp(0)}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Travel & Eligibility
+                    </h2>
+                </motion.div>
+
                 {/* Integrated IDE Eligibility Card */}
                 <motion.div
                     {...fadeUp(0.1)}

@@ -52,6 +52,16 @@ const Schedule = () => {
             <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-[#ffcc00]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-5xl mx-auto relative z-10">
+                {/* Header */}
+                <motion.div
+                    {...fadeUp(0)}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Event Schedule
+                    </h2>
+                </motion.div>
+
                 {/* Integrated IDE Schedule Card */}
                 <motion.div
                     {...fadeUp(0.1)}
@@ -181,6 +191,14 @@ const Schedule = () => {
                                         ))}
                                     </motion.div>
                                 </AnimatePresence>
+
+                                <motion.div
+                                    {...fadeUp(0.1)}
+                                    className="mt-6 flex items-center gap-3 bg-[#E37100]/10 border border-[#E37100]/20 rounded-xl p-3.5 text-slate-800 text-xs font-google-text font-bold shadow-sm"
+                                >
+                                    <Clock className="w-4 h-4 text-[#E37100] shrink-0 animate-pulse" />
+                                    <span>Stay tuned! The full detailed schedule, including workshops, side quests, and mini-events, is coming soon.</span>
+                                </motion.div>
                             </div>
                         </div>
                     </div>

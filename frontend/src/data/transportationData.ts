@@ -1,55 +1,68 @@
-import { faCar, faBus, faBicycle, faTaxi } from '@fortawesome/free-solid-svg-icons';
+import { faCar, faBus, faBicycle, faTaxi, faPlane } from '@fortawesome/free-solid-svg-icons';
 
 export const transportationData = [
     {
         id: 'driving',
-        title: 'Driving and parking',
+        title: 'Driving & Parking',
         icon: faCar,
         content: `
-            <p class="mb-4 text-lg">Free parking is available at the UW-Green Bay Campus:</p>
+            <p class="mb-4 text-lg">UW-Green Bay offers convenient, accessible visitor parking across campus:</p>
             <ul class="list-disc pl-5 space-y-4 text-google-black/80 leading-relaxed">
-                <li><strong>Main Campus Parking Lot</strong> (<a href="#" class="text-google-blue hover:underline">directions</a>) is located near the main entrance off Nicolet Drive. Visitor parking is available throughout the main lots.</li>
-                <li><strong>Student Union Lot</strong> (<a href="#" class="text-google-blue hover:underline">directions</a>) is available for closer access to the University Union. Special event parking might apply on high-traffic days.</li>
-                <li><strong>ADA parking</strong> is available at all major lots across the UWGB campus. Additionally, ADA-accessible drop off zones are located near the main entrances of primary academic and event buildings.</li>
+                <li><strong>Recommended Lots:</strong> For direct access to the <strong>Brown County STEM Innovation Center</strong> (where HackGB takes place), park in the visitor parking lot directly in front of the STEM Center (<a href="https://www.google.com/maps/search/?api=1&query=Brown+County+STEM+Innovation+Center+Parking" target="_blank" rel="noopener noreferrer" class="text-google-blue hover:underline">directions</a>) or in the <strong>Laboratory Sciences Lot</strong> (<a href="https://www.google.com/maps/search/?api=1&query=Laboratory+Sciences+Parking+Lot+UW+Green+Bay" target="_blank" rel="noopener noreferrer" class="text-google-blue hover:underline">directions</a>) located right across the street.</li>
+                <li><strong>Virtual Permit System:</strong> UWGB uses virtual parking permits. Visitors do <strong>not</strong> need to obtain or pay for a permit unless parking on campus more than 5 times per semester. If needed, you can register your vehicle's license plate online for free.</li>
+                <li><strong>Parking Rules:</strong> Ensure your license plate is clearly visible and facing the driving lane when parked, as enforcement vehicles scan plates automatically. ADA-accessible parking spaces are available in the lots directly adjacent to the building.</li>
             </ul>
         `
     },
     {
         id: 'public',
-        title: 'Public Transportation',
+        title: 'Public Transit',
         icon: faBus,
         content: `
-            <p class="mb-4 text-lg">Public transit is a convenient way to visit UW-Green Bay:</p>
+            <p class="mb-4 text-lg">Green Bay Metro bus services connect the campus with the wider community:</p>
             <ul class="list-disc pl-5 space-y-4 text-google-black/80 leading-relaxed">
-                <li><strong>Green Bay Metro</strong> provides bus service throughout the city. Bus Route #8 and #9 directly serve the UWGB campus area.</li>
-                <li><strong>Campus Stops:</strong> The main bus stop is located directly in front of the University Union. Track your bus in real-time using the Green Bay Metro app.</li>
-                <li><strong>Regional Transit</strong> connects Green Bay to neighboring communities, with easy transfers to the campus lines.</li>
+                <li><strong>#7 Lime Line:</strong> The primary bus route serving UW-Green Bay is the <strong>#7 Lime Line</strong>, connecting the campus directly to the downtown Green Bay Transit Center. Buses run regularly and stop near the STEM Innovation Center.</li>
+                <li><strong>GBM On-Demand:</strong> Green Bay Metro offers a rideshare-style on-demand transit service. You can request a ride using the GBM On-Demand app for affordable direct travel to and from campus.</li>
+                <li><strong>Free Student Passes:</strong> Currently enrolled UW-Green Bay students can obtain a free semester-long transit pass at the University Ticketing & Information Center in the Student Union. Simply present your student ID to ride for free.</li>
             </ul>
         `
     },
     {
-        id: 'bicycle',
-        title: 'Bicycle Parking',
-        icon: faBicycle,
+        id: 'air',
+        title: 'Air Travel',
+        icon: faPlane,
         content: `
-            <p class="mb-4 text-lg">We encourage arriving by bicycle:</p>
+            <p class="mb-4 text-lg">For participants flying in from out of state:</p>
             <ul class="list-disc pl-5 space-y-4 text-google-black/80 leading-relaxed">
-                <li><strong>Extensive Trails:</strong> The UWGB campus is accessible via several local and regional bike trails, connecting easily to the surrounding Green Bay area.</li>
-                <li><strong>Secure Bike Racks</strong> are located outside all major buildings, including the Cofrin Library, MAC Hall, and Student Union.</li>
-                <li><strong>Repair Station:</strong> A self-service bike repair station with an air pump and basic tools is available near the entrance to the Kress Events Center.</li>
+                <li><strong>Austin Straubel International Airport (GRB):</strong> The closest airport to campus, located approximately 12 miles (15–20 minutes) away in Green Bay. Taxis and rideshare services (Uber and Lyft) are readily available in the ground transportation area.</li>
+                <li><strong>Appleton International Airport (ATW):</strong> Located 45 minutes south of campus in Appleton, WI. This is a great secondary option with competitive flights. We recommend arranging a rideshare or car rental in advance.</li>
+                <li><strong>Connecting to Campus:</strong> Since there are no direct bus routes connecting GRB Airport directly to the campus, taking a rideshare (Uber/Lyft) or booking a local taxi is the most direct and convenient travel method.</li>
             </ul>
         `
     },
     {
         id: 'rideshare',
-        title: 'Rideshare',
+        title: 'Rideshare & Intercity',
         icon: faTaxi,
         content: `
-            <p class="mb-4 text-lg">Designated areas for rideshare services:</p>
+            <p class="mb-4 text-lg">Options for intercity travelers and local drop-offs:</p>
             <ul class="list-disc pl-5 space-y-4 text-google-black/80 leading-relaxed">
-                <li><strong>Main Drop-off:</strong> The designated rideshare drop-off and pick-up zone is located at the main roundabout (Phoenix Circle) near the University Union.</li>
-                <li><strong>Alternative Zones:</strong> Additional drop-off points are available near external parking lots for specific buildings, such as the Weidner Center.</li>
-                <li><strong>Wait Times:</strong> Please ask your driver to avoid idling in the crosswalks, bike lanes, or fire lanes while waiting.</li>
+                <li><strong>Intercity Buses:</strong> Regional lines (including Jefferson Lines, Greyhound, and Lamers Connect) arrive at the <strong>Green Bay Transit Center</strong> downtown (<a href="https://www.google.com/maps/search/?api=1&query=Green+Bay+Transit+Center" target="_blank" rel="noopener noreferrer" class="text-google-blue hover:underline">directions</a>). From there, you can board the #7 Lime Line bus to reach campus.</li>
+                <li><strong>Designated Rideshare Zone:</strong> If arriving via Uber, Lyft, or taxi, you can be dropped off directly in front of the <strong>Brown County STEM Innovation Center</strong> entrance on Technology Way.</li>
+                <li><strong>No Idling:</strong> To maintain safety and traffic flow, rideshare drivers should not idle in fire lanes, crosswalks, or bicycle paths.</li>
+            </ul>
+        `
+    },
+    {
+        id: 'bicycle',
+        title: 'Bicycle & Trails',
+        icon: faBicycle,
+        content: `
+            <p class="mb-4 text-lg">Eco-friendly bike travel is encouraged with dedicated infrastructure:</p>
+            <ul class="list-disc pl-5 space-y-4 text-google-black/80 leading-relaxed">
+                <li><strong>Trail Connections:</strong> UW-Green Bay is accessible via several local bike paths, making it easy to cycle to campus from surrounding neighborhoods and parks.</li>
+                <li><strong>Bike Racks:</strong> Secure outdoor bike racks are located directly outside the <strong>Brown County STEM Innovation Center</strong> as well as other major campus buildings.</li>
+                <li><strong>Bicycle Repair Station:</strong> A public, self-service bike repair station equipped with an air pump, tire levers, and basic hand tools is available for all visitors near the entrance of the Kress Events Center.</li>
             </ul>
         `
     }

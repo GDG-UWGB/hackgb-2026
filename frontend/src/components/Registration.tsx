@@ -29,6 +29,16 @@ const Registration = () => {
             <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-3xl mx-auto text-center relative z-10 pt-8">
+                {/* Header */}
+                <motion.div
+                    {...fadeUp(0)}
+                    className="text-center mb-12"
+                >
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Join the Journey
+                    </h2>
+                </motion.div>
+
                 {/* Integrated IDE Terminal Registration Card */}
                 <motion.div
                     {...fadeUp()}

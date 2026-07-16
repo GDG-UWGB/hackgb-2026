@@ -37,6 +37,16 @@ const FAQ = () => {
             <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-4xl mx-auto relative z-10">
+                {/* Header */}
+                <motion.div
+                    {...fadeUp(0)}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Frequently Asked Questions
+                    </h2>
+                </motion.div>
+
                 {/* Integrated IDE FAQ Card */}
                 <motion.div
                     {...fadeUp(0.1)}

@@ -7,6 +7,7 @@ import Eligibility from '../components/Eligibility';
 import Registration from '../components/Registration';
 import Travel from '../components/sections/Travel';
 import Sponsors from '../components/Sponsors';
+import Speakers from '../components/Speakers';
 import CityDivider from '../components/common/CityDivider';
 
 const Home = () => {
@@ -34,6 +35,12 @@ const Home = () => {
 
       <section id="schedule">
         <Schedule />
+      </section>
+
+      <CityDivider variant="waves" />
+
+      <section id="speakers">
+        <Speakers />
       </section>
 
       <CityDivider variant="trees" />

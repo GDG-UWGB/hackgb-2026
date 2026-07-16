@@ -30,7 +30,7 @@ const sponsors: Sponsor[] = [
     { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
     { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
     { name: 'CSET', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
-    { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame' },
+    { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', link: 'https://www.campuscatalysts.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'SGA', logo: sgaLogo, tier: 'spark', link: 'https://www.uwgb.edu/sga/' },
 ];
@@ -82,6 +82,16 @@ const Sponsors = () => {
             <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
             <div className="max-w-5xl mx-auto text-center relative z-10">
+                {/* Header */}
+                <motion.div
+                    {...fadeUp(0)}
+                    className="text-center mb-16 animate-fade-in"
+                >
+                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
+                        Sponsors & Partners
+                    </h2>
+                </motion.div>
+
                 {/* Integrated IDE Sponsors Card */}
                 <motion.div
                     {...fadeUp(0.15)}
