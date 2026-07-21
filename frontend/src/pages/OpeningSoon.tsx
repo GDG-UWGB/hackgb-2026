@@ -7,13 +7,42 @@ import { Terminal, ArrowRight, Sparkles, CheckCircle2, Mail, ArrowLeft } from 'l
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
-const OpeningSoon = () => {
+interface OpeningSoonProps {
+  onUnlock?: () => void;
+}
+
+const OpeningSoon = ({ onUnlock }: OpeningSoonProps) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [terminalStep, setTerminalStep] = useState(0);
+  
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const difference = +new Date('2026-07-27T17:00:00Z') - +new Date();
+      if (difference <= 0) {
+        onUnlock?.();
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    };
+
+    setTimeLeft(calculateTimeLeft());
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [onUnlock]);
 
   // Animate terminal commands sequence
   useEffect(() => {
@@ -119,6 +148,29 @@ const OpeningSoon = () => {
                 <p className="text-slate-700 font-google-text text-sm font-semibold leading-relaxed mb-6">
                   We are finalising the registration pipelines for HackGB 2026. Official signups for hackers, mentors, and judges will launch shortly. Join our priority notification list to secure your spot the moment we open.
                 </p>
+
+                {/* Countdown Timer */}
+                <div className="grid grid-cols-4 gap-3 max-w-xs mt-6 mb-2 select-none">
+                  {[
+                    { label: 'Days', value: timeLeft.days },
+                    { label: 'Hours', value: timeLeft.hours },
+                    { label: 'Mins', value: timeLeft.minutes },
+                    { label: 'Secs', value: timeLeft.seconds }
+                  ].map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      className="bg-white/40 border border-white/20 backdrop-blur-md rounded-xl p-3 flex flex-col items-center justify-center min-w-[65px] shadow-sm relative overflow-hidden"
+                    >
+                      <div className="absolute inset-0 bg-[#E37100]/5 opacity-30 rounded-xl" />
+                      <span className="font-google-mono text-xl sm:text-2xl font-bold text-[#0C3C34] tracking-tight relative z-10">
+                        {String(item.value).padStart(2, '0')}
+                      </span>
+                      <span className="text-[9px] font-google-mono font-bold uppercase tracking-wider text-[#E37100] mt-1 relative z-10">
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
 
               </div>
