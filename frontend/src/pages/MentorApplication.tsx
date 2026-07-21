@@ -188,7 +188,6 @@ const MentorApplication = () => {
         method: 'POST',
         body: data,
       });
-
       if (!response.ok) {
         const errText = await response.text();
         let errMsg = 'Server upload failed. Make sure your local Wrangler pages dev server is running.';
@@ -205,8 +204,8 @@ const MentorApplication = () => {
         throw new Error(errMsg);
       }
 
-      const resData = await response.json() as { fileUrl: string };
-      setFormData((prev) => ({ ...prev, resumeUrl: resData.fileUrl }));
+      const resData = (await response.json()) as { url?: string; error?: string };
+      setFormData((prev) => ({ ...prev, resumeUrl: resData.url || '' }));
       if (errors.resumeUrl) {
         setErrors((prev) => ({ ...prev, resumeUrl: '' }));
       }
