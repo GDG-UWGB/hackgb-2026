@@ -18,6 +18,7 @@ interface FormState {
   race: string;
   tShirtSize: string;
   attendedHackathon: string;
+  hackathonAttendanceType: string;
   university: string;
   status: string;
   major: string;
@@ -41,6 +42,7 @@ const initialFormState: FormState = {
   race: '',
   tShirtSize: '',
   attendedHackathon: '',
+  hackathonAttendanceType: '',
   university: '',
   status: '',
   major: '',
@@ -158,7 +160,13 @@ const Application = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => {
+      const nextState = { ...prev, [name]: value };
+      if (name === 'attendedHackathon' && value !== 'Yes') {
+        nextState.hackathonAttendanceType = '';
+      }
+      return nextState;
+    });
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -196,7 +204,11 @@ const Application = () => {
       if (!formData.gender) newErrors.gender = 'Gender is required.';
       if (!formData.race) newErrors.race = 'Race selection is required.';
       if (!formData.tShirtSize) newErrors.tShirtSize = 'T-Shirt Size is required.';
-      if (!formData.attendedHackathon) newErrors.attendedHackathon = 'Please answer this question.';
+      if (!formData.attendedHackathon) {
+        newErrors.attendedHackathon = 'Please answer this question.';
+      } else if (formData.attendedHackathon === 'Yes' && !formData.hackathonAttendanceType) {
+        newErrors.hackathonAttendanceType = 'Please select if you attended in-person or online.';
+      }
     }
 
     if (currentStep === 2) {
@@ -209,8 +221,8 @@ const Application = () => {
     if (currentStep === 3) {
       if (!formData.projectExperience.trim()) {
         newErrors.projectExperience = 'Please describe your project experience.';
-      } else if (formData.projectExperience.length > 600) {
-        newErrors.projectExperience = 'Your response is too long. Please keep it under 600 characters.';
+      } else if (formData.projectExperience.length > 1000) {
+        newErrors.projectExperience = 'Your response is too long. Please keep it under 1000 characters.';
       }
       if (!formData.resumeLink.trim()) {
         newErrors.resumeLink = 'Please upload your resume.';
@@ -273,6 +285,9 @@ const Application = () => {
       data.append('entry.505391914_day', gradDay);
 
       data.append('entry.1768303647', formData.attendedHackathon);
+      if (formData.attendedHackathon === 'Yes') {
+        data.append('entry.1932841199', formData.hackathonAttendanceType);
+      }
       data.append('entry.486006868', formData.projectExperience);
       data.append('entry.1413584166', formData.resumeLink);
 
@@ -291,6 +306,7 @@ const Application = () => {
 
       if (formData.mlhConduct) {
         data.append('entry.318526633', 'I have read and agree to the MLH Code of Conduct.');
+        data.append('entry.318526633', 'I agree to the terms and conditions of the MLH Contest Terms and Conditions and the MLH Privacy Policy.');
       }
       if (formData.hackgbWaiver) {
         data.append('entry.318526633', 'I agree to the HackGB Liability and Media Waiver.');
@@ -641,6 +657,46 @@ const Application = () => {
                                 )}
                               </div>
                             </div>
+
+                            {formData.attendedHackathon === 'Yes' && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="flex flex-col gap-1.5 mt-2"
+                              >
+                                <label className="text-slate-700 text-sm font-google font-bold">
+                                  If yes, did you attend it in-person or online? *
+                                </label>
+                                <div className="flex gap-4 mt-1">
+                                  <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name="hackathonAttendanceType"
+                                      value="In-person"
+                                      checked={formData.hackathonAttendanceType === 'In-person'}
+                                      onChange={handleInputChange}
+                                      className="w-4 h-4 accent-[#61A644]"
+                                    />
+                                    In-person
+                                  </label>
+                                  <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name="hackathonAttendanceType"
+                                      value="Online"
+                                      checked={formData.hackathonAttendanceType === 'Online'}
+                                      onChange={handleInputChange}
+                                      className="w-4 h-4 accent-[#61A644]"
+                                    />
+                                    Online
+                                  </label>
+                                </div>
+                                {errors.hackathonAttendanceType && (
+                                  <span className="text-red-500 text-xs mt-1">{errors.hackathonAttendanceType}</span>
+                                )}
+                              </motion.div>
+                            )}
                           </div>
                         )}
 
@@ -763,8 +819,8 @@ const Application = () => {
                                   <label className="text-slate-700 text-sm font-google font-bold">
                                     Project Experience *
                                   </label>
-                                  <span className={`text-[10px] ${formData.projectExperience.length > 600 ? 'text-red-500 font-bold' : 'text-slate-400'}`}>
-                                    {formData.projectExperience.length} / 600 chars
+                                  <span className={`text-[10px] ${formData.projectExperience.length > 1000 ? 'text-red-500 font-bold' : 'text-slate-400'}`}>
+                                    {formData.projectExperience.length} / 1000 chars
                                   </span>
                                 </div>
                                 <textarea
@@ -772,7 +828,7 @@ const Application = () => {
                                   value={formData.projectExperience}
                                   onChange={handleInputChange}
                                   rows={4}
-                                  placeholder="Briefly describe a project you have worked on. This helps us understand your technical background. (Max 100 words / 600 characters)"
+                                  placeholder="Briefly describe a project you have worked on. This helps us understand your technical background. (Max 1000 characters)"
                                   className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all resize-none ${errors.projectExperience ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
                                     }`}
                                 />

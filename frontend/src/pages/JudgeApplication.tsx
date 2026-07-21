@@ -262,7 +262,7 @@ const JudgeApplication = () => {
       if (formData.conductWaivers.length < 5) {
         newErrors.conductWaivers = 'You must accept all points of the Code of Conduct.';
       }
-      if (formData.mlhWaivers.length < 2) {
+      if (formData.mlhWaivers.length < 3) {
         newErrors.mlhWaivers = 'You must accept all policies and the HackGB waiver.';
       }
     }
@@ -429,6 +429,7 @@ const JudgeApplication = () => {
 
   const mlhWaiverItems = [
     'I have read and agree to the MLH Code of Conduct.',
+    'I agree to the terms and conditions of the MLH Contest Terms and Conditions and the MLH Privacy Policy.',
     'I agree to the HackGB Liability and Media Waiver.',
   ];
 

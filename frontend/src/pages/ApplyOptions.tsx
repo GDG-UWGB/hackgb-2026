@@ -1,14 +1,212 @@
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/uwgb-stem.png';
-import { Terminal, ArrowRight, Compass, Landmark } from 'lucide-react';
+import { Terminal, ArrowRight, Compass, Landmark, Users } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 const HACKER_APPLICATION_DEADLINE = new Date('2026-10-08T04:59:59Z'); // Oct 7, 2026 11:59 PM CST
 
+interface ApplyPipelinesProps {
+  hoveredOption: string | null;
+}
+
+const DEFAULT_SCRIPT = [
+  '$ hackgb system --status',
+  'Checking core nodes... [OK]',
+  'Initializing registration options...',
+  'Hacker pipeline: READY (Awaiting input)',
+  'Judge pipeline: READY (Awaiting input)',
+  'Mentor pipeline: READY (Awaiting input)',
+  'Handshake complete on tty0.',
+  'Ready to initialize apply options...'
+];
+
+const HACKER_SCRIPT = [
+  '$ npx hackgb deploy --target=hacker',
+  '⠋ Compiling hacker_workspace.tsx...',
+  '✓ Transformed 48 modules.',
+  '✓ Bundling assets...',
+  'Running test suite: hacker.test.ts',
+  '  ✓ checkAgeLimit (18+) (12ms)',
+  '  ✓ validateResumeUpload (45ms)',
+  '  ✓ verifyMLHConsent (2ms)',
+  'Tests: 3 passed, 3 total',
+  'Build successful! Ready for registration.'
+];
+
+const JUDGE_SCRIPT = [
+  '$ python3 verify_evaluators.py',
+  'Connecting to secure database...',
+  'Session established under TLS 1.3.',
+  'Loading evaluation criteria matrix:',
+  '  [+] Technical Complexity',
+  '  [+] Innovation & Creativity',
+  '  [+] Presentation & Design',
+  'Verifying judge criteria checklist...',
+  'Check complete. 0 warnings.',
+  'Secure pipeline initialized [ACTIVE].'
+];
+
+const MENTOR_SCRIPT = [
+  '$ go run mentor_router.go',
+  'Starting mentor gateway daemon...',
+  'Binding mentoring channels to socket:8080',
+  'Mounting comfort areas:',
+  '  - AI/ML, WebDev, Cyber, Cloud, UI/UX',
+  'Initializing resume parser microservice...',
+  'Gateway operational.',
+  'Awaiting mentor registrations...'
+];
+
+const ApplyPipelines = ({ hoveredOption }: ApplyPipelinesProps) => {
+  const [history, setHistory] = useState<string[]>([]);
+  const [cursorBlink, setCursorBlink] = useState(true);
+  const linesContainerRef = useRef<HTMLDivElement>(null);
+  const lastScriptRef = useRef<string | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const hackerActive = hoveredOption === 'Hacker' || hoveredOption === 'Closed';
+  const judgeActive = hoveredOption === 'Judge';
+  const mentorActive = hoveredOption === 'Mentor';
+
+  const playScript = (script: string[]) => {
+    if (!script || !Array.isArray(script)) return;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    // Clear and set the first line immediately to prevent black/blank flashes
+    setHistory([script[0]]);
+    
+    let currentIndex = 1;
+    intervalRef.current = setInterval(() => {
+      if (currentIndex < script.length) {
+        const nextLine = script[currentIndex];
+        if (nextLine !== undefined && nextLine !== null) {
+          setHistory(prev => [...prev, nextLine]);
+        }
+        currentIndex++;
+      } else {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      }
+    }, 150);
+  };
+
+  useEffect(() => {
+    // Play default system check once on initial load
+    if (lastScriptRef.current === null) {
+      lastScriptRef.current = 'Default';
+      playScript(DEFAULT_SCRIPT);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (hackerActive && lastScriptRef.current !== 'Hacker') {
+      lastScriptRef.current = 'Hacker';
+      playScript(HACKER_SCRIPT);
+    } else if (judgeActive && lastScriptRef.current !== 'Judge') {
+      lastScriptRef.current = 'Judge';
+      playScript(JUDGE_SCRIPT);
+    } else if (mentorActive && lastScriptRef.current !== 'Mentor') {
+      lastScriptRef.current = 'Mentor';
+      playScript(MENTOR_SCRIPT);
+    } else if (!hoveredOption && lastScriptRef.current !== 'Standby' && lastScriptRef.current !== 'Default' && lastScriptRef.current !== null) {
+      lastScriptRef.current = 'Standby';
+      playScript(['', '$ hackgb standby', '[SYS] connection standby...']);
+    }
+  }, [hoveredOption, hackerActive, judgeActive, mentorActive]);
+
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setCursorBlink(b => !b);
+    }, 500);
+    return () => {
+      clearInterval(cursorInterval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (linesContainerRef.current) {
+      linesContainerRef.current.scrollTop = linesContainerRef.current.scrollHeight;
+    }
+  }, [history]);
+
+  const terminalBorderClass = hackerActive ? 'border-green-500/20 shadow-green-950/5' :
+                              judgeActive ? 'border-orange-500/20 shadow-orange-950/5' :
+                              mentorActive ? 'border-indigo-500/20 shadow-indigo-950/5' :
+                              'border-black/10';
+
+  const terminalBgClass = hackerActive ? 'bg-[#040e0a]' :
+                          judgeActive ? 'bg-[#0f0904]' :
+                          mentorActive ? 'bg-[#090412]' :
+                          'bg-[#061814]';
+
+  return (
+    <div className={`relative w-full h-48 mt-6 rounded-xl border ${terminalBorderClass} ${terminalBgClass} text-emerald-400 p-4 font-google-mono text-[9px] leading-relaxed shadow-inner overflow-hidden select-none text-left flex flex-col justify-between transition-all duration-500`}>
+      <div 
+        ref={linesContainerRef}
+        className="flex-1 overflow-y-auto min-h-0 flex flex-col gap-0.5 pr-1 scrollbar-thin scrollbar-thumb-emerald-950 scrollbar-track-transparent"
+      >
+        {history.map((line, idx) => {
+          if (!line || typeof line !== 'string') return <div key={idx} className="h-2" />;
+
+          const isCommand = line.startsWith('$');
+          const isSuccess = line.includes('✓') || line.includes('[OK]') || line.includes('passed') || line.includes('successful');
+          const isSubItem = line.startsWith('  ');
+
+          let textColor = 'text-emerald-100'; // High contrast bright emerald on dark backgrounds
+          if (isCommand) {
+            textColor = line.includes('hacker') ? 'text-green-300 font-bold' :
+                        line.includes('verify_evaluators') ? 'text-orange-300 font-bold' :
+                        line.includes('mentor_router') ? 'text-indigo-300 font-bold' :
+                        'text-emerald-300 font-bold';
+          } else if (isSuccess) {
+            textColor = 'text-green-400 font-medium';
+          } else if (isSubItem) {
+            textColor = 'text-slate-400'; // Readable slate on dark background
+          }
+
+          return (
+            <div key={idx} className={`${textColor} truncate`}>
+              {line}
+            </div>
+          );
+        })}
+        
+        <div className="flex items-center gap-1">
+          <span className={
+            hackerActive ? 'text-green-400 font-bold' :
+            judgeActive ? 'text-orange-400 font-bold' :
+            mentorActive ? 'text-indigo-400 font-bold' :
+            'text-emerald-400 font-bold'
+          }>$</span>
+          <span className={`w-1.5 h-3 ${
+            hackerActive ? 'bg-green-400' :
+            judgeActive ? 'bg-orange-400' :
+            mentorActive ? 'bg-indigo-400' :
+            'bg-emerald-400'
+          }`} style={{ opacity: cursorBlink ? 1 : 0 }} />
+        </div>
+      </div>
+
+      <div className="flex justify-between text-[7px] text-emerald-700 border-t border-[#61A644]/10 pt-2 mt-2 select-none">
+        <span>CONSOLE OUTPUT</span>
+        <span className="animate-pulse">TTY0 • LISTENER ACTIVE</span>
+      </div>
+    </div>
+  );
+};
+
 const ApplyOptions = () => {
   const navigate = useNavigate();
+  const [hoveredOption, setHoveredOption] = useState<string | null>(null);
   const isHackerDeadlinePassed = new Date() > HACKER_APPLICATION_DEADLINE;
 
   const options = [
@@ -30,6 +228,15 @@ const ApplyOptions = () => {
       path: '/apply/judge',
       themeColor: '#E37100', // Phoenix Orange/Amber
       badge: 'Judge',
+      disabled: false,
+    },
+    {
+      title: 'Mentor Application',
+      description: 'Submit your application to participate in the hackathon as a guide or technical mentor.',
+      icon: Users,
+      path: '/apply/mentor',
+      themeColor: '#5746e3', // Mentor Indigo/Purple
+      badge: 'Mentor',
       disabled: false,
     },
   ];
@@ -79,6 +286,7 @@ const ApplyOptions = () => {
                 <p className="text-slate-705 font-google-text text-sm font-semibold leading-relaxed">
                   Join us at the STEM Innovation Center for Green Bay's premier collegiate hackathon. Please select whether you are participating as an active builder (hacker) or evaluative expert (judge).
                 </p>
+                <ApplyPipelines hoveredOption={hoveredOption} />
               </div>
 
               <div className="text-[10px] font-google-mono text-slate-400 mt-8 pt-4 border-t border-black/5">
@@ -104,6 +312,12 @@ const ApplyOptions = () => {
                         navigate(opt.path);
                       }
                     }}
+                    onMouseEnter={() => {
+                      if (!opt.disabled) {
+                        setHoveredOption(opt.badge);
+                      }
+                    }}
+                    onMouseLeave={() => setHoveredOption(null)}
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span

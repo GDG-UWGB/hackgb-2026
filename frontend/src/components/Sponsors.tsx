@@ -3,6 +3,7 @@ import { ArrowUpRight, FolderHeart, Heart } from 'lucide-react';
 import uwgbLogo from '../assets/images/sponsors/phoenix/UWGB-logo.webp';
 import csetLogo from '../assets/images/sponsors/phoenix/cset-logo.webp';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+import startupWisconsinLogo from '../assets/images/sponsors/phoenix/startup-wisconsin-logo-color.png';
 import sgaLogo from '../assets/images/sponsors/spark/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
 import campusCatalystsLogo from '../assets/images/sponsors/flame/campus-catalysts.png';
@@ -30,6 +31,7 @@ const sponsors: Sponsor[] = [
     { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
     { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
     { name: 'CSET', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
+    { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'phoenix', link: 'https://www.startupwi.org/' },
     { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', link: 'https://www.campuscatalysts.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'SGA', logo: sgaLogo, tier: 'spark', link: 'https://www.uwgb.edu/sga/' },
