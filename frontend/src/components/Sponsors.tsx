@@ -4,6 +4,7 @@ import uwgbLogo from '../assets/images/sponsors/phoenix/UWGB-logo.webp';
 import csetLogo from '../assets/images/sponsors/phoenix/cset-logo.webp';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
 import startupWisconsinLogo from '../assets/images/sponsors/phoenix/startup-wisconsin-logo-color.png';
+import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import sgaLogo from '../assets/images/sponsors/spark/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
 import campusCatalystsLogo from '../assets/images/sponsors/flame/campus-catalysts.png';
@@ -30,6 +31,7 @@ interface Sponsor {
 const sponsors: Sponsor[] = [
     { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
     { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
+    { name: 'Modal', logo: modalLogo, tier: 'phoenix', link: 'https://modal.com' },
     { name: 'CSET', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'phoenix', link: 'https://www.startupwi.org/' },
     { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', link: 'https://www.campuscatalysts.com/' },
