@@ -13,7 +13,7 @@ interface FormState {
   fullName: string;
   email: string;
   phone: string;
-  dob: string;
+  age: string;
   gender: string;
   race: string;
   tShirtSize: string;
@@ -37,7 +37,7 @@ const initialFormState: FormState = {
   fullName: '',
   email: '',
   phone: '',
-  dob: '',
+  age: '',
   gender: '',
   race: '',
   tShirtSize: '',
@@ -200,7 +200,11 @@ const Application = () => {
         newErrors.email = 'Please enter a valid email address.';
       }
       if (!formData.phone.trim()) newErrors.phone = 'Phone Number is required.';
-      if (!formData.dob.trim()) newErrors.dob = 'Date of Birth is required.';
+      if (!formData.age.trim()) {
+        newErrors.age = 'Age is required.';
+      } else if (isNaN(Number(formData.age)) || Number(formData.age) < 18) {
+        newErrors.age = 'You must be at least 18 years old to participate.';
+      }
       if (!formData.gender) newErrors.gender = 'Gender is required.';
       if (!formData.race) newErrors.race = 'Race selection is required.';
       if (!formData.tShirtSize) newErrors.tShirtSize = 'T-Shirt Size is required.';
@@ -264,12 +268,7 @@ const Application = () => {
       data.append('entry.42047240', formData.fullName);
       data.append('entry.1275623371', formData.email);
       data.append('entry.599449600', formData.phone);
-
-      // Date of Birth
-      const [dobYear, dobMonth, dobDay] = formData.dob.split('-');
-      data.append('entry.417968283_year', dobYear);
-      data.append('entry.417968283_month', dobMonth);
-      data.append('entry.417968283_day', dobDay);
+      data.append('entry.417968283', formData.age);
 
       data.append('entry.1126864347', formData.gender);
       data.append('entry.422755813', formData.race);
@@ -551,16 +550,20 @@ const Application = () => {
                               </div>
 
                               <div className="flex-1 flex flex-col gap-1.5">
-                                <label className="text-slate-700 text-sm font-google font-bold">Date of Birth *</label>
+                                <label className="text-slate-700 text-sm font-google font-bold">What's your age? *</label>
                                 <input
-                                  type="date"
-                                  name="dob"
-                                  value={formData.dob}
+                                  type="number"
+                                  name="age"
+                                  min="18"
+                                  max="120"
+                                  value={formData.age}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.dob ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  placeholder="e.g. 20"
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.age ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
                                     }`}
                                 />
-                                {errors.dob && <span className="text-red-500 text-xs mt-0.5">{errors.dob}</span>}
+                                <span className="text-slate-400 text-[10px]">Must be at least 18 years old to participate.</span>
+                                {errors.age && <span className="text-red-500 text-xs mt-0.5">{errors.age}</span>}
                               </div>
                             </div>
 
@@ -577,6 +580,7 @@ const Application = () => {
                                   <option value="" disabled>Select your gender</option>
                                   <option value="Male">Male</option>
                                   <option value="Female">Female</option>
+                                  <option value="Genderqueer/Non-Binary">Genderqueer/Non-Binary</option>
                                   <option value="Prefer not to say">Prefer not to say</option>
                                 </select>
                                 {errors.gender && <span className="text-red-500 text-xs mt-0.5">{errors.gender}</span>}
@@ -690,6 +694,17 @@ const Application = () => {
                                       className="w-4 h-4 accent-[#61A644]"
                                     />
                                     Online
+                                  </label>
+                                  <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name="hackathonAttendanceType"
+                                      value="Both"
+                                      checked={formData.hackathonAttendanceType === 'Both'}
+                                      onChange={handleInputChange}
+                                      className="w-4 h-4 accent-[#61A644]"
+                                    />
+                                    Both
                                   </label>
                                 </div>
                                 {errors.hackathonAttendanceType && (
