@@ -981,8 +981,8 @@ const Application = () => {
                                     No
                                   </label>
                                 </div>
-                                <span className="text-slate-400 text-[9px] leading-tight mt-1">
-                                  Must submit an eligible project before the hackathon deadline to receive stipends.
+                                <span className="text-slate-400 text-[10px] leading-tight mt-1">
+                                  Travel stipends are limited. Please note: To be eligible to receive a travel stipend, you MUST submit an eligible project before the hackathon deadline.
                                 </span>
                                 {errors.stipend && <span className="text-red-500 text-xs mt-1">{errors.stipend}</span>}
                               </div>
@@ -1016,6 +1016,9 @@ const Application = () => {
                                   No
                                 </label>
                               </div>
+                              <span className="text-slate-400 text-[10px] leading-tight mt-1">
+                                All attendees will have access to a designated space on campus to set up sleeping bags and stay overnight. Limited special accommodations may be available for participants with specific needs.
+                              </span>
                               {errors.housing && <span className="text-red-500 text-xs mt-1">{errors.housing}</span>}
                             </div>
 
