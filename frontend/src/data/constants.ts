@@ -5,6 +5,6 @@ export const UpcomingEventsUrl = 'https://gdg.community.dev/gdg-on-campus-univer
 
 // Target application opening date: Monday, July 27, 2026 at 12:00 PM (noon) CDT (17:00 UTC)
 export const APPLICATIONS_OPEN_DATE = new Date('2026-07-27T17:00:00Z');
-export const checkApplicationsOpen = () => true;
+export const checkApplicationsOpen = () => new Date() >= APPLICATIONS_OPEN_DATE;
 export const APPLICATIONS_OPEN = checkApplicationsOpen();
 
