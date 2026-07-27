@@ -9,7 +9,7 @@ interface EmailRequest {
 }
 
 const LOGO_URL = 'https://hackgb.com/hackgb-logo-white.png';
-const DECISION_DATE = 'early September 2026';
+const DECISION_DATE = 'early October 2026';
 
 /* ── Shared email scaffolding ─────────────────────────────── */
 
