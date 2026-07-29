@@ -5,6 +5,7 @@ import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBri
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/uwgb-stem.png';
 import { Terminal } from 'lucide-react';
+import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -245,8 +246,20 @@ const Application = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext = () => {
+  const CHECK_API_URL = import.meta.env.VITE_CHECK_HACKER_EMAIL_API_URL || import.meta.env.VITE_CHECK_EMAIL_API_URL;
+
+  const handleNext = async () => {
     if (validateStep(step)) {
+      if (step === 1) {
+        const isDuplicate = await checkDuplicateEmail(formData.email, CHECK_API_URL);
+        if (isDuplicate) {
+          setErrors((prev) => ({
+            ...prev,
+            email: 'An application with this email address has already been submitted.',
+          }));
+          return;
+        }
+      }
       setDirection(1);
       setStep((prev) => Math.min(prev + 1, steps.length));
     }
@@ -264,6 +277,16 @@ const Application = () => {
     setIsSubmitting(true);
 
     try {
+      const isDuplicate = await checkDuplicateEmail(formData.email, CHECK_API_URL);
+      if (isDuplicate) {
+        setErrors((prev) => ({
+          ...prev,
+          email: 'An application with this email address has already been submitted.',
+        }));
+        setIsSubmitting(false);
+        setStep(1);
+        return;
+      }
       const data = new URLSearchParams();
       data.append('entry.42047240', formData.fullName);
       data.append('entry.1275623371', formData.email);

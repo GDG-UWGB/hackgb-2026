@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { Terminal } from 'lucide-react';
+import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
 import downtownImg from '../assets/images/background/downtown-gb.png';
 
 /* Premium spring easing */
@@ -267,8 +268,20 @@ const MentorApplication = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext = () => {
+  const CHECK_API_URL = import.meta.env.VITE_CHECK_MENTOR_EMAIL_API_URL || import.meta.env.VITE_CHECK_EMAIL_API_URL;
+
+  const handleNext = async () => {
     if (validateStep(step)) {
+      if (step === 1) {
+        const isDuplicate = await checkDuplicateEmail(formData.email, CHECK_API_URL);
+        if (isDuplicate) {
+          setErrors((prev) => ({
+            ...prev,
+            email: 'An application with this email address has already been submitted.',
+          }));
+          return;
+        }
+      }
       setDirection(1);
       setStep((prev) => Math.min(prev + 1, steps.length));
     }
@@ -286,6 +299,16 @@ const MentorApplication = () => {
     setIsSubmitting(true);
 
     try {
+      const isDuplicate = await checkDuplicateEmail(formData.email, CHECK_API_URL);
+      if (isDuplicate) {
+        setErrors((prev) => ({
+          ...prev,
+          email: 'An application with this email address has already been submitted.',
+        }));
+        setIsSubmitting(false);
+        setStep(1);
+        return;
+      }
       const data = new URLSearchParams();
 
       // Mapping values exactly to Mentor Google Form fields
