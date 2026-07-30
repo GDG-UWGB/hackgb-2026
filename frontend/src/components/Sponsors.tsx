@@ -31,16 +31,16 @@ interface Sponsor {
 }
 
 const sponsors: Sponsor[] = [
-    { name: 'UW-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
+    { name: 'University of Wisconsin-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
     { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
     { name: 'Modal', logo: modalLogo, tier: 'phoenix', link: 'https://modal.com' },
-    { name: 'CSET', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
+    { name: 'College of Science, Engineering and Technology', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
     { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', link: 'https://www.campuscatalysts.com/' },
     { name: 'AK Pizza Crust', logo: akPizzaLogo, tier: 'flame', link: 'https://www.akcrust.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
-    { name: 'SGA', logo: sgaLogo, tier: 'partner', link: 'https://www.uwgb.edu/sga/' },
+    { name: 'Student Government Association', logo: sgaLogo, tier: 'partner', link: 'https://www.uwgb.edu/sga/' },
 ];
 
 const Sponsors = () => {
@@ -54,30 +54,39 @@ const Sponsors = () => {
         list: Sponsor[],
         cardWidthClass: string,
         imgHeightClass: string,
-        maxContainerWidthClass: string = 'max-w-5xl'
+        maxContainerWidthClass: string = 'max-w-5xl',
+        textSizeClass: string = 'text-xs md:text-sm font-semibold'
     ) => {
         return (
-            <div className={`flex flex-wrap gap-5 md:gap-6 justify-center items-center ${maxContainerWidthClass} mx-auto`}>
+            <div className={`flex flex-wrap gap-6 md:gap-8 justify-center items-start ${maxContainerWidthClass} mx-auto`}>
                 {list.map((sponsor, idx) => {
-                    const card = (
+                    const cardContent = (
                         <motion.div
                             key={sponsor.name}
                             {...fadeUp(0.05 * (idx + 1))}
-                            className={`group bg-white border border-black/5 rounded-xl p-4 md:p-6 flex items-center justify-center ${cardWidthClass} hover:border-[#61A644]/30 hover:shadow-sm transition-all duration-300`}
+                            className="group flex flex-col items-center gap-2.5 text-center cursor-pointer"
                         >
-                            <img
-                                src={sponsor.logo}
-                                alt={sponsor.name}
-                                className={`${imgHeightClass} max-h-[85%] w-auto object-contain transition-transform duration-500 group-hover:scale-105`}
-                            />
+                            {/* White Logo Card Box */}
+                            <div className={`bg-white border border-black/5 rounded-xl p-4 flex items-center justify-center ${cardWidthClass} group-hover:border-[#61A644]/40 group-hover:shadow-md transition-all duration-300`}>
+                                <img
+                                    src={sponsor.logo}
+                                    alt={sponsor.name}
+                                    className={`${imgHeightClass} w-auto object-contain transition-transform duration-500 group-hover:scale-105`}
+                                />
+                            </div>
+
+                            {/* Sponsor Name below the logo box */}
+                            <span className={`${textSizeClass} font-google text-slate-700 max-w-[95%] text-center group-hover:text-[#0C3C34] transition-colors leading-tight`}>
+                                {sponsor.name}
+                            </span>
                         </motion.div>
                     );
                     return sponsor.link ? (
                         <a key={sponsor.name} href={sponsor.link} target="_blank" rel="noopener noreferrer">
-                            {card}
+                            {cardContent}
                         </a>
                     ) : (
-                        card
+                        cardContent
                     );
                 })}
             </div>
@@ -135,58 +144,63 @@ const Sponsors = () => {
 
                     {/* Workspace Editor Body */}
                     <div className="p-6 md:p-10 bg-transparent space-y-10">
-                        {/* Phoenix Tier (3 per row, larger logos) */}
+                        {/* Phoenix Tier */}
                         {phoenixSponsors.length > 0 && (
                             <div className="text-center">
-                                <div className="flex items-center justify-center gap-3 mb-5 border-b border-black/5 pb-3">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
                                     <span className="w-3 h-3 rounded-full bg-[#61A644]" />
                                     <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"phoenix-tier-dependencies" : [</span>
                                 </div>
-                                {renderSponsorCards(phoenixSponsors, 'w-64 md:w-72 h-32 md:h-36', 'h-20 md:h-24', 'max-w-[960px]')}
+                                {renderSponsorCards(phoenixSponsors, 'w-64 md:w-72 h-32 md:h-36', 'h-18 md:h-22', 'max-w-[960px]', 'text-xs md:text-sm font-semibold')}
                             </div>
                         )}
 
-                        {/* Flame Tier (4 per row) */}
+                        {/* Flame Tier */}
                         {flameSponsors.length > 0 && (
                             <div className="text-center">
-                                <div className="flex items-center justify-center gap-3 mb-5 border-b border-black/5 pb-3">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
                                     <span className="w-3 h-3 rounded-full bg-[#E37100]" />
                                     <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"flame-tier-dependencies" : [</span>
                                 </div>
-                                {renderSponsorCards(flameSponsors, 'w-48 md:w-52 h-24 md:h-28', 'h-12 md:h-16', 'max-w-[900px]')}
+                                {renderSponsorCards(flameSponsors, 'w-48 md:w-52 h-24 md:h-28', 'h-14 md:h-16', 'max-w-[900px]', 'text-xs font-medium')}
                             </div>
                         )}
 
-                        {/* Ember Tier (4 per row - smaller than flame) */}
+                        {/* Ember Tier */}
                         {emberSponsors.length > 0 && (
                             <div className="text-center">
-                                <div className="flex items-center justify-center gap-3 mb-5 border-b border-black/5 pb-3">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
                                     <span className="w-3 h-3 rounded-full bg-[#ffcc00]" />
                                     <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"ember-tier-dependencies" : [</span>
                                 </div>
-                                {renderSponsorCards(emberSponsors, 'w-40 md:w-44 h-20 md:h-24', 'h-10 md:h-12', 'max-w-[780px]')}
+                                {renderSponsorCards(emberSponsors, 'w-40 md:w-44 h-20 md:h-24', 'h-10 md:h-12', 'max-w-[780px]', 'text-[11px] font-medium')}
                             </div>
                         )}
 
-                        {/* Spark Tier (5 per row) */}
+                        {/* Spark Tier */}
                         {(sparkSponsors.length > 0 || prospectusPdf) && (
                             <div className="text-center">
-                                <div className="flex items-center justify-center gap-3 mb-5 border-b border-black/5 pb-3">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
                                     <span className="w-3 h-3 rounded-full bg-[#0C3C34]" />
                                     <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"spark-tier-dependencies" : [</span>
                                 </div>
-                                <div className="flex flex-wrap gap-5 justify-center items-center max-w-[840px] mx-auto">
+                                <div className="flex flex-wrap gap-5 md:gap-6 justify-center items-start max-w-[840px] mx-auto">
                                     {sparkSponsors.map((sponsor, idx) => (
                                         <a key={sponsor.name} href={sponsor.link} target="_blank" rel="noopener noreferrer">
                                             <motion.div
                                                 {...fadeUp(0.05 * (idx + 1))}
-                                                className="group bg-white border border-black/5 rounded-xl p-3 flex items-center justify-center w-32 md:w-36 h-18 md:h-20 hover:border-slate-350 hover:shadow-sm transition-all duration-300"
+                                                className="group flex flex-col items-center gap-2 text-center"
                                             >
-                                                <img
-                                                    src={sponsor.logo}
-                                                    alt={sponsor.name}
-                                                    className="h-8 md:h-10 max-h-[85%] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                                                />
+                                                <div className="bg-white border border-black/5 rounded-xl p-3 flex items-center justify-center w-32 md:w-36 h-18 md:h-20 group-hover:border-slate-350 group-hover:shadow-sm transition-all duration-300">
+                                                    <img
+                                                        src={sponsor.logo}
+                                                        alt={sponsor.name}
+                                                        className="h-8 md:h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                                                    />
+                                                </div>
+                                                <span className="text-[10px] font-google text-slate-700 text-center font-medium leading-tight max-w-[95%]">
+                                                    {sponsor.name}
+                                                </span>
                                             </motion.div>
                                         </a>
                                     ))}
@@ -211,11 +225,11 @@ const Sponsors = () => {
                         {/* Partners */}
                         {partnerSponsors.length > 0 && (
                             <div className="text-center">
-                                <div className="flex items-center justify-center gap-3 mb-5 border-b border-black/5 pb-3">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
                                     <span className="w-3 h-3 rounded-full bg-[#4285F4]" />
                                     <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"partners" : [</span>
                                 </div>
-                                {renderSponsorCards(partnerSponsors, 'w-48 md:w-52 h-24 md:h-28', 'h-12 md:h-16', 'max-w-[900px]')}
+                                {renderSponsorCards(partnerSponsors, 'w-48 md:w-52 h-24 md:h-28', 'h-14 md:h-16', 'max-w-[900px]', 'text-xs font-medium')}
                             </div>
                         )}
                     </div>
