@@ -9,6 +9,7 @@ import sgaLogo from '../assets/images/sponsors/partners/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
 import campusCatalystsLogo from '../assets/images/sponsors/flame/campus-catalysts.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
+import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
 import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
@@ -37,6 +38,7 @@ const sponsors: Sponsor[] = [
     { name: 'College of Science, Engineering and Technology', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
     { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', link: 'https://www.campuscatalysts.com/' },
     { name: 'AK Pizza Crust', logo: akPizzaLogo, tier: 'flame', link: 'https://www.akcrust.com/' },
+    { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
