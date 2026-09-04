@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/uwgb-stem.png';
 import { Terminal } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
+import { SchoolCombobox } from '../components/common/SchoolCombobox';
+import { COUNTRIES } from '../data/countries';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
 interface FormState {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   age: string;
@@ -21,9 +24,13 @@ interface FormState {
   attendedHackathon: string;
   hackathonAttendanceType: string;
   university: string;
+  isCustomUniversity: boolean;
+  customUniversity: string;
   status: string;
+  country: string;
   major: string;
   graduationDate: string;
+  linkedIn: string;
   experienceAreas: string[];
   projectExperience: string;
   resumeLink: string;
@@ -31,11 +38,14 @@ interface FormState {
   stipend: string;
   housing: string;
   mlhConduct: boolean;
+  mlhPrivacy: boolean;
+  mlhEmailMarketing: boolean;
   hackgbWaiver: boolean;
 }
 
 const initialFormState: FormState = {
-  fullName: '',
+  firstName: '',
+  lastName: '',
   email: '',
   phone: '',
   age: '',
@@ -45,9 +55,13 @@ const initialFormState: FormState = {
   attendedHackathon: '',
   hackathonAttendanceType: '',
   university: '',
+  isCustomUniversity: false,
+  customUniversity: '',
   status: '',
+  country: 'United States',
   major: '',
   graduationDate: '',
+  linkedIn: '',
   experienceAreas: [],
   projectExperience: '',
   resumeLink: '',
@@ -55,6 +69,8 @@ const initialFormState: FormState = {
   stipend: '',
   housing: '',
   mlhConduct: false,
+  mlhPrivacy: false,
+  mlhEmailMarketing: false,
   hackgbWaiver: false,
 };
 
@@ -183,7 +199,7 @@ const Application = () => {
     });
   };
 
-  const handleAgreementChange = (name: 'mlhConduct' | 'hackgbWaiver') => {
+  const handleAgreementChange = (name: 'mlhConduct' | 'mlhPrivacy' | 'mlhEmailMarketing' | 'hackgbWaiver') => {
     setFormData((prev) => ({ ...prev, [name]: !prev[name] }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
@@ -194,7 +210,8 @@ const Application = () => {
     const newErrors: FormErrors = {};
 
     if (currentStep === 1) {
-      if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required.';
+      if (!formData.firstName.trim()) newErrors.firstName = 'First Name is required.';
+      if (!formData.lastName.trim()) newErrors.lastName = 'Last Name is required.';
       if (!formData.email.trim()) {
         newErrors.email = 'Email Address is required.';
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
@@ -217,8 +234,10 @@ const Application = () => {
     }
 
     if (currentStep === 2) {
-      if (!formData.university.trim()) newErrors.university = 'University / Institution Name is required.';
+      const selectedSchool = formData.isCustomUniversity ? formData.customUniversity.trim() : formData.university.trim();
+      if (!selectedSchool) newErrors.university = 'University / School Name is required.';
       if (!formData.status) newErrors.status = 'Please select your current status.';
+      if (!formData.country) newErrors.country = 'Please select your country of residence.';
       if (!formData.major.trim()) newErrors.major = 'Major / Field of Study is required.';
       if (!formData.graduationDate.trim()) newErrors.graduationDate = 'Expected Graduation Date is required.';
     }
@@ -239,6 +258,7 @@ const Application = () => {
       if (!formData.stipend) newErrors.stipend = 'Please select if you require a travel stipend.';
       if (!formData.housing) newErrors.housing = 'Please select if you require accommodations.';
       if (!formData.mlhConduct) newErrors.mlhConduct = 'You must agree to the MLH Code of Conduct.';
+      if (!formData.mlhPrivacy) newErrors.mlhPrivacy = 'You must authorize sharing your info with MLH and agree to terms.';
       if (!formData.hackgbWaiver) newErrors.hackgbWaiver = 'You must agree to the HackGB Waiver.';
     }
 
@@ -288,7 +308,8 @@ const Application = () => {
         return;
       }
       const data = new URLSearchParams();
-      data.append('entry.42047240', formData.fullName);
+      data.append('entry.42047240', formData.firstName);
+      data.append('entry.591893566', formData.lastName);
       data.append('entry.1275623371', formData.email);
       data.append('entry.599449600', formData.phone);
       data.append('entry.417968283', formData.age);
@@ -296,8 +317,11 @@ const Application = () => {
       data.append('entry.1126864347', formData.gender);
       data.append('entry.422755813', formData.race);
       data.append('entry.192630081', formData.tShirtSize);
-      data.append('entry.217234878', formData.university);
+
+      const submittedSchool = formData.isCustomUniversity ? formData.customUniversity : formData.university;
+      data.append('entry.217234878', submittedSchool);
       data.append('entry.1822819348', formData.status);
+      data.append('entry.63165399', formData.country);
       data.append('entry.810774861', formData.major);
 
       // Expected Graduation Date
@@ -305,6 +329,8 @@ const Application = () => {
       data.append('entry.505391914_year', gradYear);
       data.append('entry.505391914_month', gradMonth);
       data.append('entry.505391914_day', gradDay);
+
+      data.append('entry.781413928', formData.linkedIn || '');
 
       data.append('entry.1768303647', formData.attendedHackathon);
       if (formData.attendedHackathon === 'Yes') {
@@ -326,9 +352,15 @@ const Application = () => {
       data.append('entry.208089290', formData.stipend);
       data.append('entry.937598727', formData.housing);
 
+      // MLH Policies & Agreements checkboxes (entry.318526633)
       if (formData.mlhConduct) {
         data.append('entry.318526633', 'I have read and agree to the MLH Code of Conduct.');
-        data.append('entry.318526633', 'I agree to the terms and conditions of the MLH Contest Terms and Conditions and the MLH Privacy Policy.');
+      }
+      if (formData.mlhPrivacy) {
+        data.append('entry.318526633', 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and administration (including the creation of linked accounts on MLH and DEV (dev.to)) in line with the MLH Privacy Policy. I further agree to the terms of both the MLH Contest Terms and Conditions and the MLH Privacy Policy');
+      }
+      if (formData.mlhEmailMarketing) {
+        data.append('entry.318526633', 'I authorize MLH + DEV to send me occasional emails about relevant events, career opportunities, and community announcements.');
       }
       if (formData.hackgbWaiver) {
         data.append('entry.318526633', 'I agree to the HackGB Liability and Media Waiver.');
@@ -336,7 +368,7 @@ const Application = () => {
 
       // Add Google Form validation and multi-page sequence parameters
       data.append('fvv', '1');
-      data.append('pageHistory', '0,1,2,3,4,5');
+      data.append('pageHistory', '0,1,2,3,4');
 
       // Perform background no-cors POST submission to Google Form
       await fetch(GOOGLE_FORM_URL, {
@@ -354,7 +386,7 @@ const Application = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           to: formData.email,
-          name: formData.fullName,
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
           type: 'hacker',
         }),
       }).catch((emailErr) => console.warn('Confirmation email failed:', emailErr));
@@ -528,19 +560,35 @@ const Application = () => {
 
                             <div className="flex flex-col md:flex-row gap-4">
                               <div className="flex-1 flex flex-col gap-1.5">
-                                <label className="text-slate-700 text-sm font-google font-bold">Full Name *</label>
+                                <label className="text-slate-700 text-sm font-google font-bold">First Name *</label>
                                 <input
                                   type="text"
-                                  name="fullName"
-                                  value={formData.fullName}
+                                  name="firstName"
+                                  value={formData.firstName}
                                   onChange={handleInputChange}
-                                  placeholder="John Doe"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.fullName ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                  placeholder="John"
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.firstName ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
                                     }`}
                                 />
-                                {errors.fullName && <span className="text-red-500 text-xs mt-0.5">{errors.fullName}</span>}
+                                {errors.firstName && <span className="text-red-500 text-xs mt-0.5">{errors.firstName}</span>}
                               </div>
 
+                              <div className="flex-1 flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">Last Name *</label>
+                                <input
+                                  type="text"
+                                  name="lastName"
+                                  value={formData.lastName}
+                                  onChange={handleInputChange}
+                                  placeholder="Doe"
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.lastName ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
+                                />
+                                {errors.lastName && <span className="text-red-500 text-xs mt-0.5">{errors.lastName}</span>}
+                              </div>
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-4">
                               <div className="flex-1 flex flex-col gap-1.5">
                                 <label className="text-slate-700 text-sm font-google font-bold">Email Address *</label>
                                 <input
@@ -555,9 +603,7 @@ const Application = () => {
                                 <span className="text-slate-400 text-[10px]">Use your .edu email if you are a student.</span>
                                 {errors.email && <span className="text-red-500 text-xs mt-0.5">{errors.email}</span>}
                               </div>
-                            </div>
 
-                            <div className="flex flex-col md:flex-row gap-4">
                               <div className="flex-1 flex flex-col gap-1.5">
                                 <label className="text-slate-700 text-sm font-google font-bold">Phone Number *</label>
                                 <input
@@ -571,26 +617,28 @@ const Application = () => {
                                 />
                                 {errors.phone && <span className="text-red-500 text-xs mt-0.5">{errors.phone}</span>}
                               </div>
-
-                              <div className="flex-1 flex flex-col gap-1.5">
-                                <label className="text-slate-700 text-sm font-google font-bold">What's your age? *</label>
-                                <input
-                                  type="number"
-                                  name="age"
-                                  min="18"
-                                  max="120"
-                                  value={formData.age}
-                                  onChange={handleInputChange}
-                                  placeholder="e.g. 20"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.age ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                    }`}
-                                />
-                                <span className="text-slate-400 text-[10px]">Must be at least 18 years old to participate.</span>
-                                {errors.age && <span className="text-red-500 text-xs mt-0.5">{errors.age}</span>}
-                              </div>
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-4">
+                              <div className="flex-1 flex flex-col gap-1.5">
+                                <label className="text-slate-700 text-sm font-google font-bold">What's your age? *</label>
+                                <select
+                                  name="age"
+                                  value={formData.age}
+                                  onChange={handleInputChange}
+                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.age ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                    }`}
+                                >
+                                  <option value="" disabled>Select your age</option>
+                                  {[18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35].map((a) => (
+                                    <option key={a} value={a}>{a}</option>
+                                  ))}
+                                  <option value="36+">36+</option>
+                                </select>
+                                <span className="text-slate-400 text-[10px]">Must be at least 18 years old to participate.</span>
+                                {errors.age && <span className="text-red-500 text-xs mt-0.5">{errors.age}</span>}
+                              </div>
+
                               <div className="flex-1 flex flex-col gap-1.5">
                                 <label className="text-slate-700 text-sm font-google font-bold">Gender *</label>
                                 <select
@@ -608,7 +656,9 @@ const Application = () => {
                                 </select>
                                 {errors.gender && <span className="text-red-500 text-xs mt-0.5">{errors.gender}</span>}
                               </div>
+                            </div>
 
+                            <div className="flex flex-col md:flex-row gap-4">
                               <div className="flex-1 flex flex-col gap-1.5">
                                 <label className="text-slate-700 text-sm font-google font-bold">Race *</label>
                                 <select
@@ -740,31 +790,32 @@ const Application = () => {
 
                         {step === 2 && (
                           /* STEP 2: Education */
-                          <div className="flex flex-col gap-5">
+                          <div className="flex flex-col gap-5 overflow-y-auto max-h-[420px] pr-2">
                             <h2 className="text-xl font-google font-bold text-[#0C3C34] border-b border-black/5 pb-2">
                               Education & Background
                             </h2>
 
                             <div className="flex flex-col gap-4">
-                              <div className="flex flex-col gap-1.5">
-                                <label className="text-slate-700 text-sm font-google font-bold">
-                                  University / School Name *
-                                </label>
-                                <input
-                                  type="text"
-                                  name="university"
-                                  value={formData.university}
-                                  onChange={handleInputChange}
-                                  placeholder="University of Wisconsin-Green Bay"
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.university ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                    }`}
-                                />
-                                {errors.university && <span className="text-red-500 text-xs mt-0.5">{errors.university}</span>}
-                              </div>
+                              <SchoolCombobox
+                                value={formData.isCustomUniversity ? formData.customUniversity : formData.university}
+                                isCustom={formData.isCustomUniversity}
+                                onChange={(school, isCustom) => {
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    university: isCustom ? '' : school,
+                                    isCustomUniversity: isCustom,
+                                    customUniversity: isCustom ? school : '',
+                                  }));
+                                  if (errors.university) {
+                                    setErrors((prev) => ({ ...prev, university: '' }));
+                                  }
+                                }}
+                                error={errors.university}
+                              />
 
                               <div className="flex flex-col md:flex-row gap-4">
                                 <div className="flex-1 flex flex-col gap-1.5">
-                                  <label className="text-slate-700 text-sm font-google font-bold">Current Status *</label>
+                                  <label className="text-slate-700 text-sm font-google font-bold">Current Level of Study *</label>
                                   <select
                                     name="status"
                                     value={formData.status}
@@ -772,15 +823,43 @@ const Application = () => {
                                     className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.status ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
                                       }`}
                                   >
-                                    <option value="" disabled>Select your status</option>
-                                    <option value="Undergraduate Student">Undergraduate Student</option>
-                                    <option value="Graduate Student">Graduate Student</option>
-                                    <option value="Working Professional">Working Professional</option>
-                                    <option value="High School Student">High School Student</option>
+                                    <option value="" disabled>Select your level of study</option>
+                                    <option value="Less than Secondary / High School">Less than Secondary / High School</option>
+                                    <option value="Secondary / High School">Secondary / High School</option>
+                                    <option value="Undergraduate University (2 year - community college or similar)">Undergraduate University (2 year - community college or similar)</option>
+                                    <option value="Undergraduate University (3+ year)">Undergraduate University (3+ year)</option>
+                                    <option value="Graduate University (Masters, Professional, Doctoral, etc)">Graduate University (Masters, Professional, Doctoral, etc)</option>
+                                    <option value="Code School / Bootcamp">Code School / Bootcamp</option>
+                                    <option value="Other Vocational / Trade Program or Apprenticeship">Other Vocational / Trade Program or Apprenticeship</option>
+                                    <option value="Post Doctorate">Post Doctorate</option>
+                                    <option value="I’m not currently a student">I’m not currently a student</option>
+                                    <option value="Prefer not to answer">Prefer not to answer</option>
                                   </select>
                                   {errors.status && <span className="text-red-500 text-xs mt-0.5">{errors.status}</span>}
                                 </div>
 
+                                <div className="flex-1 flex flex-col gap-1.5">
+                                  <label className="text-slate-700 text-sm font-google font-bold">Country of Residence *</label>
+                                  <select
+                                    name="country"
+                                    value={formData.country}
+                                    onChange={handleInputChange}
+                                    className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.country ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                      }`}
+                                  >
+                                    <option value="" disabled>Select your country</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Canada">Canada</option>
+                                    <option disabled>──────────</option>
+                                    {COUNTRIES.filter(c => c !== 'United States' && c !== 'Canada').map((country) => (
+                                      <option key={country} value={country}>{country}</option>
+                                    ))}
+                                  </select>
+                                  {errors.country && <span className="text-red-500 text-xs mt-0.5">{errors.country}</span>}
+                                </div>
+                              </div>
+
+                              <div className="flex flex-col md:flex-row gap-4">
                                 <div className="flex-1 flex flex-col gap-1.5">
                                   <label className="text-slate-700 text-sm font-google font-bold">
                                     Major / Field of Study *
@@ -790,27 +869,41 @@ const Application = () => {
                                     name="major"
                                     value={formData.major}
                                     onChange={handleInputChange}
-                                    placeholder="Computer Science"
+                                    placeholder="e.g. Computer Science"
                                     className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.major ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
                                       }`}
                                   />
                                   {errors.major && <span className="text-red-500 text-xs mt-0.5">{errors.major}</span>}
                                 </div>
+
+                                <div className="flex-1 flex flex-col gap-1.5">
+                                  <label className="text-slate-700 text-sm font-google font-bold">
+                                    Expected Graduation Date *
+                                  </label>
+                                  <input
+                                    type="date"
+                                    name="graduationDate"
+                                    value={formData.graduationDate}
+                                    onChange={handleInputChange}
+                                    className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.graduationDate ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
+                                      }`}
+                                  />
+                                  {errors.graduationDate && <span className="text-red-500 text-xs mt-0.5">{errors.graduationDate}</span>}
+                                </div>
                               </div>
 
                               <div className="flex flex-col gap-1.5">
                                 <label className="text-slate-700 text-sm font-google font-bold">
-                                  Expected Graduation Date *
+                                  Your LinkedIn URL <span className="text-slate-400 font-normal text-xs">(Optional)</span>
                                 </label>
                                 <input
-                                  type="date"
-                                  name="graduationDate"
-                                  value={formData.graduationDate}
+                                  type="url"
+                                  name="linkedIn"
+                                  value={formData.linkedIn}
                                   onChange={handleInputChange}
-                                  className={`px-4 py-3 rounded-xl border bg-white/70 text-slate-800 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all ${errors.graduationDate ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-black/10'
-                                    }`}
+                                  placeholder="https://linkedin.com/in/yourprofile"
+                                  className="px-4 py-3 rounded-xl border bg-white/70 text-slate-800 placeholder-slate-400 font-google-text text-sm focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644]/20 transition-all border-black/10"
                                 />
-                                {errors.graduationDate && <span className="text-red-500 text-xs mt-0.5">{errors.graduationDate}</span>}
                               </div>
                             </div>
                           </div>
@@ -1049,10 +1142,16 @@ const Application = () => {
                             <div className="flex flex-col gap-3 mt-4 border-t border-black/5 pt-4">
                               <h3 className="text-md font-google font-bold text-[#0C3C34]">
                                 <FontAwesomeIcon icon={faFileSignature} className="mr-2 text-[#61A644]" />
-                                Code of Conduct & Waivers
+                                Code of Conduct, Policies & Waivers
                               </h3>
 
-                              <div className="flex flex-col gap-3">
+                              {/* MLH Disclaimer */}
+                              <div className="bg-[#eff6eb] border border-[#61A644]/30 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed font-google-text">
+                                <p className="font-semibold text-[#0C3C34] mb-1">MLH Partnership Notice</p>
+                                We are currently in the process of partnering with Major League Hacking (MLH). The following 3 checkboxes are for this partnership. If we do not end up partnering with MLH, your information will not be shared.
+                              </div>
+
+                              <div className="flex flex-col gap-3.5">
                                 {/* MLH Conduct */}
                                 <div className="flex flex-col gap-1">
                                   <label className="flex items-start gap-3 text-xs text-slate-650 cursor-pointer select-none leading-relaxed">
@@ -1060,12 +1159,12 @@ const Application = () => {
                                       type="checkbox"
                                       checked={formData.mlhConduct}
                                       onChange={() => handleAgreementChange('mlhConduct')}
-                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer"
+                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer shrink-0"
                                     />
                                     <span>
                                       I have read and agree to the{' '}
                                       <a
-                                        href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+                                        href="https://github.com/MLH/mlh-policies/blob/main/code-of-conduct.md"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-[#61A644] hover:underline font-bold"
@@ -1078,7 +1177,36 @@ const Application = () => {
                                   {errors.mlhConduct && <span className="text-red-500 text-[10px] pl-7">{errors.mlhConduct}</span>}
                                 </div>
 
+                                {/* MLH Sharing & Terms */}
+                                <div className="flex flex-col gap-1">
+                                  <label className="flex items-start gap-3 text-xs text-slate-650 cursor-pointer select-none leading-relaxed">
+                                    <input
+                                      type="checkbox"
+                                      checked={formData.mlhPrivacy}
+                                      onChange={() => handleAgreementChange('mlhPrivacy')}
+                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer shrink-0"
+                                    />
+                                    <span>
+                                      I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and administration (including the creation of linked accounts on MLH and DEV (<a href="https://dev.to" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">dev.to</a>)) in line with the <a href="https://mlh.io/privacy" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">MLH Contest Terms and Conditions</a> and the <a href="https://mlh.io/privacy" target="_blank" rel="noopener noreferrer" className="text-[#61A644] hover:underline font-bold">MLH Privacy Policy</a>. *
+                                    </span>
+                                  </label>
+                                  {errors.mlhPrivacy && <span className="text-red-500 text-[10px] pl-7">{errors.mlhPrivacy}</span>}
+                                </div>
 
+                                {/* MLH + DEV Occasional Emails (Optional) */}
+                                <div className="flex flex-col gap-1">
+                                  <label className="flex items-start gap-3 text-xs text-slate-650 cursor-pointer select-none leading-relaxed">
+                                    <input
+                                      type="checkbox"
+                                      checked={formData.mlhEmailMarketing}
+                                      onChange={() => handleAgreementChange('mlhEmailMarketing')}
+                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer shrink-0"
+                                    />
+                                    <span>
+                                      I authorize MLH + DEV to send me occasional emails about relevant events, career opportunities, and community announcements. <span className="text-slate-400 font-normal">(Optional)</span>
+                                    </span>
+                                  </label>
+                                </div>
 
                                 {/* HackGB Waiver */}
                                 <div className="flex flex-col gap-1">
@@ -1087,7 +1215,7 @@ const Application = () => {
                                       type="checkbox"
                                       checked={formData.hackgbWaiver}
                                       onChange={() => handleAgreementChange('hackgbWaiver')}
-                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer"
+                                      className="w-4 h-4 mt-0.5 accent-[#61A644] cursor-pointer shrink-0"
                                     />
                                     <span>
                                       I agree to the HackGB Liability and Media Waiver, and have read and agree to the{' '}
