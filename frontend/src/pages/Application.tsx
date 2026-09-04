@@ -370,14 +370,17 @@ const Application = () => {
       data.append('fvv', '1');
       data.append('pageHistory', '0');
 
-      // Perform background no-cors POST submission to Google Form.
-      // NOTE: Do NOT set Content-Type header in no-cors mode — it causes
-      // browsers to corrupt the header, making Google Forms unable to parse
-      // the body. Omitting it lets the browser send a correct simple request.
+      // Submit to Google Form via no-cors POST.
+      // IMPORTANT: Pass the URLSearchParams object directly (NOT .toString()).
+      // When URLSearchParams is the body, the browser automatically sets
+      // Content-Type to application/x-www-form-urlencoded, which Google Forms
+      // requires. Calling .toString() converts it to a plain string, which
+      // makes the browser default to Content-Type: text/plain — Google Forms
+      // silently ignores that and records a blank row.
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
         mode: 'no-cors',
-        body: data.toString(),
+        body: data,
       });
 
       // Send confirmation email (fire-and-forget, don't block success)
