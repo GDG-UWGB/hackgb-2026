@@ -366,9 +366,9 @@ const Application = () => {
         data.append('entry.318526633', 'I agree to the HackGB Liability and Media Waiver.');
       }
 
-      // Add Google Form validation and multi-page sequence parameters
+      // Add Google Form validation parameter
       data.append('fvv', '1');
-      data.append('pageHistory', '0,1,2,3,4');
+      data.append('pageHistory', '0');
 
       // Perform background no-cors POST submission to Google Form
       await fetch(GOOGLE_FORM_URL, {
