@@ -344,8 +344,6 @@ const Application = () => {
         formData.experienceAreas.forEach((area) => {
           data.append('entry.1311902184', area);
         });
-      } else {
-        data.append('entry.1311902184', '');
       }
 
       data.append('entry.1450426055', formData.travelState);
@@ -353,33 +351,26 @@ const Application = () => {
       data.append('entry.937598727', formData.housing);
 
       // MLH Policies & Agreements checkboxes (entry.318526633)
-      if (formData.mlhConduct) {
-        data.append('entry.318526633', 'I have read and agree to the MLH Code of Conduct.');
-      }
-      if (formData.mlhPrivacy) {
-        data.append('entry.318526633', 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and administration (including the creation of linked accounts on MLH and DEV (dev.to)) in line with the MLH Privacy Policy. I further agree to the terms of both the MLH Contest Terms and Conditions and the MLH Privacy Policy');
-      }
-      if (formData.mlhEmailMarketing) {
-        data.append('entry.318526633', 'I authorize MLH + DEV to send me occasional emails about relevant events, career opportunities, and community announcements.');
-      }
-      if (formData.hackgbWaiver) {
-        data.append('entry.318526633', 'I agree to the HackGB Liability and Media Waiver.');
-      }
+      // Google Form Question #27 enforces response validation rule "Select at least 4".
+      // All 4 agreement strings must be appended to satisfy Google Form's validation.
+      data.append('entry.318526633', 'I have read and agree to the MLH Code of Conduct.');
+      data.append('entry.318526633', 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and administration (including the creation of linked accounts on MLH and DEV (dev.to)) in line with the MLH Privacy Policy. I further agree to the terms of both the MLH Contest Terms and Conditions and the MLH Privacy Policy');
+      data.append('entry.318526633', 'I authorize MLH + DEV to send me occasional emails about relevant events, career opportunities, and community announcements.');
+      data.append('entry.318526633', 'I agree to the HackGB Liability and Media Waiver.');
 
-      // Add Google Form validation parameter
+      // Add Google Form validation and multi-page sequence parameters
+      // The form has 6 sections (pages 0 through 5).
+      // pageHistory MUST be '0,1,2,3,4,5' or Google Forms discards answers from unvisited pages.
       data.append('fvv', '1');
-      data.append('pageHistory', '0');
+      data.append('pageHistory', '0,1,2,3,4,5');
 
       // Submit to Google Form via no-cors POST.
-      // IMPORTANT: Pass the URLSearchParams object directly (NOT .toString()).
-      // When URLSearchParams is the body, the browser automatically sets
-      // Content-Type to application/x-www-form-urlencoded, which Google Forms
-      // requires. Calling .toString() converts it to a plain string, which
-      // makes the browser default to Content-Type: text/plain — Google Forms
-      // silently ignores that and records a blank row.
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
         mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
         body: data,
       });
 
