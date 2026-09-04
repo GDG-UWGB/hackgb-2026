@@ -370,13 +370,13 @@ const Application = () => {
       data.append('fvv', '1');
       data.append('pageHistory', '0');
 
-      // Perform background no-cors POST submission to Google Form
+      // Perform background no-cors POST submission to Google Form.
+      // NOTE: Do NOT set Content-Type header in no-cors mode — it causes
+      // browsers to corrupt the header, making Google Forms unable to parse
+      // the body. Omitting it lets the browser send a correct simple request.
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
         body: data.toString(),
       });
 
