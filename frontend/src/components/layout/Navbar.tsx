@@ -46,7 +46,7 @@ const Navbar = () => {
         : 'bg-transparent py-5'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+      <div className="max-w-7xl mx-auto pl-6 md:pl-8 pr-16 sm:pr-20 md:pr-24 lg:pr-28">
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <Link href="#hero" to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
@@ -79,13 +79,8 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile menu and MLH badge */}
+          {/* Mobile menu button */}
           <div className="lg:hidden flex items-center gap-2">
-            {/* MLH badge removed for now
-            <a className="mt-1.5" style={{ display: 'block', width: '36px' }} href="https://mlh.io/seasons/2026/events?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2026-season&utm_content=white" target="_blank">
-              <img src="https://s3.amazonaws.com/logged-assets/trust-badge/2026/mlh-trust-badge-2026-white.svg" alt="Major League Hacking 2026 Hackathon Season" style={{ width: '100%' }} className="drop-shadow-sm" />
-            </a>
-            */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"

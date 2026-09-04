@@ -677,3 +677,54 @@ p {
     animation: none;
   }
 }
+
+/* MLH Trust Badge Responsive Styling */
+#mlh-trust-badge {
+  display: block;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: top right;
+  right: 28px;
+  width: 78px;
+  min-width: 65px;
+  max-width: 90px;
+}
+
+#mlh-trust-badge:hover {
+  transform: translateY(2px);
+}
+
+#mlh-trust-badge img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 639px) {
+  #mlh-trust-badge {
+    right: 12px;
+    width: 46px;
+    min-width: 42px;
+    max-width: 50px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  #mlh-trust-badge {
+    right: 20px;
+    width: 60px;
+    min-width: 54px;
+    max-width: 68px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #mlh-trust-badge {
+    right: 28px;
+    width: 78px;
+    min-width: 65px;
+    max-width: 90px;
+  }
+}

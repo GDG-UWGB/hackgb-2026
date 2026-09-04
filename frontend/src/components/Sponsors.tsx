@@ -11,6 +11,7 @@ import campusCatalystsLogo from '../assets/images/sponsors/flame/campus-catalyst
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
+import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
@@ -40,6 +41,7 @@ const sponsors: Sponsor[] = [
     { name: 'AK Pizza Crust', logo: akPizzaLogo, tier: 'flame', link: 'https://www.akcrust.com/' },
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
+    { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
     { name: 'Student Government Association', logo: sgaLogo, tier: 'partner', link: 'https://www.uwgb.edu/sga/' },
