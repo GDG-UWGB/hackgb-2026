@@ -46,7 +46,7 @@ const Navbar = () => {
         : 'bg-transparent py-5'
         }`}
     >
-      <div className="max-w-7xl mx-auto pl-6 md:pl-8 pr-16 sm:pr-20 md:pr-24 lg:pr-28">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:pr-28">
         <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <Link href="#hero" to="hero" smooth={true} onClick={() => handleNavClick('hero')} className="flex items-center gap-2 cursor-pointer">
