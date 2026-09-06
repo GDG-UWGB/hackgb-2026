@@ -12,6 +12,7 @@ import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
+import pureButtonsLogo from '../assets/images/sponsors/partners/pure-buttons.png';
 import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
@@ -30,6 +31,7 @@ interface Sponsor {
     logo: string;
     tier: 'phoenix' | 'flame' | 'ember' | 'spark' | 'partner';
     link?: string;
+    description?: string;
 }
 
 const sponsors: Sponsor[] = [
@@ -45,6 +47,13 @@ const sponsors: Sponsor[] = [
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
     { name: 'Student Government Association', logo: sgaLogo, tier: 'partner', link: 'https://www.uwgb.edu/sga/' },
+    {
+        name: 'Pure Buttons',
+        logo: pureButtonsLogo,
+        tier: 'partner',
+        link: 'https://www.purebuttons.com/',
+        description: 'Pure Buttons - Custom Buttons, Stickers & Promotional Materials',
+    },
 ];
 
 const Sponsors = () => {
@@ -75,7 +84,7 @@ const Sponsors = () => {
                                 <img
                                     src={sponsor.logo}
                                     alt={sponsor.name}
-                                    className={`${imgHeightClass} w-auto object-contain transition-transform duration-500 group-hover:scale-105`}
+                                    className={`${imgHeightClass} w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-105`}
                                 />
                             </div>
 
@@ -86,7 +95,13 @@ const Sponsors = () => {
                         </motion.div>
                     );
                     return sponsor.link ? (
-                        <a key={sponsor.name} href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                        <a
+                            key={sponsor.name}
+                            href={sponsor.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={sponsor.description || sponsor.name}
+                        >
                             {cardContent}
                         </a>
                     ) : (
@@ -190,7 +205,13 @@ const Sponsors = () => {
                                 </div>
                                 <div className="flex flex-wrap gap-5 md:gap-6 justify-center items-start max-w-[840px] mx-auto">
                                     {sparkSponsors.map((sponsor, idx) => (
-                                        <a key={sponsor.name} href={sponsor.link} target="_blank" rel="noopener noreferrer">
+                                        <a
+                                            key={sponsor.name}
+                                            href={sponsor.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            title={sponsor.description || sponsor.name}
+                                        >
                                             <motion.div
                                                 {...fadeUp(0.05 * (idx + 1))}
                                                 className="group flex flex-col items-center gap-2 text-center"
