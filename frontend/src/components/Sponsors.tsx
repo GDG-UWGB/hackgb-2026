@@ -7,7 +7,6 @@ import startupWisconsinLogo from '../assets/images/sponsors/partners/startup-wis
 import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import sgaLogo from '../assets/images/sponsors/partners/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
-import campusCatalystsLogo from '../assets/images/sponsors/flame/campus-catalysts.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
@@ -39,7 +38,6 @@ const sponsors: Sponsor[] = [
     { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
     { name: 'Modal', logo: modalLogo, tier: 'phoenix', link: 'https://modal.com' },
     { name: 'College of Science, Engineering and Technology', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
-    { name: 'Campus Catalysts', logo: campusCatalystsLogo, tier: 'flame', link: 'https://www.campuscatalysts.com/' },
     { name: 'AK Pizza Crust', logo: akPizzaLogo, tier: 'flame', link: 'https://www.akcrust.com/' },
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
