@@ -15,6 +15,7 @@ import MentorApplication from '../../pages/MentorApplication';
 import CodeOfConduct from '../../pages/CodeOfConduct';
 import PrivacyPolicy from '../../pages/PrivacyPolicy';
 import OpeningSoon from '../../pages/OpeningSoon';
+import SchedulePage from '../../pages/SchedulePage';
 import { checkApplicationsOpen } from '../../data/constants';
 
 
@@ -62,6 +63,7 @@ const AnimatedRoutes = () => {
                 <Route path="/apply/mentor" element={<PageWrapper> {isOpen ? <MentorApplication /> : <OpeningSoon onUnlock={() => setIsOpen(true)} />} </PageWrapper>} />
                 <Route path="/code-of-conduct" element={<PageWrapper> <CodeOfConduct /> </PageWrapper>} />
                 <Route path="/privacy-policy" element={<PageWrapper> <PrivacyPolicy /> </PageWrapper>} />
+                <Route path="/schedule" element={<PageWrapper> <SchedulePage /> </PageWrapper>} />
 
             </Routes>
         </AnimatePresence>

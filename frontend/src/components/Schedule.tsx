@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import downtownImg from '../assets/images/background/downtown-gb.png';
-import { Calendar, Clock, Terminal } from 'lucide-react';
+import { Calendar, Clock, Terminal, ArrowRight, Sparkles } from 'lucide-react';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -21,20 +22,21 @@ interface ScheduleEvent {
 }
 
 const saturdayEvents: ScheduleEvent[] = [
-    { time: '08:00 AM', title: 'Check-in & Registration', desc: 'Arrive at the STEM Innovation Center, grab your credentials, and get your swag bag.', accent: '#61A644' },
-    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Welcome address, sponsor presentations, track descriptions, and rules review.', accent: '#E37100' },
-    { time: '12:00 PM', title: 'Hacking Begins', desc: 'Start building your projects! Team formation assistance available.', accent: '#0c3c34' },
-    { time: '12:30 PM', title: 'Lunch Provided', desc: 'Hot lunch served in the main dining hall.', accent: '#ffcc00' },
+    { time: '08:00 AM', title: 'Check-in & Registration', desc: 'STEM Innovation Center • Check-in and badge pickup.', accent: '#61A644' },
+    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Wood Hall • Welcome address and hackathon kickoff.', accent: '#E37100' },
+    { time: '12:00 PM', title: 'Hacking Begins', desc: 'Phoenix Room B & C (University Union) • Hacking officially starts.', accent: '#0c3c34' },
+    { time: '01:30 PM', title: 'Workshops Kickoff', desc: 'University Union • Sessions begin with Modal, followed by GDE workshops.', accent: '#ffcc00' },
 ];
 
 const sundayEvents: ScheduleEvent[] = [
-    { time: '12:00 PM', title: 'Hacking Ends', desc: 'All code submissions must be finalized on Devpost.', accent: '#E37100' },
-    { time: '01:00 PM', title: 'Judging & Project Expo', desc: 'Demo your project to the judges. Open gallery style.', accent: '#61A644' },
-    { time: '05:00 PM', title: 'Closing Ceremony', desc: 'Keynote address, project review, and final thank yous.', accent: '#0c3c34' },
-    { time: '06:00 PM', title: 'Prize Distribution', desc: 'Winners announced for each hacking track!', accent: '#ffcc00' },
+    { time: '12:00 PM', title: 'Hacking Ends & Submissions Due', desc: 'STEM Innovation Center • Code freeze and Devpost deadline.', accent: '#EA4335' },
+    { time: '01:00 PM', title: 'Judging & Project Expo', desc: 'STEM Innovation Center • Live gallery demos open to judges and attendees.', accent: '#61A644' },
+    { time: '05:00 PM', title: 'Closing Ceremony', desc: 'STEM Innovation Center • Keynote address and weekend recap.', accent: '#0c3c34' },
+    { time: '06:00 PM', title: 'Prize Distribution', desc: 'STEM Innovation Center • Track champions and winners revealed!', accent: '#ffbd2e' },
 ];
 
 const Schedule = () => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState<'saturday' | 'sunday'>('saturday');
 
     const activeEvents = activeTab === 'saturday' ? saturdayEvents : sundayEvents;
@@ -55,11 +57,27 @@ const Schedule = () => {
                 {/* Header */}
                 <motion.div
                     {...fadeUp(0)}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
+                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#61A644]/15 border border-[#61A644]/20 text-[#0C3C34] font-google font-bold text-xs uppercase tracking-wider mb-3">
+                        <Sparkles className="w-3.5 h-3.5 text-[#E37100]" />
+                        24-Hour Timeline
+                    </div>
                     <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
                         Event Schedule
                     </h2>
+                    <p className="text-slate-650 font-google-text text-sm sm:text-base max-w-xl mx-auto mb-7">
+                        Main schedule milestones below. Explore our full schedule for room locations, Modal & GDE workshops, speaker bios, and buffer times.
+                    </p>
+                    
+                    {/* Highly Visible Primary CTA Button */}
+                    <button
+                        onClick={() => navigate('/schedule')}
+                        className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#61A644] hover:bg-[#528f39] text-white font-google font-bold text-base shadow-[0_6px_25px_rgba(97,166,68,0.5)] hover:shadow-[0_8px_30px_rgba(97,166,68,0.65)] ring-4 ring-[#61A644]/25 hover:ring-[#61A644]/50 transition-all transform hover:-translate-y-1 active:translate-y-0 cursor-pointer"
+                    >
+                        <span>View Full Schedule</span>
+                        <ArrowRight className="w-5 h-5 text-white" />
+                    </button>
                 </motion.div>
 
                 {/* Integrated IDE Schedule Card */}
@@ -174,7 +192,7 @@ const Schedule = () => {
                                                             {evt.time}
                                                         </span>
                                                         <span
-                                                            className="font-google-mono font-bold text-[9px] tracking-wider px-2 py-0.5 rounded bg-white/80 border border-black/5"
+                                                            className="font-google font-bold text-[10px] tracking-wider px-2 py-0.5 rounded bg-white/80 border border-black/5"
                                                             style={{ color: evt.accent }}
                                                         >
                                                             Event {idx + 1}
@@ -194,10 +212,28 @@ const Schedule = () => {
 
                                 <motion.div
                                     {...fadeUp(0.1)}
-                                    className="mt-6 flex items-center gap-3 bg-[#E37100]/10 border border-[#E37100]/20 rounded-xl p-3.5 text-slate-800 text-xs font-google-text font-bold shadow-sm"
+                                    className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0C3C34] text-white rounded-2xl p-5 shadow-lg border border-white/15"
                                 >
-                                    <Clock className="w-4 h-4 text-[#E37100] shrink-0 animate-pulse" />
-                                    <span>Stay tuned! The full detailed schedule, including workshops, side quests, and mini-events, is coming soon.</span>
+                                    <div className="flex items-center gap-3.5 text-left">
+                                        <div className="w-10 h-10 rounded-xl bg-[#61A644]/25 flex items-center justify-center shrink-0 border border-white/10">
+                                            <Calendar className="w-5 h-5 text-[#ffbd2e]" />
+                                        </div>
+                                        <div>
+                                            <div className="font-google font-bold text-sm sm:text-base text-white">
+                                                Detailed Workshop & Venue Schedule Live
+                                            </div>
+                                            <p className="text-xs text-slate-300 font-google-text mt-0.5">
+                                                Explore Modal & GDE workshop sessions, room numbers, speaker bios, and 15-min buffers.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => navigate('/schedule')}
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#61A644] hover:bg-[#528f39] text-white font-google font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(97,166,68,0.5)] hover:shadow-[0_0_25px_rgba(97,166,68,0.7)] transition-all transform hover:-translate-y-0.5 cursor-pointer shrink-0"
+                                    >
+                                        <span>View Full Schedule</span>
+                                        <ArrowRight className="w-4 h-4 text-white" />
+                                    </button>
                                 </motion.div>
                             </div>
                         </div>
@@ -215,6 +251,20 @@ const Schedule = () => {
                             <span className="opacity-80">Ln {activeEvents.length}, Col 12</span>
                         </div>
                     </div>
+                </motion.div>
+
+                {/* Additional High-Visibility Action Below Card */}
+                <motion.div
+                    {...fadeUp(0.15)}
+                    className="mt-8 flex justify-center"
+                >
+                    <button
+                        onClick={() => navigate('/schedule')}
+                        className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-white hover:bg-slate-50 text-[#0C3C34] font-google font-bold text-sm shadow-md hover:shadow-lg border border-black/10 transition-all transform hover:-translate-y-0.5 cursor-pointer group"
+                    >
+                        <span>View Complete 24-Hour Schedule & Workshops</span>
+                        <ArrowRight className="w-4 h-4 text-[#61A644] group-hover:translate-x-1 transition-transform" />
+                    </button>
                 </motion.div>
             </div>
         </section>
