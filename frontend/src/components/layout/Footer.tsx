@@ -87,6 +87,7 @@ const Footer = () => {
             <ul className="space-y-4 text-slate-600 font-google-text">
               <li><a href="#about" onClick={(e) => handleQuickLinkClick(e, 'about')} className="hover:text-[#61A644] transition-colors">About</a></li>
               <li><a href="#tracks" onClick={(e) => handleQuickLinkClick(e, 'tracks')} className="hover:text-[#61A644] transition-colors">Tracks</a></li>
+              <li><a href="#sponsors" onClick={(e) => handleQuickLinkClick(e, 'sponsors')} className="hover:text-[#61A644] transition-colors">Sponsors</a></li>
               <li><a href="#schedule" onClick={(e) => handleQuickLinkClick(e, 'schedule')} className="hover:text-[#61A644] transition-colors">Schedule</a></li>
               <li><button onClick={() => navigate('/schedule')} className="hover:text-[#61A644] transition-colors cursor-pointer text-left">Full Schedule</button></li>
               <li><a href="#faqs" onClick={(e) => handleQuickLinkClick(e, 'faqs')} className="hover:text-[#61A644] transition-colors">FAQs</a></li>
