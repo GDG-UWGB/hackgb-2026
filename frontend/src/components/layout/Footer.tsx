@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import logo from '../../assets/images/logos/logo-phx.png';
 import gdgLogo from '../../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
+import network404Logo from '../../assets/images/logos/404_logo.png';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -46,8 +47,20 @@ const Footer = () => {
             <div className="flex flex-wrap items-center gap-3.5 mb-4">
               <img src={logo} alt="HackGB Logo" className="h-12 w-auto object-contain opacity-90" />
               <div className="h-8 w-[1px] bg-slate-300" />
-              <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+              <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="flex items-center" title="GDG on Campus UW-Green Bay">
                 <img src={gdgLogo} alt="GDG UWGB Logo" className="h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+              </a>
+              <div className="h-8 w-[1px] bg-slate-300" />
+              <a
+                href="https://uwgb.presence.io/organization/404-network-club-not-found"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+                title="404 Network - Computer Science Club at UWGB"
+              >
+                <div className="bg-black px-2.5 py-1.5 rounded-lg border border-black/10 shadow-xs flex items-center hover:opacity-90 transition-opacity">
+                  <img src={network404Logo} alt="404 Network Logo" className="h-7 w-auto object-contain" />
+                </div>
               </a>
             </div>
             <span className="font-google text-3xl font-bold text-[#0C3C34] mb-2 block">
@@ -111,7 +124,7 @@ const Footer = () => {
         <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
           <div>
             <p className="text-slate-500 text-sm font-google-text">
-              © 2026 GDG on Campus UW-Green Bay. All rights reserved.
+              © 2026 GDG on Campus UW-Green Bay & 404 Network. All rights reserved.
             </p>
             <p className="text-slate-400 text-xs font-google-text mt-1">
               Built with 💚 at UW-Green Bay

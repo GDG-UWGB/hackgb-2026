@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import lambeauImg from '../assets/images/background/lambeau-field.png';
 import gdgLogo from '../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
+import network404Logo from '../assets/images/logos/404_logo.png';
 import { Users, Clock, Compass, Trophy, MapPin, Calendar } from 'lucide-react';
 
 const stats = [
@@ -53,13 +54,24 @@ const About = () => {
                                     Welcome to HackGB
                                 </h2>
                                 <p className="text-base text-slate-805 max-w-2xl font-google-text leading-relaxed mb-6 font-medium">
-                                    Organized by GDG on Campus at UW-Green Bay in partnership with MLH, HackGB is a historic 24-hour hackathon experience. We invite 200+ students to embark on a mythical coding journey at the STEM Innovation Center — where the Phoenix rises.
+                                    Organized by GDG on Campus at UW-Green Bay in collaboration with 404 Network and in partnership with MLH, HackGB is a historic 24-hour hackathon experience. We invite 200+ students to embark on a mythical coding journey at the STEM Innovation Center — where the Phoenix rises.
                                 </p>
                             </div>
                             <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-black/5">
-                                <span className="text-slate-600 font-google font-bold text-xs">Organized by</span>
-                                <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity bg-white/80 p-1 rounded-lg">
+                                <span className="text-slate-600 font-google font-bold text-xs">Organized with</span>
+                                <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="inline-block hover:opacity-90 transition-opacity bg-white/80 p-1 rounded-lg" title="GDG on Campus UW-Green Bay">
                                     <img src={gdgLogo} alt="GDG on Campus Logo" className="h-9 w-auto object-contain" />
+                                </a>
+                                <span className="text-slate-400 font-google font-bold text-xs">&</span>
+                                <a
+                                    href="https://uwgb.presence.io/organization/404-network-club-not-found"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 bg-black px-2.5 py-1.5 rounded-lg border border-black/10 shadow-xs hover:opacity-90 transition-opacity"
+                                    title="404 Network - Computer Science Club at UWGB"
+                                >
+                                    <img src={network404Logo} alt="404 Network Logo" className="h-6 w-auto object-contain" />
+                                    <span className="text-white text-xs font-google font-bold pr-1">404 Network</span>
                                 </a>
                             </div>
                         </div>

@@ -9,9 +9,11 @@ import sgaLogo from '../assets/images/sponsors/partners/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
+import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 import pureButtonsLogo from '../assets/images/sponsors/partners/pure-buttons.png';
+import network404Logo from '../assets/images/logos/404_logo.png';
 import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
@@ -31,6 +33,7 @@ interface Sponsor {
     tier: 'phoenix' | 'flame' | 'ember' | 'spark' | 'partner';
     link?: string;
     description?: string;
+    darkBg?: boolean;
 }
 
 const sponsors: Sponsor[] = [
@@ -40,11 +43,20 @@ const sponsors: Sponsor[] = [
     { name: 'College of Science, Engineering and Technology', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
     { name: 'AK Pizza Crust', logo: akPizzaLogo, tier: 'flame', link: 'https://www.akcrust.com/' },
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
+    { name: 'Bay Tek (The Village)', logo: theVillageLogo, tier: 'flame', link: 'https://www.thevillage.bz/', description: 'Bay Tek Entertainment (The Village)' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
     { name: 'Student Government Association', logo: sgaLogo, tier: 'partner', link: 'https://www.uwgb.edu/sga/' },
+    {
+        name: '404 Network',
+        logo: network404Logo,
+        tier: 'partner',
+        link: 'https://uwgb.presence.io/organization/404-network-club-not-found',
+        description: '404 Network - Computer Science Club at UW-Green Bay',
+        darkBg: true,
+    },
     {
         name: 'Pure Buttons',
         logo: pureButtonsLogo,
@@ -77,8 +89,8 @@ const Sponsors = () => {
                             {...fadeUp(0.05 * (idx + 1))}
                             className="group flex flex-col items-center gap-2.5 text-center cursor-pointer"
                         >
-                            {/* White Logo Card Box */}
-                            <div className={`bg-white border border-black/5 rounded-xl p-4 flex items-center justify-center ${cardWidthClass} group-hover:border-[#61A644]/40 group-hover:shadow-md transition-all duration-300`}>
+                            {/* Logo Card Box */}
+                            <div className={`${sponsor.darkBg ? 'bg-black' : 'bg-white'} border border-black/5 rounded-xl p-4 flex items-center justify-center ${cardWidthClass} group-hover:border-[#61A644]/40 group-hover:shadow-md transition-all duration-300`}>
                                 <img
                                     src={sponsor.logo}
                                     alt={sponsor.name}
