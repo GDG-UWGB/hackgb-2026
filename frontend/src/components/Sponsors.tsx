@@ -11,6 +11,7 @@ import photonLogo from '../assets/images/sponsors/ember/photon.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import lovableLogo from '../assets/images/sponsors/flame/lovable.png';
+import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
@@ -47,6 +48,7 @@ const sponsors: Sponsor[] = [
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'Bay Tek (The Village)', logo: theVillageLogo, tier: 'flame', link: 'https://www.thevillage.bz/', description: 'Bay Tek Entertainment (The Village)' },
     { name: 'Lovable', logo: lovableLogo, tier: 'flame', link: 'https://lovable.dev/' },
+    { name: 'Faith Technologies', logo: ftiLogo, tier: 'flame', link: 'https://www.faithtechinc.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Photon', logo: photonLogo, tier: 'ember', link: 'https://photon.codes/', darkBg: true },
     { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },
