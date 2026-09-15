@@ -7,6 +7,7 @@ import startupWisconsinLogo from '../assets/images/sponsors/partners/startup-wis
 import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import sgaLogo from '../assets/images/sponsors/partners/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
+import photonLogo from '../assets/images/sponsors/ember/photon.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
@@ -45,6 +46,7 @@ const sponsors: Sponsor[] = [
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'Bay Tek (The Village)', logo: theVillageLogo, tier: 'flame', link: 'https://www.thevillage.bz/', description: 'Bay Tek Entertainment (The Village)' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
+    { name: 'Photon', logo: photonLogo, tier: 'ember', link: 'https://photon.codes/', darkBg: true },
     { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
