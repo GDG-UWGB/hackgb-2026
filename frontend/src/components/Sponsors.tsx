@@ -65,7 +65,7 @@ const sponsors: Sponsor[] = [
         name: 'Pure Buttons',
         logo: pureButtonsLogo,
         tier: 'partner',
-        link: 'https://www.purebuttons.com/',
+        link: 'https://mlh.link/MLH-PureButtons-hackathons',
         description: 'Pure Buttons - Custom Buttons, Stickers & Promotional Materials',
     },
 ];
