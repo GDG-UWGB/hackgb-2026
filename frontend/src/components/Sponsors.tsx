@@ -10,6 +10,7 @@ import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
 import photonLogo from '../assets/images/sponsors/ember/photon.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
+import lovableLogo from '../assets/images/sponsors/flame/lovable.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
@@ -41,10 +42,11 @@ const sponsors: Sponsor[] = [
     { name: 'University of Wisconsin-Green Bay', logo: uwgbLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/' },
     { name: 'Google', logo: googleLogo, tier: 'phoenix', link: 'https://google.com/' },
     { name: 'Modal', logo: modalLogo, tier: 'phoenix', link: 'https://modal.com' },
-    { name: 'College of Science, Engineering and Technology', logo: csetLogo, tier: 'phoenix', link: 'https://www.uwgb.edu/cset/' },
+    { name: 'College of Science, Engineering and Technology', logo: csetLogo, tier: 'partner', link: 'https://www.uwgb.edu/cset/' },
     { name: 'AK Pizza Crust', logo: akPizzaLogo, tier: 'flame', link: 'https://www.akcrust.com/' },
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'Bay Tek (The Village)', logo: theVillageLogo, tier: 'flame', link: 'https://www.thevillage.bz/', description: 'Bay Tek Entertainment (The Village)' },
+    { name: 'Lovable', logo: lovableLogo, tier: 'flame', link: 'https://lovable.dev/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Photon', logo: photonLogo, tier: 'ember', link: 'https://photon.codes/', darkBg: true },
     { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },
