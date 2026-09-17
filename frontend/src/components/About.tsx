@@ -8,7 +8,7 @@ const stats = [
     { number: '200+', label: 'Hackers', icon: Users, color: '#61A644' },
     { number: '24', label: 'Hours', icon: Clock, color: '#E37100' },
     { number: '4', label: 'Tracks', icon: Compass, color: '#0C3C34' },
-    { number: '$5K+', label: 'In Prizes', icon: Trophy, color: '#ffcc00' },
+    { number: '$6K+', label: 'In Prizes', icon: Trophy, color: '#ffcc00' },
 ];
 
 /* Premium spring easing — Apple-style curve */
@@ -153,26 +153,26 @@ const About = () => {
                         </div>
                         <span className="text-[10px] font-google-mono text-slate-500 ml-3">metrics.json</span>
                     </div>
-                    <div className="p-4 md:p-5">
+                    <div className="p-5 md:p-7">
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 divide-y lg:divide-y-0 lg:divide-x divide-black/5">
                             {stats.map((stat, i) => {
                                 const IconComponent = stat.icon;
                                 return (
                                     <div key={i} className="flex flex-col sm:flex-row items-center gap-3 p-2 lg:p-0 lg:pl-4 first:pl-0 pt-3 first:pt-2 lg:pt-0">
                                         <div
-                                            className="p-2 rounded-lg flex items-center justify-center border shrink-0 bg-white/60"
+                                            className="w-16 h-16 rounded-xl flex items-center justify-center border shrink-0 bg-white/60"
                                             style={{
                                                 color: stat.color,
                                                 borderColor: `${stat.color}30`
                                             }}
                                         >
-                                            <IconComponent className="w-4 h-4" />
+                                            <IconComponent className="w-8 h-8" />
                                         </div>
                                         <div className="text-center sm:text-left">
-                                            <div className="text-xl md:text-2xl font-google font-bold text-[#0C3C34] tracking-tight leading-none mb-1">
+                                            <div className="text-3xl md:text-4xl font-google font-bold text-[#0C3C34] tracking-tight leading-none mb-1">
                                                 {stat.number}
                                             </div>
-                                            <span className="text-slate-500 font-google-text text-[9px] font-bold uppercase tracking-wider block">
+                                            <span className="text-slate-500 font-google-text text-[11px] font-bold uppercase tracking-wider block">
                                                 {stat.label}
                                             </span>
                                         </div>

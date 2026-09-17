@@ -34,8 +34,10 @@ const Navbar = () => {
     { name: 'About', to: 'about' },
     { name: 'Tracks', to: 'tracks' },
     { name: 'Sponsors', to: 'sponsors' },
+    { name: 'Prizes', to: 'prizes' },
     { name: 'Schedule', to: 'schedule' },
     { name: 'Speakers', to: 'speakers' },
+    { name: 'Judges', to: 'judges' },
     { name: 'Travel', to: 'travel' },
     { name: 'FAQs', to: 'faqs' },
   ];

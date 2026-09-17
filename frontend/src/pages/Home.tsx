@@ -7,7 +7,9 @@ import Eligibility from '../components/Eligibility';
 import Registration from '../components/Registration';
 import Travel from '../components/sections/Travel';
 import Sponsors from '../components/Sponsors';
+import Prizes from '../components/Prizes';
 import Speakers from '../components/Speakers';
+import Judges from '../components/Judges';
 import CityDivider from '../components/common/CityDivider';
 
 const Home = () => {
@@ -31,6 +33,12 @@ const Home = () => {
 
       <Sponsors />
 
+      <CityDivider variant="trees" />
+
+      <section id="prizes">
+        <Prizes />
+      </section>
+
       <CityDivider variant="skyline" />
 
       <section id="schedule">
@@ -41,6 +49,12 @@ const Home = () => {
 
       <section id="speakers">
         <Speakers />
+      </section>
+
+      <CityDivider variant="bridge" />
+
+      <section id="judges">
+        <Judges />
       </section>
 
       <CityDivider variant="trees" />
