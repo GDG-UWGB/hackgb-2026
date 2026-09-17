@@ -93,10 +93,10 @@ const Sponsors = () => {
                         <motion.div
                             key={sponsor.name}
                             {...fadeUp(0.05 * (idx + 1))}
-                            className="group flex flex-col items-center gap-2.5 text-center cursor-pointer"
+                            className={`group flex flex-col items-center gap-2.5 text-center cursor-pointer ${cardWidthClass}`}
                         >
                             {/* Logo Card Box */}
-                            <div className={`${sponsor.darkBg ? 'bg-black' : 'bg-white'} border border-black/5 rounded-xl p-4 flex items-center justify-center ${cardWidthClass} group-hover:border-[#61A644]/40 group-hover:shadow-md transition-all duration-300`}>
+                            <div className={`${sponsor.darkBg ? 'bg-black' : 'bg-white'} border border-black/5 rounded-xl p-4 flex items-center justify-center w-full group-hover:border-[#61A644]/40 group-hover:shadow-md transition-all duration-300`}>
                                 <img
                                     src={sponsor.logo}
                                     alt={sponsor.name}
@@ -105,7 +105,7 @@ const Sponsors = () => {
                             </div>
 
                             {/* Sponsor Name below the logo box */}
-                            <span className={`${textSizeClass} font-google text-slate-700 max-w-[95%] text-center group-hover:text-[#0C3C34] transition-colors leading-tight`}>
+                            <span className={`${textSizeClass} font-google text-slate-700 max-w-full px-1 text-center group-hover:text-[#0C3C34] transition-colors leading-tight`}>
                                 {sponsor.name}
                             </span>
                         </motion.div>
@@ -117,6 +117,7 @@ const Sponsors = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             title={sponsor.description || sponsor.name}
+                            className="block"
                         >
                             {cardContent}
                         </a>

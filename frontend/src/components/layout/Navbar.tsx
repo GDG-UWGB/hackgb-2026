@@ -102,8 +102,8 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Nav Drawer */}
-        <div className={`lg:hidden ${mobileMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 overflow-hidden'} transition-all duration-350 rounded-2xl bg-white border border-black/5 p-4 shadow-xl`}>
-          <div className="space-y-2">
+        <div className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${mobileMenuOpen ? 'max-h-[600px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+          <div className="bg-white border border-black/5 p-4 rounded-2xl shadow-xl space-y-2 overflow-y-auto max-h-[80vh]">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

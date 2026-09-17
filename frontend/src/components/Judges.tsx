@@ -469,7 +469,7 @@ const Judges = () => {
                                     <div className="overflow-hidden mx-8 md:mx-10" ref={trackRef}>
                                         <motion.div
                                             className="flex gap-5"
-                                            animate={{ x: `-${activeIndex * (100 / cardsPerView)}%` }}
+                                            animate={{ x: `calc(-${activeIndex * (100 / cardsPerView)}% - ${activeIndex * (20 / cardsPerView)}px)` }}
                                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                         >
                                             {judges.map((judge, idx) => (
