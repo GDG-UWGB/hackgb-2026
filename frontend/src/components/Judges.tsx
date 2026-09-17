@@ -6,6 +6,10 @@ import gbWaterfrontImg from '../assets/images/background/jpg/gb-waterfront.jpg';
 // Judge headshots — import available photos, others will use placeholder
 import djayPhoto from '../assets/images/judges/djay-pallavur.jpg';
 import ishuPhoto from '../assets/images/judges/ishu-gupta.png';
+import onkarPhoto from '../assets/images/judges/onkar-mahamuni.png';
+import ryanPhoto from '../assets/images/judges/ryan-appel.png';
+import sandeepPhoto from '../assets/images/judges/sandeep-bommisetti.png';
+import sreenivasaPhoto from '../assets/images/judges/sreenivasa-rao.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -37,6 +41,7 @@ const judges: Judge[] = [
         company: 'RouteSmart — A FedEx Company',
         expertise: ['Operations Research', 'Algorithms & DS'],
         bio: 'Specializes in routing algorithms, optimization, and logistics software. Develops production C++ algorithms for route planning, sequencing, and network optimization.',
+        photo: onkarPhoto,
         linkedin: 'https://www.linkedin.com/in/onkarmahamuni',
         icon: Code,
         color: '#61A644',
@@ -58,6 +63,7 @@ const judges: Judge[] = [
         company: 'Guidehouse',
         expertise: ['Cybersecurity', 'Cloud Computing', 'AI/ML'],
         bio: 'Hands-on cybersecurity engineering and technology leader with a track record of building successful security programs across industry verticals.',
+        photo: sreenivasaPhoto,
         linkedin: 'https://www.linkedin.com/in/sreenivasa-rao-b-2739b720/',
         icon: Shield,
         color: '#0C3C34',
@@ -77,6 +83,7 @@ const judges: Judge[] = [
         company: 'NielsenIQ',
         expertise: ['Cybersecurity', 'IAM/PAM', 'Cloud & AI'],
         bio: 'Cybersecurity leader with 14+ years architecting large-scale IAM, PAM, and Identity Security programs across global enterprises.',
+        photo: sandeepPhoto,
         linkedin: 'https://www.linkedin.com/in/sandeep-bommisetti',
         website: 'https://bommisetti.com/',
         icon: Shield,
@@ -109,6 +116,7 @@ const judges: Judge[] = [
         company: 'Fox Valley Technical College',
         expertise: ['Software Engineering', 'Cloud & DevOps', 'Game Dev'],
         bio: 'Holds a B.S. in Computer Science and Applied Mathematics with a professional background in game development for Nintendo consoles. Currently teaches software and web development, bringing real-world experience into the classroom.',
+        photo: ryanPhoto,
         linkedin: 'https://www.linkedin.com/in/ryanappel/',
         icon: Monitor,
         color: '#4A90D9',
