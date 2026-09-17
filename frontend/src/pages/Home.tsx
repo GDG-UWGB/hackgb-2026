@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Tracks from '../components/Tracks';
@@ -13,6 +15,20 @@ import Judges from '../components/Judges';
 import CityDivider from '../components/common/CityDivider';
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500); // Slight delay ensures components have rendered
+    }
+  }, [location]);
+
   return (
     <main className="relative overflow-hidden w-full noise-overlay bg-white">
       <Hero />

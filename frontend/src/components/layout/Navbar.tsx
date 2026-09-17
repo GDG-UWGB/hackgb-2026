@@ -19,6 +19,9 @@ const Navbar = () => {
   }, []);
 
   const handleNavClick = (to: string) => {
+    // Update the URL so it can be shared
+    window.history.pushState(null, '', `/#${to}`);
+
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {

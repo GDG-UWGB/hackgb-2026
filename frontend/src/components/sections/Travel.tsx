@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import stemImg from '../../assets/images/background/jpg/uwgb-stem.jpg';
+import stemImg from '../../assets/images/background/jpg/stem.png';
 import bayBeachImg from '../../assets/images/background/jpg/bay-beach.jpg';
 import TransportationInfo from './TransportationInfo';
 import { Map, MapPin, Copy, Check } from 'lucide-react';
