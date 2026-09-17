@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { Trophy, Gift, Award, Star, Medal, Gem } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Trophy, Target, Heart, Ticket, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import gbTrailImg from '../assets/images/background/jpg/gb-trail.jpg';
 
 /* Premium spring easing */
@@ -12,10 +13,76 @@ const fadeUp = (delay = 0) => ({
     transition: { duration: 0.8, delay, ease: spring },
 });
 
+const prizeCategories = [
+    {
+        title: "Overall Prizes",
+        icon: Trophy,
+        color: "#ffbd2e",
+        prizes: [
+            { name: "Best Overall Hack", prize: "Apple 11-inch iPad-A16 128GB - Silver", desc: "Awarded to the overall best project at HackGB, excelling in innovation, technical complexity, design, and impact." },
+            { name: "Best Solo Hack", prize: "Logitech - MX MASTER 3S Mouse", desc: "Awarded to the most outstanding project built entirely by an individual hacker." },
+            { name: "Best Beginner Hack", prize: "SteelSeries - Apex 3", desc: "Awarded to the best project submitted by a team consisting entirely of first-time hackers." },
+            { name: "Best UI/UX Hack", prize: "Elgato - Stream Deck Mini", desc: "Awarded to the project demonstrating exceptional user interface design, user experience, and accessibility." }
+        ]
+    },
+    {
+        title: "Track Prizes",
+        icon: Target,
+        color: "#61A644",
+        prizes: [
+            { 
+                name: "Best Environment & Sustainability", 
+                prize: 'Dell - 27" Monitor', 
+                desc: "Challenges teams to develop software and hardware solutions aimed at resource conservation, clean energy, and climate action." 
+            },
+            { 
+                name: "Best Education Hack", 
+                prize: "Anker - Soundcore Space 2 NC Headphones", 
+                desc: "Design platforms and tools aimed at making learning more accessible, personalized, and engaging for students of all ages." 
+            },
+            { 
+                name: "Best Industrial Hack", 
+                prize: "JBL - Charge 6 Speaker", 
+                desc: "Engineer solutions to modernize supply chains, optimize manufacturing, and improve workplace safety through automation and data analysis." 
+            },
+            { 
+                name: "Best Healthcare & Wellness", 
+                prize: "Amazfit Active 2 - Smartwatch", 
+                desc: "Build applications and systems focused on improving patient care, mental wellness, and secure health data management." 
+            },
+            { 
+                name: "Best Hardware Hack", 
+                prize: "Raspberry Pi 5 - Vilros Essentials Kit",
+                desc: "Awarded to the best integration of physical hardware and software."
+            }
+        ]
+    },
+    {
+        title: "Sponsor Prizes",
+        icon: Heart,
+        color: "#E37100",
+        prizes: [
+            { name: "Best Use of Modal", prize: "$1,000 in Modal credits", desc: "Awarded to the project that demonstrates the most innovative and effective use of Modal. Each participant receives $100 in Modal credits, valid for one year." },
+            { name: "Best Use of Lovable", prize: "1-Year Lovable Pro Subscription", desc: "Awarded to the project that demonstrates the most creative and impactful use of Lovable. Each participant receives $100 worth of Lovable credits." },
+            { name: "Best Use of Photon", prize: "TBD", desc: "Awarded to the project that demonstrates the strongest use of Photon's API. Participants receive access to Photon's API for use during HackGB." }
+        ]
+    },
+    {
+        title: "Raffle Items",
+        icon: Ticket,
+        color: "#4A90D9",
+        prizes: [
+            { name: "Closing Ceremony Raffle", prize: "-Pending-", desc: "Additional raffle prizes to be announced during the event. Attend the closing ceremony for a chance to win!" }
+        ]
+    }
+];
+
 const Prizes = () => {
-    // Generate 6 placeholder skeleton prize cards
-    const skeletons = Array.from({ length: 6 });
-    const prizeIcons = [Trophy, Award, Medal, Star, Gift, Gem];
+    const [expandedId, setExpandedId] = useState<string | null>(null);
+
+    const toggleExpand = (id: string) => {
+        setExpandedId(expandedId === id ? null : id);
+    };
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="prizes">
@@ -29,7 +96,7 @@ const Prizes = () => {
             <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
             <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-[#ffcc00]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
-            <div className="max-w-5xl mx-auto relative z-10">
+            <div className="max-w-4xl mx-auto relative z-10">
                 {/* Header */}
                 <motion.div
                     {...fadeUp(0)}
@@ -38,12 +105,15 @@ const Prizes = () => {
                     <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
                         Prizes & Awards
                     </h2>
+                    <p className="text-slate-600 font-google-text text-base md:text-lg max-w-2xl mx-auto font-medium">
+                        Compete in main tracks or sponsor challenges to win premium hardware, gear, and software credits.
+                    </p>
                 </motion.div>
 
                 {/* Integrated IDE Prizes Card */}
                 <motion.div
                     {...fadeUp(0.1)}
-                    className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-xl overflow-hidden flex flex-col min-h-[460px] relative"
+                    className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-xl overflow-hidden flex flex-col relative"
                 >
                     {/* IDE Top Window Bar */}
                     <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
@@ -55,7 +125,7 @@ const Prizes = () => {
                         </div>
                         <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-slate-450 bg-slate-200/50 px-2 py-0.5 rounded border border-black/5">
                             <Trophy className="w-3 h-3 text-[#E37100]" />
-                            <span>prizes.config</span>
+                            <span>prizes.md</span>
                         </div>
                     </div>
 
@@ -63,61 +133,95 @@ const Prizes = () => {
                     <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none select-none">
                         <div className="flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-xs font-medium bg-white/60 text-[#0C3C34] border-t-2 border-t-[#E37100] flex-1 justify-center">
                             <Trophy className="w-3.5 h-3.5 text-[#E37100]" />
-                            prizes.config
+                            prizes.md
                         </div>
                     </div>
 
-                    {/* Workspace Editor Body (Skeletons Grid) */}
-                    <div className="p-8 bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative min-h-[380px] items-center">
-                        {skeletons.map((_, idx) => {
-                            const Icon = prizeIcons[idx % prizeIcons.length];
+                    {/* Workspace Editor Body */}
+                    <div className="p-6 md:p-10 bg-transparent space-y-12">
+                        {prizeCategories.map((category, categoryIdx) => {
+                            const Icon = category.icon;
                             return (
-                                <div key={idx} className="bg-white/60 border border-black/5 rounded-2xl p-6 flex flex-col items-center select-none opacity-40">
-                                    {/* Trophy icon skeleton */}
-                                    <div className="w-16 h-16 rounded-2xl bg-slate-200/80 animate-pulse mb-4 flex items-center justify-center">
-                                        <Icon className="w-7 h-7 text-slate-300" />
+                                <motion.div key={categoryIdx} {...fadeUp(0.05 * (categoryIdx + 1))}>
+                                    <div className="flex items-center gap-3 mb-6 border-b border-black/10 pb-4">
+                                        <div 
+                                            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-sm bg-white"
+                                            style={{ borderColor: `${category.color}40` }}
+                                        >
+                                            <Icon className="w-5 h-5" style={{ color: category.color }} />
+                                        </div>
+                                        <h3 className="font-google font-bold text-2xl text-[#0C3C34]">
+                                            {category.title}
+                                        </h3>
                                     </div>
-                                    {/* Prize name bar skeleton */}
-                                    <div className="h-4 w-28 bg-slate-200/80 rounded animate-pulse mb-2" />
-                                    {/* Amount bar skeleton */}
-                                    <div className="h-5 w-20 bg-slate-200/80 rounded animate-pulse mb-2" />
-                                    {/* Description bar skeleton */}
-                                    <div className="h-3 w-36 bg-slate-200/80 rounded animate-pulse" />
-                                </div>
+
+                                    <div className="flex flex-col gap-3">
+                                        {category.prizes.map((p, prizeIdx) => {
+                                            const id = `${categoryIdx}-${prizeIdx}`;
+                                            const isExpanded = expandedId === id;
+                                            
+                                            return (
+                                                <div 
+                                                    key={prizeIdx} 
+                                                    onClick={() => toggleExpand(id)}
+                                                    className="flex flex-col p-4 md:p-5 rounded-xl bg-white/50 border border-black/5 hover:bg-white/80 hover:shadow-md transition-all group cursor-pointer"
+                                                >
+                                                    <div className="flex flex-col md:flex-row md:items-center justify-between">
+                                                        <div className="flex-1 pr-4">
+                                                            <div className="flex items-center gap-3">
+                                                                <ChevronRight 
+                                                                    className={`w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#61A644] transition-transform duration-300 ${isExpanded ? 'rotate-90 text-[#61A644]' : ''}`} 
+                                                                />
+                                                                <h4 className="font-google font-bold text-lg text-[#0C3C34]">{p.name}</h4>
+                                                            </div>
+                                                        </div>
+                                                        <div className="md:text-right ml-7 md:ml-4 mt-2 md:mt-0 shrink-0">
+                                                            <span className="font-google font-bold text-[#E37100] md:text-lg tracking-tight">
+                                                                {p.prize}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <AnimatePresence>
+                                                        {isExpanded && (
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: 'auto', opacity: 1 }}
+                                                                exit={{ height: 0, opacity: 0 }}
+                                                                className="overflow-hidden"
+                                                            >
+                                                                <div className="mt-5 ml-7 pt-5 border-t border-black/5 flex flex-col md:flex-row gap-6 items-start">
+                                                                    <div className="flex-1">
+                                                                        <h5 className="font-google-mono text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Judging Criteria</h5>
+                                                                        <p className="font-google-text text-sm text-slate-600 leading-relaxed font-medium">
+                                                                            {p.desc}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div className="w-full md:w-40 h-28 bg-white/60 rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm">
+                                                                        <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
+                                                                        <span className="font-google-mono text-[9px] uppercase tracking-wider font-bold">Prize Image</span>
+                                                                    </div>
+                                                                </div>
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </motion.div>
                             );
                         })}
-
-                        {/* Central Glassmorphic Overlay Card */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/[0.03] backdrop-blur-[4px] z-20">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6, ease: spring }}
-                                viewport={{ once: true }}
-                                className="bg-white/95 border border-white/50 shadow-2xl rounded-2xl p-8 max-w-sm text-center mx-4 relative"
-                            >
-                                <div className="w-12 h-12 bg-[#E37100]/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Trophy className="w-5 h-5 text-[#E37100] animate-pulse" />
-                                </div>
-                                <h3 className="font-google font-bold text-2xl text-[#0C3C34] mb-2.5">Prizes & Awards</h3>
-                                <p className="text-slate-650 font-google-text text-sm font-semibold leading-relaxed mb-5">
-                                    Over $6K in prizes across all tracks — including awards for Best Overall, Best in Track, and special sponsor challenges.
-                                </p>
-                                <div className="inline-block bg-[#E37100]/10 text-[#E37100] border border-[#E37100]/20 px-5 py-1.5 rounded-full text-xs font-google-mono font-bold tracking-wider uppercase">
-                                    Coming Soon
-                                </div>
-                            </motion.div>
-                        </div>
                     </div>
 
                     {/* IDE Bottom Status Bar */}
                     <div className="flex justify-between items-center px-4 py-1.5 bg-[#0c3c34] text-white font-google-mono text-[10px] select-none">
                         <div className="flex items-center gap-3">
-                            <span className="font-bold">PRIZES: loading</span>
-                            <span className="opacity-80">Registry active</span>
+                            <span className="font-bold">PRIZES: loaded</span>
+                            <span className="opacity-80">Read-only mode</span>
                         </div>
                         <div className="flex items-center gap-3">
-                            <span>CONFIG</span>
+                            <span>Markdown</span>
                             <span>UTF-8</span>
                             <span>Ln 1, Col 1</span>
                         </div>
