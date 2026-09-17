@@ -3,6 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, Heart, Ticket, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import gbTrailImg from '../assets/images/background/jpg/gb-trail.jpg';
 
+import ipadImg from '../assets/images/prizes/ipad.jpg';
+import jblCharge6Img from '../assets/images/prizes/jbl_charge_6.jpg';
+import dellMonitorImg from '../assets/images/prizes/dell_monitor.jpg';
+import ankerSpace2Img from '../assets/images/prizes/anker_space2.jpg';
+import amazfitActive3Img from '../assets/images/prizes/amazfit_active3.jpg';
+import steelseriesApex3Img from '../assets/images/prizes/steelseries_apex3.jpg';
+import logitechMx3sImg from '../assets/images/prizes/logitech_mx3s.jpg';
+import legoGameboyImg from '../assets/images/prizes/lego_gameboy.jpg';
+import elgatoStreamdeckImg from '../assets/images/prizes/elgato_streamdeck.jpg';
+import legoWalleImg from '../assets/images/prizes/lego_walle.jpg';
+import legoBugattiImg from '../assets/images/prizes/lego_bugatti.jpg';
+import jblFlip6Img from '../assets/images/prizes/jbl_flip6.jpg';
+import hyperxEveImg from '../assets/images/prizes/hyperx_eve.jpg';
+
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
@@ -19,10 +33,30 @@ const prizeCategories = [
         icon: Trophy,
         color: "#ffbd2e",
         prizes: [
-            { name: "Best Overall Hack", prize: "Apple 11-inch iPad-A16 128GB - Silver", desc: "Awarded to the overall best project at HackGB, excelling in innovation, technical complexity, design, and impact." },
-            { name: "Best Solo Hack", prize: "Logitech - MX MASTER 3S Mouse", desc: "Awarded to the most outstanding project built entirely by an individual hacker." },
-            { name: "Best Beginner Hack", prize: "SteelSeries - Apex 3", desc: "Awarded to the best project submitted by a team consisting entirely of first-time hackers." },
-            { name: "Best UI/UX Hack", prize: "Elgato - Stream Deck Mini", desc: "Awarded to the project demonstrating exceptional user interface design, user experience, and accessibility." }
+            { 
+                name: "Best Overall Hack", 
+                prize: "Apple 11-inch iPad-A16 128GB - Silver", 
+                desc: "Awarded to the overall best project at HackGB, excelling in innovation, technical complexity, design, and impact.",
+                image: ipadImg
+            },
+            { 
+                name: "Best Solo Hack", 
+                prize: "Logitech - MX Master 3S Mouse", 
+                desc: "Awarded to the most outstanding project built entirely by an individual hacker.",
+                image: logitechMx3sImg
+            },
+            { 
+                name: "Best Beginner Hack", 
+                prize: "SteelSeries - Apex 3 Gaming Keyboard", 
+                desc: "Awarded to the best project submitted by a team consisting entirely of first-time hackers.",
+                image: steelseriesApex3Img
+            },
+            { 
+                name: "Best UI/UX Hack", 
+                prize: "Elgato - Stream Deck Mini", 
+                desc: "Awarded to the project demonstrating exceptional user interface design, user experience, and accessibility.",
+                image: elgatoStreamdeckImg
+            }
         ]
     },
     {
@@ -32,28 +66,33 @@ const prizeCategories = [
         prizes: [
             { 
                 name: "Best Environment & Sustainability", 
-                prize: 'Dell - 27" Monitor', 
-                desc: "Challenges teams to develop software and hardware solutions aimed at resource conservation, clean energy, and climate action." 
+                prize: 'Dell - 27" IPS FHD 144Hz Monitor', 
+                desc: "Challenges teams to develop software and hardware solutions aimed at resource conservation, clean energy, and climate action.",
+                image: dellMonitorImg
             },
             { 
                 name: "Best Education Hack", 
-                prize: "Anker - Soundcore Space 2 NC Headphones", 
-                desc: "Design platforms and tools aimed at making learning more accessible, personalized, and engaging for students of all ages." 
+                prize: "Anker - Soundcore Space 2 Headphones", 
+                desc: "Design platforms and tools aimed at making learning more accessible, personalized, and engaging for students of all ages.",
+                image: ankerSpace2Img
             },
             { 
                 name: "Best Industrial Hack", 
-                prize: "JBL - Charge 6 Speaker", 
-                desc: "Engineer solutions to modernize supply chains, optimize manufacturing, and improve workplace safety through automation and data analysis." 
+                prize: "JBL - Charge 6 Portable Speaker", 
+                desc: "Engineer solutions to modernize supply chains, optimize manufacturing, and improve workplace safety through automation and data analysis.",
+                image: jblCharge6Img
             },
             { 
                 name: "Best Healthcare & Wellness", 
-                prize: "Amazfit Active 2 - Smartwatch", 
-                desc: "Build applications and systems focused on improving patient care, mental wellness, and secure health data management." 
+                prize: "Amazfit - Active 3 Premium Smartwatch", 
+                desc: "Build applications and systems focused on improving patient care, mental wellness, and secure health data management.",
+                image: amazfitActive3Img
             },
             { 
                 name: "Best Hardware Hack", 
-                prize: "Raspberry Pi 5 - Vilros Essentials Kit",
-                desc: "Awarded to the best integration of physical hardware and software."
+                prize: "LEGO - WALL-E and EVE 43279",
+                desc: "Awarded to the best integration of physical hardware and software.",
+                image: legoWalleImg
             }
         ]
     },
@@ -72,7 +111,7 @@ const prizeCategories = [
         icon: Ticket,
         color: "#4A90D9",
         prizes: [
-            { name: "Closing Ceremony Raffle", prize: "-Pending-", desc: "Additional raffle prizes to be announced during the event. Attend the closing ceremony for a chance to win!" }
+            { name: "Coming soon...", prize: "TBA", desc: "More information about our raffle prizes will be announced closer to the event!" }
         ]
     }
 ];
@@ -197,9 +236,15 @@ const Prizes = () => {
                                                                             {p.desc}
                                                                         </p>
                                                                     </div>
-                                                                    <div className="w-full md:w-40 h-28 bg-white/60 rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm">
-                                                                        <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
-                                                                        <span className="font-google-mono text-[9px] uppercase tracking-wider font-bold">Prize Image</span>
+                                                                    <div className="w-full md:w-40 h-28 bg-white/60 rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden">
+                                                                        {(p as any).image ? (
+                                                                            <img src={(p as any).image} alt={p.name} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                                                                        ) : (
+                                                                            <>
+                                                                                <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
+                                                                                <span className="font-google-mono text-[9px] uppercase tracking-wider font-bold">Prize Image</span>
+                                                                            </>
+                                                                        )}
                                                                     </div>
                                                                 </div>
                                                             </motion.div>
