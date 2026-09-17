@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import titletownImg from '../assets/images/background/titletown-district.png';
+import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
 import { APPLICATIONS_OPEN } from '../data/constants';
 
 /* Premium spring easing */

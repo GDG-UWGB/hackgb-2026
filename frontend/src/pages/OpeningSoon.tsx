@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import stemImg from '../assets/images/background/uwgb-stem.png';
+import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { Terminal, ArrowRight, Sparkles, CheckCircle2, Mail, ArrowLeft } from 'lucide-react';
 
 /* Premium spring easing */

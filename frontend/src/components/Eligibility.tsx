@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import uwgbStemImg from '../assets/images/background/uwgb-stem.png';
+import uwgbStemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { CheckCircle, AlertCircle, FileText, Settings } from 'lucide-react';
 
 /* Premium spring easing */

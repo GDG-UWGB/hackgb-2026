@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Mic } from 'lucide-react';
-import titletownImg from '../assets/images/background/titletown-district.png';
+import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;

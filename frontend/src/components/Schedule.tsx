@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import downtownImg from '../assets/images/background/downtown-gb.png';
+import downtownImg from '../assets/images/background/jpg/downtown-gb.jpg';
 import { Calendar, Clock, Terminal, ArrowRight, Sparkles } from 'lucide-react';
 
 /* Premium spring easing */

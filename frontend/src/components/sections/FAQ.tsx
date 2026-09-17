@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { faqs } from '../../data/faqsData';
-import cheeseHeritageImg from '../../assets/images/background/cheese-heritage.png';
+import cheeseHeritageImg from '../../assets/images/background/jpg/cheese-heritage.jpg';
 import { HelpCircle, ChevronRight, FileQuestion } from 'lucide-react';
 
 /* Premium spring easing */

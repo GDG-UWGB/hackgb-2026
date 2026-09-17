@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import stemImg from '../assets/images/background/uwgb-stem.png';
+import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { Terminal, ArrowRight, Compass, Landmark, Users } from 'lucide-react';
 
 /* Premium spring easing */

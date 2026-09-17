@@ -16,7 +16,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Terminal } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
-import downtownImg from '../assets/images/background/downtown-gb.png';
+import downtownImg from '../assets/images/background/jpg/downtown-gb.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;

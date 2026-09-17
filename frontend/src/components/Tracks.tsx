@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gbTrailImg from '../assets/images/background/gb-trail.png';
+import gbTrailImg from '../assets/images/background/jpg/gb-trail.jpg';
 import { Leaf, BookOpen, Settings, HeartPulse, ChevronLeft, ChevronRight, Folder, FileCode, Terminal, Play, CheckCircle2 } from 'lucide-react';
 
 const tracks = [

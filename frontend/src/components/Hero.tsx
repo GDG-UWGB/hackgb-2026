@@ -3,7 +3,7 @@ import { Link } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import logo from '../assets/images/logos/logo.gif';
-import foxRiverImg from '../assets/images/background/fox-river.png';
+import foxRiverImg from '../assets/images/background/jpg/fox-river.jpg';
 import { ArrowRight } from 'lucide-react';
 import { APPLICATIONS_OPEN } from '../data/constants';
 

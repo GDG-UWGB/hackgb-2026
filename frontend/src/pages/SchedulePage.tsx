@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, MapPin, User, Sparkles } from 'lucide-react';
-import stemImg from '../assets/images/background/uwgb-stem.png';
+import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { saturdaySchedule, sundaySchedule } from '../data/scheduleData';
 
 const SchedulePage = () => {

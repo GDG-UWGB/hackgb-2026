@@ -13,7 +13,7 @@ import {
   faTimes,
   faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import titletownImg from '../assets/images/background/titletown-district.png';
+import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Terminal } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, Database, Share2, Shield, Settings } from 'lucide-react';
-import waterfrontImg from '../assets/images/background/gb-waterfront.png';
+import waterfrontImg from '../assets/images/background/jpg/gb-waterfront.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import lambeauImg from '../assets/images/background/lambeau-field.png';
+import lambeauImg from '../assets/images/background/jpg/lambeau-field.jpg';
 import gdgLogo from '../assets/images/gdg/GDG On Campus - Horizontal - Light.png';
 import network404Logo from '../assets/images/logos/404_logo.png';
 import { Users, Clock, Compass, Trophy, MapPin, Calendar } from 'lucide-react';

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import stemImg from '../assets/images/background/uwgb-stem.png';
+import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 
 const CodeOfConduct = () => {
   const navigate = useNavigate();

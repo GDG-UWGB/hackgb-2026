@@ -17,7 +17,7 @@ import cityOfGbLogo from '../assets/images/sponsors/partners/city-of-gb.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 import pureButtonsLogo from '../assets/images/sponsors/partners/pure-buttons.png';
 import network404Logo from '../assets/images/logos/404_logo.png';
-import gbWaterfrontImg from '../assets/images/background/gb-waterfront.png';
+import gbWaterfrontImg from '../assets/images/background/jpg/gb-waterfront.jpg';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
 /* Premium spring easing */

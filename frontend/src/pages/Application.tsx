@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBriefcase, faMapPin, faFileSignature, faUpload, faFilePdf, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import stemImg from '../assets/images/background/uwgb-stem.png';
+import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { Terminal } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
 import { SchoolCombobox } from '../components/common/SchoolCombobox';
