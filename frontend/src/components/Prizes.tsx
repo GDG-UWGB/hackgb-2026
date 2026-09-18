@@ -10,12 +10,8 @@ import ankerSpace2Img from '../assets/images/prizes/anker_space2.jpg';
 import amazfitActive3Img from '../assets/images/prizes/amazfit_active3.jpg';
 import steelseriesApex3Img from '../assets/images/prizes/steelseries_apex3.jpg';
 import logitechMx3sImg from '../assets/images/prizes/logitech_mx3s.jpg';
-import legoGameboyImg from '../assets/images/prizes/lego_gameboy.jpg';
 import elgatoStreamdeckImg from '../assets/images/prizes/elgato_streamdeck.jpg';
 import legoWalleImg from '../assets/images/prizes/lego_walle.jpg';
-import legoBugattiImg from '../assets/images/prizes/lego_bugatti.jpg';
-import jblFlip6Img from '../assets/images/prizes/jbl_flip6.jpg';
-import hyperxEveImg from '../assets/images/prizes/hyperx_eve.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
