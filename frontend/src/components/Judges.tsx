@@ -121,6 +121,26 @@ const judges: Judge[] = [
         icon: Monitor,
         color: '#4A90D9',
     },
+    {
+        name: 'Anurag Gupta',
+        title: 'Sr. Geospatial Data Engineer',
+        company: 'Enterprise Products',
+        expertise: ['Geospatial Data', 'AI/ML', 'Cloud & DevOps', 'Software Engineering'],
+        bio: 'Anurag Gupta is a technology professional with experience in software development, data, and emerging technologies. His expertise spans AI/ML, software engineering, and building practical technology solutions, with a strong interest in mentoring and supporting innovative student projects.',
+        linkedin: 'https://www.linkedin.com/in/anurag96/',
+        icon: Globe,
+        color: '#0C3C34',
+    },
+    {
+        name: 'Kumuda Sreenivasa',
+        title: 'Sr. Data Architect & Founder',
+        company: 'Receitly',
+        expertise: ['Data Architecture', 'AI/ML', 'Healthcare Tech', 'Product Management'],
+        bio: 'Kumuda Sreenivasa is a Founder and technology professional with a background in data architecture, software engineering, and AI/ML, specializing in building scalable, data-driven systems and intelligent products. Her expertise spans data engineering, cloud technologies, machine learning, and product development, with experience bridging complex technical challenges and real-world business applications.',
+        linkedin: 'https://www.linkedin.com/in/kumudas/',
+        icon: Database,
+        color: '#61A644',
+    },
 ];
 
 /* ── Judge Card ── */
