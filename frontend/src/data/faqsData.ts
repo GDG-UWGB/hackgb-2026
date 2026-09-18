@@ -15,6 +15,10 @@ export const faqs: FAQ[] = [
         answer: "Any undergraduate or graduate university student over the age of 18 is welcome. Even if you just graduated in the past year, we would love to have you."
     },
     {
+        question: "I am an international student. Can you help with my U.S. visa application?",
+        answer: "While we are glad to have international students attend, participants must already have the necessary U.S. visa and travel documents. Our team cannot provide official invitation letters, recommend a visa category, or assist with the visa application process."
+    },
+    {
         question: "Do I need to pay to attend?",
         answer: "No, HackGB is completely free. We provide the meals, snacks, drinks, and swag. We want to make sure everyone can join in without worrying about costs."
     },
