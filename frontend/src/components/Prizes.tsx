@@ -111,7 +111,7 @@ const prizeCategories = [
         icon: Ticket,
         color: "#4A90D9",
         prizes: [
-            { name: "Coming soon...", prize: "TBA", desc: "More information about our raffle prizes will be announced closer to the event!" }
+            { name: "Raffle Prizes", prize: "TBD", desc: "More information about our exciting raffle prizes will be announced soon!" }
         ]
     }
 ];
@@ -236,9 +236,9 @@ const Prizes = () => {
                                                                             {p.desc}
                                                                         </p>
                                                                     </div>
-                                                                    <div className="w-full md:w-40 h-28 bg-white/60 rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden">
+                                                                    <div className="w-full md:w-40 h-28 bg-white rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden">
                                                                         {(p as any).image ? (
-                                                                            <img src={(p as any).image} alt={p.name} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                                                                            <img src={(p as any).image} alt={p.name} className="w-full h-full object-contain p-2" />
                                                                         ) : (
                                                                             <>
                                                                                 <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
