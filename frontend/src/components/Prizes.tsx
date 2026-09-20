@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Target, Heart, Ticket, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { Trophy, Target, Heart, Ticket, ChevronRight, Image as ImageIcon, Award, ExternalLink } from 'lucide-react';
 import gbTrailImg from '../assets/images/background/jpg/gb-trail.jpg';
 
 import ipadImg from '../assets/images/prizes/ipad.jpg';
@@ -11,7 +11,18 @@ import amazfitActive3Img from '../assets/images/prizes/amazfit_active3.jpg';
 import steelseriesApex3Img from '../assets/images/prizes/steelseries_apex3.jpg';
 import logitechMx3sImg from '../assets/images/prizes/logitech_mx3s.jpg';
 import elgatoStreamdeckImg from '../assets/images/prizes/elgato_streamdeck.jpg';
-import legoWalleImg from '../assets/images/prizes/lego_walle.jpg';
+import raspberryPi5Img from '../assets/images/prizes/raspberry_pi_5.jpg';
+import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
+import lovableLogo from '../assets/images/sponsors/flame/lovable.png';
+import photonLogo from '../assets/images/sponsors/ember/photon.png';
+
+import elevenLabsLogo from '../assets/images/sponsors/mlh/elevenlabs.png';
+import geminiLogo from '../assets/images/sponsors/mlh/gemini.png';
+import solanaLogo from '../assets/images/sponsors/mlh/solana.png';
+import tigerDataLogo from '../assets/images/sponsors/mlh/tiger-data.png';
+import presageLogo from '../assets/images/sponsors/mlh/presage.png';
+import digitalOceanLogo from '../assets/images/sponsors/mlh/digitalocean.png';
+import goDaddyRegistryLogo from '../assets/images/sponsors/mlh/godaddy-registry.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -86,9 +97,9 @@ const prizeCategories = [
             },
             { 
                 name: "Best Hardware Hack", 
-                prize: "LEGO - WALL-E and EVE 43279",
+                prize: "Raspberry Pi 5 - Vilros Essentials Kit",
                 desc: "Awarded to the best integration of physical hardware and software.",
-                image: legoWalleImg
+                image: raspberryPi5Img
             }
         ]
     },
@@ -97,9 +108,82 @@ const prizeCategories = [
         icon: Heart,
         color: "#E37100",
         prizes: [
-            { name: "Best Use of Modal", prize: "$1,000 in Modal credits", desc: "Awarded to the project that demonstrates the most innovative and effective use of Modal. Each participant receives $100 in Modal credits, valid for one year." },
-            { name: "Best Use of Lovable", prize: "1-Year Lovable Pro Subscription", desc: "Awarded to the project that demonstrates the most creative and impactful use of Lovable. Each participant receives $100 worth of Lovable credits." },
-            { name: "Best Use of Photon", prize: "TBD", desc: "Awarded to the project that demonstrates the strongest use of Photon's API. Participants receive access to Photon's API for use during HackGB." }
+            { 
+                name: "Best Use of Modal", 
+                prize: "$1,000 in Modal credits", 
+                desc: "Awarded to the project that demonstrates the most innovative and effective use of Modal. Each participant receives $100 in Modal credits, valid for one year.",
+                image: modalLogo
+            },
+            { 
+                name: "Best Use of Lovable", 
+                prize: "1-Year Lovable Pro Subscription", 
+                desc: "Awarded to the project that demonstrates the most creative and impactful use of Lovable. Each participant receives $100 worth of Lovable credits.",
+                image: lovableLogo
+            },
+            { 
+                name: "Best Use of Photon", 
+                prize: "TBD", 
+                desc: "Awarded to the project that demonstrates the strongest use of Photon's API. Participants receive access to Photon's API for use during HackGB.",
+                image: photonLogo,
+                darkBg: true
+            }
+        ]
+    },
+    {
+        title: "MLH Sponsored Tracks",
+        icon: Award,
+        color: "#E73356",
+        link: "https://www.mlh.com/events/hackgb/prizes",
+        prizes: [
+            { 
+                name: "Best Use of ElevenLabs", 
+                prize: "Wireless Earbuds", 
+                desc: "Deploy natural, human-sounding audio with ElevenLabs. Create realistic, dynamic, and emotionally expressive voices for any project, from interactive AI companions to narrated stories and voice-enabled apps.",
+                image: elevenLabsLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            },
+            { 
+                name: "Best Use of Gemini API", 
+                prize: "MLH Swag Kits", 
+                desc: "Push the boundaries of what's possible with AI using Google Gemini. Build AI-powered apps with language understanding, research summarization, and multimodal creative generation.",
+                image: geminiLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            },
+            { 
+                name: "Best Use of Solana", 
+                prize: "Ledger Nano S Plus", 
+                desc: "Build fast, scalable, and decentralized applications harnessing Solana's high-speed execution and near-zero transaction costs.",
+                image: solanaLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            },
+            { 
+                name: "Best Use of Tiger Data", 
+                prize: "Stream Deck Mini", 
+                desc: "Leverage Tiger Data's extension of PostgreSQL for ultra-fast real-time data, time-series metrics, complex analytics, and pre-computed continuous aggregates.",
+                image: tigerDataLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            },
+            { 
+                name: "Best Use of Presage", 
+                prize: "Fitbit Inspire & Presage Perks", 
+                desc: "Build with Presage's Human Sensing Layer to track clinically-proven vital signs, movement, emotion, or focus in real time with contactless cameras. Winners also receive free credit refills and 30% off first-year usage.",
+                image: presageLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            },
+            { 
+                name: "Best Use of DigitalOcean", 
+                prize: "Retro Wireless Mouse", 
+                desc: "Deploy on DigitalOcean's reliable cloud platform using Droplets, Managed Databases, App Platform, or Gradient AI for model training and GPU inference.",
+                image: digitalOceanLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            },
+            { 
+                name: "Best Domain Name from GoDaddy Registry", 
+                prize: "Digital Gift Card", 
+                desc: "Register a creative and memorable domain name with GoDaddy Registry for your hackathon project.",
+                image: goDaddyRegistryLogo,
+                link: "https://www.mlh.com/events/hackgb/prizes"
+            }
         ]
     },
     {
@@ -178,16 +262,29 @@ const Prizes = () => {
                             const Icon = category.icon;
                             return (
                                 <motion.div key={categoryIdx} {...fadeUp(0.05 * (categoryIdx + 1))}>
-                                    <div className="flex items-center gap-3 mb-6 border-b border-black/10 pb-4">
-                                        <div 
-                                            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-sm bg-white"
-                                            style={{ borderColor: `${category.color}40` }}
-                                        >
-                                            <Icon className="w-5 h-5" style={{ color: category.color }} />
+                                    <div className="flex items-center justify-between gap-4 mb-6 border-b border-black/10 pb-4">
+                                        <div className="flex items-center gap-3">
+                                            <div 
+                                                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-sm bg-white"
+                                                style={{ borderColor: `${category.color}40` }}
+                                            >
+                                                <Icon className="w-5 h-5" style={{ color: category.color }} />
+                                            </div>
+                                            <h3 className="font-google font-bold text-2xl text-[#0C3C34]">
+                                                {category.title}
+                                            </h3>
                                         </div>
-                                        <h3 className="font-google font-bold text-2xl text-[#0C3C34]">
-                                            {category.title}
-                                        </h3>
+                                        {(category as any).link && (
+                                            <a 
+                                                href={(category as any).link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-google font-bold text-[#E73356] hover:text-white bg-[#E73356]/10 hover:bg-[#E73356] transition-all border border-[#E73356]/20 shadow-xs shrink-0"
+                                            >
+                                                <span>View on MLH</span>
+                                                <ExternalLink className="w-3.5 h-3.5" />
+                                            </a>
+                                        )}
                                     </div>
 
                                     <div className="flex flex-col gap-3">
@@ -228,13 +325,25 @@ const Prizes = () => {
                                                                 <div className="mt-5 ml-7 pt-5 border-t border-black/5 flex flex-col md:flex-row gap-6 items-start">
                                                                     <div className="flex-1">
                                                                         <h5 className="font-google-mono text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Judging Criteria</h5>
-                                                                        <p className="font-google-text text-sm text-slate-600 leading-relaxed font-medium">
+                                                                        <p className="font-google-text text-sm text-slate-600 leading-relaxed font-medium mb-3">
                                                                             {p.desc}
                                                                         </p>
+                                                                        {(p as any).link && (
+                                                                            <a
+                                                                                href={(p as any).link}
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
+                                                                                onClick={(e) => e.stopPropagation()}
+                                                                                className="inline-flex items-center gap-1.5 text-xs font-google font-bold text-[#E73356] hover:text-[#c42846] transition-colors group/link mt-1"
+                                                                            >
+                                                                                <span>View challenge on MLH website</span>
+                                                                                <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                                                                            </a>
+                                                                        )}
                                                                     </div>
-                                                                    <div className="w-full md:w-40 h-28 bg-white rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden">
+                                                                    <div className={`w-full md:w-40 h-28 ${(p as any).darkBg ? 'bg-black' : 'bg-white'} rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden`}>
                                                                         {(p as any).image ? (
-                                                                            <img src={(p as any).image} alt={p.name} className="w-full h-full object-contain p-2" />
+                                                                            <img src={(p as any).image} alt={p.name} className="w-full h-full object-contain p-3" />
                                                                         ) : (
                                                                             <>
                                                                                 <ImageIcon className="w-6 h-6 mb-2 opacity-40" />

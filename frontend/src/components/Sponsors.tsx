@@ -20,6 +20,14 @@ import network404Logo from '../assets/images/logos/404_logo.png';
 import gbWaterfrontImg from '../assets/images/background/jpg/gb-waterfront.jpg';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
+import elevenLabsLogo from '../assets/images/sponsors/mlh/elevenlabs.png';
+import geminiLogo from '../assets/images/sponsors/mlh/gemini.png';
+import solanaLogo from '../assets/images/sponsors/mlh/solana.png';
+import tigerDataLogo from '../assets/images/sponsors/mlh/tiger-data.png';
+import presageLogo from '../assets/images/sponsors/mlh/presage.png';
+import digitalOceanLogo from '../assets/images/sponsors/mlh/digitalocean.png';
+import goDaddyRegistryLogo from '../assets/images/sponsors/mlh/godaddy-registry.png';
+
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
@@ -33,7 +41,7 @@ const fadeUp = (delay = 0) => ({
 interface Sponsor {
     name: string;
     logo: string;
-    tier: 'phoenix' | 'flame' | 'ember' | 'spark' | 'partner';
+    tier: 'phoenix' | 'flame' | 'ember' | 'spark' | 'partner' | 'mlh';
     link?: string;
     description?: string;
     darkBg?: boolean;
@@ -70,6 +78,13 @@ const sponsors: Sponsor[] = [
         link: 'https://mlh.link/MLH-PureButtons-hackathons',
         description: 'Pure Buttons - Custom Buttons, Stickers & Promotional Materials',
     },
+    { name: 'ElevenLabs', logo: elevenLabsLogo, tier: 'mlh', link: 'https://mlh.link/elevenlabs', description: 'ElevenLabs - Voice AI & Audio Generation' },
+    { name: 'Google Gemini', logo: geminiLogo, tier: 'mlh', link: 'https://mlh.link/gemini', description: 'Google Gemini - Next-generation AI models' },
+    { name: 'Solana', logo: solanaLogo, tier: 'mlh', link: 'https://mlh.link/solana', description: 'Solana - High-performance scalable blockchain' },
+    { name: 'Tiger Data', logo: tigerDataLogo, tier: 'mlh', link: 'https://mlh.link/tigerdata', description: 'Tiger Data - Time-series & analytics for PostgreSQL' },
+    { name: 'Presage', logo: presageLogo, tier: 'mlh', link: 'https://mlh.link/presage', description: 'Presage - Real-time human sensing layer' },
+    { name: 'DigitalOcean', logo: digitalOceanLogo, tier: 'mlh', link: 'https://mlh.link/digitalocean', description: 'DigitalOcean - Simple, scalable cloud computing' },
+    { name: 'GoDaddy Registry', logo: goDaddyRegistryLogo, tier: 'mlh', link: 'https://mlh.link/GoDaddyRegistry', description: 'GoDaddy Registry - Domain name registry & infrastructure' },
 ];
 
 const Sponsors = () => {
@@ -78,6 +93,7 @@ const Sponsors = () => {
     const emberSponsors = sponsors.filter(s => s.tier === 'ember');
     const sparkSponsors = sponsors.filter(s => s.tier === 'spark');
     const partnerSponsors = sponsors.filter(s => s.tier === 'partner');
+    const mlhSponsors = sponsors.filter(s => s.tier === 'mlh');
 
     const renderSponsorCards = (
         list: Sponsor[],
@@ -272,6 +288,17 @@ const Sponsors = () => {
                                     <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"partners" : [</span>
                                 </div>
                                 {renderSponsorCards(partnerSponsors, 'w-48 md:w-52 h-24 md:h-28', 'h-14 md:h-16', 'max-w-[900px]', 'text-xs font-medium')}
+                            </div>
+                        )}
+
+                        {/* MLH Track Partners */}
+                        {mlhSponsors.length > 0 && (
+                            <div className="text-center">
+                                <div className="flex items-center justify-center gap-3 mb-6 border-b border-black/5 pb-3">
+                                    <span className="w-3 h-3 rounded-full bg-[#E73356]" />
+                                    <span className="font-google-mono font-bold text-xs uppercase tracking-wider text-slate-500">"mlh-track-partners" : [</span>
+                                </div>
+                                {renderSponsorCards(mlhSponsors, 'w-48 md:w-52 h-24 md:h-28', 'h-12 md:h-14', 'max-w-[900px]', 'text-xs font-medium')}
                             </div>
                         )}
                     </div>
