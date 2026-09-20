@@ -29,7 +29,7 @@ const FAQ = () => {
         <section className="relative pt-28 pb-48 px-4 overflow-hidden" id="faqs">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={cheeseHeritageImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <img src={cheeseHeritageImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 

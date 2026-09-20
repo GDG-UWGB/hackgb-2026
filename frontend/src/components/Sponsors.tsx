@@ -116,6 +116,8 @@ const Sponsors = () => {
                                 <img
                                     src={sponsor.logo}
                                     alt={sponsor.name}
+                                    loading="lazy"
+                                    decoding="async"
                                     className={`${imgHeightClass} w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-105`}
                                 />
                             </div>
@@ -149,7 +151,7 @@ const Sponsors = () => {
         <section className="relative pt-16 pb-28 px-4 overflow-hidden" id="sponsors">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={gbWaterfrontImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <img src={gbWaterfrontImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
@@ -253,6 +255,8 @@ const Sponsors = () => {
                                                     <img
                                                         src={sponsor.logo}
                                                         alt={sponsor.name}
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         className="h-8 md:h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                                                     />
                                                 </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import stemImg from '../../assets/images/background/jpg/stem.png';
+import stemImg from '../../assets/images/background/jpg/stem.jpg';
 import bayBeachImg from '../../assets/images/background/jpg/bay-beach.jpg';
 import TransportationInfo from './TransportationInfo';
 import { Map, MapPin, Copy, Check } from 'lucide-react';
@@ -30,7 +30,7 @@ const Travel = () => {
         <section className='relative pt-28 pb-48 px-4 overflow-hidden' id="travel">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={bayBeachImg} alt="" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
+                <img src={bayBeachImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 
@@ -141,6 +141,8 @@ const Travel = () => {
                                     <img
                                         src={stemImg}
                                         alt="Brown County STEM Innovation Center"
+                                        loading="lazy"
+                                        decoding="async"
                                         className='w-full h-full object-cover'
                                     />
                                 </div>

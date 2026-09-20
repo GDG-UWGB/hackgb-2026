@@ -45,10 +45,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
             <div className="flex flex-wrap items-center gap-3.5 mb-4">
-              <img src={logo} alt="HackGB Logo" className="h-12 w-auto object-contain opacity-90" />
+              <img src={logo} alt="HackGB Logo" loading="lazy" decoding="async" className="h-12 w-auto object-contain opacity-90" />
               <div className="h-8 w-[1px] bg-slate-300" />
               <a href="https://gdg.uwgb.edu/" target="_blank" rel="noopener noreferrer" className="flex items-center" title="GDG on Campus UW-Green Bay">
-                <img src={gdgLogo} alt="GDG UWGB Logo" className="h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
+                <img src={gdgLogo} alt="GDG UWGB Logo" loading="lazy" decoding="async" className="h-12 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity" />
               </a>
               <div className="h-8 w-[1px] bg-slate-300" />
               <a
@@ -59,7 +59,7 @@ const Footer = () => {
                 title="404 Network - Computer Science Club at UWGB"
               >
                 <div className="bg-black px-2.5 py-1.5 rounded-lg border border-black/10 shadow-xs flex items-center hover:opacity-90 transition-opacity">
-                  <img src={network404Logo} alt="404 Network Logo" className="h-7 w-auto object-contain" />
+                  <img src={network404Logo} alt="404 Network Logo" loading="lazy" decoding="async" className="h-7 w-auto object-contain" />
                 </div>
               </a>
             </div>

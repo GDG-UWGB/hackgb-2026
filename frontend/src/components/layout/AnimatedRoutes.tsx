@@ -1,21 +1,23 @@
 // Adds animated transitions between routes using Framer Motion.
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, type Transition } from 'framer-motion';
 import { useScrollToTop } from '../../hooks/useScrollToTop';
 
-// Import Page components (The different pages of the app)
+// Eager load Home for instant first paint
 import Home from '../../pages/Home';
-import Faqs from '../../pages/Faqs';
-import ApplyOptions from '../../pages/ApplyOptions';
-import Application from '../../pages/Application';
-import JudgeApplication from '../../pages/JudgeApplication';
-import MentorApplication from '../../pages/MentorApplication';
-import CodeOfConduct from '../../pages/CodeOfConduct';
-import PrivacyPolicy from '../../pages/PrivacyPolicy';
-import OpeningSoon from '../../pages/OpeningSoon';
-import SchedulePage from '../../pages/SchedulePage';
+
+// Lazy load secondary routes to keep initial bundle size minimal
+const Faqs = lazy(() => import('../../pages/Faqs'));
+const ApplyOptions = lazy(() => import('../../pages/ApplyOptions'));
+const Application = lazy(() => import('../../pages/Application'));
+const JudgeApplication = lazy(() => import('../../pages/JudgeApplication'));
+const MentorApplication = lazy(() => import('../../pages/MentorApplication'));
+const CodeOfConduct = lazy(() => import('../../pages/CodeOfConduct'));
+const PrivacyPolicy = lazy(() => import('../../pages/PrivacyPolicy'));
+const OpeningSoon = lazy(() => import('../../pages/OpeningSoon'));
+const SchedulePage = lazy(() => import('../../pages/SchedulePage'));
 import { checkApplicationsOpen } from '../../data/constants';
 
 
@@ -36,7 +38,13 @@ const PageWrapper = ({ children }: { children: React.ReactNode }) => {
             transition={pageTransition}
             className="w-full h-full"
         >
-            {children}
+            <Suspense fallback={
+                <div className="min-h-[60vh] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full border-2 border-[#61A644] border-t-transparent animate-spin" />
+                </div>
+            }>
+                {children}
+            </Suspense>
         </motion.div>
     );
 };

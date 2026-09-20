@@ -158,6 +158,8 @@ const JudgeCard = ({ judge, onExpand }: { judge: Judge; onExpand: () => void }) 
                         <img
                             src={judge.photo}
                             alt={judge.name}
+                            loading="lazy"
+                            decoding="async"
                             className="w-24 h-24 rounded-full object-cover border-3 shadow-lg transition-transform duration-300 group-hover:scale-110"
                             style={{ borderColor: `${judge.color}50` }}
                         />
@@ -292,6 +294,8 @@ const JudgeModal = ({ judge, onClose }: { judge: Judge; onClose: () => void }) =
                             <img
                                 src={judge.photo}
                                 alt={judge.name}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-28 h-28 rounded-2xl object-cover border-4 border-white shadow-xl"
                             />
                         ) : (
@@ -417,7 +421,7 @@ const Judges = () => {
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="judges">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={gbWaterfrontImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <img src={gbWaterfrontImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
                 <div className="absolute inset-0 bg-[#0C3C34]/[0.01]" />
             </div>
 

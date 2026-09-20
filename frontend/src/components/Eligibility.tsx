@@ -17,7 +17,7 @@ const Eligibility = () => {
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="eligibility">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={uwgbStemImg} alt="" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
+                <img src={uwgbStemImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.45] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 

@@ -22,9 +22,10 @@ const Hero = () => {
         if (!ctx) return;
 
         let animationFrameId: number;
+        let isVisible = true;
         let particles: Particle[] = [];
         let pulses: Pulse[] = [];
-        const particleCount = 85;
+        const particleCount = window.innerWidth < 768 ? 40 : 80;
         const maxDistance = 110;
         let time = 0;
 
@@ -155,9 +156,11 @@ const Hero = () => {
         resizeCanvas();
 
         const animate = () => {
+            if (!isVisible) return;
+
             const w = window.innerWidth;
             const h = window.innerHeight;
-            time += 0.001;
+            time += 0.0006;
 
             ctx.clearRect(0, 0, w, h);
 
@@ -243,9 +246,25 @@ const Hero = () => {
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        animate();
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const wasVisible = isVisible;
+                isVisible = entry.isIntersecting;
+                if (isVisible && !wasVisible) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = requestAnimationFrame(animate);
+                } else if (!isVisible) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            },
+            { threshold: 0.05 }
+        );
+        observer.observe(canvas);
+
+        animationFrameId = requestAnimationFrame(animate);
 
         return () => {
+            observer.disconnect();
             window.removeEventListener('resize', resizeCanvas);
             window.removeEventListener('mousemove', handleMouseMove);
             canvas.removeEventListener('mouseleave', handleMouseLeave);
@@ -257,7 +276,7 @@ const Hero = () => {
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 overflow-hidden bg-transparent">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0">
-                <img src={foxRiverImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <img src={foxRiverImg} alt="" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
                 <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
             </div>
 

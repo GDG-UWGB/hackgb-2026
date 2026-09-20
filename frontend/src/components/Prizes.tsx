@@ -207,7 +207,7 @@ const Prizes = () => {
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="prizes">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={gbTrailImg} alt="" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
+                <img src={gbTrailImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
                 <div className="absolute inset-0 bg-[#E37100]/[0.01]" />
             </div>
 
@@ -343,7 +343,7 @@ const Prizes = () => {
                                                                     </div>
                                                                     <div className={`w-full md:w-40 h-28 ${(p as any).darkBg ? 'bg-black' : 'bg-white'} rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden`}>
                                                                         {(p as any).image ? (
-                                                                            <img src={(p as any).image} alt={p.name} className="w-full h-full object-contain p-3" />
+                                                                            <img src={(p as any).image} alt={p.name} loading="lazy" decoding="async" className="w-full h-full object-contain p-3" />
                                                                         ) : (
                                                                             <>
                                                                                 <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
