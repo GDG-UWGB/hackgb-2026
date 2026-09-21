@@ -2,6 +2,7 @@ import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
 
 export interface SpeakerProfile {
   name: string;
@@ -153,27 +154,27 @@ export const saturdaySchedule: ScheduleItem[] = [
   {
     id: 'sat-workshop-3-baytek',
     time: '03:30 PM',
-    endTime: '04:15 PM',
-    title: 'Workshop 3: Bay Tek Workshop',
-    topic: 'TBD',
+    endTime: '04:30 PM',
+    title: '"From Screen to Machine"',
+    topic: 'Translating Digital Games to Physical Arcade Experiences',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
     isWorkshop: true,
-    badge: 'Bay Tek',
+    badge: 'Bay Tek (The Village)',
     badgeColor: '#E37100',
     accent: '#E37100',
     companyLogo: theVillageLogo,
     companyLink: 'https://www.thevillage.bz/',
     speaker: {
-      name: 'Bay Tek Team',
-      role: 'Engineering & Innovation',
+      name: 'Pat Scanlan',
+      role: 'Director of Product Development',
       company: 'Bay Tek Entertainment',
-      avatarUrl: '',
-      bio: 'Representing Bay Tek Entertainment (The Village).',
+      avatarUrl: patScanlanImg,
+      bio: 'Director of Product Development at Bay Tek Entertainment. Guiding participants through translating digital game mechanics into real-world arcade experiences and leading a Shark Tank-style pitch session.',
     },
-    bufferAfterMinutes: 45,
-    bufferDescription: 'Buffer before dinner',
-    desc: 'Interactive workshop hosted by Bay Tek Entertainment. Topic: TBD. Hosted in the University Union (Room: TBD).',
+    bufferAfterMinutes: 30,
+    bufferDescription: '30-minute buffer before dinner',
+    desc: 'Take a popular mobile or digital game and translate it into a real-world mechanical arcade game! Use workshop time to research, select your game, and pitch your idea. Conclude with a cabinet render for a Shark Tank-like pitch session (30 minutes to prep/develop, followed by 2–3 minutes per group to pitch to Bay Tek).',
   },
 
   /* =======================================================================

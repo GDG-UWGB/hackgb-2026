@@ -34,7 +34,7 @@ const saturdayEvents: ScheduleEvent[] = [
     {
         time: '01:30 PM',
         title: 'Workshops & Info Sessions',
-        desc: 'University Union • Sessions begin with Modal, Faith Technologies, Inc. (FTI) (Company Info & Recruiting), and Bay Tek, followed by GDE workshops.',
+        desc: 'University Union • Sessions begin with Modal, Faith Technologies, Inc. (FTI) (Company Info & Recruiting), and Bay Tek ("From Screen to Machine"), followed by GDE workshops.',
         accent: '#ffcc00',
         logos: [
             { name: 'Modal', logo: modalLogo, link: 'https://modal.com' },

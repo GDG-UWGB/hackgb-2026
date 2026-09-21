@@ -202,12 +202,18 @@ const SchedulePage = () => {
                     {/* Speaker Space (Clean, non-clustered card) */}
                     {evt.speaker && (
                       <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-black/5 flex items-start gap-3.5">
-                        <div className="w-11 h-11 rounded-xl bg-white border border-black/10 flex items-center justify-center shrink-0 p-1.5 shadow-2xs overflow-hidden">
-                          {evt.companyLogo ? (
+                        <div className="w-12 h-12 rounded-xl bg-white border border-black/10 flex items-center justify-center shrink-0 shadow-2xs overflow-hidden">
+                          {evt.speaker.avatarUrl ? (
+                            <img
+                              src={evt.speaker.avatarUrl}
+                              alt={evt.speaker.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : evt.companyLogo ? (
                             <img
                               src={evt.companyLogo}
                               alt={evt.speaker.company}
-                              className="w-full h-full object-contain"
+                              className="w-full h-full object-contain p-1.5"
                             />
                           ) : (
                             <User className="w-5 h-5 text-slate-500" />
