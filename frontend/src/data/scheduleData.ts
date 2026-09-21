@@ -1,3 +1,8 @@
+import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
+import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
+import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
+import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+
 export interface SpeakerProfile {
   name: string;
   role: string;
@@ -14,7 +19,7 @@ export interface ScheduleItem {
   topic: string; // 'TBD' or specified
   room: string;
   category: 'workshop' | 'ceremony' | 'meal' | 'logistics';
-  badge?: 'Modal' | 'Google Developer Expert' | 'Meal' | 'Key Milestone';
+  badge?: 'Modal' | 'FTI' | 'Bay Tek' | 'Google Developer Expert' | 'Meal' | 'Key Milestone';
   badgeColor?: string;
   accent: string;
   speaker?: SpeakerProfile;
@@ -22,6 +27,8 @@ export interface ScheduleItem {
   bufferDescription?: string;
   desc: string;
   isWorkshop?: boolean;
+  companyLogo?: string;
+  companyLink?: string;
 }
 
 export const saturdaySchedule: ScheduleItem[] = [
@@ -89,70 +96,76 @@ export const saturdaySchedule: ScheduleItem[] = [
     id: 'sat-workshop-1-modal',
     time: '01:30 PM',
     endTime: '02:15 PM',
-    title: 'Workshop 1: Modal Workshop',
-    topic: 'TBD',
+    title: 'Modal: Technical Workshop & API Deep Dive',
+    topic: 'Modal API, Cloud Compute & Track Criteria',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Modal',
     badgeColor: '#00C853',
     accent: '#00C853',
+    companyLogo: modalLogo,
+    companyLink: 'https://modal.com',
     speaker: {
-      name: 'Modal Speaker',
-      role: 'Engineer / Developer Advocate',
+      name: 'Modal Engineering Team',
+      role: 'Developer Advocate & Systems Engineer',
       company: 'Modal',
       avatarUrl: '',
-      bio: 'Representing Modal.',
+      bio: 'Learn how to build and scale serverless Python applications, deploy containerized AI models, and optimize your project for the Best Use of Modal track.',
     },
     bufferAfterMinutes: 15,
     bufferDescription: '15-minute buffer before next workshop',
-    desc: 'Opening workshop hosted by Modal. Topic: TBD. Hosted in the University Union (Room: TBD).',
+    desc: 'Technical workshop hosted by Modal. Learn how to use the Modal API to run code in the cloud without managing infrastructure, explore sample project ideas, and review judging criteria for the Best Use of Modal prize track.',
   },
   {
-    id: 'sat-workshop-2-gde',
+    id: 'sat-workshop-2-fti',
     time: '02:30 PM',
     endTime: '03:15 PM',
-    title: 'Workshop 2: GDE Workshop',
-    topic: 'TBD',
+    title: 'FTI: Company Info & Recruitment Session',
+    topic: 'Company Overview, Careers & Hiring',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
     isWorkshop: true,
-    badge: 'Google Developer Expert',
-    badgeColor: '#4285F4',
-    accent: '#4285F4',
+    badge: 'FTI',
+    badgeColor: '#0284C7',
+    accent: '#0284C7',
+    companyLogo: ftiLogo,
+    companyLink: 'https://www.faithtechinc.com/',
     speaker: {
-      name: 'Google Developer Expert',
-      role: 'Google Developer Expert',
-      company: 'Google Developer Experts',
+      name: 'FTI Recruiting & Team',
+      role: 'Talent Acquisition & Engineering',
+      company: 'Faith Technologies (FTI)',
       avatarUrl: '',
-      bio: 'Recognized expert by Google.',
+      bio: 'Connect with recruiters and team members from Faith Technologies (FTI) to learn about open roles, internships, and company culture.',
     },
     bufferAfterMinutes: 15,
     bufferDescription: '15-minute buffer before next workshop',
-    desc: 'Technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
+    desc: 'Company information and recruiting session hosted by Faith Technologies (FTI). Meet the team, learn about the company and what they do, and discover career and internship opportunities.',
   },
   {
-    id: 'sat-workshop-3-gde',
+    id: 'sat-workshop-3-baytek',
     time: '03:30 PM',
     endTime: '04:15 PM',
-    title: 'Workshop 3: GDE Workshop',
+    title: 'Workshop 3: Bay Tek Workshop',
     topic: 'TBD',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
     isWorkshop: true,
-    badge: 'Google Developer Expert',
-    badgeColor: '#EA4335',
-    accent: '#EA4335',
+    badge: 'Bay Tek',
+    badgeColor: '#E37100',
+    accent: '#E37100',
+    companyLogo: theVillageLogo,
+    companyLink: 'https://www.thevillage.bz/',
     speaker: {
-      name: 'Google Developer Expert',
-      role: 'Google Developer Expert',
-      company: 'Google Developer Experts',
+      name: 'Bay Tek Team',
+      role: 'Engineering & Innovation',
+      company: 'Bay Tek Entertainment',
       avatarUrl: '',
-      bio: 'Recognized expert by Google.',
+      bio: 'Representing Bay Tek Entertainment (The Village).',
     },
     bufferAfterMinutes: 45,
     bufferDescription: 'Buffer before dinner',
-    desc: 'Technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
+    desc: 'Interactive workshop hosted by Bay Tek Entertainment. Topic: TBD. Hosted in the University Union (Room: TBD).',
   },
 
   /* =======================================================================
@@ -174,16 +187,15 @@ export const saturdaySchedule: ScheduleItem[] = [
 
   /* =======================================================================
      EVENING WORKSHOPS BLOCK
-     - Continues till 10:00 PM
+     - Two GDE technical workshops (7:00 PM - 8:45 PM)
      - In University Union (Room: TBD)
-     - At least 15 min buffer between each
-     - GDE workshops
+     - 15 min buffer between sessions
      ======================================================================= */
   {
     id: 'sat-workshop-4-gde',
     time: '07:00 PM',
     endTime: '07:45 PM',
-    title: 'Workshop 4: GDE Workshop',
+    title: 'Workshop 4: GDE Workshop (Session 1)',
     topic: 'TBD',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
@@ -191,6 +203,8 @@ export const saturdaySchedule: ScheduleItem[] = [
     badge: 'Google Developer Expert',
     badgeColor: '#FBBC05',
     accent: '#FBBC05',
+    companyLogo: googleLogo,
+    companyLink: 'https://developers.google.com/community/experts',
     speaker: {
       name: 'Google Developer Expert',
       role: 'Google Developer Expert',
@@ -206,7 +220,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     id: 'sat-workshop-5-gde',
     time: '08:00 PM',
     endTime: '08:45 PM',
-    title: 'Workshop 5: GDE Workshop',
+    title: 'Workshop 5: GDE Workshop (Session 2)',
     topic: 'TBD',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
@@ -214,6 +228,8 @@ export const saturdaySchedule: ScheduleItem[] = [
     badge: 'Google Developer Expert',
     badgeColor: '#34A853',
     accent: '#34A853',
+    companyLogo: googleLogo,
+    companyLink: 'https://developers.google.com/community/experts',
     speaker: {
       name: 'Google Developer Expert',
       role: 'Google Developer Expert',
@@ -221,32 +237,7 @@ export const saturdaySchedule: ScheduleItem[] = [
       avatarUrl: '',
       bio: 'Recognized expert by Google.',
     },
-    bufferAfterMinutes: 15,
-    bufferDescription: '15-minute buffer before next workshop',
     desc: 'Technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
-  },
-  {
-    id: 'sat-workshop-6-gde',
-    time: '09:00 PM',
-    endTime: '09:45 PM',
-    title: 'Workshop 6: GDE Workshop',
-    topic: 'TBD',
-    room: 'University Union (Room: TBD)',
-    category: 'workshop',
-    isWorkshop: true,
-    badge: 'Google Developer Expert',
-    badgeColor: '#4285F4',
-    accent: '#4285F4',
-    speaker: {
-      name: 'Google Developer Expert',
-      role: 'Google Developer Expert',
-      company: 'Google Developer Experts',
-      avatarUrl: '',
-      bio: 'Recognized expert by Google.',
-    },
-    bufferAfterMinutes: 15,
-    bufferDescription: 'Workshops conclude; return to STEM Innovation Center',
-    desc: 'Final workshop of the day hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
   },
 
   /* =======================================================================

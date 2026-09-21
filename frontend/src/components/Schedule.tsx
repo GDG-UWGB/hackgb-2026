@@ -4,6 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import downtownImg from '../assets/images/background/jpg/downtown-gb.jpg';
 import { Calendar, Clock, Terminal, ArrowRight, Sparkles } from 'lucide-react';
 
+import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
+import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
+import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
+import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
@@ -19,13 +24,25 @@ interface ScheduleEvent {
     title: string;
     desc: string;
     accent: string;
+    logos?: { name: string; logo: string; link: string }[];
 }
 
 const saturdayEvents: ScheduleEvent[] = [
     { time: '08:00 AM', title: 'Check-in & Registration', desc: 'STEM Innovation Center • Check-in and badge pickup.', accent: '#61A644' },
     { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Wood Hall • Welcome address and hackathon kickoff.', accent: '#E37100' },
     { time: '12:00 PM', title: 'Hacking Begins', desc: 'Phoenix Room B & C (University Union) • Hacking officially starts.', accent: '#0c3c34' },
-    { time: '01:30 PM', title: 'Workshops Kickoff', desc: 'University Union • Sessions begin with Modal, followed by GDE workshops.', accent: '#ffcc00' },
+    {
+        time: '01:30 PM',
+        title: 'Workshops & Info Sessions',
+        desc: 'University Union • Sessions begin with Modal, FTI (Company Info & Recruiting), and Bay Tek, followed by GDE workshops.',
+        accent: '#ffcc00',
+        logos: [
+            { name: 'Modal', logo: modalLogo, link: 'https://modal.com' },
+            { name: 'Faith Technologies (FTI)', logo: ftiLogo, link: 'https://www.faithtechinc.com/' },
+            { name: 'Bay Tek (The Village)', logo: theVillageLogo, link: 'https://www.thevillage.bz/' },
+            { name: 'Google Developer Experts', logo: googleLogo, link: 'https://developers.google.com/community/experts' },
+        ],
+    },
 ];
 
 const sundayEvents: ScheduleEvent[] = [
@@ -67,7 +84,7 @@ const Schedule = () => {
                         Event Schedule
                     </h2>
                     <p className="text-slate-650 font-google-text text-sm sm:text-base max-w-xl mx-auto mb-7">
-                        Main schedule milestones below. Explore our full schedule for room locations, Modal & GDE workshops, speaker bios, and buffer times.
+                        Main schedule milestones below. Explore our full schedule for room locations, sponsor & GDE workshops, speaker bios, and buffer times.
                     </p>
                     
                     {/* Highly Visible Primary CTA Button */}
@@ -204,6 +221,31 @@ const Schedule = () => {
                                                     <p className="text-xs text-slate-650 font-google-text leading-relaxed font-semibold">
                                                         {evt.desc}
                                                     </p>
+                                                    {evt.logos && (
+                                                        <div className="flex flex-wrap items-center gap-2 mt-3 pt-2.5 border-t border-black/5">
+                                                            <span className="text-[11px] font-google text-slate-500 font-semibold">Featuring:</span>
+                                                            <div className="flex flex-wrap items-center gap-2">
+                                                                {evt.logos.map((logoItem, lIdx) => (
+                                                                    <a
+                                                                        key={lIdx}
+                                                                        href={logoItem.link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="bg-white border border-black/10 rounded-lg px-2.5 py-1 hover:border-[#61A644]/50 shadow-2xs hover:shadow-xs transition-all inline-flex items-center group/logo cursor-pointer"
+                                                                        title={logoItem.name}
+                                                                    >
+                                                                        <img
+                                                                            src={logoItem.logo}
+                                                                            alt={logoItem.name}
+                                                                            loading="lazy"
+                                                                            decoding="async"
+                                                                            className="h-4 sm:h-4.5 w-auto max-w-[70px] object-contain group-hover/logo:scale-105 transition-transform"
+                                                                        />
+                                                                    </a>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         ))}
@@ -223,7 +265,7 @@ const Schedule = () => {
                                                 Detailed Workshop & Venue Schedule Live
                                             </div>
                                             <p className="text-xs text-slate-300 font-google-text mt-0.5">
-                                                Explore Modal & GDE workshop sessions, room numbers, speaker bios, and 15-min buffers.
+                                                Explore sponsor & GDE workshop sessions, room numbers, speaker bios, and 15-min buffers.
                                             </p>
                                         </div>
                                     </div>
