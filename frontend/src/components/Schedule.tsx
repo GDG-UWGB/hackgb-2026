@@ -34,11 +34,11 @@ const saturdayEvents: ScheduleEvent[] = [
     {
         time: '01:30 PM',
         title: 'Workshops & Info Sessions',
-        desc: 'University Union • Sessions begin with Modal, FTI (Company Info & Recruiting), and Bay Tek, followed by GDE workshops.',
+        desc: 'University Union • Sessions begin with Modal, Faith Technologies, Inc. (FTI) (Company Info & Recruiting), and Bay Tek, followed by GDE workshops.',
         accent: '#ffcc00',
         logos: [
             { name: 'Modal', logo: modalLogo, link: 'https://modal.com' },
-            { name: 'Faith Technologies (FTI)', logo: ftiLogo, link: 'https://www.faithtechinc.com/' },
+            { name: 'Faith Technologies, Inc. (FTI)', logo: ftiLogo, link: 'https://www.faithtechinc.com/' },
             { name: 'Bay Tek (The Village)', logo: theVillageLogo, link: 'https://www.thevillage.bz/' },
             { name: 'Google Developer Experts', logo: googleLogo, link: 'https://developers.google.com/community/experts' },
         ],

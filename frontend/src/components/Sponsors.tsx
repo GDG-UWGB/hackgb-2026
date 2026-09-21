@@ -56,7 +56,7 @@ const sponsors: Sponsor[] = [
     { name: 'CDW', logo: cdwLogo, tier: 'flame', link: 'https://www.cdw.com/' },
     { name: 'Bay Tek (The Village)', logo: theVillageLogo, tier: 'flame', link: 'https://www.thevillage.bz/', description: 'Bay Tek Entertainment (The Village)' },
     { name: 'Lovable', logo: lovableLogo, tier: 'flame', link: 'https://lovable.dev/' },
-    { name: 'Faith Technologies', logo: ftiLogo, tier: 'flame', link: 'https://www.faithtechinc.com/' },
+    { name: 'Faith Technologies, Inc. (FTI)', logo: ftiLogo, tier: 'flame', link: 'https://www.faithtechinc.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Photon', logo: photonLogo, tier: 'ember', link: 'https://photon.codes/', darkBg: true },
     { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },

@@ -16,73 +16,81 @@ export interface ScheduleItem {
   time: string;
   endTime: string;
   title: string;
-  topic: string; // 'TBD' or specified
+  topic?: string; // 'TBD' or specified
   room: string;
-  category: 'workshop' | 'ceremony' | 'meal' | 'logistics';
-  badge?: 'Modal' | 'FTI' | 'Bay Tek' | 'Google Developer Expert' | 'Meal' | 'Key Milestone';
+  category: string;
+  badge?: string;
   badgeColor?: string;
-  accent: string;
+  accent?: string;
   speaker?: SpeakerProfile;
-  bufferAfterMinutes?: number;
-  bufferDescription?: string;
-  desc: string;
-  isWorkshop?: boolean;
   companyLogo?: string;
   companyLink?: string;
+  bufferAfterMinutes?: number;
+  bufferDescription?: string;
+  desc?: string;
+  isWorkshop?: boolean;
 }
 
 export const saturdaySchedule: ScheduleItem[] = [
   {
     id: 'sat-checkin',
     time: '08:00 AM',
-    endTime: '10:30 AM',
+    endTime: '11:00 AM',
     title: 'Check-in & Registration',
-    topic: 'Check-in',
     room: 'STEM Innovation Center',
-    category: 'logistics',
+    category: 'milestone',
     badge: 'Key Milestone',
     badgeColor: '#61A644',
     accent: '#61A644',
-    desc: 'Arrive at the STEM Innovation Center, check in at registration, and pick up your badge and event swag.',
+    desc: 'Pick up your badge, swag pack, and get settled in. Meet organizers and fellow hackers.',
+  },
+  {
+    id: 'sat-breakfast',
+    time: '09:00 AM',
+    endTime: '10:30 AM',
+    title: 'Breakfast & Networking',
+    room: 'STEM Innovation Center',
+    category: 'food',
+    badge: 'Meal',
+    badgeColor: '#61A644',
+    accent: '#61A644',
+    desc: 'Light breakfast, coffee, and informal team formation before opening ceremonies.',
   },
   {
     id: 'sat-opening',
     time: '11:00 AM',
     endTime: '12:00 PM',
     title: 'Opening Ceremony',
-    topic: 'Kickoff',
-    room: 'Rose Hall 250',
-    category: 'ceremony',
+    room: 'Wood Hall',
+    category: 'milestone',
     badge: 'Key Milestone',
     badgeColor: '#E37100',
     accent: '#E37100',
-    desc: 'Welcome remarks, track announcements, sponsor introductions, and hackathon guidelines at Rose Hall 250. Following the ceremony, participants head to the University Union.',
+    desc: 'Welcome addresses from organizers, track announcements, sponsor challenges overview, and rules briefing.',
   },
   {
     id: 'sat-hacking-begins',
     time: '12:00 PM',
     endTime: '12:00 PM',
-    title: 'Hacking Officially Begins',
-    topic: 'Hacking Sprint',
+    title: 'Hacking Begins & Team Building',
     room: 'Phoenix Room B & C (University Union)',
-    category: 'logistics',
+    category: 'milestone',
     badge: 'Key Milestone',
-    badgeColor: '#61A644',
-    accent: '#61A644',
-    desc: 'Hacking begins! Teams set up workspaces in Phoenix Room B & C in the University Union.',
+    badgeColor: '#0C3C34',
+    accent: '#0C3C34',
+    desc: 'Official start of the 24-hour hacking countdown! Form teams, claim tables, and start building.',
   },
   {
     id: 'sat-lunch',
     time: '12:30 PM',
     endTime: '01:30 PM',
-    title: 'Lunch Provided',
-    topic: 'Lunch',
+    title: 'Lunch',
     room: 'University Union Dining',
-    category: 'meal',
+    category: 'food',
     badge: 'Meal',
-    badgeColor: '#ffbd2e',
-    accent: '#ffbd2e',
-    desc: 'Lunch served at University Union Dining.',
+    badgeColor: '#61A644',
+    accent: '#61A644',
+    desc: 'Lunch served for all registered participants and mentors.',
   },
 
   /* =======================================================================
@@ -96,22 +104,22 @@ export const saturdaySchedule: ScheduleItem[] = [
     id: 'sat-workshop-1-modal',
     time: '01:30 PM',
     endTime: '02:15 PM',
-    title: 'Modal: Technical Workshop & API Deep Dive',
+    title: 'Technical Workshop & API Deep Dive',
     topic: 'Modal API, Cloud Compute & Track Criteria',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Modal',
-    badgeColor: '#00C853',
-    accent: '#00C853',
+    badgeColor: '#10B981',
+    accent: '#10B981',
     companyLogo: modalLogo,
     companyLink: 'https://modal.com',
     speaker: {
       name: 'Modal Engineering Team',
-      role: 'Developer Advocate & Systems Engineer',
+      role: 'Core Engineering & Developer Platform',
       company: 'Modal',
       avatarUrl: '',
-      bio: 'Learn how to build and scale serverless Python applications, deploy containerized AI models, and optimize your project for the Best Use of Modal track.',
+      bio: 'Engineers from Modal guiding participants on building serverless AI applications, GPU workloads, and containerized backend systems.',
     },
     bufferAfterMinutes: 15,
     bufferDescription: '15-minute buffer before next workshop',
@@ -121,26 +129,26 @@ export const saturdaySchedule: ScheduleItem[] = [
     id: 'sat-workshop-2-fti',
     time: '02:30 PM',
     endTime: '03:15 PM',
-    title: 'FTI: Company Info & Recruitment Session',
+    title: 'Company Info & Recruitment Session',
     topic: 'Company Overview, Careers & Hiring',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
     isWorkshop: true,
-    badge: 'FTI',
+    badge: 'Faith Technologies, Inc. (FTI)',
     badgeColor: '#0284C7',
     accent: '#0284C7',
     companyLogo: ftiLogo,
     companyLink: 'https://www.faithtechinc.com/',
     speaker: {
-      name: 'FTI Recruiting & Team',
-      role: 'Talent Acquisition & Engineering',
-      company: 'Faith Technologies (FTI)',
+      name: 'Recruiting Team',
+      role: 'Talent Acquisition & Technical Team',
+      company: 'Faith Technologies, Inc. (FTI)',
       avatarUrl: '',
-      bio: 'Connect with recruiters and team members from Faith Technologies (FTI) to learn about open roles, internships, and company culture.',
+      bio: 'Connect with recruiters and team members from Faith Technologies, Inc. (FTI) to learn about open roles, internships, and company culture.',
     },
     bufferAfterMinutes: 15,
     bufferDescription: '15-minute buffer before next workshop',
-    desc: 'Company information and recruiting session hosted by Faith Technologies (FTI). Meet the team, learn about the company and what they do, and discover career and internship opportunities.',
+    desc: 'Company information and recruiting session hosted by Faith Technologies, Inc. (FTI). Meet the team, learn about the company and what they do, and discover career and internship opportunities.',
   },
   {
     id: 'sat-workshop-3-baytek',

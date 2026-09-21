@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock, MapPin, User, Sparkles, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Clock, MapPin, User, ExternalLink } from 'lucide-react';
 import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { saturdaySchedule, sundaySchedule } from '../data/scheduleData';
 
@@ -79,7 +79,7 @@ const SchedulePage = () => {
               Check-in at STEM Innovation Center → Opening Ceremony at Wood Hall → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. Workshops are in University Union (Room: TBD). At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
             </div>
             <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#61A644]/15 text-[11px] font-google">
-              <span className="text-slate-600">Workshops start at 1:30 PM (Modal, FTI, Bay Tek)</span>
+              <span className="text-slate-600">Workshops start at 1:30 PM (Modal, Faith Technologies, Inc. (FTI), Bay Tek)</span>
               <span className="text-slate-400">•</span>
               <span className="text-[#E37100] font-semibold">Dinner Break: 5:00 PM – 7:00 PM (No Workshops)</span>
               <span className="text-slate-400">•</span>
@@ -136,32 +136,43 @@ const SchedulePage = () => {
                           {evt.title}
                         </h2>
 
-                        {evt.badge === 'Modal' && (
-                          <span className="inline-flex items-center gap-1 text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                            <Sparkles className="w-3 h-3 text-emerald-600" />
-                            Modal
-                          </span>
-                        )}
-
-                        {evt.badge === 'FTI' && (
-                          <span className="inline-flex items-center gap-1 text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800">
-                            <Sparkles className="w-3 h-3 text-sky-600" />
-                            FTI
-                          </span>
-                        )}
-
-                        {evt.badge === 'Bay Tek' && (
-                          <span className="inline-flex items-center gap-1 text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800">
-                            <Sparkles className="w-3 h-3 text-amber-600" />
-                            Bay Tek
-                          </span>
-                        )}
-
-                        {evt.badge === 'Google Developer Expert' && (
-                          <span className="inline-flex items-center gap-1 text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800">
-                            <Sparkles className="w-3 h-3 text-blue-600" />
-                            Google Developer Expert
-                          </span>
+                        {/* If session has a company link/logo, include ONE interactive pill with logo and link attached */}
+                        {evt.companyLink ? (
+                          <a
+                            href={evt.companyLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-black/10 hover:border-[#61A644]/50 shadow-2xs hover:shadow-xs transition-all group/sponsor text-xs font-google font-semibold text-slate-700 hover:text-[#0C3C34]"
+                            title={`Visit ${evt.badge || evt.speaker?.company || 'Website'}`}
+                          >
+                            {evt.companyLogo && (
+                              <img
+                                src={evt.companyLogo}
+                                alt=""
+                                className="h-4 w-auto max-w-[70px] object-contain group-hover/sponsor:scale-105 transition-transform"
+                              />
+                            )}
+                            <span>{evt.badge || evt.speaker?.company}</span>
+                            <ExternalLink className="w-3 h-3 text-slate-400 group-hover/sponsor:text-[#0C3C34] transition-colors" />
+                          </a>
+                        ) : (
+                          <>
+                            {evt.badge === 'Key Milestone' && (
+                              <span className="text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                                Key Milestone
+                              </span>
+                            )}
+                            {evt.badge === 'Meal' && (
+                              <span className="text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-[#61A644]/15 text-[#0C3C34]">
+                                Meal
+                              </span>
+                            )}
+                            {evt.badge && evt.badge !== 'Key Milestone' && evt.badge !== 'Meal' && (
+                              <span className="text-xs font-google font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                                {evt.badge}
+                              </span>
+                            )}
+                          </>
                         )}
 
                         {isDinner && (
@@ -170,28 +181,6 @@ const SchedulePage = () => {
                           </span>
                         )}
                       </div>
-
-                      {evt.companyLink && (
-                        <a
-                          href={evt.companyLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-black/10 hover:border-[#61A644]/50 shadow-2xs hover:shadow-xs transition-all group/sponsor shrink-0"
-                          title={`Visit ${evt.speaker?.company || evt.badge || 'Website'}`}
-                        >
-                          {evt.companyLogo && (
-                            <img
-                              src={evt.companyLogo}
-                              alt=""
-                              className="h-5 w-auto max-w-[85px] object-contain group-hover/sponsor:scale-105 transition-transform"
-                            />
-                          )}
-                          <span className="text-xs font-google font-semibold text-slate-700 group-hover/sponsor:text-[#0C3C34] transition-colors">
-                            Visit Website
-                          </span>
-                          <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/sponsor:text-[#0C3C34] transition-colors" />
-                        </a>
-                      )}
                     </div>
 
                     {/* Topic Indicator for Workshops */}
