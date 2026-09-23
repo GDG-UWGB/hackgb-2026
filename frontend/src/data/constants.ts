@@ -8,3 +8,6 @@ export const APPLICATIONS_OPEN_DATE = new Date('2026-07-27T17:00:00Z');
 export const checkApplicationsOpen = () => new Date() >= APPLICATIONS_OPEN_DATE;
 export const APPLICATIONS_OPEN = checkApplicationsOpen();
 
+// Application status flags
+export const JUDGE_APPLICATION_CLOSED = true;
+

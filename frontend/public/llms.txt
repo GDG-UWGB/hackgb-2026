@@ -10,7 +10,7 @@ UW-Green Bay's premier 24-hour collegiate hackathon experience, organized by GDG
 
 ## Registration & Applications
 - [Hacker Application](https://hackgb.com/apply/hacker) - Apply to participate as a hacker.
-- [Judge Application](https://hackgb.com/apply/judge) - Register to evaluate projects as a judge.
+- [Judge Application](https://hackgb.com/apply/judge) - Register to evaluate projects as a judge (Closed).
 
 ## Key Sections
 - [About](https://hackgb.com/#about) - Learn about HackGB, dates, location, and organizers.

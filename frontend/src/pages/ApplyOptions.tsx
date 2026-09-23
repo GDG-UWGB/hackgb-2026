@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { Terminal, ArrowRight, Compass, Landmark, Users } from 'lucide-react';
+import { JUDGE_APPLICATION_CLOSED } from '../data/constants';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -17,7 +18,9 @@ const DEFAULT_SCRIPT = [
   'Checking core nodes... [OK]',
   'Initializing registration options...',
   'Hacker pipeline: READY (Awaiting input)',
-  'Judge pipeline: READY (Awaiting input)',
+  JUDGE_APPLICATION_CLOSED
+    ? 'Judge pipeline: CLOSED (Application closed)'
+    : 'Judge pipeline: READY (Awaiting input)',
   'Mentor pipeline: READY (Awaiting input)',
   'Handshake complete on tty0.',
   'Ready to initialize apply options...'
@@ -67,7 +70,7 @@ const ApplyPipelines = ({ hoveredOption }: ApplyPipelinesProps) => {
   const lastScriptRef = useRef<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const hackerActive = hoveredOption === 'Hacker' || hoveredOption === 'Closed';
+  const hackerActive = hoveredOption === 'Hacker';
   const judgeActive = hoveredOption === 'Judge';
   const mentorActive = hoveredOption === 'Mentor';
 
@@ -223,12 +226,14 @@ const ApplyOptions = () => {
     },
     {
       title: 'Judge Application',
-      description: 'Submit your application to participate in the hackathon as a professional evaluator.',
+      description: JUDGE_APPLICATION_CLOSED
+        ? 'Judge applications for HackGB 2026 are now closed.'
+        : 'Submit your application to participate in the hackathon as a professional evaluator.',
       icon: Landmark,
       path: '/apply/judge',
-      themeColor: '#E37100', // Phoenix Orange/Amber
-      badge: 'Judge',
-      disabled: false,
+      themeColor: JUDGE_APPLICATION_CLOSED ? '#ff5f56' : '#E37100', // Red if closed
+      badge: JUDGE_APPLICATION_CLOSED ? 'Closed' : 'Judge',
+      disabled: JUDGE_APPLICATION_CLOSED,
     },
     {
       title: 'Mentor Application',

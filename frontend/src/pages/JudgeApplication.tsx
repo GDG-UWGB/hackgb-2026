@@ -17,6 +17,7 @@ import titletownImg from '../assets/images/background/jpg/titletown-district.jpg
 import { useNavigate } from 'react-router-dom';
 import { Terminal } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
+import { JUDGE_APPLICATION_CLOSED } from '../data/constants';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -298,6 +299,7 @@ const JudgeApplication = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (JUDGE_APPLICATION_CLOSED) return;
     if (!validateStep(3)) return;
 
     setIsSubmitting(true);
@@ -495,14 +497,42 @@ const JudgeApplication = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
               <span className="text-[10px] font-google-mono text-slate-500 ml-3">Judge Application Wizard</span>
             </div>
-            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#E37100] font-bold bg-[#E37100]/10 px-2 py-0.5 rounded border border-[#E37100]/25">
+            <div className={`flex items-center gap-1.5 font-google-mono text-[9px] font-bold px-2 py-0.5 rounded border ${
+              JUDGE_APPLICATION_CLOSED
+                ? 'text-[#ff5f56] bg-[#ff5f56]/10 border-[#ff5f56]/25'
+                : 'text-[#E37100] bg-[#E37100]/10 border-[#E37100]/25'
+            }`}>
               <Terminal className="w-3.5 h-3.5" />
-              <span>judge_signup.json</span>
+              <span>{JUDGE_APPLICATION_CLOSED ? 'judge_signup.json [CLOSED]' : 'judge_signup.json'}</span>
             </div>
           </div>
 
           <div className="flex-1 flex flex-col relative overflow-hidden min-h-[500px]">
-            {isSuccess ? (
+            {JUDGE_APPLICATION_CLOSED ? (
+              /* Branded Closed State */
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: spring }}
+                className="flex-1 flex flex-col items-center justify-center text-center py-12 px-6"
+              >
+                <div className="w-16 h-16 rounded-full bg-[#ff5f56]/10 flex items-center justify-center text-[#ff5f56] text-2xl mb-6 animate-gentle-float">
+                  <FontAwesomeIcon icon={faTimes} />
+                </div>
+                <h2 className="text-2xl font-google font-bold text-[#0C3C34] mb-3">
+                  Applications are Closed
+                </h2>
+                <p className="text-slate-650 font-google-text text-sm max-w-md mb-8">
+                  Judge applications for HackGB 2026 are now closed. We are no longer accepting new submissions. Thank you for your interest in evaluating!
+                </p>
+                <button
+                  onClick={() => navigate('/')}
+                  className="bg-[#0C3C34] hover:bg-[#0c3c34]/90 text-white font-google font-bold px-8 py-3 rounded-full transition-all cursor-pointer hover:shadow-lg active:scale-95"
+                >
+                  Back to Home
+                </button>
+              </motion.div>
+            ) : isSuccess ? (
             /* Success Screen */
             <div className="flex-1 flex flex-col items-center justify-center text-center py-12">
               <div className="w-16 h-16 rounded-full bg-[#61A644]/10 flex items-center justify-center text-[#61A644] text-2xl mb-6">
@@ -1190,13 +1220,13 @@ const JudgeApplication = () => {
           {/* IDE Bottom Status Bar */}
           <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
             <div className="flex items-center gap-3">
-              <span className="font-bold">APPLY: step {step}</span>
-              <span className="opacity-80">Writing data...</span>
+              <span className="font-bold">{JUDGE_APPLICATION_CLOSED ? 'APPLICATION: CLOSED' : `APPLY: step ${step}`}</span>
+              <span className="opacity-80">{JUDGE_APPLICATION_CLOSED ? 'Submissions disabled' : 'Writing data...'}</span>
             </div>
             <div className="flex items-center gap-3">
               <span>JSON</span>
               <span>UTF-8</span>
-              <span>Ln {step * 25}, Col 12</span>
+              <span>{JUDGE_APPLICATION_CLOSED ? 'EOF' : `Ln ${step * 25}, Col 12`}</span>
             </div>
           </div>
         </motion.div>
