@@ -53,7 +53,7 @@ const judges: Judge[] = [
         expertise: ['AI/ML', 'Software Engineering', 'UX/UI Design'],
         bio: 'Software Engineer at Amazon and AI graduate researcher at Georgia Tech. Builds intelligent, scalable, and production-ready software systems.',
         photo: djayPhoto,
-        linkedin: 'https://www.linkedin.com/dhananjayanpn',
+        linkedin: 'https://www.linkedin.com/in/dhananjayanpn/',
         icon: Brain,
         color: '#E37100',
     },
