@@ -254,18 +254,18 @@ const JudgeCard = ({ judge, onExpand }: { judge: Judge; onExpand: () => void }) 
             </div>
 
             {/* Name */}
-            <h3 className="font-google font-bold text-base text-[#0C3C34] mb-0.5 leading-tight line-clamp-1">
+            <h3 className="font-google font-bold text-[17px] text-[#0C3C34] mb-0.5 leading-tight line-clamp-1">
                 {judge.name}
             </h3>
 
             {/* Title & Company */}
-            <p className="text-slate-500 font-google-text text-[11px] font-semibold mb-2 leading-snug line-clamp-1">
+            <p className="text-slate-500 font-google-text text-xs sm:text-[13px] font-semibold mb-2 leading-snug line-clamp-1">
                 {judge.title}
                 <span className="text-[#61A644]"> @ {judge.company}</span>
             </p>
 
             {/* Bio — truncated */}
-            <p className="text-slate-500 font-google-text text-[11px] leading-relaxed mb-3 line-clamp-2">
+            <p className="text-slate-500 font-google-text text-xs sm:text-[13px] leading-relaxed mb-3 line-clamp-2">
                 {judge.bio}
             </p>
 
@@ -274,7 +274,7 @@ const JudgeCard = ({ judge, onExpand }: { judge: Judge; onExpand: () => void }) 
                 {judge.expertise.slice(0, 2).map((tag, tagIdx) => (
                     <span
                         key={tagIdx}
-                        className="text-[8px] font-google-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200/60"
+                        className="text-[10px] font-google-mono font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200/60"
                     >
                         {tag}
                     </span>
@@ -293,7 +293,7 @@ const JudgeCard = ({ judge, onExpand }: { judge: Judge; onExpand: () => void }) 
                             title="LinkedIn"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <Linkedin className="w-3.5 h-3.5" />
+                            <Linkedin className="w-4 h-4" />
                         </a>
                     )}
                     {judge.website && (
@@ -305,16 +305,16 @@ const JudgeCard = ({ judge, onExpand }: { judge: Judge; onExpand: () => void }) 
                             title="Website"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <Globe className="w-3.5 h-3.5" />
+                            <Globe className="w-4 h-4" />
                         </a>
                     )}
                 </div>
                 <button
                     onClick={onExpand}
-                    className="text-[11px] font-google-text font-bold text-slate-500 hover:text-[#61A644] transition-colors cursor-pointer flex items-center gap-1"
+                    className="text-xs font-google-text font-bold text-slate-500 hover:text-[#61A644] transition-colors cursor-pointer flex items-center gap-1"
                 >
                     <span>View Profile</span>
-                    <ArrowUpRight className="w-3 h-3" />
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
             </div>
         </div>
@@ -619,67 +619,67 @@ const Judges = () => {
                 <motion.div
                     ref={directoryRef}
                     {...fadeUp(0.1)}
-                    className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xs p-4 mb-8 space-y-3.5 scroll-mt-24"
+                    className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xs p-4 sm:p-5 mb-8 space-y-4 scroll-mt-24"
                 >
                     {/* Top Row: Search Input + View Switcher */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
                         <div className="relative w-full sm:max-w-md">
-                            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                            <Search className="w-4.5 h-4.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                             <input
                                 type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search by name, company, skill..."
-                                className="w-full pl-10 pr-9 py-2.5 rounded-xl text-sm font-google-text text-slate-800 bg-slate-50/80 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#61A644] focus:ring-2 focus:ring-[#61A644]/20 transition-all placeholder:text-slate-400"
+                                className="w-full pl-11 pr-10 py-2.5 sm:py-3 rounded-xl text-[15px] sm:text-base font-google-text text-slate-800 bg-slate-50/80 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#61A644] focus:ring-2 focus:ring-[#61A644]/20 transition-all placeholder:text-slate-400 placeholder:text-[15px] sm:placeholder:text-base"
                             />
                             {searchQuery && (
                                 <button
                                     onClick={() => setSearchQuery('')}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
                                     aria-label="Clear search"
                                 >
-                                    <X className="w-4 h-4" />
+                                    <X className="w-4.5 h-4.5" />
                                 </button>
                             )}
                         </div>
 
                         {/* View Switcher (Grid vs Carousel) */}
-                        <div className="hidden sm:flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200/80 shrink-0">
+                        <div className="hidden sm:flex items-center gap-1.5 bg-slate-100/90 p-1 rounded-xl border border-slate-200/80 shrink-0">
                             <button
                                 onClick={() => setViewMode('grid')}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-google transition-all cursor-pointer ${
+                                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm sm:text-[15px] font-google transition-all cursor-pointer ${
                                     viewMode === 'grid'
                                         ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
                                         : 'text-slate-500 hover:text-slate-800 font-medium'
                                 }`}
                             >
-                                <LayoutGrid className="w-3.5 h-3.5" />
+                                <LayoutGrid className="w-4 h-4" />
                                 <span>Grid</span>
                             </button>
                             <button
                                 onClick={() => setViewMode('carousel')}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-google transition-all cursor-pointer ${
+                                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm sm:text-[15px] font-google transition-all cursor-pointer ${
                                     viewMode === 'carousel'
                                         ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
                                         : 'text-slate-500 hover:text-slate-800 font-medium'
                                 }`}
                             >
-                                <SlidersHorizontal className="w-3.5 h-3.5" />
+                                <SlidersHorizontal className="w-4 h-4" />
                                 <span>Slider</span>
                             </button>
                         </div>
                     </div>
 
                     {/* Filter Pills */}
-                    <div className="flex items-center gap-2 flex-wrap pt-1 border-t border-slate-100">
-                        <span className="text-xs font-google font-semibold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">
+                    <div className="flex items-center gap-2 flex-wrap pt-2 border-t border-slate-100">
+                        <span className="text-xs sm:text-sm font-google font-semibold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">
                             Filter:
                         </span>
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
-                                className={`shrink-0 text-xs md:text-[13px] font-google px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
+                                className={`shrink-0 text-xs sm:text-sm md:text-[14.5px] font-google px-4 py-2 rounded-full transition-all cursor-pointer ${
                                     selectedCategory === cat
                                         ? 'bg-[#0C3C34] text-white font-semibold shadow-xs'
                                         : 'bg-slate-100 hover:bg-slate-200/80 text-slate-650 font-medium'
@@ -744,7 +744,7 @@ const Judges = () => {
                         {filteredJudges.length > 0 && (
                             <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
                                 {/* Showing Count */}
-                                <div className="text-xs font-google-text text-slate-500 font-medium">
+                                <div className="text-sm font-google-text text-slate-600 font-medium">
                                     Showing{' '}
                                     <span className="font-bold text-[#0C3C34]">
                                         {showAllRows ? 1 : startIndex + 1}
@@ -760,14 +760,14 @@ const Judges = () => {
 
                                 {/* Pagination Buttons */}
                                 {totalPages > 1 && !showAllRows && (
-                                    <div className="flex items-center gap-1 bg-white/90 p-1 rounded-xl border border-slate-200 shadow-2xs">
+                                    <div className="flex items-center gap-1 bg-white/90 p-1.5 rounded-xl border border-slate-200 shadow-2xs">
                                         <button
                                             onClick={() => goToPage(Math.max(1, currentPage - 1))}
                                             disabled={currentPage === 1}
-                                            className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google font-semibold text-slate-700 hover:text-[#0C3C34] hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-google font-semibold text-slate-700 hover:text-[#0C3C34] hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                                             aria-label="Previous page"
                                         >
-                                            <ChevronLeft className="w-3.5 h-3.5" />
+                                            <ChevronLeft className="w-4 h-4" />
                                             <span>Prev</span>
                                         </button>
 
@@ -778,7 +778,7 @@ const Judges = () => {
                                                     <button
                                                         key={pageNum}
                                                         onClick={() => goToPage(pageNum)}
-                                                        className={`w-7 h-7 rounded-lg text-xs font-google font-bold transition-all cursor-pointer flex items-center justify-center ${
+                                                        className={`w-8 h-8 rounded-lg text-sm font-google font-bold transition-all cursor-pointer flex items-center justify-center ${
                                                             currentPage === pageNum
                                                                 ? 'bg-[#0C3C34] text-white shadow-xs'
                                                                 : 'text-slate-600 hover:bg-slate-100'
@@ -794,11 +794,11 @@ const Judges = () => {
                                         <button
                                             onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
                                             disabled={currentPage === totalPages}
-                                            className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google font-semibold text-slate-700 hover:text-[#0C3C34] hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-google font-semibold text-slate-700 hover:text-[#0C3C34] hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
                                             aria-label="Next page"
                                         >
                                             <span>Next</span>
-                                            <ChevronRight className="w-3.5 h-3.5" />
+                                            <ChevronRight className="w-4 h-4" />
                                         </button>
                                     </div>
                                 )}
@@ -810,10 +810,10 @@ const Judges = () => {
                                             setShowAllRows(!showAllRows);
                                             if (showAllRows) goToPage(1);
                                         }}
-                                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-google font-bold transition-all cursor-pointer bg-slate-100 hover:bg-slate-200/80 text-[#0C3C34] border border-slate-200 shadow-2xs"
+                                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-google font-bold transition-all cursor-pointer bg-slate-100 hover:bg-slate-200/80 text-[#0C3C34] border border-slate-200 shadow-2xs"
                                     >
                                         <span>{showAllRows ? 'Show 2 Rows' : `View All ${filteredJudges.length} Leaders`}</span>
-                                        <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${showAllRows ? '-rotate-90' : 'rotate-90'}`} />
+                                        <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${showAllRows ? '-rotate-90' : 'rotate-90'}`} />
                                     </button>
                                 )}
                             </div>
