@@ -12,6 +12,9 @@ import sandeepPhoto from '../assets/images/judges/sandeep-bommisetti.png';
 import sreenivasaPhoto from '../assets/images/judges/sreenivasa-rao.png';
 import nagaPhoto from '../assets/images/judges/naga-lalitha.jpg';
 import vikasPhoto from '../assets/images/judges/vikas-luthra.jpg';
+import azeemPhoto from '../assets/images/judges/azeem.png';
+import jacquesPhoto from '../assets/images/judges/jacques.png';
+import karthikPhoto from '../assets/images/judges/karthik.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -63,6 +66,7 @@ const judges: Judge[] = [
         company: 'Microsoft',
         expertise: ['AI/ML', 'Cloud & DevOps', 'Enterprise Search'],
         bio: 'Principal Software Engineering Leader at Microsoft, leading engineering strategy for search, retrieval platforms, and agent infrastructure powering Microsoft 365 Copilot. With prior engineering leadership roles at Apple and Capital One, he specializes in AI/ML, cloud infrastructure, enterprise search systems, and identity platforms.',
+        photo: karthikPhoto,
         linkedin: 'https://www.linkedin.com/in/tokarthikc',
         isMentor: true,
         mentorTopics: ['Enterprise AI', 'Product Architecture', 'Software Engineering'],
@@ -73,6 +77,7 @@ const judges: Judge[] = [
         company: 'Groundwork',
         expertise: ['Artificial Intelligence & ML', 'Agentic Systems', 'UX/UI Design'],
         bio: 'Founder of Groundwork, an AI consultancy in Oshkosh, Wisconsin, helping teams implement applied AI, multi-agent orchestration, and governance. His work spans agentic workflows, knowledge and memory infrastructure, and AI security, informed by a background in systems, accounting, and AI research.',
+        photo: jacquesPhoto,
         linkedin: 'https://www.linkedin.com/in/jacquestulowitzky',
         isMentor: true,
         mentorTopics: ['Agentic Workflows', 'Multi-Agent Systems', 'AI Governance & Security', 'Business Pitching'],
@@ -104,6 +109,7 @@ const judges: Judge[] = [
         company: 'Clear Markets',
         expertise: ['Distributed Systems', 'Fintech', 'Cloud & DevOps'],
         bio: 'Specializes in cloud infrastructure, cybersecurity, DevOps, distributed systems, and enterprise AI infrastructure for secure, reliable production platforms.',
+        photo: azeemPhoto,
         isMentor: false,
     },
     {
@@ -607,91 +613,81 @@ const Judges = () => {
                     <p className="text-slate-650 font-google-text text-sm md:text-base max-w-xl mx-auto font-normal leading-relaxed">
                         Distinguished engineering managers, principal architects, founders, and instructors from Microsoft, Amazon, Groundwork, FedEx, Guidehouse, and beyond.
                     </p>
-
-                    {/* Stat Badges */}
-                    <div className="flex flex-wrap items-center justify-center gap-2.5 mt-5">
-                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200/80 text-xs font-google-text text-slate-700 shadow-2xs">
-                            <span className="w-2 h-2 rounded-full bg-[#61A644]" />
-                            <span className="font-semibold text-[#0C3C34]">{judges.length}</span> Confirmed Leaders
-                        </div>
-                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200/80 text-xs font-google-text text-slate-700 shadow-2xs">
-                            <Sparkles className="w-3 h-3 text-emerald-600" />
-                            <span>1:1 Mentorship</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200/80 text-xs font-google-text text-slate-700 shadow-2xs">
-                            <span className="w-2 h-2 rounded-full bg-[#0C3C34]" />
-                            <span>Fortune 500 & Startups</span>
-                        </div>
-                    </div>
                 </motion.div>
 
                 {/* Directory Controls Bar */}
                 <motion.div
                     ref={directoryRef}
                     {...fadeUp(0.1)}
-                    className="bg-white/85 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xs p-3.5 mb-6 flex flex-col md:flex-row items-center justify-between gap-3 scroll-mt-24"
+                    className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xs p-4 mb-8 space-y-3.5 scroll-mt-24"
                 >
-                    {/* Search Input */}
-                    <div className="relative w-full md:w-72">
-                        <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="Search by name, company, skill..."
-                            className="w-full pl-8 pr-4 py-1.5 rounded-xl text-xs font-google-text text-slate-800 bg-slate-50 border border-slate-200/80 focus:bg-white focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644] transition-all"
-                        />
-                        {searchQuery && (
+                    {/* Top Row: Search Input + View Switcher */}
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <div className="relative w-full sm:max-w-md">
+                            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search by name, company, skill..."
+                                className="w-full pl-10 pr-9 py-2.5 rounded-xl text-sm font-google-text text-slate-800 bg-slate-50/80 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#61A644] focus:ring-2 focus:ring-[#61A644]/20 transition-all placeholder:text-slate-400"
+                            />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer p-0.5"
+                                    aria-label="Clear search"
+                                >
+                                    <X className="w-4 h-4" />
+                                </button>
+                            )}
+                        </div>
+
+                        {/* View Switcher (Grid vs Carousel) */}
+                        <div className="hidden sm:flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200/80 shrink-0">
                             <button
-                                onClick={() => setSearchQuery('')}
-                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-450 hover:text-slate-700 cursor-pointer"
+                                onClick={() => setViewMode('grid')}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-google transition-all cursor-pointer ${
+                                    viewMode === 'grid'
+                                        ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
+                                        : 'text-slate-500 hover:text-slate-800 font-medium'
+                                }`}
                             >
-                                <X className="w-3.5 h-3.5" />
+                                <LayoutGrid className="w-3.5 h-3.5" />
+                                <span>Grid</span>
                             </button>
-                        )}
+                            <button
+                                onClick={() => setViewMode('carousel')}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-google transition-all cursor-pointer ${
+                                    viewMode === 'carousel'
+                                        ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
+                                        : 'text-slate-500 hover:text-slate-800 font-medium'
+                                }`}
+                            >
+                                <SlidersHorizontal className="w-3.5 h-3.5" />
+                                <span>Slider</span>
+                            </button>
+                        </div>
                     </div>
 
                     {/* Filter Pills */}
-                    <div className="flex items-center gap-1 overflow-x-auto w-full md:w-auto scrollbar-none py-0.5">
+                    <div className="flex items-center gap-2 flex-wrap pt-1 border-t border-slate-100">
+                        <span className="text-xs font-google font-semibold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">
+                            Filter:
+                        </span>
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
-                                className={`shrink-0 text-[11px] font-google px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+                                className={`shrink-0 text-xs md:text-[13px] font-google px-3.5 py-1.5 rounded-full transition-all cursor-pointer ${
                                     selectedCategory === cat
                                         ? 'bg-[#0C3C34] text-white font-semibold shadow-xs'
-                                        : 'bg-slate-100 hover:bg-slate-200/70 text-slate-650 font-medium'
+                                        : 'bg-slate-100 hover:bg-slate-200/80 text-slate-650 font-medium'
                                 }`}
                             >
                                 {cat}
                             </button>
                         ))}
-                    </div>
-
-                    {/* View Switcher (Grid vs Carousel) */}
-                    <div className="hidden lg:flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200/80 shrink-0">
-                        <button
-                            onClick={() => setViewMode('grid')}
-                            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google transition-all cursor-pointer ${
-                                viewMode === 'grid'
-                                    ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
-                                    : 'text-slate-500 hover:text-slate-800 font-medium'
-                            }`}
-                        >
-                            <LayoutGrid className="w-3 h-3" />
-                            <span>Grid</span>
-                        </button>
-                        <button
-                            onClick={() => setViewMode('carousel')}
-                            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google transition-all cursor-pointer ${
-                                viewMode === 'carousel'
-                                    ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
-                                    : 'text-slate-500 hover:text-slate-800 font-medium'
-                            }`}
-                        >
-                            <SlidersHorizontal className="w-3 h-3" />
-                            <span>Slider</span>
-                        </button>
                     </div>
                 </motion.div>
 
