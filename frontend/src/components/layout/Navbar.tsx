@@ -40,7 +40,7 @@ const Navbar = () => {
     { name: 'Prizes', to: 'prizes' },
     { name: 'Schedule', to: 'schedule' },
     { name: 'Speakers', to: 'speakers' },
-    { name: 'Judges', to: 'judges' },
+    { name: 'Judges & Mentors', to: 'judges' },
     { name: 'Travel', to: 'travel' },
     { name: 'FAQs', to: 'faqs' },
   ];

@@ -1,27 +1,29 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, Linkedin, Globe, Shield, Brain, Code, Server, Database, Lightbulb, Monitor, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Linkedin, Globe, Shield, Sparkles, ChevronLeft, ChevronRight, X, ArrowUpRight, Search, LayoutGrid, SlidersHorizontal } from 'lucide-react';
 import gbWaterfrontImg from '../assets/images/background/jpg/gb-waterfront.jpg';
 
-// Judge headshots — import available photos, others will use placeholder
+// Judge & Mentor headshots
 import djayPhoto from '../assets/images/judges/djay-pallavur.jpg';
 import ishuPhoto from '../assets/images/judges/ishu-gupta.png';
 import onkarPhoto from '../assets/images/judges/onkar-mahamuni.png';
 import ryanPhoto from '../assets/images/judges/ryan-appel.png';
 import sandeepPhoto from '../assets/images/judges/sandeep-bommisetti.png';
 import sreenivasaPhoto from '../assets/images/judges/sreenivasa-rao.png';
+import nagaPhoto from '../assets/images/judges/naga-lalitha.jpg';
+import vikasPhoto from '../assets/images/judges/vikas-luthra.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    initial: { opacity: 0, y: 20, filter: 'blur(4px)' },
     whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
     viewport: { once: true, margin: '-40px' },
-    transition: { duration: 0.8, delay, ease: spring },
+    transition: { duration: 0.6, delay, ease: spring },
 });
 
-interface Judge {
+export interface Judge {
     name: string;
     title: string;
     company: string;
@@ -30,8 +32,8 @@ interface Judge {
     photo?: string;
     linkedin?: string;
     website?: string;
-    icon: typeof Shield;
-    color: string;
+    isMentor?: boolean;
+    mentorTopics?: string[];
 }
 
 const judges: Judge[] = [
@@ -39,12 +41,11 @@ const judges: Judge[] = [
         name: 'Onkar Mahamuni',
         title: 'Operations Research Engineer',
         company: 'RouteSmart — A FedEx Company',
-        expertise: ['Operations Research', 'Algorithms & DS'],
+        expertise: ['Operations Research', 'Algorithms & Optimization'],
         bio: 'Specializes in routing algorithms, optimization, and logistics software. Develops production C++ algorithms for route planning, sequencing, and network optimization.',
         photo: onkarPhoto,
         linkedin: 'https://www.linkedin.com/in/onkarmahamuni',
-        icon: Code,
-        color: '#61A644',
+        isMentor: false,
     },
     {
         name: 'Djay Pallavur Naduvakkat',
@@ -54,8 +55,27 @@ const judges: Judge[] = [
         bio: 'Software Engineer at Amazon and AI graduate researcher at Georgia Tech. Builds intelligent, scalable, and production-ready software systems.',
         photo: djayPhoto,
         linkedin: 'https://www.linkedin.com/in/dhananjayanpn/',
-        icon: Brain,
-        color: '#E37100',
+        isMentor: false,
+    },
+    {
+        name: 'Karthik Chandrasekaran',
+        title: 'Principal Software Engineering Manager',
+        company: 'Microsoft',
+        expertise: ['AI/ML', 'Cloud & DevOps', 'Enterprise Search'],
+        bio: 'Principal Software Engineering Leader at Microsoft, leading engineering strategy for search, retrieval platforms, and agent infrastructure powering Microsoft 365 Copilot. With prior engineering leadership roles at Apple and Capital One, he specializes in AI/ML, cloud infrastructure, enterprise search systems, and identity platforms.',
+        linkedin: 'https://www.linkedin.com/in/tokarthikc',
+        isMentor: true,
+        mentorTopics: ['Enterprise AI', 'Product Architecture', 'Software Engineering'],
+    },
+    {
+        name: 'Jacques Tulowitzky',
+        title: 'Founder',
+        company: 'Groundwork',
+        expertise: ['Artificial Intelligence & ML', 'Agentic Systems', 'UX/UI Design'],
+        bio: 'Founder of Groundwork, an AI consultancy in Oshkosh, Wisconsin, helping teams implement applied AI, multi-agent orchestration, and governance. His work spans agentic workflows, knowledge and memory infrastructure, and AI security, informed by a background in systems, accounting, and AI research.',
+        linkedin: 'https://www.linkedin.com/in/jacquestulowitzky',
+        isMentor: true,
+        mentorTopics: ['Agentic Workflows', 'Multi-Agent Systems', 'AI Governance & Security', 'Business Pitching'],
     },
     {
         name: 'Sreenivasa Rao Basavala',
@@ -65,8 +85,18 @@ const judges: Judge[] = [
         bio: 'Hands-on cybersecurity engineering and technology leader with a track record of building successful security programs across industry verticals.',
         photo: sreenivasaPhoto,
         linkedin: 'https://www.linkedin.com/in/sreenivasa-rao-b-2739b720/',
-        icon: Shield,
-        color: '#0C3C34',
+        isMentor: false,
+    },
+    {
+        name: 'Naga Lalitha Sree Thatavarthi',
+        title: 'Senior Software Engineer',
+        company: 'American Physical Therapy Association',
+        expertise: ['Full Stack Web', 'AI & Agentic Systems', 'Cloud & DevOps'],
+        bio: 'Senior Software Engineer and Full Stack Web Developer at APTA with five years of experience building enterprise web applications, APIs, and system integrations. Her expertise spans C#, .NET, JavaScript, SQL, cloud-based systems, and AI-powered application development, including LLMs, RAG, and agentic AI.',
+        photo: nagaPhoto,
+        linkedin: 'https://www.linkedin.com/in/nagalalithasree-thatavarthi',
+        isMentor: true,
+        mentorTopics: ['Full Stack Web', 'AI & Agentic Systems', 'Software Engineering'],
     },
     {
         name: 'Azeem Siddiqui',
@@ -74,8 +104,17 @@ const judges: Judge[] = [
         company: 'Clear Markets',
         expertise: ['Distributed Systems', 'Fintech', 'Cloud & DevOps'],
         bio: 'Specializes in cloud infrastructure, cybersecurity, DevOps, distributed systems, and enterprise AI infrastructure for secure, reliable production platforms.',
-        icon: Server,
-        color: '#4A90D9',
+        isMentor: false,
+    },
+    {
+        name: 'Vikas Luthra',
+        title: 'Technical Lead — Digital Platforms',
+        company: 'Komatsu America Corp',
+        expertise: ['Distributed Systems', 'Enterprise Architecture', 'AI-Agent Systems'],
+        bio: 'Enterprise Solution Architect at Komatsu America Corp, where he leads modern application architecture, technology selection, and Scaled Agile delivery across teams of developers and architects. His work spans enterprise solution design and applied AI, including AI-agent systems and provenance, which he writes and speaks about at industry conferences.',
+        photo: vikasPhoto,
+        linkedin: 'https://www.linkedin.com/in/vikas-luthra-crm/',
+        isMentor: false,
     },
     {
         name: 'Sandeep Bommisetti',
@@ -86,8 +125,16 @@ const judges: Judge[] = [
         photo: sandeepPhoto,
         linkedin: 'https://www.linkedin.com/in/sandeep-bommisetti',
         website: 'https://bommisetti.com/',
-        icon: Shield,
-        color: '#E37100',
+        isMentor: false,
+    },
+    {
+        name: 'Zaineel Mithani',
+        title: 'Software Engineer',
+        company: 'Fidelity Investments',
+        expertise: ['Distributed Systems', 'Cloud & DevOps', 'Backend Engineering'],
+        bio: 'Full Stack Software Engineer with experience building cloud-native applications and scalable backend systems using Java, Spring Boot, AWS, and modern distributed technologies. He is passionate about software engineering, AI, and building impactful technology solutions.',
+        isMentor: true,
+        mentorTopics: ['Java & Spring Boot', 'AWS & Cloud', 'Kafka', 'Backend Architecture'],
     },
     {
         name: 'Sai Prasanth Vadlamudi',
@@ -95,8 +142,7 @@ const judges: Judge[] = [
         company: 'Liviniti',
         expertise: ['Data Engineering', 'Healthcare Tech', 'AI/ML'],
         bio: 'Specializes in building high-performance data pipelines and seamless system integrations. Architects scalable ETL workflows that transform raw data into real-time business intelligence.',
-        icon: Database,
-        color: '#61A644',
+        isMentor: false,
     },
     {
         name: 'Ishu Gupta',
@@ -107,8 +153,7 @@ const judges: Judge[] = [
         photo: ishuPhoto,
         linkedin: 'https://www.linkedin.com/in/ishu-gupta-29b51869/',
         website: 'https://city-innovation.net/our-members/ishu-gupta/',
-        icon: Lightbulb,
-        color: '#E37100',
+        isMentor: false,
     },
     {
         name: 'Ryan Appel',
@@ -118,223 +163,243 @@ const judges: Judge[] = [
         bio: 'Holds a B.S. in Computer Science and Applied Mathematics with a professional background in game development for Nintendo consoles. Currently teaches software and web development, bringing real-world experience into the classroom.',
         photo: ryanPhoto,
         linkedin: 'https://www.linkedin.com/in/ryanappel/',
-        icon: Monitor,
-        color: '#4A90D9',
+        isMentor: false,
     },
     {
         name: 'Anurag Gupta',
         title: 'Sr. Geospatial Data Engineer',
         company: 'Enterprise Products',
-        expertise: ['Geospatial Data', 'AI/ML', 'Cloud & DevOps', 'Software Engineering'],
-        bio: 'Anurag Gupta is a technology professional with experience in software development, data, and emerging technologies. His expertise spans AI/ML, software engineering, and building practical technology solutions, with a strong interest in mentoring and supporting innovative student projects.',
+        expertise: ['Geospatial Data', 'AI/ML', 'Software Engineering'],
+        bio: 'Technology professional with experience in software development, geospatial data, and emerging technologies. His expertise spans AI/ML, software engineering, and building practical technology solutions, with a strong interest in mentoring student teams.',
         linkedin: 'https://www.linkedin.com/in/anurag96/',
-        icon: Globe,
-        color: '#0C3C34',
+        isMentor: true,
+        mentorTopics: ['AI/ML', 'Geospatial Data', 'Software Development'],
     },
     {
         name: 'Kumuda Sreenivasa',
         title: 'Sr. Data Architect & Founder',
         company: 'Receitly',
-        expertise: ['Data Architecture', 'AI/ML', 'Healthcare Tech', 'Product Management'],
-        bio: 'Kumuda Sreenivasa is a Founder and technology professional with a background in data architecture, software engineering, and AI/ML, specializing in building scalable, data-driven systems and intelligent products. Her expertise spans data engineering, cloud technologies, machine learning, and product development, with experience bridging complex technical challenges and real-world business applications.',
+        expertise: ['Data Architecture', 'AI/ML', 'Healthcare Tech'],
+        bio: 'Founder and technology professional with a background in data architecture, software engineering, and AI/ML, specializing in building scalable, data-driven systems and intelligent products. Her expertise spans data engineering, cloud technologies, machine learning, and product development.',
         linkedin: 'https://www.linkedin.com/in/kumudas/',
-        icon: Database,
-        color: '#61A644',
+        isMentor: false,
     },
 ];
 
-/* ── Judge Card ── */
+/* Helper to generate initials for monogram */
+function getInitials(name: string): string {
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+/* ── Filter Categories ── */
+const categories = [
+    'All',
+    'Mentors Available',
+    'AI & Machine Learning',
+    'Cloud & Distributed Systems',
+    'Data & Analytics',
+    'Cybersecurity',
+] as const;
+
+/* Items per page: 6 cards = exactly 2 rows on 3-col desktop, 3 rows on 2-col tablet */
+const ITEMS_PER_PAGE = 6;
+
+/* ── Executive Judge Card (Compact & Proportional) ── */
 const JudgeCard = ({ judge, onExpand }: { judge: Judge; onExpand: () => void }) => {
-    const IconComponent = judge.icon;
     return (
-        <div className="group relative bg-white/70 hover:bg-white/90 border border-black/5 hover:border-black/10 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 min-w-0 w-full h-full">
-            {/* Colored accent bar */}
-            <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${judge.color}, ${judge.color}80)` }} />
+        <div
+            onClick={onExpand}
+            className="group relative bg-white/80 hover:bg-white border border-slate-200/80 hover:border-[#61A644]/40 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:-translate-y-1 w-full h-full text-center p-5 cursor-pointer select-none"
+        >
+            {/* Top row: Role Badge */}
+            <div className="mb-2.5 flex justify-center">
+                {judge.isMentor ? (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-google-mono font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-800 border border-emerald-500/25">
+                        <Sparkles className="w-2.5 h-2.5 text-emerald-600" />
+                        Judge & Mentor
+                    </span>
+                ) : (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-google-mono font-bold uppercase tracking-wider bg-slate-100 text-slate-600 border border-black/5">
+                        <Shield className="w-2.5 h-2.5 text-slate-400" />
+                        Judge
+                    </span>
+                )}
+            </div>
 
-            <div className="p-5 flex flex-col items-center text-center flex-1">
-                {/* Photo or Placeholder */}
-                <div className="relative mb-4 shrink-0">
-                    {judge.photo ? (
-                        <img
-                            src={judge.photo}
-                            alt={judge.name}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-24 h-24 rounded-full object-cover border-3 shadow-lg transition-transform duration-300 group-hover:scale-110"
-                            style={{ borderColor: `${judge.color}50` }}
-                        />
-                    ) : (
-                        <div
-                            className="w-24 h-24 rounded-full flex items-center justify-center border-3 shadow-lg transition-transform duration-300 group-hover:scale-110"
-                            style={{
-                                background: `linear-gradient(135deg, ${judge.color}18, ${judge.color}08)`,
-                                borderColor: `${judge.color}35`,
-                            }}
-                        >
-                            <User className="w-10 h-10" style={{ color: `${judge.color}` }} />
-                        </div>
-                    )}
-                    {/* Expertise icon badge */}
+            {/* Photo or Monogram (w-20 h-20 / 80px) */}
+            <div className="relative mb-3 flex justify-center shrink-0">
+                {judge.photo ? (
+                    <img
+                        src={judge.photo}
+                        alt={judge.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-20 h-20 rounded-full object-cover ring-2 ring-slate-100 shadow-sm transition-transform duration-300 group-hover:scale-105 bg-slate-50"
+                    />
+                ) : (
                     <div
-                        className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full flex items-center justify-center border-2 border-white shadow-md"
-                        style={{ backgroundColor: judge.color }}
+                        className="w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br from-[#0C3C34] to-[#155a4e] text-white font-google font-bold text-lg tracking-wider ring-2 ring-slate-100 shadow-sm transition-transform duration-300 group-hover:scale-105"
                     >
-                        <IconComponent className="w-4 h-4 text-white" />
+                        {getInitials(judge.name)}
                     </div>
-                </div>
+                )}
+            </div>
 
-                {/* Name */}
-                <h3 className="font-google font-bold text-base text-[#0C3C34] mb-0.5 leading-tight">
-                    {judge.name}
-                </h3>
+            {/* Name */}
+            <h3 className="font-google font-bold text-base text-[#0C3C34] mb-0.5 leading-tight line-clamp-1">
+                {judge.name}
+            </h3>
 
-                {/* Title & Company */}
-                <p className="text-slate-500 font-google-text text-[11px] font-semibold mb-2 leading-snug">
-                    {judge.title}
-                    <span className="text-slate-400"> @ {judge.company}</span>
-                </p>
+            {/* Title & Company */}
+            <p className="text-slate-500 font-google-text text-[11px] font-semibold mb-2 leading-snug line-clamp-1">
+                {judge.title}
+                <span className="text-[#61A644]"> @ {judge.company}</span>
+            </p>
 
-                {/* Bio — truncated */}
-                <p className="text-slate-500 font-google-text text-[11px] leading-relaxed mb-3 line-clamp-2">
-                    {judge.bio}
-                </p>
+            {/* Bio — truncated */}
+            <p className="text-slate-500 font-google-text text-[11px] leading-relaxed mb-3 line-clamp-2">
+                {judge.bio}
+            </p>
 
-                {/* Expertise tags */}
-                <div className="flex flex-wrap gap-1.5 justify-center mb-3">
-                    {judge.expertise.slice(0, 2).map((tag, tagIdx) => (
-                        <span
-                            key={tagIdx}
-                            className="text-[8px] font-google-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border"
-                            style={{
-                                color: judge.color,
-                                backgroundColor: `${judge.color}10`,
-                                borderColor: `${judge.color}20`,
-                            }}
+            {/* Expertise tags */}
+            <div className="flex flex-wrap gap-1 justify-center mb-3">
+                {judge.expertise.slice(0, 2).map((tag, tagIdx) => (
+                    <span
+                        key={tagIdx}
+                        className="text-[8px] font-google-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200/60"
+                    >
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
+            {/* Bottom row: links + View Profile */}
+            <div className="flex items-center justify-between w-full mt-auto pt-2.5 border-t border-black/5">
+                <div className="flex items-center gap-2">
+                    {judge.linkedin && (
+                        <a
+                            href={judge.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-slate-400 hover:text-[#0077B5] transition-colors p-1"
+                            title="LinkedIn"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            {tag}
-                        </span>
-                    ))}
+                            <Linkedin className="w-3.5 h-3.5" />
+                        </a>
+                    )}
+                    {judge.website && (
+                        <a
+                            href={judge.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-slate-400 hover:text-[#61A644] transition-colors p-1"
+                            title="Website"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Globe className="w-3.5 h-3.5" />
+                        </a>
+                    )}
                 </div>
-
-                {/* Bottom row: links + See More */}
-                <div className="flex items-center justify-between w-full mt-auto pt-2 border-t border-black/5">
-                    <div className="flex items-center gap-2">
-                        {judge.linkedin && (
-                            <a
-                                href={judge.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-[#0077B5] transition-colors"
-                                title="LinkedIn"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <Linkedin className="w-3.5 h-3.5" />
-                            </a>
-                        )}
-                        {judge.website && (
-                            <a
-                                href={judge.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-slate-400 hover:text-[#61A644] transition-colors"
-                                title="Website"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <Globe className="w-3.5 h-3.5" />
-                            </a>
-                        )}
-                    </div>
-                    <button
-                        onClick={onExpand}
-                        className="text-[11px] font-google-text font-bold text-slate-500 hover:text-[#61A644] transition-colors cursor-pointer"
-                    >
-                        Meet the Judge →
-                    </button>
-                </div>
+                <button
+                    onClick={onExpand}
+                    className="text-[11px] font-google-text font-bold text-slate-500 hover:text-[#61A644] transition-colors cursor-pointer flex items-center gap-1"
+                >
+                    <span>View Profile</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                </button>
             </div>
         </div>
     );
 };
 
-/* ── Judge Profile Modal ── */
+/* ── Executive Profile Modal ── */
 const JudgeModal = ({ judge, onClose }: { judge: Judge; onClose: () => void }) => {
-    const IconComponent = judge.icon;
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
             onClick={onClose}
         >
             <motion.div
-                initial={{ opacity: 0, scale: 0.92, y: 20 }}
+                initial={{ opacity: 0, scale: 0.94, y: 16 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.92, y: 20 }}
-                transition={{ duration: 0.35, ease: spring }}
-                className="bg-white/95 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl max-w-lg w-full relative overflow-hidden"
+                exit={{ opacity: 0, scale: 0.94, y: 16 }}
+                transition={{ duration: 0.3, ease: spring }}
+                className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full relative overflow-hidden max-h-[90vh] flex flex-col"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Colored header band */}
-                <div className="h-24 relative" style={{ background: `linear-gradient(135deg, ${judge.color}, ${judge.color}90)` }}>
-                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PC9zdmc+')] opacity-50" />
+                {/* Header banner */}
+                <div className="h-20 bg-gradient-to-r from-[#0C3C34] via-[#124d42] to-[#1c6457] relative shrink-0">
                     <button
                         onClick={onClose}
-                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-colors cursor-pointer"
+                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center transition-colors cursor-pointer text-white"
+                        aria-label="Close modal"
                     >
-                        <X className="w-4 h-4 text-white" />
+                        <X className="w-4 h-4" />
                     </button>
                 </div>
 
-                {/* Avatar overlapping header */}
-                <div className="flex justify-center -mt-14 relative z-10">
-                    <div className="relative">
-                        {judge.photo ? (
-                            <img
-                                src={judge.photo}
-                                alt={judge.name}
-                                loading="lazy"
-                                decoding="async"
-                                className="w-28 h-28 rounded-2xl object-cover border-4 border-white shadow-xl"
-                            />
-                        ) : (
-                            <div
-                                className="w-28 h-28 rounded-2xl flex items-center justify-center border-4 border-white shadow-xl"
-                                style={{ background: `linear-gradient(135deg, ${judge.color}25, ${judge.color}10)` }}
-                            >
-                                <User className="w-12 h-12" style={{ color: judge.color }} />
-                            </div>
-                        )}
-                        <div
-                            className="absolute -bottom-2 -right-2 w-10 h-10 rounded-xl flex items-center justify-center border-3 border-white shadow-md"
-                            style={{ backgroundColor: judge.color }}
-                        >
-                            <IconComponent className="w-5 h-5 text-white" />
+                {/* Avatar overlapping banner */}
+                <div className="flex justify-between items-end px-6 -mt-10 relative z-10 shrink-0">
+                    {judge.photo ? (
+                        <img
+                            src={judge.photo}
+                            alt={judge.name}
+                            className="w-20 h-20 rounded-full object-cover border-3 border-white shadow-xl bg-white"
+                        />
+                    ) : (
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0C3C34] via-[#124d42] to-[#1e6154] text-white flex items-center justify-center font-google font-bold text-2xl tracking-wider border-3 border-white shadow-xl select-none">
+                            {getInitials(judge.name)}
                         </div>
+                    )}
+
+                    <div className="mb-1">
+                        {judge.isMentor ? (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-google-mono font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
+                                <Sparkles className="w-3 h-3 text-emerald-600" />
+                                Judge & Mentor
+                            </span>
+                        ) : (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-google-mono font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
+                                <Shield className="w-3 h-3 text-slate-400" />
+                                Official Judge
+                            </span>
+                        )}
                     </div>
                 </div>
 
-                {/* Content */}
-                <div className="px-7 pt-5 pb-7 text-center">
-                    <h3 className="font-google font-bold text-2xl text-[#0C3C34] mb-1">{judge.name}</h3>
-                    <p className="text-slate-500 font-google-text text-sm font-semibold">
-                        {judge.title}
-                    </p>
-                    <p className="text-slate-400 font-google-text text-sm font-medium mb-4">
-                        @ {judge.company}
-                    </p>
+                {/* Modal Content */}
+                <div className="px-6 pt-3 pb-6 text-left overflow-y-auto">
+                    {/* Name, Role & Company */}
+                    <div className="mb-3">
+                        <h3 className="font-google font-bold text-xl text-[#0C3C34] mb-0.5">
+                            {judge.name}
+                        </h3>
+                        <p className="text-xs font-semibold text-slate-700">
+                            {judge.title}
+                        </p>
+                        <p className="text-xs font-bold text-[#61A644]">
+                            @ {judge.company}
+                        </p>
+                    </div>
 
-                    {/* Links */}
-                    <div className="flex items-center gap-3 justify-center mb-5">
+                    {/* Social & Web Links */}
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
                         {judge.linkedin && (
                             <a
                                 href={judge.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 text-xs font-google-mono text-[#0077B5] hover:underline font-bold bg-[#0077B5]/8 px-3 py-1.5 rounded-full"
+                                className="inline-flex items-center gap-1.5 text-xs font-google font-semibold text-[#0077B5] bg-[#0077B5]/10 hover:bg-[#0077B5]/15 px-3 py-1 rounded-full transition-colors"
                             >
-                                <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                                <Linkedin className="w-3.5 h-3.5" />
+                                <span>LinkedIn</span>
                             </a>
                         )}
                         {judge.website && (
@@ -342,35 +407,67 @@ const JudgeModal = ({ judge, onClose }: { judge: Judge; onClose: () => void }) =
                                 href={judge.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 text-xs font-google-mono text-[#61A644] hover:underline font-bold bg-[#61A644]/8 px-3 py-1.5 rounded-full"
+                                className="inline-flex items-center gap-1.5 text-xs font-google font-semibold text-[#0C3C34] bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-full transition-colors"
                             >
-                                <Globe className="w-3.5 h-3.5" /> Website
+                                <Globe className="w-3.5 h-3.5" />
+                                <span>Website</span>
                             </a>
                         )}
                     </div>
 
-                    {/* Bio */}
-                    <div className="bg-slate-50 rounded-xl p-4 text-left mb-5 border border-black/5">
-                        <p className="text-slate-600 font-google-text text-sm leading-relaxed font-medium">
+                    {/* Mentorship Focus Box (if mentor) */}
+                    {judge.isMentor && (
+                        <div className="bg-emerald-50/80 border border-emerald-200/90 rounded-xl p-3 mb-4 shadow-2xs">
+                            <div className="flex items-center gap-1.5 text-emerald-900 font-google font-bold text-xs mb-1">
+                                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                                <span>Mentorship Support</span>
+                            </div>
+                            <p className="text-[11px] text-slate-650 leading-relaxed mb-2 font-normal">
+                                Available to guide hackers, troubleshoot technical bottlenecks, and give architectural feedback.
+                            </p>
+                            {judge.mentorTopics && judge.mentorTopics.length > 0 && (
+                                <div className="flex flex-wrap items-center gap-1">
+                                    <span className="text-[9px] font-google-mono text-emerald-800 font-bold uppercase tracking-wider mr-1">
+                                        Focus:
+                                    </span>
+                                    {judge.mentorTopics.map((topic, i) => (
+                                        <span
+                                            key={i}
+                                            className="text-[9px] font-google-mono font-medium px-2 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-200 shadow-2xs"
+                                        >
+                                            {topic}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Full Bio */}
+                    <div className="mb-4">
+                        <h4 className="text-[10px] font-google-mono font-bold uppercase tracking-wider text-slate-450 mb-1.5">
+                            Biography
+                        </h4>
+                        <p className="text-slate-650 text-xs leading-relaxed font-normal bg-slate-50 p-3 rounded-xl border border-slate-200/70">
                             {judge.bio}
                         </p>
                     </div>
 
-                    {/* All expertise tags */}
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {judge.expertise.map((tag, tagIdx) => (
-                            <span
-                                key={tagIdx}
-                                className="text-[10px] font-google-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full border"
-                                style={{
-                                    color: judge.color,
-                                    backgroundColor: `${judge.color}10`,
-                                    borderColor: `${judge.color}20`,
-                                }}
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                    {/* Expertise Tags */}
+                    <div>
+                        <h4 className="text-[10px] font-google-mono font-bold uppercase tracking-wider text-slate-450 mb-1.5">
+                            Expertise
+                        </h4>
+                        <div className="flex flex-wrap gap-1">
+                            {judge.expertise.map((tag, i) => (
+                                <span
+                                    key={i}
+                                    className="text-[9px] font-google-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </motion.div>
@@ -378,15 +475,20 @@ const JudgeModal = ({ judge, onClose }: { judge: Judge; onClose: () => void }) =
     );
 };
 
-/* ── Main Judges Carousel Section ── */
+/* ── Main Judges & Mentors Directory Section ── */
 const Judges = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [showAll, setShowAll] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
+    const [viewMode, setViewMode] = useState<'grid' | 'carousel'>('grid');
     const [selectedJudge, setSelectedJudge] = useState<Judge | null>(null);
+    const [carouselIndex, setCarouselIndex] = useState(0);
     const [cardsPerView, setCardsPerView] = useState(3);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showAllRows, setShowAllRows] = useState(false);
     const trackRef = useRef<HTMLDivElement>(null);
+    const directoryRef = useRef<HTMLDivElement>(null);
 
-    // Responsive cards per view
+    // Responsive cards per view for carousel mode
     useEffect(() => {
         const update = () => {
             if (window.innerWidth < 640) setCardsPerView(1);
@@ -398,203 +500,401 @@ const Judges = () => {
         return () => window.removeEventListener('resize', update);
     }, []);
 
-    const maxIndex = Math.max(0, judges.length - cardsPerView);
+    // Filtered unified judges list
+    const filteredJudges = judges.filter((judge) => {
+        const query = searchQuery.trim().toLowerCase();
+        const matchesSearch =
+            query === '' ||
+            judge.name.toLowerCase().includes(query) ||
+            judge.company.toLowerCase().includes(query) ||
+            judge.title.toLowerCase().includes(query) ||
+            judge.expertise.some((e) => e.toLowerCase().includes(query));
 
-    const prev = useCallback(() => setActiveIndex((i) => Math.max(0, i - 1)), []);
-    const next = useCallback(() => setActiveIndex((i) => Math.min(maxIndex, i + 1)), [maxIndex]);
+        if (!matchesSearch) return false;
 
-    // Clamp on resize
+        if (selectedCategory === 'All') return true;
+        if (selectedCategory === 'Mentors Available') return judge.isMentor;
+        if (selectedCategory === 'AI & Machine Learning')
+            return judge.expertise.some((e) => /ai|ml|machine learning|agent|vision/i.test(e));
+        if (selectedCategory === 'Cloud & Distributed Systems')
+            return judge.expertise.some((e) => /distributed|cloud|devops|systems|architecture|backend/i.test(e));
+        if (selectedCategory === 'Data & Analytics')
+            return judge.expertise.some((e) => /data|geospatial|analytics|operations/i.test(e));
+        if (selectedCategory === 'Cybersecurity')
+            return judge.expertise.some((e) => /cybersecurity|iam|security/i.test(e));
+
+        return true;
+    });
+
+    // Reset pagination and carousel on search / filter
     useEffect(() => {
-        if (activeIndex > maxIndex) setActiveIndex(maxIndex);
-    }, [maxIndex, activeIndex]);
+        setCurrentPage(1);
+        setCarouselIndex(0);
+    }, [searchQuery, selectedCategory]);
 
-    // Auto-advance every 5s (only when not showing all)
+    const totalPages = Math.ceil(filteredJudges.length / ITEMS_PER_PAGE);
+
+    // Clamp current page on count changes
     useEffect(() => {
-        if (showAll) return;
-        const timer = setInterval(() => {
-            setActiveIndex((i) => (i >= maxIndex ? 0 : i + 1));
-        }, 5000);
-        return () => clearInterval(timer);
-    }, [maxIndex, showAll]);
+        if (currentPage > totalPages && totalPages > 0) {
+            setCurrentPage(totalPages);
+        }
+    }, [totalPages, currentPage]);
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const displayedJudges = showAllRows
+        ? filteredJudges
+        : filteredJudges.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+    const maxCarouselIndex = Math.max(0, filteredJudges.length - cardsPerView);
+
+    const prevCarousel = useCallback(() => {
+        setCarouselIndex((i) => Math.max(0, i - 1));
+    }, []);
+
+    const nextCarousel = useCallback(() => {
+        setCarouselIndex((i) => Math.min(maxCarouselIndex, i + 1));
+    }, [maxCarouselIndex]);
+
+    // Reset carousel index if out of bounds
+    useEffect(() => {
+        if (carouselIndex > maxCarouselIndex) {
+            setCarouselIndex(maxCarouselIndex);
+        }
+    }, [maxCarouselIndex, carouselIndex]);
+
+    const goToPage = (page: number) => {
+        setCurrentPage(page);
+        if (directoryRef.current) {
+            const rect = directoryRef.current.getBoundingClientRect();
+            if (rect.top < 0) {
+                directoryRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    };
 
     return (
-        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="judges">
-            {/* Background landmark image with parallax drift */}
+        <section className="relative pt-16 pb-28 px-4 overflow-hidden" id="judges">
+            {/* Background landmark image with subtle parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={gbWaterfrontImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
-                <div className="absolute inset-0 bg-[#0C3C34]/[0.01]" />
+                <img
+                    src={gbWaterfrontImg}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover opacity-[0.30] parallax-bg"
+                />
+                <div className="absolute inset-0 bg-white/70" />
             </div>
 
-            {/* Ambient glows */}
+            {/* Ambient subtle color glows */}
             <div className="absolute top-1/4 left-1/3 w-[400px] h-[400px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
-            <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-[#E37100]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+            <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-[#0C3C34]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
 
-            <div className="max-w-6xl mx-auto relative z-10">
-                {/* Header */}
-                <motion.div
-                    {...fadeUp(0)}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
-                        Meet Our Judges
+            {/* Container: reduced max-width (max-w-5xl) for compact, proportional cards */}
+            <div className="max-w-5xl mx-auto relative z-10">
+                {/* Section Header */}
+                <motion.div {...fadeUp(0)} className="text-center mb-10">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0C3C34]/5 border border-[#0C3C34]/10 text-[#0C3C34] text-xs font-google-mono font-semibold tracking-wider uppercase mb-3">
+                        <Sparkles className="w-3.5 h-3.5 text-[#61A644]" />
+                        <span>Evaluation & Mentorship Panel</span>
+                    </div>
+
+                    <h2 className="text-3xl md:text-5xl font-google font-bold mb-3 text-[#0C3C34]">
+                        Meet Our Judges & Mentors
                     </h2>
-                    <p className="text-slate-600 font-google-text text-base md:text-lg max-w-2xl mx-auto font-medium">
-                        Industry leaders and engineers who will evaluate your projects and award prizes.
+
+                    <p className="text-slate-650 font-google-text text-sm md:text-base max-w-xl mx-auto font-normal leading-relaxed">
+                        Distinguished engineering managers, principal architects, founders, and instructors from Microsoft, Amazon, Groundwork, FedEx, Guidehouse, and beyond.
                     </p>
+
+                    {/* Stat Badges */}
+                    <div className="flex flex-wrap items-center justify-center gap-2.5 mt-5">
+                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200/80 text-xs font-google-text text-slate-700 shadow-2xs">
+                            <span className="w-2 h-2 rounded-full bg-[#61A644]" />
+                            <span className="font-semibold text-[#0C3C34]">{judges.length}</span> Confirmed Leaders
+                        </div>
+                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200/80 text-xs font-google-text text-slate-700 shadow-2xs">
+                            <Sparkles className="w-3 h-3 text-emerald-600" />
+                            <span>1:1 Mentorship</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-slate-200/80 text-xs font-google-text text-slate-700 shadow-2xs">
+                            <span className="w-2 h-2 rounded-full bg-[#0C3C34]" />
+                            <span>Fortune 500 & Startups</span>
+                        </div>
+                    </div>
                 </motion.div>
 
-                {/* IDE Card */}
+                {/* Directory Controls Bar */}
                 <motion.div
+                    ref={directoryRef}
                     {...fadeUp(0.1)}
-                    className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-xl overflow-hidden flex flex-col"
+                    className="bg-white/85 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xs p-3.5 mb-6 flex flex-col md:flex-row items-center justify-between gap-3 scroll-mt-24"
                 >
-                    {/* IDE Top Window Bar */}
-                    <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                            <span className="text-[10px] font-google-mono text-slate-550 ml-3">Judging Panel</span>
-                        </div>
-                        <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-slate-450 bg-slate-200/50 px-2 py-0.5 rounded border border-black/5">
-                            <Shield className="w-3 h-3 text-[#61A644]" />
-                            <span>judges.json</span>
-                        </div>
-                    </div>
-
-                    {/* Editor Tab Bar */}
-                    <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none select-none">
-                        <div className="flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-xs font-medium bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644] flex-1 justify-center">
-                            <Shield className="w-3.5 h-3.5 text-[#61A644]" />
-                            judges.json
-                        </div>
-                    </div>
-
-                    <AnimatePresence mode="wait">
-                        {!showAll ? (
-                            /* ── Carousel View ── */
-                            <motion.div
-                                key="carousel"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
+                    {/* Search Input */}
+                    <div className="relative w-full md:w-72">
+                        <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder="Search by name, company, skill..."
+                            className="w-full pl-8 pr-4 py-1.5 rounded-xl text-xs font-google-text text-slate-800 bg-slate-50 border border-slate-200/80 focus:bg-white focus:outline-none focus:border-[#61A644] focus:ring-1 focus:ring-[#61A644] transition-all"
+                        />
+                        {searchQuery && (
+                            <button
+                                onClick={() => setSearchQuery('')}
+                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-450 hover:text-slate-700 cursor-pointer"
                             >
-                                <div className="relative p-6 md:p-8">
-                                    {/* Prev / Next Buttons */}
-                                    <button
-                                        onClick={prev}
-                                        disabled={activeIndex === 0}
-                                        className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white border border-black/10 shadow-lg flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-default cursor-pointer"
-                                    >
-                                        <ChevronLeft className="w-5 h-5 text-[#0C3C34]" />
-                                    </button>
-                                    <button
-                                        onClick={next}
-                                        disabled={activeIndex >= maxIndex}
-                                        className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white border border-black/10 shadow-lg flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-default cursor-pointer"
-                                    >
-                                        <ChevronRight className="w-5 h-5 text-[#0C3C34]" />
-                                    </button>
-
-                                    {/* Carousel Track */}
-                                    <div className="overflow-hidden mx-8 md:mx-10" ref={trackRef}>
-                                        <motion.div
-                                            className="flex gap-5"
-                                            animate={{ x: `calc(-${activeIndex * (100 / cardsPerView)}% - ${activeIndex * (20 / cardsPerView)}px)` }}
-                                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                        >
-                                            {judges.map((judge, idx) => (
-                                                <div
-                                                    key={idx}
-                                                    className="shrink-0"
-                                                    style={{ width: `calc(${100 / cardsPerView}% - ${(cardsPerView - 1) * 20 / cardsPerView}px)` }}
-                                                >
-                                                    <JudgeCard judge={judge} onExpand={() => setSelectedJudge(judge)} />
-                                                </div>
-                                            ))}
-                                        </motion.div>
-                                    </div>
-
-                                    {/* Dot indicators */}
-                                    <div className="flex items-center justify-center gap-2 mt-6">
-                                        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                                            <button
-                                                key={i}
-                                                onClick={() => setActiveIndex(i)}
-                                                className={`rounded-full transition-all duration-300 cursor-pointer ${
-                                                    i === activeIndex
-                                                        ? 'w-6 h-2 bg-[#61A644]'
-                                                        : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-                                                }`}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* See All Button */}
-                                <div className="px-6 md:px-8 pb-6 flex justify-center">
-                                    <button
-                                        onClick={() => setShowAll(true)}
-                                        className="px-8 py-2.5 rounded-full bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm transition-all cursor-pointer flex items-center justify-center gap-2 shadow-md active:scale-[0.98]"
-                                    >
-                                        Explore All Judges
-                                        <ChevronRight className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </motion.div>
-                        ) : (
-                            /* ── Expanded Grid View ── */
-                            <motion.div
-                                key="grid"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <div className="p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                                    {judges.map((judge, idx) => (
-                                        <motion.div
-                                            key={idx}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.4, delay: idx * 0.05, ease: spring }}
-                                        >
-                                            <JudgeCard judge={judge} onExpand={() => setSelectedJudge(judge)} />
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                {/* Show Less Button */}
-                                <div className="px-6 md:px-8 pb-6 flex justify-center">
-                                    <button
-                                        onClick={() => setShowAll(false)}
-                                        className="px-8 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-black/5 text-slate-600 font-google font-bold text-sm transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]"
-                                    >
-                                        <ChevronLeft className="w-4 h-4" />
-                                        Collapse Panel
-                                    </button>
-                                </div>
-                            </motion.div>
+                                <X className="w-3.5 h-3.5" />
+                            </button>
                         )}
-                    </AnimatePresence>
+                    </div>
 
-                    {/* IDE Bottom Status Bar */}
-                    <div className="flex justify-between items-center px-4 py-1.5 bg-[#0c3c34] text-white font-google-mono text-[10px] select-none">
-                        <div className="flex items-center gap-3">
-                            <span className="font-bold">JUDGES: {judges.length} confirmed</span>
-                            <span className="opacity-80">{showAll ? 'Showing all' : 'Panel ready'}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <span>JSON</span>
-                            <span>UTF-8</span>
-                            <span>{showAll ? `${judges.length} items` : `Ln ${activeIndex + 1}, Col 1`}</span>
-                        </div>
+                    {/* Filter Pills */}
+                    <div className="flex items-center gap-1 overflow-x-auto w-full md:w-auto scrollbar-none py-0.5">
+                        {categories.map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => setSelectedCategory(cat)}
+                                className={`shrink-0 text-[11px] font-google px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+                                    selectedCategory === cat
+                                        ? 'bg-[#0C3C34] text-white font-semibold shadow-xs'
+                                        : 'bg-slate-100 hover:bg-slate-200/70 text-slate-650 font-medium'
+                                }`}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* View Switcher (Grid vs Carousel) */}
+                    <div className="hidden lg:flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200/80 shrink-0">
+                        <button
+                            onClick={() => setViewMode('grid')}
+                            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google transition-all cursor-pointer ${
+                                viewMode === 'grid'
+                                    ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
+                                    : 'text-slate-500 hover:text-slate-800 font-medium'
+                            }`}
+                        >
+                            <LayoutGrid className="w-3 h-3" />
+                            <span>Grid</span>
+                        </button>
+                        <button
+                            onClick={() => setViewMode('carousel')}
+                            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google transition-all cursor-pointer ${
+                                viewMode === 'carousel'
+                                    ? 'bg-white text-[#0C3C34] font-bold shadow-xs'
+                                    : 'text-slate-500 hover:text-slate-800 font-medium'
+                            }`}
+                        >
+                            <SlidersHorizontal className="w-3 h-3" />
+                            <span>Slider</span>
+                        </button>
                     </div>
                 </motion.div>
+
+                {/* Empty State */}
+                {filteredJudges.length === 0 && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="bg-white/80 rounded-2xl border border-slate-200 p-10 text-center my-6"
+                    >
+                        <p className="text-slate-600 font-google text-sm font-semibold mb-1">
+                            No judges or mentors matched your search.
+                        </p>
+                        <p className="text-slate-450 text-xs mb-3">
+                            Try resetting filters or searching for keywords like "AI", "Cloud", or "Groundwork".
+                        </p>
+                        <button
+                            onClick={() => {
+                                setSearchQuery('');
+                                setSelectedCategory('All');
+                            }}
+                            className="px-3.5 py-1.5 rounded-full bg-[#0C3C34] text-white text-xs font-semibold hover:bg-[#0C3C34]/90 cursor-pointer transition-colors"
+                        >
+                            Reset Filters
+                        </button>
+                    </motion.div>
+                )}
+
+                {/* Directory Content: Grid View (2 Rows of compact cards + Buttons) */}
+                {viewMode === 'grid' ? (
+                    <div className="flex flex-col">
+                        {/* ── Compact 3-Column Grid (Cards are trim, proportional, and equal size) ── */}
+                        <motion.div
+                            key={`grid-page-${currentPage}-${showAllRows}`}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 items-stretch"
+                        >
+                            {displayedJudges.map((judge, idx) => (
+                                <motion.div
+                                    key={judge.name}
+                                    initial={{ opacity: 0, y: 12 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.2), ease: spring }}
+                                    className="h-full flex flex-col"
+                                >
+                                    <JudgeCard judge={judge} onExpand={() => setSelectedJudge(judge)} />
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* ── Compact Pagination & View Buttons Bar ── */}
+                        {filteredJudges.length > 0 && (
+                            <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                {/* Showing Count */}
+                                <div className="text-xs font-google-text text-slate-500 font-medium">
+                                    Showing{' '}
+                                    <span className="font-bold text-[#0C3C34]">
+                                        {showAllRows ? 1 : startIndex + 1}
+                                    </span>
+                                    –
+                                    <span className="font-bold text-[#0C3C34]">
+                                        {showAllRows
+                                            ? filteredJudges.length
+                                            : Math.min(startIndex + ITEMS_PER_PAGE, filteredJudges.length)}
+                                    </span>{' '}
+                                    of <span className="font-bold text-[#0C3C34]">{filteredJudges.length}</span> Leaders
+                                </div>
+
+                                {/* Pagination Buttons */}
+                                {totalPages > 1 && !showAllRows && (
+                                    <div className="flex items-center gap-1 bg-white/90 p-1 rounded-xl border border-slate-200 shadow-2xs">
+                                        <button
+                                            onClick={() => goToPage(Math.max(1, currentPage - 1))}
+                                            disabled={currentPage === 1}
+                                            className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google font-semibold text-slate-700 hover:text-[#0C3C34] hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                            aria-label="Previous page"
+                                        >
+                                            <ChevronLeft className="w-3.5 h-3.5" />
+                                            <span>Prev</span>
+                                        </button>
+
+                                        <div className="flex items-center gap-1 px-1">
+                                            {Array.from({ length: totalPages }).map((_, i) => {
+                                                const pageNum = i + 1;
+                                                return (
+                                                    <button
+                                                        key={pageNum}
+                                                        onClick={() => goToPage(pageNum)}
+                                                        className={`w-7 h-7 rounded-lg text-xs font-google font-bold transition-all cursor-pointer flex items-center justify-center ${
+                                                            currentPage === pageNum
+                                                                ? 'bg-[#0C3C34] text-white shadow-xs'
+                                                                : 'text-slate-600 hover:bg-slate-100'
+                                                        }`}
+                                                        aria-label={`Page ${pageNum}`}
+                                                    >
+                                                        {pageNum}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+
+                                        <button
+                                            onClick={() => goToPage(Math.min(totalPages, currentPage + 1))}
+                                            disabled={currentPage === totalPages}
+                                            className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-google font-semibold text-slate-700 hover:text-[#0C3C34] hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+                                            aria-label="Next page"
+                                        >
+                                            <span>Next</span>
+                                            <ChevronRight className="w-3.5 h-3.5" />
+                                        </button>
+                                    </div>
+                                )}
+
+                                {/* View All / Collapse Button */}
+                                {filteredJudges.length > ITEMS_PER_PAGE && (
+                                    <button
+                                        onClick={() => {
+                                            setShowAllRows(!showAllRows);
+                                            if (showAllRows) goToPage(1);
+                                        }}
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-google font-bold transition-all cursor-pointer bg-slate-100 hover:bg-slate-200/80 text-[#0C3C34] border border-slate-200 shadow-2xs"
+                                    >
+                                        <span>{showAllRows ? 'Show 2 Rows' : `View All ${filteredJudges.length} Leaders`}</span>
+                                        <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-200 ${showAllRows ? '-rotate-90' : 'rotate-90'}`} />
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    /* ── Carousel Showcase View ── */
+                    <motion.div
+                        key="carousel-view"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="relative"
+                    >
+                        {/* Prev / Next Navigation Arrows */}
+                        <button
+                            onClick={prevCarousel}
+                            disabled={carouselIndex === 0}
+                            className="absolute -left-3 md:-left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white hover:bg-slate-50 border border-slate-200/90 shadow-md flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer text-[#0C3C34]"
+                            aria-label="Previous judges"
+                        >
+                            <ChevronLeft className="w-4 h-4" />
+                        </button>
+                        <button
+                            onClick={nextCarousel}
+                            disabled={carouselIndex >= maxCarouselIndex}
+                            className="absolute -right-3 md:-right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white hover:bg-slate-50 border border-slate-200/90 shadow-md flex items-center justify-center transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer text-[#0C3C34]"
+                            aria-label="Next judges"
+                        >
+                            <ChevronRight className="w-4 h-4" />
+                        </button>
+
+                        {/* Carousel Track */}
+                        <div className="overflow-hidden px-1 py-1" ref={trackRef}>
+                            <motion.div
+                                className="flex gap-5 items-stretch"
+                                animate={{
+                                    x: `calc(-${carouselIndex * (100 / cardsPerView)}% - ${carouselIndex * (20 / cardsPerView)}px)`,
+                                }}
+                                transition={{ type: 'spring', stiffness: 280, damping: 28 }}
+                            >
+                                {filteredJudges.map((judge) => (
+                                    <div
+                                        key={judge.name}
+                                        className="shrink-0 h-full flex flex-col"
+                                        style={{
+                                            width: `calc(${100 / cardsPerView}% - ${((cardsPerView - 1) * 20) / cardsPerView}px)`,
+                                        }}
+                                    >
+                                        <JudgeCard judge={judge} onExpand={() => setSelectedJudge(judge)} />
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        {/* Dot Indicators */}
+                        {maxCarouselIndex > 0 && (
+                            <div className="flex items-center justify-center gap-1.5 mt-6">
+                                {Array.from({ length: maxCarouselIndex + 1 }).map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCarouselIndex(i)}
+                                        aria-label={`Go to slide ${i + 1}`}
+                                        className={`rounded-full transition-all duration-300 cursor-pointer ${
+                                            i === carouselIndex
+                                                ? 'w-5 h-1.5 bg-[#0C3C34]'
+                                                : 'w-1.5 h-1.5 bg-slate-300 hover:bg-slate-400'
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </motion.div>
+                )}
             </div>
 
-            {/* Judge Profile Modal */}
+            {/* Executive Profile Modal */}
             <AnimatePresence>
                 {selectedJudge && (
                     <JudgeModal judge={selectedJudge} onClose={() => setSelectedJudge(null)} />

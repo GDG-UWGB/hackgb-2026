@@ -1,118 +1,117 @@
 import { motion } from 'framer-motion';
-import { Mic } from 'lucide-react';
+import { Mic, Sparkles, ArrowDown, Calendar, Users, Award } from 'lucide-react';
 import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    initial: { opacity: 0, y: 24, filter: 'blur(4px)' },
     whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
     viewport: { once: true, margin: '-40px' },
-    transition: { duration: 0.8, delay, ease: spring },
+    transition: { duration: 0.7, delay, ease: spring },
 });
 
 const Speakers = () => {
-    // Generate 6 placeholder skeleton speaker cards
-    const skeletons = Array.from({ length: 6 });
+    const scrollToJudges = () => {
+        const el = document.getElementById('judges');
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
-        <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="speakers">
-            {/* Background landmark image with parallax drift */}
+        <section className="relative pt-20 pb-28 px-4 overflow-hidden" id="speakers">
+            {/* Background landmark image with subtle parallax drift */}
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <img src={titletownImg} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
-                <div className="absolute inset-0 bg-[#61A644]/[0.01]" />
+                <img
+                    src={titletownImg}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover opacity-[0.30] parallax-bg"
+                />
+                <div className="absolute inset-0 bg-white/75" />
             </div>
 
-            {/* Ambient glows */}
-            <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#61A644]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
-            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#0c3c34]/5 rounded-full blur-[150px] pointer-events-none animate-ambient-glow" />
+            {/* Ambient subtle color glows */}
+            <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-[#61A644]/5 rounded-full blur-[160px] pointer-events-none animate-ambient-glow" />
+            <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-[#0C3C34]/5 rounded-full blur-[160px] pointer-events-none animate-ambient-glow" />
 
-            <div className="max-w-5xl mx-auto relative z-10">
-                {/* Header */}
-                <motion.div
-                    {...fadeUp(0)}
-                    className="text-center mb-16"
-                >
+            <div className="max-w-4xl mx-auto relative z-10">
+                {/* Section Header */}
+                <motion.div {...fadeUp(0)} className="text-center mb-12">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0C3C34]/5 border border-[#0C3C34]/10 text-[#0C3C34] text-xs font-google-mono font-semibold tracking-wider uppercase mb-4">
+                        <Mic className="w-3.5 h-3.5 text-[#61A644]" />
+                        <span>Keynotes & Workshops</span>
+                    </div>
+
                     <h2 className="text-4xl md:text-6xl font-google font-bold mb-4 text-[#0C3C34]">
-                        Meet Our Speakers
+                        Keynote Speakers
                     </h2>
+
+                    <p className="text-slate-650 font-google-text text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+                        Industry visionaries, engineering executives, and technical pioneers delivering keynote addresses and hands-on workshops throughout HackGB 2026.
+                    </p>
                 </motion.div>
 
-                {/* Integrated IDE Speakers Card */}
+                {/* Executive Showcase Card */}
                 <motion.div
                     {...fadeUp(0.1)}
-                    className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-xl overflow-hidden flex flex-col min-h-[460px] relative"
+                    className="bg-white/85 backdrop-blur-md rounded-3xl border border-slate-200/90 shadow-lg p-8 md:p-12 relative overflow-hidden text-center"
                 >
-                    {/* IDE Top Window Bar */}
-                    <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
-                        <div className="flex items-center gap-1.5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                            <span className="text-[10px] font-google-mono text-slate-550 ml-3">Speaker Manifest</span>
+                    {/* Subtle decorative gradient top line */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3C34] via-[#61A644] to-[#E37100]" />
+
+                    {/* Center Icon */}
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0C3C34] to-[#16584c] text-white flex items-center justify-center mx-auto mb-6 shadow-md ring-4 ring-white">
+                        <Mic className="w-8 h-8 text-[#61A644]" />
+                    </div>
+
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E37100]/10 text-[#E37100] border border-[#E37100]/25 text-[11px] font-google-mono font-bold tracking-wider uppercase mb-4">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Lineup Announcement In Progress</span>
+                    </div>
+
+                    <h3 className="font-google font-bold text-2xl md:text-3xl text-[#0C3C34] mb-3">
+                        Keynote Speakers & Workshop Schedule Coming Soon
+                    </h3>
+
+                    <p className="text-slate-650 font-google-text text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-8 font-normal">
+                        We are currently coordinating with engineering leaders from premier technology companies, research institutions, and regional innovators to finalize our opening keynote, AI workshops, and technical deep dives.
+                    </p>
+
+                    {/* Features Strip */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto mb-8">
+                        <div className="bg-slate-50 border border-slate-200/70 rounded-2xl p-4 text-center">
+                            <Calendar className="w-5 h-5 text-[#61A644] mx-auto mb-2" />
+                            <div className="font-google font-bold text-sm text-[#0C3C34]">Opening Keynote</div>
+                            <div className="text-[11px] text-slate-500 mt-0.5">Kickoff Day 1</div>
                         </div>
-                        <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-slate-450 bg-slate-200/50 px-2 py-0.5 rounded border border-black/5">
-                            <Mic className="w-3 h-3 text-[#61A644]" />
-                            <span>speakers.env</span>
+                        <div className="bg-slate-50 border border-slate-200/70 rounded-2xl p-4 text-center">
+                            <Users className="w-5 h-5 text-[#0C3C34] mx-auto mb-2" />
+                            <div className="font-google font-bold text-sm text-[#0C3C34]">Tech Workshops</div>
+                            <div className="text-[11px] text-slate-500 mt-0.5">AI, Cloud & Security</div>
+                        </div>
+                        <div className="bg-slate-50 border border-slate-200/70 rounded-2xl p-4 text-center">
+                            <Award className="w-5 h-5 text-[#E37100] mx-auto mb-2" />
+                            <div className="font-google font-bold text-sm text-[#0C3C34]">Fireside Chat</div>
+                            <div className="text-[11px] text-slate-500 mt-0.5">Career & Industry</div>
                         </div>
                     </div>
 
-                    {/* Editor Tab Bar */}
-                    <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none select-none">
-                        <div className="flex items-center gap-2 px-5 py-3 border-r border-black/5 font-google-mono text-xs font-medium bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644] flex-1 justify-center">
-                            <Mic className="w-3.5 h-3.5 text-[#61A644]" />
-                            speakers.env
-                        </div>
-                    </div>
-
-                    {/* Workspace Editor Body (Skeletons Grid) */}
-                    <div className="p-8 bg-transparent grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative min-h-[380px] items-center">
-                        {skeletons.map((_, idx) => (
-                            <div key={idx} className="bg-white/60 border border-black/5 rounded-2xl p-6 flex flex-col items-center select-none opacity-40">
-                                {/* Profile circle skeleton */}
-                                <div className="w-20 h-20 rounded-full bg-slate-200/80 animate-pulse mb-4" />
-                                {/* Name bar skeleton */}
-                                <div className="h-4 w-32 bg-slate-200/80 rounded animate-pulse mb-2" />
-                                {/* Title bar skeleton */}
-                                <div className="h-3 w-24 bg-slate-200/80 rounded animate-pulse" />
-                            </div>
-                        ))}
-
-                        {/* Central Glassmorphic Overlay Card */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/[0.03] backdrop-blur-[4px] z-20">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6, ease: spring }}
-                                viewport={{ once: true }}
-                                className="bg-white/95 border border-white/50 shadow-2xl rounded-2xl p-8 max-w-sm text-center mx-4 relative"
-                            >
-                                <div className="w-12 h-12 bg-[#61A644]/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Mic className="w-5 h-5 text-[#61A644] animate-pulse" />
-                                </div>
-                                <h3 className="font-google font-bold text-2xl text-[#0C3C34] mb-2.5">Speakers & Mentors</h3>
-                                <p className="text-slate-650 font-google-text text-sm font-semibold leading-relaxed mb-5">
-                                    We are gathering top engineers, founders, and local leaders to host keynotes, workshops, and mentor projects.
-                                </p>
-                                <div className="inline-block bg-[#E37100]/10 text-[#E37100] border border-[#E37100]/20 px-5 py-1.5 rounded-full text-xs font-google-mono font-bold tracking-wider uppercase">
-                                    Coming Soon
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-
-                    {/* IDE Bottom Status Bar */}
-                    <div className="flex justify-between items-center px-4 py-1.5 bg-[#0c3c34] text-white font-google-mono text-[10px] select-none">
-                        <div className="flex items-center gap-3">
-                            <span className="font-bold">SPEAKERS: loading</span>
-                            <span className="opacity-80">Manifest active</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <span>ENV</span>
-                            <span>UTF-8</span>
-                            <span>Ln 1, Col 1</span>
-                        </div>
+                    {/* Bottom Action: Jump to Mentors */}
+                    <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <span className="text-xs text-slate-500 font-medium">
+                            Looking to connect with confirmed mentors right now?
+                        </span>
+                        <button
+                            onClick={scrollToJudges}
+                            className="inline-flex items-center gap-1.5 text-xs font-google font-bold text-[#0C3C34] hover:text-[#61A644] transition-colors cursor-pointer bg-slate-100 hover:bg-slate-200/70 px-4 py-2 rounded-full border border-slate-200"
+                        >
+                            <span>Explore 14 Confirmed Judges & Mentors</span>
+                            <ArrowDown className="w-3.5 h-3.5" />
+                        </button>
                     </div>
                 </motion.div>
             </div>
