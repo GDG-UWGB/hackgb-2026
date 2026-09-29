@@ -32,15 +32,15 @@ const saturdayEvents: ScheduleEvent[] = [
     { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Wood Hall • Welcome address and hackathon kickoff.', accent: '#E37100' },
     { time: '12:00 PM', title: 'Hacking Begins', desc: 'Phoenix Room B & C (University Union) • Hacking officially starts.', accent: '#0c3c34' },
     {
-        time: '01:30 PM',
+        time: '01:00 PM',
         title: 'Workshops & Info Sessions',
-        desc: 'University Union • Sessions begin with Modal, Faith Technologies, Inc. (FTI) (Company Info & Recruiting), and Bay Tek ("From Screen to Machine"), followed by GDE workshops.',
+        desc: 'University Union & Online • Sessions begin with Andrew Hinh (Modal DevRel • Online), Kiruthika Subramani ("From Demo to Production – Auto-scale Your AI Agent on Cloud Run" + $25 GCP Credits), Faith Technologies, Inc. (FTI), and Bay Tek ("From Screen to Machine"), followed by an evening GDE session.',
         accent: '#ffcc00',
         logos: [
             { name: 'Modal', logo: modalLogo, link: 'https://modal.com' },
+            { name: 'Google Developer Experts', logo: googleLogo, link: 'https://developers.google.com/community/experts' },
             { name: 'Faith Technologies, Inc. (FTI)', logo: ftiLogo, link: 'https://www.faithtechinc.com/' },
             { name: 'Bay Tek (The Village)', logo: theVillageLogo, link: 'https://www.thevillage.bz/' },
-            { name: 'Google Developer Experts', logo: googleLogo, link: 'https://developers.google.com/community/experts' },
         ],
     },
 ];

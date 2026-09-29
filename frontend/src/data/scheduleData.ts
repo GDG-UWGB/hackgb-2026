@@ -3,6 +3,7 @@ import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
+import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
 
 export interface SpeakerProfile {
   name: string;
@@ -10,6 +11,7 @@ export interface SpeakerProfile {
   company: string;
   avatarUrl?: string;
   bio?: string;
+  linkedin?: string;
 }
 
 export interface ScheduleItem {
@@ -30,6 +32,7 @@ export interface ScheduleItem {
   bufferDescription?: string;
   desc?: string;
   isWorkshop?: boolean;
+  perk?: string;
 }
 
 export const saturdaySchedule: ScheduleItem[] = [
@@ -71,31 +74,32 @@ export const saturdaySchedule: ScheduleItem[] = [
   },
   {
     id: 'sat-lunch',
-    time: '12:30 PM',
-    endTime: '01:30 PM',
+    time: '12:00 PM',
+    endTime: '01:00 PM',
     title: 'Lunch',
     room: 'University Union Dining',
     category: 'food',
     badge: 'Meal',
     badgeColor: '#61A644',
     accent: '#61A644',
-    desc: 'Lunch served for all registered participants and mentors.',
+    desc: 'Lunch served for all registered participants and mentors at University Union Dining.',
   },
 
   /* =======================================================================
      AFTERNOON WORKSHOPS BLOCK
-     - Starts at 1:30 PM
-     - First from Modal
-     - Buffer: >= 15 min
-     - In University Union (Room: TBD)
+     - Starts at 1:00 PM with Modal (Online)
+     - GDE Session 1: 1:30 PM - 2:15 PM
+     - FTI: 2:30 PM - 3:15 PM
+     - Bay Tek: 3:30 PM - 4:30 PM
+     - In University Union (Room: TBD) & Online
      ======================================================================= */
   {
     id: 'sat-workshop-1-modal',
-    time: '01:30 PM',
-    endTime: '02:15 PM',
+    time: '01:00 PM',
+    endTime: '01:30 PM',
     title: 'Technical Workshop & API Deep Dive',
     topic: 'Modal API, Cloud Compute & Track Criteria',
-    room: 'University Union (Room: TBD)',
+    room: 'Online (Virtual Session)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Modal',
@@ -104,18 +108,44 @@ export const saturdaySchedule: ScheduleItem[] = [
     companyLogo: modalLogo,
     companyLink: 'https://modal.com',
     speaker: {
-      name: 'Modal Engineering Team',
-      role: 'Core Engineering & Developer Platform',
+      name: 'Andrew Hinh',
+      role: 'Developer Relations (DevRel)',
       company: 'Modal',
       avatarUrl: '',
-      bio: 'Engineers from Modal guiding participants on building serverless AI applications, GPU workloads, and containerized backend systems.',
+      linkedin: 'https://www.linkedin.com/in/andrew-hinh',
+      bio: 'Developer Relations Engineer at Modal. Guiding participants on building serverless AI applications, GPU workloads, and containerized backend systems without managing infrastructure.',
+    },
+    desc: 'Virtual technical workshop hosted online by Andrew Hinh (DevRel at Modal). Learn how to use the Modal API to run code in the cloud without managing infrastructure, explore sample project ideas, and review judging criteria for the Best Use of Modal prize track.',
+  },
+  {
+    id: 'sat-workshop-2-gde',
+    time: '01:30 PM',
+    endTime: '02:15 PM',
+    title: '"From Demo to Production – Auto-scale Your AI Agent on Cloud Run"',
+    topic: 'Auto-scaling AI Agents on Cloud Run',
+    perk: '$25 Google Cloud Credits Provided',
+    room: 'University Union (Room: TBD)',
+    category: 'workshop',
+    isWorkshop: true,
+    badge: 'Google Developer Expert',
+    badgeColor: '#FBBC05',
+    accent: '#FBBC05',
+    companyLogo: googleLogo,
+    companyLink: 'https://developers.google.com/community/experts',
+    speaker: {
+      name: 'Kiruthika Subramani',
+      role: 'Google Developer Expert in AI & Data Scientist',
+      company: 'Bell Canada',
+      avatarUrl: kiruthikaImg,
+      linkedin: 'https://www.linkedin.com/in/techwithkrithi/',
+      bio: "Data Scientist at Bell Canada and Google Developer Expert in AI. Master's from MILA (Quebec AI Institute), author of two books on AI, IBM Champion for Data and AI, and Women Techmakers Ambassador. 9x certified cloud practitioner (4x GCP, 5x AWS), former Head of AI at Musitechnic Formation, Amazon intern, and 2025 Women in AI Scholarship Award Winner.",
     },
     bufferAfterMinutes: 15,
     bufferDescription: '15-minute buffer before next workshop',
-    desc: 'Technical workshop hosted by Modal. Learn how to use the Modal API to run code in the cloud without managing infrastructure, explore sample project ideas, and review judging criteria for the Best Use of Modal prize track.',
+    desc: 'Afternoon technical workshop hosted by Kiruthika Subramani, Google Developer Expert in AI and Data Scientist at Bell Canada. Learn how to take an AI agent from a prototype to a scalable, production-grade service running on Google Cloud Run. All participants receive $25 in Google Cloud credits to build and deploy live during the workshop!',
   },
   {
-    id: 'sat-workshop-2-fti',
+    id: 'sat-workshop-3-fti',
     time: '02:30 PM',
     endTime: '03:15 PM',
     title: 'Company Info & Recruitment Session',
@@ -140,7 +170,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     desc: 'Company information and recruiting session hosted by Faith Technologies, Inc. (FTI). Meet the team, learn about the company and what they do, and discover career and internship opportunities.',
   },
   {
-    id: 'sat-workshop-3-baytek',
+    id: 'sat-workshop-4-baytek',
     time: '03:30 PM',
     endTime: '04:30 PM',
     title: '"From Screen to Machine"',
@@ -183,41 +213,15 @@ export const saturdaySchedule: ScheduleItem[] = [
   },
 
   /* =======================================================================
-     EVENING WORKSHOPS BLOCK
-     - Two GDE technical workshops (7:00 PM - 8:45 PM)
+     EVENING WORKSHOP BLOCK
+     - GDE technical workshop (7:00 PM - 7:45 PM)
      - In University Union (Room: TBD)
-     - 15 min buffer between sessions
      ======================================================================= */
   {
-    id: 'sat-workshop-4-gde',
+    id: 'sat-workshop-5-gde',
     time: '07:00 PM',
     endTime: '07:45 PM',
-    title: 'Workshop 4: GDE Workshop (Session 1)',
-    topic: 'TBD',
-    room: 'University Union (Room: TBD)',
-    category: 'workshop',
-    isWorkshop: true,
-    badge: 'Google Developer Expert',
-    badgeColor: '#FBBC05',
-    accent: '#FBBC05',
-    companyLogo: googleLogo,
-    companyLink: 'https://developers.google.com/community/experts',
-    speaker: {
-      name: 'Google Developer Expert',
-      role: 'Google Developer Expert',
-      company: 'Google Developer Experts',
-      avatarUrl: '',
-      bio: 'Recognized expert by Google.',
-    },
-    bufferAfterMinutes: 15,
-    bufferDescription: '15-minute buffer before next workshop',
-    desc: 'Evening technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
-  },
-  {
-    id: 'sat-workshop-5-gde',
-    time: '08:00 PM',
-    endTime: '08:45 PM',
-    title: 'Workshop 5: GDE Workshop (Session 2)',
+    title: 'Workshop 2: GDE Workshop (Session 2)',
     topic: 'TBD',
     room: 'University Union (Room: TBD)',
     category: 'workshop',
@@ -234,7 +238,7 @@ export const saturdaySchedule: ScheduleItem[] = [
       avatarUrl: '',
       bio: 'Recognized expert by Google.',
     },
-    desc: 'Technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
+    desc: 'Evening technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
   },
 
   /* =======================================================================

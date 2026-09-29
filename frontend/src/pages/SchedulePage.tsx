@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock, MapPin, User, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Clock, MapPin, User, ExternalLink, Linkedin, Sparkles } from 'lucide-react';
 import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
 import { saturdaySchedule, sundaySchedule } from '../data/scheduleData';
 
@@ -76,10 +76,10 @@ const SchedulePage = () => {
           <div className="w-full bg-[#61A644]/10 border border-[#61A644]/20 rounded-2xl p-4 mb-6 text-slate-700 text-xs sm:text-sm font-google-text flex flex-col gap-2">
             <div>
               <strong className="font-google text-[#0C3C34]">Day 1 Venue Flow:</strong>{' '}
-              Check-in at STEM Innovation Center → Opening Ceremony at Wood Hall → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. Workshops are in University Union (Room: TBD). At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
+              Check-in at STEM Innovation Center → Opening Ceremony at Wood Hall → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. Workshops are in University Union (Room: TBD) & Online. At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
             </div>
             <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#61A644]/15 text-[11px] font-google">
-              <span className="text-slate-600">Workshops start at 1:30 PM (Modal, Faith Technologies, Inc. (FTI), Bay Tek)</span>
+              <span className="text-slate-600">Workshops start at 1:00 PM (Modal Online, GDE, Faith Technologies, Inc. (FTI), Bay Tek)</span>
               <span className="text-slate-400">•</span>
               <span className="text-[#E37100] font-semibold">Dinner Break: 5:00 PM – 7:00 PM (No Workshops)</span>
               <span className="text-slate-400">•</span>
@@ -183,13 +183,21 @@ const SchedulePage = () => {
                       </div>
                     </div>
 
-                    {/* Topic Indicator for Workshops */}
+                    {/* Topic & Perk Indicators for Workshops */}
                     {evt.isWorkshop && (
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-100 border border-slate-200 text-xs font-google text-slate-700 mb-2.5">
-                        <span className="font-bold text-[#E37100]">Topic:</span>
-                        <span className="font-semibold text-slate-800">{evt.topic}</span>
-                        {evt.topic === 'TBD' && (
-                          <span className="text-slate-500 font-normal italic">(To be announced soon)</span>
+                      <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-100 border border-slate-200 text-xs font-google text-slate-700">
+                          <span className="font-bold text-[#E37100]">Topic:</span>
+                          <span className="font-semibold text-slate-800">{evt.topic}</span>
+                          {evt.topic === 'TBD' && (
+                            <span className="text-slate-500 font-normal italic">(To be announced soon)</span>
+                          )}
+                        </div>
+                        {evt.perk && (
+                          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#FBBC05]/15 border border-[#FBBC05]/30 text-xs font-google text-amber-900 font-bold shadow-2xs">
+                            <Sparkles className="w-3.5 h-3.5 text-[#E37100]" />
+                            <span>{evt.perk}</span>
+                          </div>
                         )}
                       </div>
                     )}
@@ -241,6 +249,18 @@ const SchedulePage = () => {
                               )}
                               )
                             </span>
+                            {evt.speaker.linkedin && (
+                              <a
+                                href={evt.speaker.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-[11px] font-google font-semibold text-[#0077B5] hover:text-[#005582] bg-[#0077B5]/10 hover:bg-[#0077B5]/15 px-2 py-0.5 rounded-full transition-colors ml-auto sm:ml-0"
+                                title={`${evt.speaker.name} LinkedIn`}
+                              >
+                                <Linkedin className="w-3 h-3" />
+                                <span>LinkedIn</span>
+                              </a>
+                            )}
                           </div>
                           {evt.speaker.bio && (
                             <p className="text-xs font-google-text text-slate-600 mt-0.5 leading-normal">
