@@ -15,6 +15,7 @@ import vikasPhoto from '../assets/images/judges/vikas-luthra.jpg';
 import azeemPhoto from '../assets/images/judges/azeem.png';
 import jacquesPhoto from '../assets/images/judges/jacques.png';
 import karthikPhoto from '../assets/images/judges/karthik.png';
+import kevinPhoto from '../assets/images/judges/kevin-moens.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -37,6 +38,7 @@ export interface Judge {
     website?: string;
     isMentor?: boolean;
     mentorTopics?: string[];
+    availability?: string;
 }
 
 const judges: Judge[] = [
@@ -81,6 +83,18 @@ const judges: Judge[] = [
         linkedin: 'https://www.linkedin.com/in/jacquestulowitzky',
         isMentor: true,
         mentorTopics: ['Agentic Workflows', 'Multi-Agent Systems', 'AI Governance & Security', 'Business Pitching'],
+    },
+    {
+        name: 'Kevin Moens',
+        title: 'Senior Development Architect',
+        company: 'The Lake Companies',
+        expertise: ['Enterprise Architecture', 'AI-Agent Systems', '.NET & Microsoft Stack'],
+        bio: 'Senior Development Architect at The Lake Companies with 25 years of experience in enterprise software and Microsoft architectures. A veteran of 20+ hackathons and game jams, he explores emerging technologies with a focus on directing AI agents, modern system architecture, and hands-on experimentation.',
+        photo: kevinPhoto,
+        linkedin: 'https://www.linkedin.com/in/kmoens/',
+        isMentor: true,
+        mentorTopics: ['AI-Agent Workflows', 'Enterprise Architecture', '.NET & Microsoft Stack', 'Hackathon Prototyping'],
+        availability: 'Sat: Morning – 5:00 PM+ | Sun: 12:00 PM – End',
     },
     {
         name: 'Sreenivasa Rao Basavala',
@@ -424,9 +438,16 @@ const JudgeModal = ({ judge, onClose }: { judge: Judge; onClose: () => void }) =
                     {/* Mentorship Focus Box (if mentor) */}
                     {judge.isMentor && (
                         <div className="bg-emerald-50/80 border border-emerald-200/90 rounded-xl p-3 mb-4 shadow-2xs">
-                            <div className="flex items-center gap-1.5 text-emerald-900 font-google font-bold text-xs mb-1">
-                                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                                <span>Mentorship Support</span>
+                            <div className="flex items-center justify-between gap-2 mb-1">
+                                <div className="flex items-center gap-1.5 text-emerald-900 font-google font-bold text-xs">
+                                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                                    <span>Mentorship Support</span>
+                                </div>
+                                {judge.availability && (
+                                    <span className="text-[10px] font-google-mono font-semibold px-2 py-0.5 rounded-full bg-white text-emerald-800 border border-emerald-200 shadow-2xs">
+                                        {judge.availability}
+                                    </span>
+                                )}
                             </div>
                             <p className="text-[11px] text-slate-650 leading-relaxed mb-2 font-normal">
                                 Available to guide hackers, troubleshoot technical bottlenecks, and give architectural feedback.
