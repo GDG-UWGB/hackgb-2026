@@ -343,23 +343,23 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.85, ease: spring }}
-                    className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4 sm:mb-5 w-full sm:w-auto"
+                    className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 mb-4 sm:mb-5"
                 >
                     <RouterLink
                         to="/apply"
-                        className="btn-primary w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-google font-bold text-base sm:text-lg cursor-pointer group flex items-center justify-center gap-2 shadow-lg hover:shadow-xl active:scale-95 transition-all"
+                        className="btn-primary px-5 sm:px-8 md:px-10 py-2.5 sm:py-3.5 md:py-4 rounded-full font-google font-bold text-sm sm:text-base md:text-lg cursor-pointer group flex items-center justify-center gap-1.5 sm:gap-2 shadow-md hover:shadow-xl active:scale-95 transition-all whitespace-nowrap"
                     >
                         {APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                     </RouterLink>
                     <Link
                         to="about"
                         smooth={true}
                         duration={500}
                         href="#about"
-                        className="w-full sm:w-auto text-slate-800 hover:text-[#0C3C34] border border-slate-350 hover:border-slate-400 bg-white/60 hover:bg-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-google-text font-medium transition-all text-center cursor-pointer backdrop-blur-sm shadow-sm"
+                        className="text-slate-800 hover:text-[#0C3C34] border border-slate-300 hover:border-slate-400 bg-white/70 hover:bg-white px-5 sm:px-7 md:px-8 py-2.5 sm:py-3.5 md:py-4 rounded-full font-google-text font-medium text-sm sm:text-base md:text-lg transition-all text-center cursor-pointer backdrop-blur-sm shadow-xs hover:shadow-md active:scale-95 whitespace-nowrap"
                     >
-                        Explore the Tour
+                        <span>Explore<span className="hidden sm:inline"> the Tour</span></span>
                     </Link>
                 </motion.div>
 
