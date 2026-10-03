@@ -6,6 +6,7 @@ import logo from '../assets/images/logos/logo.gif';
 import foxRiverImg from '../assets/images/background/jpg/fox-river.jpg';
 import { ArrowRight } from 'lucide-react';
 import { APPLICATIONS_OPEN } from '../data/constants';
+import EventCountdown from './common/EventCountdown';
 
 /* Premium spring easing — Apple-style curve */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -273,7 +274,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-24 overflow-hidden bg-transparent">
+        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-12 md:pt-24 md:pb-16 overflow-hidden bg-transparent">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0">
                 <img src={foxRiverImg} alt="" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
@@ -296,12 +297,12 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.85, filter: "blur(12px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     transition={{ duration: 1.2, ease: spring }}
-                    className="mb-10"
+                    className="mb-4 sm:mb-6"
                 >
                     <img
                         src={logo}
                         alt="HackGB Phoenix Logo"
-                        className="h-32 sm:h-40 md:h-56 lg:h-64 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
+                        className="h-20 sm:h-28 md:h-36 lg:h-40 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
                     />
                 </motion.div>
 
@@ -310,9 +311,9 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.4, ease: spring }}
-                    className="mb-6"
+                    className="mb-3 sm:mb-4"
                 >
-                    <span className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full glass-card text-[#0C3C34] font-google font-bold text-sm uppercase tracking-widest border border-black/5 bg-white">
+                    <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-[#0C3C34] font-google font-bold text-xs sm:text-sm uppercase tracking-widest border border-black/5 bg-white shadow-xs">
                         <span className="w-2 h-2 bg-[#61A644] rounded-full animate-ambient-glow" />
                         Oct 17-18, 2026 • UWGB
                     </span>
@@ -323,7 +324,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.5, ease: spring }}
-                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-google font-bold mb-6 tracking-tight text-[#0C3C34]"
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-google font-bold mb-3 sm:mb-4 tracking-tight text-[#0C3C34]"
                 >
                     HackGB <span className="text-gradient-phoenix">2026</span>
                 </motion.h1>
@@ -332,21 +333,21 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.7, ease: spring }}
-                    className="text-base md:text-lg text-slate-800 max-w-2xl mx-auto mb-12 font-google-text"
+                    className="text-sm sm:text-base md:text-lg text-slate-800 max-w-2xl mx-auto mb-6 sm:mb-7 font-google-text"
                 >
                     UWGB's premier 24-hour collegiate hackathon. Join 200+ students at the STEM Innovation Center to build, learn, and innovate.
                 </motion.p>
 
-                {/* CTA Buttons */}
+                {/* CTA Buttons - High priority, visible above fold without scrolling */}
                 <motion.div
                     initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.9, delay: 1.0, ease: spring }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    transition={{ duration: 0.9, delay: 0.85, ease: spring }}
+                    className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4 sm:mb-5 w-full sm:w-auto"
                 >
                     <RouterLink
                         to="/apply"
-                        className="btn-primary w-full sm:w-auto px-10 py-4 rounded-full font-google font-bold text-lg cursor-pointer group flex items-center justify-center gap-2"
+                        className="btn-primary w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-google font-bold text-base sm:text-lg cursor-pointer group flex items-center justify-center gap-2 shadow-lg hover:shadow-xl active:scale-95 transition-all"
                     >
                         {APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -356,10 +357,20 @@ const Hero = () => {
                         smooth={true}
                         duration={500}
                         href="#about"
-                        className="w-full sm:w-auto text-slate-800 hover:text-[#0C3C34] border border-slate-350 hover:border-slate-400 bg-white/60 hover:bg-white px-8 py-4 rounded-full font-google-text font-medium transition-all text-center cursor-pointer backdrop-blur-sm shadow-sm"
+                        className="w-full sm:w-auto text-slate-800 hover:text-[#0C3C34] border border-slate-350 hover:border-slate-400 bg-white/60 hover:bg-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-google-text font-medium transition-all text-center cursor-pointer backdrop-blur-sm shadow-sm"
                     >
                         Explore the Tour
                     </Link>
+                </motion.div>
+
+                {/* Compact Countdown Pill with Rolling Notice */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15, filter: "blur(6px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ duration: 0.9, delay: 1.0, ease: spring }}
+                    className="w-full flex justify-center px-2"
+                >
+                    <EventCountdown variant="pill" showNotice={true} />
                 </motion.div>
             </div>
 

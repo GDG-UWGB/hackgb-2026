@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
 import { APPLICATIONS_OPEN } from '../data/constants';
+import { calculateTimeUntilEvent } from './common/EventCountdown';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -16,6 +18,15 @@ const fadeUp = (delay = 0) => ({
 
 const Registration = () => {
     const navigate = useNavigate();
+    const [timeLeft, setTimeLeft] = useState(calculateTimeUntilEvent());
+
+    useEffect(() => {
+        setTimeLeft(calculateTimeUntilEvent());
+        const interval = setInterval(() => {
+            setTimeLeft(calculateTimeUntilEvent());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <section className="relative pt-20 pb-32 px-4 overflow-hidden" id="register">
@@ -65,10 +76,16 @@ const Registration = () => {
                                 <span className="text-[#61A644] font-bold">sachin@uwgb:~$</span>
                                 <span className="text-slate-200">./apply.sh --now</span>
                             </div>
-                            <div className="text-slate-400 space-y-1 bg-black/30 p-4 rounded-xl border border-white/5">
+                            <div className="text-slate-400 space-y-1 bg-black/30 p-4 rounded-xl border border-white/5 font-google-mono text-[11px]">
                                 <div>[INFO] Loading HackGB registration parameters...</div>
                                 <div>[INFO] Target: UW-Green Bay STEM Innovation Center</div>
                                 <div>[INFO] Date: October 17 - 18, 2026</div>
+                                <div className="text-[#61A644] font-bold">
+                                    [EVENT COUNTDOWN] T-{timeLeft.days}d {String(timeLeft.hours).padStart(2, '0')}h {String(timeLeft.minutes).padStart(2, '0')}m {String(timeLeft.seconds).padStart(2, '0')}s until HackGB 2026
+                                </div>
+                                <div className="text-amber-400/90 text-[10px] pt-1">
+                                    [NOTICE] Priority applications closed Oct. 2 at 11:59 PM. Rolling applications currently open (space-available basis).
+                                </div>
                                 {APPLICATIONS_OPEN ? (
                                     <div className="text-[#61A644] font-bold">[SUCCESS] Registration pipelines active. 200+ slots available.</div>
                                 ) : (
@@ -81,23 +98,28 @@ const Registration = () => {
                         </div>
 
                         {/* Interactive triggers in editor layout */}
-                        <div className="flex flex-wrap justify-center items-center gap-4">
-                            <button
-                                onClick={() => navigate('/apply')}
-                                className="bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
-                            >
-                                <span>{APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}</span>
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-                            <button
-                                onClick={() => {
-                                    const el = document.getElementById('about');
-                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                                className="border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-google font-bold text-sm px-5 py-3 rounded-xl cursor-pointer transition-all bg-white/5"
-                            >
-                                Learn More
-                            </button>
+                        <div>
+                            <div className="flex flex-wrap justify-center items-center gap-4">
+                                <button
+                                    onClick={() => navigate('/apply')}
+                                    className="bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
+                                >
+                                    <span>{APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}</span>
+                                    <ArrowRight className="w-4 h-4" />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        const el = document.getElementById('about');
+                                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-google font-bold text-sm px-5 py-3 rounded-xl cursor-pointer transition-all bg-white/5"
+                                >
+                                    Learn More
+                                </button>
+                            </div>
+                            <p className="text-[11px] text-slate-400 font-google-text text-center mt-3 max-w-md mx-auto">
+                                Priority applications closed Oct. 2, 11:59 PM. We are still accepting applications on a rolling basis with secondary review priority until capacity is reached!
+                            </p>
                         </div>
                     </div>
 

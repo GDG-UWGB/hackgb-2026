@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faCheck, faCompass, faBuildingColumns, faBriefcase, faMapPin, faFileSignature, faUpload, faFilePdf, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
-import { Terminal } from 'lucide-react';
+import { Terminal, Sparkles } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
 import { SchoolCombobox } from '../components/common/SchoolCombobox';
 import { COUNTRIES } from '../data/countries';
+import { HACKER_APPLICATION_DEADLINE } from '../data/constants';
+import EventCountdown from '../components/common/EventCountdown';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -78,7 +80,6 @@ interface FormErrors {
   [key: string]: string;
 }
 
-const HACKER_APPLICATION_DEADLINE = new Date('2026-10-08T04:59:59Z'); // Oct 7, 2026 11:59 PM CST
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6WdbARvaFg3BJmFi5QmVggW6zr9M_9-sNODzz-RYDmbJLvA/formResponse';
 
 const Application = () => {
@@ -466,7 +467,7 @@ const Application = () => {
                   Applications are Closed
                 </h2>
                 <p className="text-slate-650 font-google-text text-sm max-w-md mb-8">
-                  Hacker applications for HackGB 2026 closed on October 7, 2026 at 11:59 PM CST. We are no longer accepting new submissions.
+                  Hacker applications for HackGB 2026 are now closed. We are no longer accepting new submissions.
                 </p>
                 <button
                   onClick={() => navigate('/')}
@@ -503,6 +504,22 @@ const Application = () => {
             </motion.div>
           ) : (
             <>
+              {/* Rolling Acceptance Banner with Event Countdown */}
+              <div className="bg-gradient-to-r from-amber-50/90 via-emerald-50/70 to-amber-50/90 border-b border-amber-200/50 px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs select-none">
+                <div className="flex items-center gap-2 text-amber-950 font-google-text text-[11px] sm:text-xs">
+                  <div className="w-5 h-5 rounded-full bg-amber-500/15 flex items-center justify-center text-[#E37100] shrink-0">
+                    <Sparkles className="w-3 h-3" />
+                  </div>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-900 font-google-mono font-bold text-[9px] uppercase tracking-wider shrink-0 border border-amber-500/30">
+                    Rolling Review
+                  </span>
+                  <span>
+                    <strong>Still accepting applications:</strong> Priority closed Oct. 2 at 11:59 PM. Submissions are currently reviewed on a space-available basis with limited review priority!
+                  </span>
+                </div>
+                <EventCountdown variant="compact" showNotice={false} />
+              </div>
+
               {/* Progress Steps Header — Styled as file explorer tabs */}
               <div className="flex border-b border-black/5 bg-white/20 overflow-x-auto scrollbar-none select-none">
                 {steps.map((s) => {

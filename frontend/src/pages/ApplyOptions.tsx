@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
-import { Terminal, ArrowRight, Compass, Landmark, Users } from 'lucide-react';
-import { JUDGE_APPLICATION_CLOSED } from '../data/constants';
+import { Terminal, ArrowRight, Compass, Landmark, Users, Sparkles } from 'lucide-react';
+import { JUDGE_APPLICATION_CLOSED, HACKER_APPLICATION_DEADLINE } from '../data/constants';
+import EventCountdown from '../components/common/EventCountdown';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
-const HACKER_APPLICATION_DEADLINE = new Date('2026-10-08T04:59:59Z'); // Oct 7, 2026 11:59 PM CST
 
 interface ApplyPipelinesProps {
   hoveredOption: string | null;
@@ -16,8 +16,8 @@ interface ApplyPipelinesProps {
 const DEFAULT_SCRIPT = [
   '$ hackgb system --status',
   'Checking core nodes... [OK]',
-  'Initializing registration options...',
-  'Hacker pipeline: READY (Awaiting input)',
+  'Target: STEM Innovation Center (Oct 17-18, 2026)',
+  'Hacker pipeline: ROLLING ACCEPTANCE (Space available)',
   JUDGE_APPLICATION_CLOSED
     ? 'Judge pipeline: CLOSED (Application closed)'
     : 'Judge pipeline: READY (Awaiting input)',
@@ -70,7 +70,7 @@ const ApplyPipelines = ({ hoveredOption }: ApplyPipelinesProps) => {
   const lastScriptRef = useRef<string | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const hackerActive = hoveredOption === 'Hacker';
+  const hackerActive = hoveredOption === 'Hacker' || hoveredOption === 'Rolling';
   const judgeActive = hoveredOption === 'Judge';
   const mentorActive = hoveredOption === 'Mentor';
 
@@ -216,12 +216,12 @@ const ApplyOptions = () => {
     {
       title: 'Hacker Application',
       description: isHackerDeadlinePassed
-        ? 'Applications closed on October 7, 2026.'
-        : 'Submit your application to participate in the hackathon as a builder or creator.',
+        ? 'Applications for HackGB 2026 are now closed.'
+        : 'Submit your application as a builder or creator. Rolling applications are currently accepted on a space-available basis with limited review priority.',
       icon: Compass,
       path: '/apply/hacker',
       themeColor: isHackerDeadlinePassed ? '#ff5f56' : '#61A644', // Red if closed
-      badge: isHackerDeadlinePassed ? 'Closed' : 'Hacker',
+      badge: isHackerDeadlinePassed ? 'Closed' : 'Rolling',
       disabled: isHackerDeadlinePassed,
     },
     {
@@ -285,12 +285,24 @@ const ApplyOptions = () => {
                   <span className="w-1.5 h-1.5 bg-[#61A644] rounded-full animate-pulse" />
                   Apply Now
                 </span>
-                <h1 className="text-3xl sm:text-4xl font-google font-bold text-[#0C3C34] leading-tight mb-4">
+                <h1 className="text-3xl sm:text-4xl font-google font-bold text-[#0C3C34] leading-tight mb-3">
                   HackGB 2026 Registration
                 </h1>
-                <p className="text-slate-705 font-google-text text-sm font-semibold leading-relaxed">
+                <p className="text-slate-705 font-google-text text-sm font-semibold leading-relaxed mb-4">
                   Join us at the STEM Innovation Center for Green Bay's premier collegiate hackathon. Please select whether you are participating as an active builder (hacker) or evaluative expert (judge).
                 </p>
+
+                {/* Event Countdown */}
+                <EventCountdown variant="banner" showNotice={false} className="mb-3.5" />
+
+                {/* Friendly rolling application note in small letters */}
+                <div className="flex items-start gap-2 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[11px] font-google-text text-amber-950 mb-4">
+                  <Sparkles className="w-3.5 h-3.5 text-[#E37100] shrink-0 mt-0.5" />
+                  <span>
+                    <strong>Still Accepting Applications:</strong> Priority registration closed Oct. 2 at 11:59 PM. We are still accepting applications on a rolling basis with secondary review priority while spots remain!
+                  </span>
+                </div>
+
                 <ApplyPipelines hoveredOption={hoveredOption} />
               </div>
 
