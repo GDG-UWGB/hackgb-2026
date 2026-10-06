@@ -24,6 +24,49 @@ import presageLogo from '../assets/images/sponsors/mlh/presage.png';
 import digitalOceanLogo from '../assets/images/sponsors/mlh/digitalocean.png';
 import goDaddyRegistryLogo from '../assets/images/sponsors/mlh/godaddy-registry.png';
 
+// Raffle prize image assets
+import raffleLegoWalleImg from '../assets/images/prizes/raffle/lego_walle.jpg';
+import raffleInsigniaStandImg from '../assets/images/prizes/raffle/insignia_stand.jpg';
+import raffle8bitdoImg from '../assets/images/prizes/raffle/8bitdo_controller.jpg';
+import raffleLogitechG305WhiteImg from '../assets/images/prizes/raffle/logitech_g305_white.jpg';
+import raffleLogitechG305BlackImg from '../assets/images/prizes/raffle/logitech_g305_black.jpg';
+import raffleHyperxEveImg from '../assets/images/prizes/raffle/hyperx_eve.jpg';
+import raffleLogitechG502Img from '../assets/images/prizes/raffle/logitech_g502.jpg';
+import raffleLegoBugattiImg from '../assets/images/prizes/raffle/lego_bugatti.jpg';
+import raffleJblTune730btImg from '../assets/images/prizes/raffle/jbl_tune730bt.jpg';
+import raffleLegoGameboyImg from '../assets/images/prizes/raffle/lego_gameboy.jpg';
+import raffleJblFlip7Img from '../assets/images/prizes/raffle/jbl_flip7.jpg';
+import raffleAocMonitorImg from '../assets/images/prizes/raffle/aoc_monitor.jpg';
+
+export interface RaffleItem {
+    name: string;
+    tag: string;
+    quantity?: number;
+    desc: string;
+    image: string;
+    link: string;
+}
+
+export interface PrizeItem {
+    name: string;
+    prize: string;
+    desc: string;
+    image?: string;
+    darkBg?: boolean;
+    link?: string;
+    itemsCount?: number;
+    previewChips?: string[];
+    items?: RaffleItem[];
+}
+
+export interface PrizeCategory {
+    title: string;
+    icon: any;
+    color: string;
+    link?: string;
+    prizes: PrizeItem[];
+}
+
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
 
@@ -34,7 +77,7 @@ const fadeUp = (delay = 0) => ({
     transition: { duration: 0.8, delay, ease: spring },
 });
 
-const prizeCategories = [
+const prizeCategories: PrizeCategory[] = [
     {
         title: "Overall Prizes",
         icon: Trophy,
@@ -191,7 +234,158 @@ const prizeCategories = [
         icon: Ticket,
         color: "#4A90D9",
         prizes: [
-            { name: "Raffle Prizes", prize: "TBD", desc: "More information about our exciting raffle prizes will be announced soon!" }
+            { 
+                name: "Raffle Draw #1", 
+                prize: "5 Tech & Gaming Prizes", 
+                desc: "Turn in your raffle tickets during Draw #1 for a chance to win one of 5 awesome gear, gaming, and collectible prizes! All registered hackers are eligible.",
+                itemsCount: 5,
+                previewChips: [
+                    "HyperX Keyboard", 
+                    "Insignia Stand", 
+                    "8BitDo Controller", 
+                    "Logitech G305 (White)", 
+                    "LEGO WALL-E & EVE"
+                ],
+                items: [
+                    {
+                        name: "HyperX - Eve 1800 Wired Membrane Gaming Keyboard",
+                        tag: "Gaming Keyboard",
+                        desc: "Compact 1800 membrane gaming keyboard with vibrant multi-zone RGB backlighting, quiet tactile keys, and a durable spill-resistant design.",
+                        image: raffleHyperxEveImg,
+                        link: "https://www.bestbuy.com/product/hyperx-eve-1800-compact-wired-membrane-gaming-keyboard-with-rgb-back-lighting-black/JJGQJQXTR3/sku/6670616"
+                    },
+                    {
+                        name: "Insignia™ - Laptop Stand",
+                        tag: "Ergonomic Gear",
+                        desc: "Sturdy aluminum laptop stand with adjustable height and viewing angle for laptops up to 17\" wide, improving posture and cooling airflow.",
+                        image: raffleInsigniaStandImg,
+                        link: "https://www.bestbuy.com/product/insignia-laptop-stand-with-adjustable-height-and-angle-for-laptops-up-to-17-wide-silver/J2FPJKS55T"
+                    },
+                    {
+                        name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
+                        tag: "Wireless Controller",
+                        desc: "Transparent Black wireless controller featuring smooth Hall effect joysticks, ultra-low latency wireless connectivity, and remappable bumpers.",
+                        image: raffle8bitdoImg,
+                        link: "https://www.bestbuy.com/product/8bitdo-ultimate-2c-bluetooth-wireless-gaming-controller-for-nintendo-switch-nintendo-switch-2-transparent-black/CZY3JSJ6W6"
+                    },
+                    {
+                        name: "(White) Logitech - G305 LIGHTSPEED Wireless Mouse",
+                        tag: "Wireless Mouse",
+                        desc: "High-performance LIGHTSPEED wireless mouse in crisp white with a 12,000 DPI HERO sensor and an incredible 250-hour battery life.",
+                        image: raffleLogitechG305WhiteImg,
+                        link: "https://www.bestbuy.com/site/logitech-g305-lightspeed-wireless-optical-gaming-mouse-white/6214344.p"
+                    },
+                    {
+                        name: "LEGO - Disney and Pixar WALL-E and EVE (43279)",
+                        tag: "LEGO Collectible",
+                        desc: "Detailed 811-piece Disney and Pixar building set featuring posable WALL-E, EVE, and M-O display figures (Set 43279).",
+                        image: raffleLegoWalleImg,
+                        link: "https://www.bestbuy.com/product/lego-disney-and-pixar-wall-e-and-eve-43279/JXPLL2TS8G/sku/6614040"
+                    }
+                ]
+            },
+            { 
+                name: "Raffle Draw #2", 
+                prize: "7 Tech & Gaming Prizes", 
+                desc: "Our largest raffle pool of the weekend with 7 total prizes up for grabs! Featuring multiple chances to win top-tier gaming mice, controllers, keyboards, and a LEGO Technic hypercar.",
+                itemsCount: 7,
+                previewChips: [
+                    "2x Logitech G502", 
+                    "HyperX Keyboard", 
+                    "2x 8BitDo Controller", 
+                    "Logitech G305 (Black)", 
+                    "LEGO Bugatti Chiron"
+                ],
+                items: [
+                    {
+                        name: "Logitech - G502 HERO Wired Mouse",
+                        tag: "Gaming Mouse",
+                        quantity: 2,
+                        desc: "World-renowned gaming mouse equipped with the advanced HERO 25K sensor, 11 programmable buttons, customizable RGB lighting, and tunable weights.",
+                        image: raffleLogitechG502Img,
+                        link: "https://www.bestbuy.com/product/logitech-g502-hero-wired-optical-gaming-mouse-with-rgb-lighting-wired-black/J7H7ZYXCX4"
+                    },
+                    {
+                        name: "HyperX - Eve 1800 Wired Membrane Gaming Keyboard",
+                        tag: "Gaming Keyboard",
+                        desc: "Compact 1800 wired membrane gaming keyboard featuring responsive keystrokes, numeric keypad, and dynamic RGB illumination.",
+                        image: raffleHyperxEveImg,
+                        link: "https://www.bestbuy.com/product/hyperx-eve-1800-compact-wired-membrane-gaming-keyboard-with-rgb-back-lighting-black/JJGQJQXTR3/sku/6670616"
+                    },
+                    {
+                        name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
+                        tag: "Wireless Controller",
+                        quantity: 2,
+                        desc: "Transparent Black edition with precision Hall effect thumbsticks, tactile switches, and multi-platform wireless support.",
+                        image: raffle8bitdoImg,
+                        link: "https://www.bestbuy.com/product/8bitdo-ultimate-2c-bluetooth-wireless-gaming-controller-for-nintendo-switch-nintendo-switch-2-transparent-black/CZY3JSJ6W6"
+                    },
+                    {
+                        name: "(Black) Logitech - G305 LIGHTSPEED Wireless Mouse",
+                        tag: "Wireless Mouse",
+                        desc: "Classic black ultra-fast LIGHTSPEED wireless gaming mouse with 1ms response rate, 12K HERO sensor, and compact portable build.",
+                        image: raffleLogitechG305BlackImg,
+                        link: "https://www.bestbuy.com/product/logitech-g305-lightspeed-wireless-optical-6-programmable-button-gaming-mouse-with-12000-dpi-hero-sensor-wireless-black/J7H7ZY2ZGT"
+                    },
+                    {
+                        name: "LEGO - Technic Bugatti Chiron Pur Sport Hypercar (42222)",
+                        tag: "LEGO Technic",
+                        desc: "Intricate 771-piece Technic hypercar model featuring authentic aerodynamics, working steering, realistic engine, and opening doors (Set 42222).",
+                        image: raffleLegoBugattiImg,
+                        link: "https://www.bestbuy.com/product/lego-technic-bugatti-chiron-pur-sport-hypercar-42222/JXPLL2WXJT/sku/6648039"
+                    }
+                ]
+            },
+            { 
+                name: "Raffle Draw #3", 
+                prize: "5 Tech, Audio & Display Prizes", 
+                desc: "The grand finale raffle draw! Featuring high-fidelity wireless headphones, a portable USB-C monitor, waterproof speaker, retro 3D LEGO Game Boy, and Logitech G502.",
+                itemsCount: 5,
+                previewChips: [
+                    "JBL Tune 730BT", 
+                    "AOC 15.6\" Monitor", 
+                    "JBL FLIP7 Speaker", 
+                    "LEGO Game Boy 3D", 
+                    "Logitech G502"
+                ],
+                items: [
+                    {
+                        name: "JBL - Tune 730BT - Wireless over-the-ear headphones",
+                        tag: "Over-Ear Audio",
+                        desc: "Comfortable wireless Bluetooth over-ear headphones with signature JBL Pure Bass Sound, lightweight foldable frame, and up to 76 hours of battery.",
+                        image: raffleJblTune730btImg,
+                        link: "https://www.bestbuy.com/product/jbl-tune-730bt-wireless-bluetooth-over-the-ear-headphones-2026-black/J7LXFW3TXX/sku/6672230"
+                    },
+                    {
+                        name: "Logitech - G502 HERO Wired Mouse",
+                        tag: "Gaming Mouse",
+                        desc: "High-performance wired mouse with 25,600 max DPI HERO sensor, onboard memory profiles, and 11 programmable controls.",
+                        image: raffleLogitechG502Img,
+                        link: "https://www.bestbuy.com/product/logitech-g502-hero-wired-optical-gaming-mouse-with-rgb-lighting-wired-black/J7H7ZYXCX4"
+                    },
+                    {
+                        name: "LEGO - Game Boy 3D (72046)",
+                        tag: "LEGO Collectible",
+                        desc: "Nostalgic 421-piece 3D building set replicating the classic retro Nintendo Game Boy console with interchangeable game cartridges (Set 72046).",
+                        image: raffleLegoGameboyImg,
+                        link: "https://www.bestbuy.com/product/lego-game-boy-3d-puzzle-for-adults-ages-18-72046/JXPLL2HV3J/sku/6628886"
+                    },
+                    {
+                        name: "JBL - FLIP7 Portable Waterproof Speaker - Black",
+                        tag: "Waterproof Audio",
+                        desc: "IP67 waterproof and dustproof portable Bluetooth speaker delivering booming JBL Pro Sound with dual pumping bass radiators.",
+                        image: raffleJblFlip7Img,
+                        link: "https://www.bestbuy.com/product/jbl-flip6-portable-waterproof-speaker-black/J7LXFW2QJG/sku/11446735"
+                    },
+                    {
+                        name: 'AOC - 16T35 15.6" IPS Panel Portable Monitor',
+                        tag: "Portable Display",
+                        desc: "Ultra-slim 15.6\" Full HD (1920x1080) IPS portable monitor with USB-C connectivity, ideal for dual-screen productivity anywhere.",
+                        image: raffleAocMonitorImg,
+                        link: "https://www.bestbuy.com/product/aoc-16t35-15-6-ips-panel-portable-monitor-led-fhd-1920x1080-usb-c-black/JX9GSKPQTL"
+                    }
+                ]
+            }
         ]
     }
 ];
@@ -298,16 +492,30 @@ const Prizes = () => {
                                                     onClick={() => toggleExpand(id)}
                                                     className="flex flex-col p-4 md:p-5 rounded-xl bg-white/50 border border-black/5 hover:bg-white/80 hover:shadow-md transition-all group cursor-pointer"
                                                 >
-                                                    <div className="flex flex-col md:flex-row md:items-center justify-between">
+                                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                                                         <div className="flex-1 pr-4">
                                                             <div className="flex items-center gap-3">
                                                                 <ChevronRight 
                                                                     className={`w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#61A644] transition-transform duration-300 ${isExpanded ? 'rotate-90 text-[#61A644]' : ''}`} 
                                                                 />
                                                                 <h4 className="font-google font-bold text-lg text-[#0C3C34]">{p.name}</h4>
+                                                                {p.itemsCount && (
+                                                                    <span className="text-[10px] font-google-mono font-bold px-2 py-0.5 rounded-full bg-[#4A90D9]/10 text-[#4A90D9] border border-[#4A90D9]/20 shrink-0">
+                                                                        {p.itemsCount} Prizes
+                                                                    </span>
+                                                                )}
                                                             </div>
+                                                            {p.previewChips && p.previewChips.length > 0 && (
+                                                                <div className="hidden sm:flex flex-wrap gap-1.5 mt-2 ml-7">
+                                                                    {p.previewChips.map((chip, idx) => (
+                                                                        <span key={idx} className="text-[10px] font-google-mono text-slate-500 bg-black/[0.03] px-2 py-0.5 rounded border border-black/5">
+                                                                            {chip}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                        <div className="md:text-right ml-7 md:ml-4 mt-2 md:mt-0 shrink-0">
+                                                        <div className="md:text-right ml-7 md:ml-4 mt-1 md:mt-0 shrink-0">
                                                             <span className="font-google font-bold text-[#E37100] md:text-lg tracking-tight">
                                                                 {p.prize}
                                                             </span>
@@ -322,36 +530,101 @@ const Prizes = () => {
                                                                 exit={{ height: 0, opacity: 0 }}
                                                                 className="overflow-hidden"
                                                             >
-                                                                <div className="mt-5 ml-7 pt-5 border-t border-black/5 flex flex-col md:flex-row gap-6 items-start">
-                                                                    <div className="flex-1">
-                                                                        <h5 className="font-google-mono text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Judging Criteria</h5>
-                                                                        <p className="font-google-text text-sm text-slate-600 leading-relaxed font-medium mb-3">
-                                                                            {p.desc}
-                                                                        </p>
-                                                                        {(p as any).link && (
-                                                                            <a
-                                                                                href={(p as any).link}
-                                                                                target="_blank"
-                                                                                rel="noopener noreferrer"
-                                                                                onClick={(e) => e.stopPropagation()}
-                                                                                className="inline-flex items-center gap-1.5 text-xs font-google font-bold text-[#E73356] hover:text-[#c42846] transition-colors group/link mt-1"
-                                                                            >
-                                                                                <span>View challenge on MLH website</span>
-                                                                                <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                                                                            </a>
-                                                                        )}
+                                                                {p.items && p.items.length > 0 ? (
+                                                                    /* Rich Raffle Draw items grid */
+                                                                    <div className="mt-5 ml-2 md:ml-7 pt-5 border-t border-black/5">
+                                                                        <div className="mb-4">
+                                                                            <h5 className="font-google-mono text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                                                                                Draw Details & Overview
+                                                                            </h5>
+                                                                            <p className="font-google-text text-sm text-slate-600 leading-relaxed font-medium">
+                                                                                {p.desc}
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-4">
+                                                                            {p.items.map((item, itemIdx) => (
+                                                                                <div 
+                                                                                    key={itemIdx}
+                                                                                    className="bg-white/85 rounded-xl p-3.5 border border-black/5 shadow-2xs flex flex-col justify-between hover:shadow-md hover:border-[#4A90D9]/30 transition-all group/item"
+                                                                                >
+                                                                                    <div>
+                                                                                        <div className="w-full h-32 bg-white rounded-lg border border-black/5 flex items-center justify-center p-2 mb-3 overflow-hidden">
+                                                                                            <img 
+                                                                                                src={item.image} 
+                                                                                                alt={item.name} 
+                                                                                                loading="lazy" 
+                                                                                                decoding="async" 
+                                                                                                className="w-full h-full object-contain group-hover/item:scale-105 transition-transform duration-300" 
+                                                                                            />
+                                                                                        </div>
+                                                                                        <div className="flex items-center justify-between gap-1.5 mb-1.5">
+                                                                                            <span className="text-[10px] font-google-mono font-bold uppercase tracking-wider text-[#4A90D9] bg-[#4A90D9]/10 px-2 py-0.5 rounded">
+                                                                                                {item.tag}
+                                                                                            </span>
+                                                                                            {item.quantity && item.quantity > 1 && (
+                                                                                                <span className="text-[10px] font-google-mono font-bold text-[#E37100] bg-[#E37100]/10 px-2 py-0.5 rounded border border-[#E37100]/20">
+                                                                                                    {item.quantity} Available
+                                                                                                </span>
+                                                                                            )}
+                                                                                        </div>
+                                                                                        <h5 className="font-google font-bold text-sm text-[#0C3C34] leading-snug mb-1.5 line-clamp-2">
+                                                                                            {item.name}
+                                                                                        </h5>
+                                                                                        <p className="font-google-text text-xs text-slate-500 font-medium leading-relaxed mb-3 line-clamp-2">
+                                                                                            {item.desc}
+                                                                                        </p>
+                                                                                    </div>
+
+                                                                                    <a 
+                                                                                        href={item.link}
+                                                                                        target="_blank"
+                                                                                        rel="noopener noreferrer"
+                                                                                        onClick={(e) => e.stopPropagation()}
+                                                                                        className="inline-flex items-center justify-between w-full pt-2.5 border-t border-black/5 text-xs font-google font-bold text-[#4A90D9] hover:text-[#2d6fb5] transition-colors"
+                                                                                    >
+                                                                                        <span>View on Best Buy</span>
+                                                                                        <ExternalLink className="w-3.5 h-3.5" />
+                                                                                    </a>
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className={`w-full md:w-40 h-28 ${(p as any).darkBg ? 'bg-black' : 'bg-white'} rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden`}>
-                                                                        {(p as any).image ? (
-                                                                            <img src={(p as any).image} alt={p.name} loading="lazy" decoding="async" className="w-full h-full object-contain p-3" />
-                                                                        ) : (
-                                                                            <>
-                                                                                <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
-                                                                                <span className="font-google-mono text-[9px] uppercase tracking-wider font-bold">Prize Image</span>
-                                                                            </>
-                                                                        )}
+                                                                ) : (
+                                                                    /* Standard prize view (Overall, Track, Sponsor, MLH) */
+                                                                    <div className="mt-5 ml-7 pt-5 border-t border-black/5 flex flex-col md:flex-row gap-6 items-start">
+                                                                        <div className="flex-1">
+                                                                            <h5 className="font-google-mono text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                                                                {category.title === "Raffle Items" ? "Prize Details" : "Judging Criteria"}
+                                                                            </h5>
+                                                                            <p className="font-google-text text-sm text-slate-600 leading-relaxed font-medium mb-3">
+                                                                                {p.desc}
+                                                                            </p>
+                                                                            {p.link && (
+                                                                                <a
+                                                                                    href={p.link}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                    onClick={(e) => e.stopPropagation()}
+                                                                                    className="inline-flex items-center gap-1.5 text-xs font-google font-bold text-[#E73356] hover:text-[#c42846] transition-colors group/link mt-1"
+                                                                                >
+                                                                                    <span>View challenge on MLH website</span>
+                                                                                    <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                                                                                </a>
+                                                                            )}
+                                                                        </div>
+                                                                        <div className={`w-full md:w-40 h-28 ${p.darkBg ? 'bg-black' : 'bg-white'} rounded-xl border border-black/5 flex flex-col items-center justify-center text-slate-400 shrink-0 shadow-sm overflow-hidden`}>
+                                                                            {p.image ? (
+                                                                                <img src={p.image} alt={p.name} loading="lazy" decoding="async" className="w-full h-full object-contain p-3" />
+                                                                            ) : (
+                                                                                <>
+                                                                                    <ImageIcon className="w-6 h-6 mb-2 opacity-40" />
+                                                                                    <span className="font-google-mono text-[9px] uppercase tracking-wider font-bold">Prize Image</span>
+                                                                                </>
+                                                                            )}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                )}
                                                             </motion.div>
                                                         )}
                                                     </AnimatePresence>
