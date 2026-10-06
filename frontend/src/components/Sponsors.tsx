@@ -8,6 +8,7 @@ import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import sgaLogo from '../assets/images/sponsors/partners/sga-logo.png';
 import gener8torLogo from '../assets/images/sponsors/ember/gener8tor.png';
 import photonLogo from '../assets/images/sponsors/ember/photon.png';
+import atcLogo from '../assets/images/sponsors/ember/atc.png';
 import akPizzaLogo from '../assets/images/sponsors/flame/ak-pizza.png';
 import cdwLogo from '../assets/images/sponsors/flame/cdw.png';
 import lovableLogo from '../assets/images/sponsors/flame/lovable.png';
@@ -59,6 +60,7 @@ const sponsors: Sponsor[] = [
     { name: 'Faith Technologies, Inc. (FTI)', logo: ftiLogo, tier: 'flame', link: 'https://www.faithtechinc.com/' },
     { name: 'gener8tor', logo: gener8torLogo, tier: 'ember', link: 'https://www.gener8tor.com/' },
     { name: 'Photon', logo: photonLogo, tier: 'ember', link: 'https://photon.codes/', darkBg: true },
+    { name: 'American Transmission Co. (ATC)', logo: atcLogo, tier: 'ember', link: 'https://www.atcllc.com/', description: 'American Transmission Co. (ATC)' },
     { name: 'Major League Hacking', logo: mlhLogo, tier: 'partner', link: 'https://mlh.io/' },
     { name: 'Startup Wisconsin', logo: startupWisconsinLogo, tier: 'partner', link: 'https://www.startupwi.org/' },
     { name: 'City of Green Bay', logo: cityOfGbLogo, tier: 'partner', link: 'https://greenbaywi.gov/' },
