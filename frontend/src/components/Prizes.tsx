@@ -16,7 +16,7 @@ import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import lovableLogo from '../assets/images/sponsors/flame/lovable.png';
 import photonLogo from '../assets/images/sponsors/ember/photon.png';
 
-import elevenLabsLogo from '../assets/images/sponsors/mlh/elevenlabs.png';
+import vultrLogo from '../assets/images/sponsors/mlh/vultr.png';
 import geminiLogo from '../assets/images/sponsors/mlh/gemini.png';
 import solanaLogo from '../assets/images/sponsors/mlh/solana.png';
 import tigerDataLogo from '../assets/images/sponsors/mlh/tiger-data.png';
@@ -45,6 +45,12 @@ const prizeCategories = [
                 prize: "Apple 11-inch iPad-A16 128GB - Silver", 
                 desc: "Awarded to the overall best project at HackGB, excelling in innovation, technical complexity, design, and impact.",
                 image: ipadImg
+            },
+            { 
+                name: "Best Hardware Hack", 
+                prize: "CanaKit - Raspberry Pi 5 Essentials Starter Kit (4GB)", 
+                desc: "Awarded to the best integration of physical hardware and software.",
+                image: raspberryPi5Img
             },
             { 
                 name: "Best Solo Hack", 
@@ -94,12 +100,6 @@ const prizeCategories = [
                 prize: "Amazfit - Active 3 Premium Smartwatch", 
                 desc: "Build applications and systems focused on improving patient care, mental wellness, and secure health data management.",
                 image: amazfitActive3Img
-            },
-            { 
-                name: "Best Hardware Hack", 
-                prize: "Raspberry Pi 5 - Vilros Essentials Kit",
-                desc: "Awarded to the best integration of physical hardware and software.",
-                image: raspberryPi5Img
             }
         ]
     },
@@ -136,10 +136,10 @@ const prizeCategories = [
         link: "https://www.mlh.com/events/hackgb/prizes",
         prizes: [
             { 
-                name: "Best Use of ElevenLabs", 
-                prize: "Wireless Earbuds", 
-                desc: "Deploy natural, human-sounding audio with ElevenLabs. Create realistic, dynamic, and emotionally expressive voices for any project, from interactive AI companions to narrated stories and voice-enabled apps.",
-                image: elevenLabsLogo,
+                name: "Best Use of Vultr", 
+                prize: "M5Stack Official Tab5", 
+                desc: "Vultr empowers hackers to bring their high-performance projects to life instantly; providing everything from the speed of one-click deployment and scalable cloud compute to specialized Vultr Cloud GPUs that can power AI-driven applications. Push the limits of what can be built when infrastructure is no longer the bottleneck!",
+                image: vultrLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
             { 

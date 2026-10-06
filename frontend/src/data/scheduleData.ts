@@ -4,6 +4,7 @@ import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
 import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
+import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 
 export interface SpeakerProfile {
   name: string;
@@ -53,7 +54,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     time: '11:00 AM',
     endTime: '12:00 PM',
     title: 'Opening Ceremony',
-    room: 'Wood Hall',
+    room: 'Rose Hall 250',
     category: 'milestone',
     badge: 'Key Milestone',
     badgeColor: '#E37100',
@@ -88,10 +89,9 @@ export const saturdaySchedule: ScheduleItem[] = [
   /* =======================================================================
      AFTERNOON WORKSHOPS BLOCK
      - Starts at 1:00 PM with Modal (Online)
-     - GDE Session 1: 1:30 PM - 2:15 PM
-     - FTI: 2:30 PM - 3:15 PM
-     - Bay Tek: 3:30 PM - 4:30 PM
-     - In University Union (Room: TBD) & Online
+     - GDE Session 1: 1:30 PM - 2:15 PM in Phoenix Rooms BC (University Union)
+     - FTI: 2:30 PM - 3:15 PM in 1965 Room (University Union)
+     - Bay Tek: 3:30 PM - 4:30 PM in 1965 Room (University Union)
      ======================================================================= */
   {
     id: 'sat-workshop-1-modal',
@@ -124,7 +124,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     title: '"From Demo to Production – Auto-scale Your AI Agent on Cloud Run"',
     topic: 'Auto-scaling AI Agents on Cloud Run',
     perk: '$25 Google Cloud Credits Provided',
-    room: 'University Union (Room: TBD)',
+    room: 'Phoenix Rooms BC (University Union)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Google Developer Expert',
@@ -150,7 +150,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     endTime: '03:15 PM',
     title: 'Company Info & Recruitment Session',
     topic: 'Company Overview, Careers & Hiring',
-    room: 'University Union (Room: TBD)',
+    room: '1965 Room (University Union)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Faith Technologies, Inc. (FTI)',
@@ -175,7 +175,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     endTime: '04:30 PM',
     title: '"From Screen to Machine"',
     topic: 'Translating Digital Games to Physical Arcade Experiences',
-    room: 'University Union (Room: TBD)',
+    room: '1965 Room (University Union)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Bay Tek (The Village)',
@@ -213,9 +213,10 @@ export const saturdaySchedule: ScheduleItem[] = [
   },
 
   /* =======================================================================
-     EVENING WORKSHOP BLOCK
-     - GDE technical workshop (7:00 PM - 7:45 PM)
-     - In University Union (Room: TBD)
+     EVENING WORKSHOP & MINI-EVENT BLOCK
+     - GDE technical workshop: 7:00 PM - 7:45 PM in Phoenix Rooms BC
+     - MLH Hacking with GitHub Copilot: 8:00 PM - 8:30 PM in 1965 Room
+     - MLH TechTogether: 8:30 PM - 9:00 PM in 1965 Room
      ======================================================================= */
   {
     id: 'sat-workshop-5-gde',
@@ -223,7 +224,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     endTime: '07:45 PM',
     title: 'Workshop 2: GDE Workshop (Session 2)',
     topic: 'TBD',
-    room: 'University Union (Room: TBD)',
+    room: 'Phoenix Rooms BC (University Union)',
     category: 'workshop',
     isWorkshop: true,
     badge: 'Google Developer Expert',
@@ -238,7 +239,58 @@ export const saturdaySchedule: ScheduleItem[] = [
       avatarUrl: '',
       bio: 'Recognized expert by Google.',
     },
-    desc: 'Evening technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in the University Union (Room: TBD).',
+    bufferAfterMinutes: 15,
+    bufferDescription: '15-minute buffer before MLH workshops',
+    desc: 'Evening technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in Phoenix Rooms BC (University Union).',
+  },
+  {
+    id: 'sat-workshop-6-copilot',
+    time: '08:00 PM',
+    endTime: '08:30 PM',
+    title: 'Hacking with GitHub Copilot',
+    topic: 'AI Pair Programming, MCP Servers & GitHub Profiles',
+    perk: 'Exclusive GitHub Swag Up For Grabs',
+    room: '1965 Room (University Union)',
+    category: 'workshop',
+    isWorkshop: true,
+    badge: 'MLH Workshop',
+    badgeColor: '#E73356',
+    accent: '#E73356',
+    companyLogo: mlhLogo,
+    companyLink: 'https://mlh.io',
+    speaker: {
+      name: 'Lucy & Wei',
+      role: 'MLH Coaches',
+      company: 'Major League Hacking',
+      avatarUrl: '',
+      bio: 'Official Major League Hacking (MLH) Coaches leading hands-on developer workshops, technical guidance, and mini-events at HackGB 2026.',
+    },
+    desc: "Learning to use AI throughout your development flow is now an essential skill. GitHub Copilot is a fully-agentic AI pair programmer that can help you write, debug, & understand code. Today we’re learning by doing. We'll fork a README for your personal GitHub profile. We'll then use the GitHub and MLH MCP servers to pull live, personalized data. GitHub Copilot will use the template and data to create a customized profile just for you. * Exclusive GitHub swag up for grabs *",
+  },
+  {
+    id: 'sat-workshop-7-techtogether',
+    time: '08:30 PM',
+    endTime: '09:00 PM',
+    title: 'TechTogether Meetup & Community Session',
+    topic: 'Addressing Gender Inequities in the Hackathon Community',
+    room: '1965 Room (University Union)',
+    category: 'workshop',
+    isWorkshop: true,
+    badge: 'TechTogether',
+    badgeColor: '#7C3AED',
+    accent: '#7C3AED',
+    companyLogo: mlhLogo,
+    companyLink: 'https://techtogether.io',
+    speaker: {
+      name: 'Lucy & Wei',
+      role: 'MLH Coaches',
+      company: 'Major League Hacking (TechTogether)',
+      avatarUrl: '',
+      bio: "Official Major League Hacking (MLH) Coaches leading the TechTogether community initiative at HackGB 2026 to foster an inclusive, welcoming hackathon environment.",
+    },
+    bufferAfterMinutes: 60,
+    bufferDescription: 'Open hacking in University Union before 10:00 PM transition to STEM Innovation Center',
+    desc: "TechTogether is the nation's largest initiative to address the gender inequities in the hackathon community. Join us for a 30-minute community session to connect, share experiences, and learn how we can build a more welcoming, equitable hackathon culture.",
   },
 
   /* =======================================================================

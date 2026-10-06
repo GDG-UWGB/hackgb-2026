@@ -8,6 +8,7 @@ import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -29,18 +30,19 @@ interface ScheduleEvent {
 
 const saturdayEvents: ScheduleEvent[] = [
     { time: '08:00 AM', title: 'Check-in & Registration', desc: 'STEM Innovation Center • Check-in and badge pickup.', accent: '#61A644' },
-    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Wood Hall • Welcome address and hackathon kickoff.', accent: '#E37100' },
+    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Rose Hall 250 • Welcome address and hackathon kickoff.', accent: '#E37100' },
     { time: '12:00 PM', title: 'Hacking Begins', desc: 'Phoenix Room B & C (University Union) • Hacking officially starts.', accent: '#0c3c34' },
     {
         time: '01:00 PM',
         title: 'Workshops & Info Sessions',
-        desc: 'University Union & Online • Sessions begin with Andrew Hinh (Modal DevRel • Online), Kiruthika Subramani ("From Demo to Production – Auto-scale Your AI Agent on Cloud Run" + $25 GCP Credits), Faith Technologies, Inc. (FTI), and Bay Tek ("From Screen to Machine"), followed by an evening GDE session.',
+        desc: 'University Union (1965 Room & Phoenix Rooms BC) & Online • Technical sessions featuring Modal (Online), Google Developer Experts (Phoenix Rooms BC), Faith Technologies, Inc. (FTI), Bay Tek, and MLH evening workshops (GitHub Copilot & TechTogether in 1965 Room with MLH coaches Lucy & Wei).',
         accent: '#ffcc00',
         logos: [
             { name: 'Modal', logo: modalLogo, link: 'https://modal.com' },
             { name: 'Google Developer Experts', logo: googleLogo, link: 'https://developers.google.com/community/experts' },
             { name: 'Faith Technologies, Inc. (FTI)', logo: ftiLogo, link: 'https://www.faithtechinc.com/' },
             { name: 'Bay Tek (The Village)', logo: theVillageLogo, link: 'https://www.thevillage.bz/' },
+            { name: 'Major League Hacking', logo: mlhLogo, link: 'https://mlh.io' },
         ],
     },
 ];

@@ -20,6 +20,7 @@ import titletownImg from '../assets/images/background/jpg/titletown-district.jpg
 import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
 import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
+import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -102,7 +103,7 @@ const confirmedSpeakers: Speaker[] = [
         ],
         sessionTitle: '"From Demo to Production – Auto-scale Your AI Agent on Cloud Run"',
         sessionTime: 'Saturday, Oct 17 • 1:30 PM – 2:15 PM',
-        sessionRoom: 'University Union (Room: TBD)',
+        sessionRoom: 'Phoenix Rooms BC (University Union)',
         sessionCategory: 'GDE Workshop • $25 GCP Credits Included',
         stats: [
             { label: 'Cloud Credits', value: '$25' },
@@ -135,7 +136,7 @@ const confirmedSpeakers: Speaker[] = [
         ],
         sessionTitle: '"From Screen to Machine": Digital to Physical Arcade Games',
         sessionTime: 'Saturday, Oct 17 • 3:30 PM – 4:30 PM',
-        sessionRoom: 'University Union (Room: TBD)',
+        sessionRoom: '1965 Room (University Union)',
         sessionCategory: 'Workshop & Pitch Competition',
         stats: [
             { label: 'Focus', value: 'Arcade Dev' },
@@ -148,6 +149,35 @@ const confirmedSpeakers: Speaker[] = [
             'Translates mobile and digital IP into physical mechanical arcade units',
             'Hosts hands-on ideation and Shark Tank-style team pitch sessions',
             'Industry leader in real-world game prototyping and cabinet rendering',
+        ],
+    },
+    {
+        id: 'lucy-and-wei',
+        name: 'Lucy & Wei',
+        role: 'MLH Coaches & Workshop Leaders',
+        company: 'Major League Hacking',
+        avatarUrl: mlhLogo,
+        isLogo: true,
+        website: 'https://mlh.io',
+        badges: [
+            { label: 'MLH Coaches', bg: 'bg-[#E73356]/15', text: 'text-[#E73356]', border: 'border-[#E73356]/30' },
+            { label: 'Major League Hacking', bg: 'bg-[#0C3C34]/10', text: 'text-[#0C3C34]', border: 'border-[#0C3C34]/20' },
+        ],
+        sessionTitle: 'Hacking with GitHub Copilot & TechTogether',
+        sessionTime: 'Saturday, Oct 17 • 8:00 PM – 9:00 PM',
+        sessionRoom: '1965 Room (University Union)',
+        sessionCategory: 'MLH Workshops & Community Sessions',
+        stats: [
+            { label: 'Organization', value: 'MLH' },
+            { label: 'Sessions', value: '2 Workshops' },
+            { label: 'Swag', value: 'GitHub Swag' },
+        ],
+        bio: 'Official Major League Hacking (MLH) Coaches for HackGB 2026. Leading interactive technical workshops on AI pair programming with GitHub Copilot and MCP servers, and facilitating the TechTogether community session addressing gender inequities in tech.',
+        highlights: [
+            'Official Major League Hacking (MLH) Coaches for HackGB 2026',
+            'Leading "Hacking with GitHub Copilot" hands-on MCP server & README workshop with exclusive swag',
+            'Facilitating the TechTogether gender equity & inclusion community meetup',
+            'Providing technical coaching and mentoring to hackers throughout the weekend',
         ],
     },
 ];

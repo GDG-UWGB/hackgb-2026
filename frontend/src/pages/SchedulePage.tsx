@@ -76,10 +76,10 @@ const SchedulePage = () => {
           <div className="w-full bg-[#61A644]/10 border border-[#61A644]/20 rounded-2xl p-4 mb-6 text-slate-700 text-xs sm:text-sm font-google-text flex flex-col gap-2">
             <div>
               <strong className="font-google text-[#0C3C34]">Day 1 Venue Flow:</strong>{' '}
-              Check-in at STEM Innovation Center → Opening Ceremony at Wood Hall → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. Workshops are in University Union (Room: TBD) & Online. At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
+              Check-in at STEM Innovation Center → Opening Ceremony at Rose Hall 250 → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. GDE workshops are in Phoenix Rooms BC; partner & MLH workshops (FTI, Bay Tek, GitHub Copilot, TechTogether) are in 1965 Room (University Union), and Modal is Online. At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
             </div>
             <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#61A644]/15 text-[11px] font-google">
-              <span className="text-slate-600">Workshops start at 1:00 PM (Modal Online, GDE, Faith Technologies, Inc. (FTI), Bay Tek)</span>
+              <span className="text-slate-600">Workshops start at 1:00 PM (Modal Online, GDE, FTI, Bay Tek, MLH)</span>
               <span className="text-slate-400">•</span>
               <span className="text-[#E37100] font-semibold">Dinner Break: 5:00 PM – 7:00 PM (No Workshops)</span>
               <span className="text-slate-400">•</span>

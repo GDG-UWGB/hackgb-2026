@@ -20,7 +20,7 @@ import network404Logo from '../assets/images/logos/404_logo.png';
 import gbWaterfrontImg from '../assets/images/background/jpg/gb-waterfront.jpg';
 import prospectusPdf from '../assets/docs/Sponsorship Package.pdf';
 
-import elevenLabsLogo from '../assets/images/sponsors/mlh/elevenlabs.png';
+import vultrLogo from '../assets/images/sponsors/mlh/vultr.png';
 import geminiLogo from '../assets/images/sponsors/mlh/gemini.png';
 import solanaLogo from '../assets/images/sponsors/mlh/solana.png';
 import tigerDataLogo from '../assets/images/sponsors/mlh/tiger-data.png';
@@ -78,7 +78,7 @@ const sponsors: Sponsor[] = [
         link: 'https://mlh.link/MLH-PureButtons-hackathons',
         description: 'Pure Buttons - Custom Buttons, Stickers & Promotional Materials',
     },
-    { name: 'ElevenLabs', logo: elevenLabsLogo, tier: 'mlh', link: 'https://mlh.link/elevenlabs', description: 'ElevenLabs - Voice AI & Audio Generation' },
+    { name: 'Vultr', logo: vultrLogo, tier: 'mlh', link: 'https://mlh.link/vultr', description: 'Vultr - High-Performance Cloud Computing' },
     { name: 'Google Gemini', logo: geminiLogo, tier: 'mlh', link: 'https://mlh.link/gemini', description: 'Google Gemini - Next-generation AI models' },
     { name: 'Solana', logo: solanaLogo, tier: 'mlh', link: 'https://mlh.link/solana', description: 'Solana - High-performance scalable blockchain' },
     { name: 'Tiger Data', logo: tigerDataLogo, tier: 'mlh', link: 'https://mlh.link/tigerdata', description: 'Tiger Data - Time-series & analytics for PostgreSQL' },
