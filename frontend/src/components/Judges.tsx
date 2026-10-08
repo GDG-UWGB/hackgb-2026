@@ -16,6 +16,7 @@ import azeemPhoto from '../assets/images/judges/azeem.png';
 import jacquesPhoto from '../assets/images/judges/jacques.png';
 import karthikPhoto from '../assets/images/judges/karthik.png';
 import kevinPhoto from '../assets/images/judges/kevin-moens.png';
+import davidPhoto from '../assets/images/judges/david-suski.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -61,6 +62,18 @@ const judges: Judge[] = [
         photo: djayPhoto,
         linkedin: 'https://www.linkedin.com/in/dhananjayanpn/',
         isMentor: false,
+    },
+    {
+        name: 'David Suski',
+        title: 'Co-Founder & CTO',
+        company: 'TrustFoundry',
+        expertise: ['AI/ML', 'Agentic Systems & LLMs', 'AI Safety & Architecture'],
+        bio: 'Co-Founder & CTO and Lead AI/ML Researcher at TrustFoundry, developing legal decision approximation techniques, arbitrary text guardrails, and foundation model safety testing. A UW-Green Bay alumnus (\'06, \'10) completing a graduate degree in AI at Georgia Tech, he brings 10+ years of engineering leadership from Aver (Enlace Health), Avalara, and OpenGov as Principal Engineer.',
+        photo: davidPhoto,
+        linkedin: 'https://www.linkedin.com/in/david-suski-ab385035/',
+        website: 'https://trustfoundry.ai/',
+        isMentor: true,
+        mentorTopics: ['AI/ML & LLM Fine-Tuning', 'AI Agents & Guardrails', 'System Scaling & Architecture'],
     },
     {
         name: 'Karthik Chandrasekaran',
@@ -632,7 +645,7 @@ const Judges = () => {
                     </h2>
 
                     <p className="text-slate-650 font-google-text text-sm md:text-base max-w-xl mx-auto font-normal leading-relaxed">
-                        Distinguished engineering managers, principal architects, founders, and instructors from Microsoft, Amazon, Groundwork, FedEx, Guidehouse, and beyond.
+                        Distinguished engineering managers, principal architects, founders, and instructors from Microsoft, Amazon, Groundwork, TrustFoundry, FedEx, Guidehouse, and beyond.
                     </p>
                 </motion.div>
 

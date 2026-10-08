@@ -54,12 +54,12 @@ export const saturdaySchedule: ScheduleItem[] = [
     time: '11:00 AM',
     endTime: '12:00 PM',
     title: 'Opening Ceremony',
-    room: 'Rose Hall 250',
+    room: 'Christie Theatre, University Union',
     category: 'milestone',
     badge: 'Key Milestone',
     badgeColor: '#E37100',
     accent: '#E37100',
-    desc: 'Welcome addresses from organizers, track announcements, sponsor challenges overview, and rules briefing.',
+    desc: 'Welcome addresses from organizers, track announcements, sponsor challenges overview, and rules briefing at Christie Theatre, University Union.',
   },
   {
     id: 'sat-hacking-begins',
@@ -89,7 +89,7 @@ export const saturdaySchedule: ScheduleItem[] = [
   /* =======================================================================
      AFTERNOON WORKSHOPS BLOCK
      - Starts at 1:00 PM with Modal (Online)
-     - GDE Session 1: 1:30 PM - 2:15 PM in Phoenix Rooms BC (University Union)
+     - GDE Technical Workshop: 1:30 PM - 2:15 PM in Phoenix Rooms BC (University Union)
      - FTI: 2:30 PM - 3:15 PM in 1965 Room (University Union)
      - Bay Tek: 3:30 PM - 4:30 PM in 1965 Room (University Union)
      ======================================================================= */
@@ -214,39 +214,13 @@ export const saturdaySchedule: ScheduleItem[] = [
 
   /* =======================================================================
      EVENING WORKSHOP & MINI-EVENT BLOCK
-     - GDE technical workshop: 7:00 PM - 7:45 PM in Phoenix Rooms BC
-     - MLH Hacking with GitHub Copilot: 8:00 PM - 8:30 PM in 1965 Room
-     - MLH TechTogether: 8:30 PM - 9:00 PM in 1965 Room
+     - MLH Hacking with GitHub Copilot: 7:00 PM - 7:45 PM in 1965 Room
+     - MLH TechTogether: 8:00 PM - 8:30 PM in 1965 Room
      ======================================================================= */
   {
-    id: 'sat-workshop-5-gde',
+    id: 'sat-workshop-copilot',
     time: '07:00 PM',
     endTime: '07:45 PM',
-    title: 'Workshop 2: GDE Workshop (Session 2)',
-    topic: 'TBD',
-    room: 'Phoenix Rooms BC (University Union)',
-    category: 'workshop',
-    isWorkshop: true,
-    badge: 'Google Developer Expert',
-    badgeColor: '#34A853',
-    accent: '#34A853',
-    companyLogo: googleLogo,
-    companyLink: 'https://developers.google.com/community/experts',
-    speaker: {
-      name: 'Google Developer Expert',
-      role: 'Google Developer Expert',
-      company: 'Google Developer Experts',
-      avatarUrl: '',
-      bio: 'Recognized expert by Google.',
-    },
-    bufferAfterMinutes: 15,
-    bufferDescription: '15-minute buffer before MLH workshops',
-    desc: 'Evening technical workshop hosted by a Google Developer Expert. Topic: TBD. Hosted in Phoenix Rooms BC (University Union).',
-  },
-  {
-    id: 'sat-workshop-6-copilot',
-    time: '08:00 PM',
-    endTime: '08:30 PM',
     title: 'Hacking with GitHub Copilot',
     topic: 'AI Pair Programming, MCP Servers & GitHub Profiles',
     perk: 'Exclusive GitHub Swag Up For Grabs',
@@ -265,12 +239,14 @@ export const saturdaySchedule: ScheduleItem[] = [
       avatarUrl: '',
       bio: 'Official Major League Hacking (MLH) Coaches leading hands-on developer workshops, technical guidance, and mini-events at HackGB 2026.',
     },
+    bufferAfterMinutes: 15,
+    bufferDescription: '15-minute buffer before TechTogether session',
     desc: "Learning to use AI throughout your development flow is now an essential skill. GitHub Copilot is a fully-agentic AI pair programmer that can help you write, debug, & understand code. Today we’re learning by doing. We'll fork a README for your personal GitHub profile. We'll then use the GitHub and MLH MCP servers to pull live, personalized data. GitHub Copilot will use the template and data to create a customized profile just for you. * Exclusive GitHub swag up for grabs *",
   },
   {
-    id: 'sat-workshop-7-techtogether',
-    time: '08:30 PM',
-    endTime: '09:00 PM',
+    id: 'sat-workshop-techtogether',
+    time: '08:00 PM',
+    endTime: '08:30 PM',
     title: 'TechTogether Meetup & Community Session',
     topic: 'Addressing Gender Inequities in the Hackathon Community',
     room: '1965 Room (University Union)',
@@ -288,7 +264,7 @@ export const saturdaySchedule: ScheduleItem[] = [
       avatarUrl: '',
       bio: "Official Major League Hacking (MLH) Coaches leading the TechTogether community initiative at HackGB 2026 to foster an inclusive, welcoming hackathon environment.",
     },
-    bufferAfterMinutes: 60,
+    bufferAfterMinutes: 90,
     bufferDescription: 'Open hacking in University Union before 10:00 PM transition to STEM Innovation Center',
     desc: "TechTogether is the nation's largest initiative to address the gender inequities in the hackathon community. Join us for a 30-minute community session to connect, share experiences, and learn how we can build a more welcoming, equitable hackathon culture.",
   },
@@ -370,12 +346,12 @@ export const sundaySchedule: ScheduleItem[] = [
     endTime: '06:00 PM',
     title: 'Closing Ceremony',
     topic: 'Closing Ceremony',
-    room: 'STEM Innovation Center',
+    room: 'Christie Theatre, University Union',
     category: 'ceremony',
     badge: 'Key Milestone',
     badgeColor: '#E37100',
     accent: '#E37100',
-    desc: 'Closing remarks and event wrap-up at the STEM Innovation Center.',
+    desc: 'Closing remarks and event wrap-up at Christie Theatre, University Union.',
   },
   {
     id: 'sun-prizes',
@@ -383,11 +359,11 @@ export const sundaySchedule: ScheduleItem[] = [
     endTime: '07:00 PM',
     title: 'Prize Distribution',
     topic: 'Awards',
-    room: 'Rose Hall 250',
+    room: 'Christie Theatre, University Union',
     category: 'ceremony',
     badge: 'Key Milestone',
     badgeColor: '#4285F4',
     accent: '#4285F4',
-    desc: 'Winners announced and prizes distributed at Rose Hall 250.',
+    desc: 'Winners announced and prizes distributed at Christie Theatre, University Union.',
   },
 ];

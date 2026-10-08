@@ -30,7 +30,7 @@ interface ScheduleEvent {
 
 const saturdayEvents: ScheduleEvent[] = [
     { time: '08:00 AM', title: 'Check-in & Registration', desc: 'STEM Innovation Center • Check-in and badge pickup.', accent: '#61A644' },
-    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Rose Hall 250 • Welcome address and hackathon kickoff.', accent: '#E37100' },
+    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Christie Theatre, University Union • Welcome address and hackathon kickoff.', accent: '#E37100' },
     { time: '12:00 PM', title: 'Hacking Begins', desc: 'Phoenix Room B & C (University Union) • Hacking officially starts.', accent: '#0c3c34' },
     {
         time: '01:00 PM',
@@ -50,8 +50,8 @@ const saturdayEvents: ScheduleEvent[] = [
 const sundayEvents: ScheduleEvent[] = [
     { time: '12:00 PM', title: 'Hacking Ends & Submissions Due', desc: 'STEM Innovation Center • Code freeze and Devpost deadline.', accent: '#EA4335' },
     { time: '01:00 PM', title: 'Judging & Project Expo', desc: 'STEM Innovation Center • Live gallery demos open to judges and attendees.', accent: '#61A644' },
-    { time: '05:00 PM', title: 'Closing Ceremony', desc: 'STEM Innovation Center • Keynote address and weekend recap.', accent: '#0c3c34' },
-    { time: '06:00 PM', title: 'Prize Distribution', desc: 'STEM Innovation Center • Track champions and winners revealed!', accent: '#ffbd2e' },
+    { time: '05:00 PM', title: 'Closing Ceremony', desc: 'Christie Theatre, University Union • Keynote address and weekend recap.', accent: '#0c3c34' },
+    { time: '06:00 PM', title: 'Prize Distribution', desc: 'Christie Theatre, University Union • Track champions and winners revealed!', accent: '#ffbd2e' },
 ];
 
 const Schedule = () => {

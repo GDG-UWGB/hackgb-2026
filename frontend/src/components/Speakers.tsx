@@ -164,7 +164,7 @@ const confirmedSpeakers: Speaker[] = [
             { label: 'Major League Hacking', bg: 'bg-[#0C3C34]/10', text: 'text-[#0C3C34]', border: 'border-[#0C3C34]/20' },
         ],
         sessionTitle: 'Hacking with GitHub Copilot & TechTogether',
-        sessionTime: 'Saturday, Oct 17 • 8:00 PM – 9:00 PM',
+        sessionTime: 'Saturday, Oct 17 • 7:00 PM – 8:30 PM',
         sessionRoom: '1965 Room (University Union)',
         sessionCategory: 'MLH Workshops & Community Sessions',
         stats: [

@@ -76,7 +76,7 @@ const SchedulePage = () => {
           <div className="w-full bg-[#61A644]/10 border border-[#61A644]/20 rounded-2xl p-4 mb-6 text-slate-700 text-xs sm:text-sm font-google-text flex flex-col gap-2">
             <div>
               <strong className="font-google text-[#0C3C34]">Day 1 Venue Flow:</strong>{' '}
-              Check-in at STEM Innovation Center → Opening Ceremony at Rose Hall 250 → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. GDE workshops are in Phoenix Rooms BC; partner & MLH workshops (FTI, Bay Tek, GitHub Copilot, TechTogether) are in 1965 Room (University Union), and Modal is Online. At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
+              Check-in at STEM Innovation Center → Opening Ceremony at Christie Theatre (University Union) → Head to University Union Dining for lunch & Phoenix Room B & C for hacking space. GDE workshop is in Phoenix Rooms BC; partner & MLH workshops (FTI, Bay Tek, GitHub Copilot, TechTogether) are in 1965 Room (University Union), and Modal is Online. At 10:00 PM, return to STEM Innovation Center as the Union closes for overnight hacking.
             </div>
             <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#61A644]/15 text-[11px] font-google">
               <span className="text-slate-600">Workshops start at 1:00 PM (Modal Online, GDE, FTI, Bay Tek, MLH)</span>
@@ -90,8 +90,8 @@ const SchedulePage = () => {
 
         {activeDay === 'sunday' && (
           <div className="w-full bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 mb-6 text-amber-900 text-xs sm:text-sm font-google-text">
-            <strong className="font-google text-amber-950">Day 2 at STEM Innovation Center:</strong>{' '}
-            All Sunday events are hosted at the STEM Innovation Center. No workshops on Sunday — the day is focused on the 12:00 PM submission deadline, lunch, the Project Expo & Live Judging, and the Awards Ceremony.
+            <strong className="font-google text-amber-950">Day 2 Flow:</strong>{' '}
+            Hacking wraps up at the STEM Innovation Center with the 12:00 PM submission deadline, lunch, and the Project Expo & Live Judging. At 5:00 PM, head to Christie Theatre (University Union) for the Closing Ceremony and Prize Distribution.
           </div>
         )}
 
