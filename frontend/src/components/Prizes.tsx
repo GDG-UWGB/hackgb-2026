@@ -44,7 +44,7 @@ export interface RaffleItem {
     quantity?: number;
     desc: string;
     image: string;
-    link: string;
+    link?: string;
 }
 
 export interface PrizeItem {
@@ -251,36 +251,31 @@ const prizeCategories: PrizeCategory[] = [
                         name: "HyperX - Eve 1800 Wired Membrane Gaming Keyboard",
                         tag: "Gaming Keyboard",
                         desc: "Compact 1800 membrane gaming keyboard with vibrant multi-zone RGB backlighting, quiet tactile keys, and a durable spill-resistant design.",
-                        image: raffleHyperxEveImg,
-                        link: "https://www.bestbuy.com/product/hyperx-eve-1800-compact-wired-membrane-gaming-keyboard-with-rgb-back-lighting-black/JJGQJQXTR3/sku/6670616"
+                        image: raffleHyperxEveImg
                     },
                     {
                         name: "Insignia™ - Laptop Stand",
                         tag: "Ergonomic Gear",
                         desc: "Sturdy aluminum laptop stand with adjustable height and viewing angle for laptops up to 17\" wide, improving posture and cooling airflow.",
-                        image: raffleInsigniaStandImg,
-                        link: "https://www.bestbuy.com/product/insignia-laptop-stand-with-adjustable-height-and-angle-for-laptops-up-to-17-wide-silver/J2FPJKS55T"
+                        image: raffleInsigniaStandImg
                     },
                     {
                         name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
                         tag: "Wireless Controller",
                         desc: "Transparent Black wireless controller featuring smooth Hall effect joysticks, ultra-low latency wireless connectivity, and remappable bumpers.",
-                        image: raffle8bitdoImg,
-                        link: "https://www.bestbuy.com/product/8bitdo-ultimate-2c-bluetooth-wireless-gaming-controller-for-nintendo-switch-nintendo-switch-2-transparent-black/CZY3JSJ6W6"
+                        image: raffle8bitdoImg
                     },
                     {
                         name: "(White) Logitech - G305 LIGHTSPEED Wireless Mouse",
                         tag: "Wireless Mouse",
                         desc: "High-performance LIGHTSPEED wireless mouse in crisp white with a 12,000 DPI HERO sensor and an incredible 250-hour battery life.",
-                        image: raffleLogitechG305WhiteImg,
-                        link: "https://www.bestbuy.com/site/logitech-g305-lightspeed-wireless-optical-gaming-mouse-white/6214344.p"
+                        image: raffleLogitechG305WhiteImg
                     },
                     {
                         name: "LEGO - Disney and Pixar WALL-E and EVE (43279)",
                         tag: "LEGO Collectible",
                         desc: "Detailed 811-piece Disney and Pixar building set featuring posable WALL-E, EVE, and M-O display figures (Set 43279).",
-                        image: raffleLegoWalleImg,
-                        link: "https://www.bestbuy.com/product/lego-disney-and-pixar-wall-e-and-eve-43279/JXPLL2TS8G/sku/6614040"
+                        image: raffleLegoWalleImg
                     }
                 ]
             },
@@ -302,37 +297,32 @@ const prizeCategories: PrizeCategory[] = [
                         tag: "Gaming Mouse",
                         quantity: 2,
                         desc: "World-renowned gaming mouse equipped with the advanced HERO 25K sensor, 11 programmable buttons, customizable RGB lighting, and tunable weights.",
-                        image: raffleLogitechG502Img,
-                        link: "https://www.bestbuy.com/product/logitech-g502-hero-wired-optical-gaming-mouse-with-rgb-lighting-wired-black/J7H7ZYXCX4"
+                        image: raffleLogitechG502Img
                     },
                     {
                         name: "HyperX - Eve 1800 Wired Membrane Gaming Keyboard",
                         tag: "Gaming Keyboard",
                         desc: "Compact 1800 wired membrane gaming keyboard featuring responsive keystrokes, numeric keypad, and dynamic RGB illumination.",
-                        image: raffleHyperxEveImg,
-                        link: "https://www.bestbuy.com/product/hyperx-eve-1800-compact-wired-membrane-gaming-keyboard-with-rgb-back-lighting-black/JJGQJQXTR3/sku/6670616"
+                        image: raffleHyperxEveImg
                     },
                     {
                         name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
                         tag: "Wireless Controller",
                         quantity: 2,
                         desc: "Transparent Black edition with precision Hall effect thumbsticks, tactile switches, and multi-platform wireless support.",
-                        image: raffle8bitdoImg,
-                        link: "https://www.bestbuy.com/product/8bitdo-ultimate-2c-bluetooth-wireless-gaming-controller-for-nintendo-switch-nintendo-switch-2-transparent-black/CZY3JSJ6W6"
+                        image: raffle8bitdoImg
                     },
                     {
                         name: "(Black) Logitech - G305 LIGHTSPEED Wireless Mouse",
                         tag: "Wireless Mouse",
                         desc: "Classic black ultra-fast LIGHTSPEED wireless gaming mouse with 1ms response rate, 12K HERO sensor, and compact portable build.",
-                        image: raffleLogitechG305BlackImg,
-                        link: "https://www.bestbuy.com/product/logitech-g305-lightspeed-wireless-optical-6-programmable-button-gaming-mouse-with-12000-dpi-hero-sensor-wireless-black/J7H7ZY2ZGT"
+                        image: raffleLogitechG305BlackImg
                     },
                     {
                         name: "LEGO - Technic Bugatti Chiron Pur Sport Hypercar (42222)",
                         tag: "LEGO Technic",
                         desc: "Intricate 771-piece Technic hypercar model featuring authentic aerodynamics, working steering, realistic engine, and opening doors (Set 42222).",
-                        image: raffleLegoBugattiImg,
-                        link: "https://www.bestbuy.com/product/lego-technic-bugatti-chiron-pur-sport-hypercar-42222/JXPLL2WXJT/sku/6648039"
+                        image: raffleLegoBugattiImg
                     }
                 ]
             },
@@ -353,36 +343,31 @@ const prizeCategories: PrizeCategory[] = [
                         name: "JBL - Tune 730BT - Wireless over-the-ear headphones",
                         tag: "Over-Ear Audio",
                         desc: "Comfortable wireless Bluetooth over-ear headphones with signature JBL Pure Bass Sound, lightweight foldable frame, and up to 76 hours of battery.",
-                        image: raffleJblTune730btImg,
-                        link: "https://www.bestbuy.com/product/jbl-tune-730bt-wireless-bluetooth-over-the-ear-headphones-2026-black/J7LXFW3TXX/sku/6672230"
+                        image: raffleJblTune730btImg
                     },
                     {
                         name: "Logitech - G502 HERO Wired Mouse",
                         tag: "Gaming Mouse",
                         desc: "High-performance wired mouse with 25,600 max DPI HERO sensor, onboard memory profiles, and 11 programmable controls.",
-                        image: raffleLogitechG502Img,
-                        link: "https://www.bestbuy.com/product/logitech-g502-hero-wired-optical-gaming-mouse-with-rgb-lighting-wired-black/J7H7ZYXCX4"
+                        image: raffleLogitechG502Img
                     },
                     {
                         name: "LEGO - Game Boy 3D (72046)",
                         tag: "LEGO Collectible",
                         desc: "Nostalgic 421-piece 3D building set replicating the classic retro Nintendo Game Boy console with interchangeable game cartridges (Set 72046).",
-                        image: raffleLegoGameboyImg,
-                        link: "https://www.bestbuy.com/product/lego-game-boy-3d-puzzle-for-adults-ages-18-72046/JXPLL2HV3J/sku/6628886"
+                        image: raffleLegoGameboyImg
                     },
                     {
                         name: "JBL - FLIP7 Portable Waterproof Speaker - Black",
                         tag: "Waterproof Audio",
                         desc: "IP67 waterproof and dustproof portable Bluetooth speaker delivering booming JBL Pro Sound with dual pumping bass radiators.",
-                        image: raffleJblFlip7Img,
-                        link: "https://www.bestbuy.com/product/jbl-flip6-portable-waterproof-speaker-black/J7LXFW2QJG/sku/11446735"
+                        image: raffleJblFlip7Img
                     },
                     {
                         name: 'AOC - 16T35 15.6" IPS Panel Portable Monitor',
                         tag: "Portable Display",
                         desc: "Ultra-slim 15.6\" Full HD (1920x1080) IPS portable monitor with USB-C connectivity, ideal for dual-screen productivity anywhere.",
-                        image: raffleAocMonitorImg,
-                        link: "https://www.bestbuy.com/product/aoc-16t35-15-6-ips-panel-portable-monitor-led-fhd-1920x1080-usb-c-black/JX9GSKPQTL"
+                        image: raffleAocMonitorImg
                     }
                 ]
             }
@@ -546,46 +531,33 @@ const Prizes = () => {
                                                                             {p.items.map((item, itemIdx) => (
                                                                                 <div 
                                                                                     key={itemIdx}
-                                                                                    className="bg-white/85 rounded-xl p-3.5 border border-black/5 shadow-2xs flex flex-col justify-between hover:shadow-md hover:border-[#4A90D9]/30 transition-all group/item"
+                                                                                    className="bg-white/85 rounded-xl p-3.5 border border-black/5 shadow-2xs flex flex-col hover:shadow-md hover:border-[#4A90D9]/30 transition-all group/item"
                                                                                 >
-                                                                                    <div>
-                                                                                        <div className="w-full h-32 bg-white rounded-lg border border-black/5 flex items-center justify-center p-2 mb-3 overflow-hidden">
-                                                                                            <img 
-                                                                                                src={item.image} 
-                                                                                                alt={item.name} 
-                                                                                                loading="lazy" 
-                                                                                                decoding="async" 
-                                                                                                className="w-full h-full object-contain group-hover/item:scale-105 transition-transform duration-300" 
-                                                                                            />
-                                                                                        </div>
-                                                                                        <div className="flex items-center justify-between gap-1.5 mb-1.5">
-                                                                                            <span className="text-[10px] font-google-mono font-bold uppercase tracking-wider text-[#4A90D9] bg-[#4A90D9]/10 px-2 py-0.5 rounded">
-                                                                                                {item.tag}
-                                                                                            </span>
-                                                                                            {item.quantity && item.quantity > 1 && (
-                                                                                                <span className="text-[10px] font-google-mono font-bold text-[#E37100] bg-[#E37100]/10 px-2 py-0.5 rounded border border-[#E37100]/20">
-                                                                                                    {item.quantity} Available
-                                                                                                </span>
-                                                                                            )}
-                                                                                        </div>
-                                                                                        <h5 className="font-google font-bold text-sm text-[#0C3C34] leading-snug mb-1.5 line-clamp-2">
-                                                                                            {item.name}
-                                                                                        </h5>
-                                                                                        <p className="font-google-text text-xs text-slate-500 font-medium leading-relaxed mb-3 line-clamp-2">
-                                                                                            {item.desc}
-                                                                                        </p>
+                                                                                    <div className="w-full h-32 bg-white rounded-lg border border-black/5 flex items-center justify-center p-2 mb-3 overflow-hidden">
+                                                                                        <img 
+                                                                                            src={item.image} 
+                                                                                            alt={item.name} 
+                                                                                            loading="lazy" 
+                                                                                            decoding="async" 
+                                                                                            className="w-full h-full object-contain group-hover/item:scale-105 transition-transform duration-300" 
+                                                                                        />
                                                                                     </div>
-
-                                                                                    <a 
-                                                                                        href={item.link}
-                                                                                        target="_blank"
-                                                                                        rel="noopener noreferrer"
-                                                                                        onClick={(e) => e.stopPropagation()}
-                                                                                        className="inline-flex items-center justify-between w-full pt-2.5 border-t border-black/5 text-xs font-google font-bold text-[#4A90D9] hover:text-[#2d6fb5] transition-colors"
-                                                                                    >
-                                                                                        <span>View on Best Buy</span>
-                                                                                        <ExternalLink className="w-3.5 h-3.5" />
-                                                                                    </a>
+                                                                                    <div className="flex items-center justify-between gap-1.5 mb-1.5">
+                                                                                        <span className="text-[10px] font-google-mono font-bold uppercase tracking-wider text-[#4A90D9] bg-[#4A90D9]/10 px-2 py-0.5 rounded">
+                                                                                            {item.tag}
+                                                                                        </span>
+                                                                                        {item.quantity && item.quantity > 1 && (
+                                                                                            <span className="text-[10px] font-google-mono font-bold text-[#E37100] bg-[#E37100]/10 px-2 py-0.5 rounded border border-[#E37100]/20">
+                                                                                                {item.quantity} Available
+                                                                                            </span>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    <h5 className="font-google font-bold text-sm text-[#0C3C34] leading-snug mb-1.5 line-clamp-2">
+                                                                                        {item.name}
+                                                                                    </h5>
+                                                                                    <p className="font-google-text text-xs text-slate-500 font-medium leading-relaxed line-clamp-2">
+                                                                                        {item.desc}
+                                                                                    </p>
                                                                                 </div>
                                                                             ))}
                                                                         </div>
