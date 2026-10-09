@@ -404,7 +404,7 @@ const Prizes = () => {
                         Prizes & Awards
                     </h2>
                     <p className="text-slate-600 font-google-text text-base md:text-lg max-w-2xl mx-auto font-medium">
-                        Compete in main tracks or sponsor challenges to win premium hardware, gear, and software credits.
+                        $12K+ in prizes! Compete in main tracks, sponsor challenges, and raffles to win premium hardware, gear, and software credits.
                     </p>
                 </motion.div>
 

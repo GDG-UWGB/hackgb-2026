@@ -8,7 +8,7 @@ const stats = [
     { number: '200+', label: 'Hackers', icon: Users, color: '#61A644' },
     { number: '24', label: 'Hours', icon: Clock, color: '#E37100' },
     { number: '4', label: 'Tracks', icon: Compass, color: '#0C3C34' },
-    { number: '$6K+', label: 'In Prizes', icon: Trophy, color: '#ffcc00' },
+    { number: '$12K+', label: 'In Prizes', icon: Trophy, color: '#ffcc00' },
 ];
 
 /* Premium spring easing — Apple-style curve */
