@@ -97,7 +97,7 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
             <div className="flex items-center gap-1 text-[11px] text-slate-700 font-medium">
               <Sparkles className="w-3 h-3 text-[#E37100]" />
               <span className="font-semibold text-slate-800">
-                Rosters Locked • Oct 17–18
+                Applications Closed • Oct 17–18
               </span>
             </div>
           </>
@@ -171,7 +171,7 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
           <div className="mt-2.5 pt-2 border-t border-black/5 flex items-center gap-1.5 text-[11px] text-slate-700">
             <Sparkles className="w-3 h-3 text-[#E37100] shrink-0" />
             <span>
-              <strong>Rosters Locked.</strong> The stage is set for builders and visionaries at UW-Green Bay STEM Innovation Center!
+              <strong>Applications Closed.</strong> Applications are closed for HackGB 2026. See you at UW-Green Bay STEM Innovation Center!
             </span>
           </div>
         )}
@@ -245,12 +245,12 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
           ))}
         </div>
 
-        {/* Fancy Footer Notice — No "200+" or "Innovators Assembling" */}
+        {/* Notice: Applications are closed for HackGB 2026 */}
         {showNotice && (
-          <div className="mt-2.5 pt-2 border-t border-slate-200/60 flex items-center justify-center gap-1.5 text-center text-[10px] sm:text-[11px] text-slate-600 font-medium">
-            <Sparkles className="w-3 h-3 text-[#E37100] shrink-0 animate-pulse" />
+          <div className="mt-2.5 pt-2 border-t border-slate-200/60 flex items-center justify-center gap-1.5 text-center text-[11px] sm:text-xs text-slate-600 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
             <span>
-              <strong className="text-[#0C3C34] font-bold">Rosters Locked</strong> • Get Ready to Build Oct 17–18
+              Applications are closed for <strong className="text-[#0C3C34] font-bold">HackGB 2026</strong>.
             </span>
           </div>
         )}
