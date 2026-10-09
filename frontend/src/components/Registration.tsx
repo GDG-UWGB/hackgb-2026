@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
-import { APPLICATIONS_OPEN } from '../data/constants';
+import { ALL_APPLICATIONS_CLOSED, APPLICATIONS_OPEN } from '../data/constants';
 import { calculateTimeUntilEvent } from './common/EventCountdown';
 
 /* Premium spring easing */
@@ -21,7 +21,6 @@ const Registration = () => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeUntilEvent());
 
     useEffect(() => {
-        setTimeLeft(calculateTimeUntilEvent());
         const interval = setInterval(() => {
             setTimeLeft(calculateTimeUntilEvent());
         }, 1000);
@@ -61,11 +60,11 @@ const Registration = () => {
                             <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
                             <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
                             <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                            <span className="text-[10px] text-slate-500 ml-3">bash - apply.sh</span>
+                            <span className="text-[10px] text-slate-500 ml-3">bash - apply.sh [CLOSED]</span>
                         </div>
-                        <div className="flex items-center gap-1.5 text-[9px] text-[#61A644] font-bold bg-[#61A644]/10 px-2 py-0.5 rounded border border-[#61A644]/25">
+                        <div className="flex items-center gap-1.5 text-[9px] text-[#ff5f56] font-bold bg-[#ff5f56]/10 px-2 py-0.5 rounded border border-[#ff5f56]/25">
                             <Terminal className="w-3.5 h-3.5" />
-                            <span>tty1</span>
+                            <span>tty1 • closed</span>
                         </div>
                     </div>
 
@@ -74,59 +73,61 @@ const Registration = () => {
                         <div className="space-y-4">
                             <div className="flex items-center gap-2">
                                 <span className="text-[#61A644] font-bold">sachin@uwgb:~$</span>
-                                <span className="text-slate-200">./apply.sh --now</span>
+                                <span className="text-slate-200">./apply.sh --status</span>
                             </div>
-                            <div className="text-slate-400 space-y-1 bg-black/30 p-4 rounded-xl border border-white/5 font-google-mono text-[11px]">
+                            <div className="text-slate-400 space-y-1.5 bg-black/30 p-4 rounded-xl border border-white/5 font-google-mono text-[11px]">
                                 <div>[INFO] Loading HackGB registration parameters...</div>
                                 <div>[INFO] Target: UW-Green Bay STEM Innovation Center</div>
                                 <div>[INFO] Date: October 17 - 18, 2026</div>
-                                <div className="text-[#61A644] font-bold">
+                                <div className="text-[#61A644] font-bold font-google">
                                     [EVENT COUNTDOWN] T-{timeLeft.days}d {String(timeLeft.hours).padStart(2, '0')}h {String(timeLeft.minutes).padStart(2, '0')}m {String(timeLeft.seconds).padStart(2, '0')}s until HackGB 2026
                                 </div>
-                                <div className="text-amber-400/90 text-[10px] pt-1">
-                                    [NOTICE] Priority applications closed Oct. 2 at 11:59 PM. Rolling applications currently open (space-available basis).
+                                <div className="text-[#ff5f56] text-[10px] pt-1 font-semibold">
+                                    [NOTICE] All applications for HackGB 2026 are now officially closed.
                                 </div>
-                                {APPLICATIONS_OPEN ? (
-                                    <div className="text-[#61A644] font-bold">[SUCCESS] Registration pipelines active. 200+ slots available.</div>
-                                ) : (
-                                    <div className="text-[#E37100] font-bold">[PENDING] Registration pipeline offline. Launching soon!</div>
-                                )}
+                                <div className="text-[#ff5f56] font-bold font-google">
+                                    [CLOSED] Submissions logged. We look forward to seeing all attendees on Oct 17!
+                                </div>
                             </div>
                             <div className="text-slate-300 font-google text-sm font-bold pt-4 text-center border-t border-white/5">
-                                Ready to join UWGB's premier collegiate hackathon?
+                                Applications are closed • See you at HackGB 2026!
                             </div>
                         </div>
 
                         {/* Interactive triggers in editor layout */}
                         <div>
                             <div className="flex flex-wrap justify-center items-center gap-4">
-                                <button
-                                    onClick={() => navigate('/apply')}
-                                    className="bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
-                                >
-                                    <span>{APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </button>
+                                {!ALL_APPLICATIONS_CLOSED && (
+                                    <button
+                                        onClick={() => navigate('/apply')}
+                                        className="bg-[#61A644] hover:bg-[#61A644]/90 text-white font-google font-bold text-sm px-6 py-3 rounded-xl flex items-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
+                                    >
+                                        <span>{APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}</span>
+                                        <ArrowRight className="w-4 h-4" />
+                                    </button>
+                                )}
                                 <button
                                     onClick={() => {
                                         const el = document.getElementById('about');
                                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                                     }}
-                                    className="border border-white/10 hover:border-white/20 text-slate-300 hover:text-white font-google font-bold text-sm px-5 py-3 rounded-xl cursor-pointer transition-all bg-white/5"
+                                    className={`${ALL_APPLICATIONS_CLOSED ? 'bg-[#61A644] hover:bg-[#61A644]/90 text-white shadow-lg' : 'border border-white/10 hover:border-white/20 text-slate-300 hover:text-white bg-white/5'} font-google font-bold text-sm px-6 py-3 rounded-xl cursor-pointer transition-all active:scale-95 flex items-center gap-2`}
                                 >
-                                    Learn More
+                                    <span>Learn More</span>
+                                    <ArrowRight className="w-4 h-4" />
                                 </button>
                             </div>
-                            <p className="text-[11px] text-slate-400 font-google-text text-center mt-3 max-w-md mx-auto">
-                                Priority applications closed Oct. 2, 11:59 PM. We are still accepting applications on a rolling basis with secondary review priority until capacity is reached!
+                            <p className="text-[11px] text-slate-400 font-google text-center mt-3 max-w-md mx-auto">
+                                Applications for HackGB 2026 are officially closed. Thank you to everyone who registered!
                             </p>
                         </div>
                     </div>
 
                     {/* Bottom Status bar */}
-                    <div className="flex justify-between items-center px-4 py-1.5 bg-[#61A644] text-white text-[9px] select-none">
-                        <div className="flex items-center gap-2 font-bold">
-                            <span>APPLY: active</span>
+                    <div className="flex justify-between items-center px-4 py-1.5 bg-slate-800 text-slate-300 text-[9px] select-none border-t border-white/5">
+                        <div className="flex items-center gap-2 font-bold font-google">
+                            <span className="text-[#ff5f56]">●</span>
+                            <span>APPLICATIONS: CLOSED</span>
                         </div>
                         <div className="flex items-center gap-3">
                             <span>Bash</span>

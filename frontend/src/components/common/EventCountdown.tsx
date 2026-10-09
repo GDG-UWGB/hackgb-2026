@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Sparkles } from 'lucide-react';
+import { Clock, Calendar, Sparkles, Trophy } from 'lucide-react';
 import { EVENT_START_DATE } from '../../data/constants';
 
 interface EventCountdownProps {
@@ -8,7 +8,7 @@ interface EventCountdownProps {
   className?: string;
 }
 
-interface TimeLeft {
+export interface TimeLeft {
   days: number;
   hours: number;
   minutes: number;
@@ -30,6 +30,10 @@ export const calculateTimeUntilEvent = (): TimeLeft => {
   };
 };
 
+const GOOGLE_SANS_STYLE: React.CSSProperties = {
+  fontFamily: "'GoogleSans', ui-sans-serif, system-ui, -apple-system, sans-serif",
+};
+
 const EventCountdown: React.FC<EventCountdownProps> = ({
   variant = 'hero',
   showNotice = true,
@@ -38,7 +42,6 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeUntilEvent());
 
   useEffect(() => {
-    setTimeLeft(calculateTimeUntilEvent());
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeUntilEvent());
     }, 1000);
@@ -47,18 +50,43 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
+  // When event has officially started — Celebration State
+  if (timeLeft.isStarted) {
+    return (
+      <div
+        style={GOOGLE_SANS_STYLE}
+        className={`font-google bg-gradient-to-r from-[#0C3C34] via-[#124d43] to-[#0C3C34] text-white rounded-2xl p-4 sm:p-5 shadow-xl border border-white/20 select-none text-center max-w-md mx-auto ${className}`}
+      >
+        <div className="flex items-center justify-center gap-1.5 mb-1.5">
+          <Trophy className="w-4 h-4 text-[#ffcc00] animate-bounce" />
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#ffcc00]">
+            Hackathon In Progress
+          </span>
+        </div>
+        <h3 className="text-lg sm:text-xl font-bold tracking-tight mb-0.5">
+          HackGB 2026 is LIVE!
+        </h3>
+        <p className="text-[11px] sm:text-xs text-slate-200 font-medium">
+          Welcome innovators, mentors, and judges to the STEM Innovation Center!
+        </p>
+      </div>
+    );
+  }
+
+  // Pill variant — Ultra-sleek compact pill
   if (variant === 'pill') {
     return (
       <div
-        className={`inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-3 px-5 py-2.5 rounded-2xl sm:rounded-full bg-white/95 backdrop-blur-md border border-slate-200 shadow-[0_4px_20px_rgba(12,60,52,0.08)] select-none text-center ${className}`}
+        style={GOOGLE_SANS_STYLE}
+        className={`font-google inline-flex flex-col sm:flex-row items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 sm:py-2 rounded-2xl sm:rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_4px_16px_rgba(12,60,52,0.06)] select-none text-center ${className}`}
       >
-        <div className="flex items-center gap-2 text-xs sm:text-sm font-google-mono font-bold text-[#0C3C34]">
-          <span className="relative flex h-2.5 w-2.5">
+        <div className="flex items-center gap-1.5 text-xs font-bold text-[#0C3C34]">
+          <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#61A644] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#61A644]" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#61A644]" />
           </span>
-          <span>Event in</span>
-          <span className="text-[#0C3C34] font-black tracking-tight bg-[#61A644]/15 px-2 py-0.5 rounded-md border border-[#61A644]/25">
+          <span className="tracking-tight text-slate-600 font-medium">T-Minus</span>
+          <span className="text-[#0C3C34] font-extrabold tracking-tight tabular-nums bg-[#61A644]/15 px-2 py-0.5 rounded-md border border-[#61A644]/25">
             {timeLeft.days}d {pad(timeLeft.hours)}h {pad(timeLeft.minutes)}m {pad(timeLeft.seconds)}s
           </span>
         </div>
@@ -66,10 +94,10 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
         {showNotice && (
           <>
             <span className="hidden sm:inline text-slate-300 font-bold">•</span>
-            <div className="flex items-center gap-1.5 text-xs font-google-text text-slate-700 font-medium">
-              <Sparkles className="w-3.5 h-3.5 text-[#E37100] shrink-0" />
-              <span>
-                Priority closed Oct. 2 • <strong className="text-[#0C3C34]">Rolling applications open</strong>
+            <div className="flex items-center gap-1 text-[11px] text-slate-700 font-medium">
+              <Sparkles className="w-3 h-3 text-[#E37100]" />
+              <span className="font-semibold text-slate-800">
+                Rosters Locked • Oct 17–18
               </span>
             </div>
           </>
@@ -78,42 +106,46 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
     );
   }
 
+  // Compact variant — inline badge with Google Sans font
   if (variant === 'compact') {
     return (
       <div
-        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[#0C3C34] font-google-mono text-[11px] font-bold select-none ${className}`}
+        style={GOOGLE_SANS_STYLE}
+        className={`font-google inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-[#0C3C34] text-[11px] font-bold select-none ${className}`}
       >
-        <Clock className="w-3.5 h-3.5 text-[#61A644] animate-pulse shrink-0" />
-        <span>T-minus</span>
-        <span className="font-extrabold text-[#0C3C34]">
+        <Clock className="w-3 h-3 text-[#61A644] animate-pulse shrink-0" />
+        <span className="font-medium text-slate-600">Launch in</span>
+        <span className="font-extrabold tabular-nums text-[#0C3C34]">
           {timeLeft.days}d {pad(timeLeft.hours)}h {pad(timeLeft.minutes)}m {pad(timeLeft.seconds)}s
         </span>
-        <span className="text-[9px] text-slate-500 font-normal uppercase hidden sm:inline">to HackGB</span>
       </div>
     );
   }
 
+  // Banner variant — wide card with Google Sans typography
   if (variant === 'banner') {
     return (
       <div
-        className={`w-full bg-gradient-to-r from-[#0C3C34]/5 via-[#61A644]/10 to-[#E37100]/5 border border-[#61A644]/20 rounded-xl p-3 sm:p-4 select-none ${className}`}
+        style={GOOGLE_SANS_STYLE}
+        className={`font-google w-full bg-gradient-to-r from-[#0C3C34]/5 via-[#61A644]/10 to-[#E37100]/5 border border-[#61A644]/25 rounded-xl p-3 sm:p-4 select-none ${className}`}
       >
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#61A644]/15 flex items-center justify-center text-[#61A644] shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-[#61A644]/15 flex items-center justify-center text-[#61A644] shrink-0 border border-[#61A644]/20 shadow-xs">
               <Clock className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[10px] font-google-mono font-bold uppercase tracking-wider text-[#61A644]">
-                Event Countdown • October 17, 2026
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#61A644] flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#61A644] animate-pulse" />
+                Launch Countdown • Oct 17, 2026
               </div>
-              <div className="text-xs sm:text-sm font-google font-bold text-[#0C3C34]">
-                HackGB 2026 Kicks Off in {timeLeft.days} Days, {timeLeft.hours} Hours!
+              <div className="text-xs sm:text-sm font-bold text-[#0C3C34] tracking-tight">
+                T-Minus {timeLeft.days} Days, {timeLeft.hours} Hours Until HackGB 2026!
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 font-google-mono">
+          <div className="flex items-center gap-1">
             {[
               { val: timeLeft.days, label: 'D' },
               { val: timeLeft.hours, label: 'H' },
@@ -121,9 +153,13 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
               { val: timeLeft.seconds, label: 'S' },
             ].map((unit, idx) => (
               <React.Fragment key={unit.label}>
-                <div className="bg-white/80 backdrop-blur-sm border border-white/60 shadow-xs px-2 py-1 rounded-md text-center min-w-[32px]">
-                  <span className="text-xs sm:text-sm font-bold text-[#0C3C34]">{pad(unit.val)}</span>
-                  <span className="text-[8px] text-slate-400 block -mt-0.5">{unit.label}</span>
+                <div className="bg-white/90 backdrop-blur-sm border border-white/70 shadow-xs px-2 py-1 rounded-md text-center min-w-[32px]">
+                  <span className="text-xs font-extrabold text-[#0C3C34] tabular-nums block leading-none">
+                    {pad(unit.val)}
+                  </span>
+                  <span className="text-[7px] text-slate-400 font-bold block mt-0.5 tracking-wider">
+                    {unit.label}
+                  </span>
                 </div>
                 {idx < 3 && <span className="text-slate-400 text-xs font-bold">:</span>}
               </React.Fragment>
@@ -132,10 +168,10 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
         </div>
 
         {showNotice && (
-          <div className="mt-2.5 pt-2 border-t border-black/5 flex items-center gap-1.5 text-[11px] text-slate-650 font-google-text">
-            <Sparkles className="w-3.5 h-3.5 text-[#E37100] shrink-0" />
+          <div className="mt-2.5 pt-2 border-t border-black/5 flex items-center gap-1.5 text-[11px] text-slate-700">
+            <Sparkles className="w-3 h-3 text-[#E37100] shrink-0" />
             <span>
-              <strong>Priority applications closed Oct. 2 at 11:59 PM.</strong> Rolling applications are still open with limited review priority until capacity is reached!
+              <strong>Rosters Locked.</strong> The stage is set for builders and visionaries at UW-Green Bay STEM Innovation Center!
             </span>
           </div>
         )}
@@ -143,63 +179,85 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
     );
   }
 
-  // Default: 'hero' variant
+  // Units array for the Hero display
+  const units = [
+    { label: 'DAYS', value: timeLeft.days },
+    { label: 'HOURS', value: timeLeft.hours },
+    { label: 'MINUTES', value: timeLeft.minutes },
+    { label: 'SECONDS', value: timeLeft.seconds },
+  ];
+
+  // Default 'hero' variant — Elevated, High-Polish Glassmorphic Countdown
   return (
-    <div
-      className={`bg-white/55 backdrop-blur-xl border border-white/70 shadow-[0_12px_40px_rgba(12,60,52,0.07)] rounded-2xl p-4 sm:p-5 max-w-lg mx-auto select-none ${className}`}
-    >
-      {/* Top Header */}
-      <div className="flex items-center justify-between mb-3 px-1">
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#61A644] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#61A644]" />
-          </span>
-          <span className="font-google-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-[#0C3C34]">
-            Countdown to HackGB 2026
-          </span>
-        </div>
-        <span className="font-google-mono text-[10px] text-slate-500 font-medium">
-          Oct 17 • 8:00 AM CDT
-        </span>
-      </div>
+    <div className={`relative group max-w-[420px] mx-auto w-full select-none ${className}`}>
+      {/* Subtle Ambient Glow behind card */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#61A644]/20 via-[#E37100]/15 to-[#0C3C34]/20 rounded-3xl blur-lg opacity-50 group-hover:opacity-80 transition duration-500 pointer-events-none" />
 
-      {/* 4 Digit Boxes */}
-      <div className="grid grid-cols-4 gap-2 sm:gap-3">
-        {[
-          { label: 'Days', value: timeLeft.days },
-          { label: 'Hours', value: timeLeft.hours },
-          { label: 'Minutes', value: timeLeft.minutes },
-          { label: 'Seconds', value: timeLeft.seconds },
-        ].map((item, idx) => (
-          <div
-            key={idx}
-            className="bg-white/85 backdrop-blur-md rounded-xl p-2.5 sm:p-3 flex flex-col items-center justify-center border border-white/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_2px_8px_rgba(0,0,0,0.03)] relative overflow-hidden group transition-transform duration-200 hover:-translate-y-0.5"
-          >
-            <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#61A644]/40 to-transparent" />
-            <span className="font-google-mono text-2xl sm:text-3xl font-extrabold text-[#0C3C34] tracking-tight leading-none">
-              {pad(item.value)}
+      {/* Main Glassmorphic Card Container */}
+      <div
+        style={GOOGLE_SANS_STYLE}
+        className="font-google relative bg-white/75 backdrop-blur-2xl border border-white/90 shadow-[0_12px_36px_rgba(12,60,52,0.06),0_1px_3px_rgba(0,0,0,0.03)] rounded-2xl p-3 sm:p-3.5 transition-all duration-300 hover:shadow-[0_16px_44px_rgba(12,60,52,0.09)] hover:border-white"
+      >
+        {/* Subtle Top Accent Line */}
+        <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-[#61A644]/60 to-transparent rounded-full" />
+
+        {/* Top Meta Header: Status Beacon & Date Badge */}
+        <div className="flex items-center justify-between mb-2.5 px-0.5">
+          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0C3C34]/5 border border-[#0C3C34]/10 shadow-2xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#61A644] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#61A644]" />
             </span>
-            <span className="text-[9px] sm:text-[10px] font-google-mono font-bold uppercase tracking-wider text-[#61A644] mt-1.5">
-              {item.label}
+            <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-[#0C3C34]">
+              Countdown to Kickoff
             </span>
           </div>
-        ))}
-      </div>
 
-      {/* Small Letter Friendly Announcement */}
-      {showNotice && (
-        <div className="mt-3.5 pt-3 border-t border-black/5 flex items-start gap-2 text-left">
-          <div className="w-4 h-4 rounded-full bg-amber-500/15 flex items-center justify-center text-[#E37100] shrink-0 mt-0.5">
-            <Sparkles className="w-2.5 h-2.5" />
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100/70 text-[10px] sm:text-[10.5px] font-medium text-slate-600 border border-slate-200/50">
+            <Calendar className="w-3 h-3 text-[#61A644]" />
+            <span>Oct 17 • STEM Center</span>
           </div>
-          <p className="text-[11px] leading-relaxed text-slate-600 font-google-text">
-            <strong className="text-[#0C3C34]">Still accepting applications!</strong> While priority registration closed Oct. 2 at 11:59 PM, rolling applications remain open on a space-available basis with secondary review priority.
-          </p>
         </div>
-      )}
+
+        {/* Digit Tiles with Animated Colon Separators */}
+        <div className="flex items-center justify-between gap-1 sm:gap-1.5">
+          {units.map((item, idx) => (
+            <React.Fragment key={item.label}>
+              <div className="flex-1 min-w-0 bg-gradient-to-b from-white/95 to-slate-50/90 rounded-xl py-2 px-1 sm:py-2.5 flex flex-col items-center justify-center border border-slate-200/70 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_2px_8px_rgba(12,60,52,0.04)] relative group/tile transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(12,60,52,0.08)] hover:border-[#61A644]/40">
+                {/* Micro top gleam on tile */}
+                <div className="absolute top-0 inset-x-2 h-[1.5px] bg-gradient-to-r from-transparent via-[#61A644]/40 to-transparent rounded-full opacity-60 group-hover/tile:opacity-100 transition-opacity" />
+
+                <span className="text-2xl sm:text-[28px] font-bold text-[#0C3C34] tracking-tight leading-none tabular-nums">
+                  {pad(item.value)}
+                </span>
+                <span className="text-[7.5px] sm:text-[8.5px] font-bold uppercase tracking-[0.14em] text-[#61A644] mt-1 sm:mt-1.5">
+                  {item.label}
+                </span>
+              </div>
+
+              {/* Blinking Colon Separator between modules */}
+              {idx < units.length - 1 && (
+                <span className="text-slate-300 font-bold text-base sm:text-lg select-none pb-3.5 shrink-0 animate-pulse">
+                  :
+                </span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* Fancy Footer Notice — No "200+" or "Innovators Assembling" */}
+        {showNotice && (
+          <div className="mt-2.5 pt-2 border-t border-slate-200/60 flex items-center justify-center gap-1.5 text-center text-[10px] sm:text-[11px] text-slate-600 font-medium">
+            <Sparkles className="w-3 h-3 text-[#E37100] shrink-0 animate-pulse" />
+            <span>
+              <strong className="text-[#0C3C34] font-bold">Rosters Locked</strong> • Get Ready to Build Oct 17–18
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default EventCountdown;
+

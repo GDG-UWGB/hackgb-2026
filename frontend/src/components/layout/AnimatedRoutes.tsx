@@ -16,9 +16,7 @@ const JudgeApplication = lazy(() => import('../../pages/JudgeApplication'));
 const MentorApplication = lazy(() => import('../../pages/MentorApplication'));
 const CodeOfConduct = lazy(() => import('../../pages/CodeOfConduct'));
 const PrivacyPolicy = lazy(() => import('../../pages/PrivacyPolicy'));
-const OpeningSoon = lazy(() => import('../../pages/OpeningSoon'));
 const SchedulePage = lazy(() => import('../../pages/SchedulePage'));
-import { checkApplicationsOpen } from '../../data/constants';
 
 
 // Define the transition properties for page animations
@@ -56,7 +54,6 @@ const AnimatedRoutes = () => {
 
     useScrollToTop(); // Custom hook to scroll to top on route change
 
-    const [isOpen, setIsOpen] = React.useState(checkApplicationsOpen());
 
 
     return (
@@ -65,10 +62,10 @@ const AnimatedRoutes = () => {
 
                 <Route path="/" element={<PageWrapper> <Home /> </PageWrapper>} />
                 <Route path="/faqs" element={<PageWrapper> <Faqs /> </PageWrapper>} />
-                <Route path="/apply" element={<PageWrapper> {isOpen ? <ApplyOptions /> : <OpeningSoon onUnlock={() => setIsOpen(true)} />} </PageWrapper>} />
-                <Route path="/apply/hacker" element={<PageWrapper> {isOpen ? <Application /> : <OpeningSoon onUnlock={() => setIsOpen(true)} />} </PageWrapper>} />
-                <Route path="/apply/judge" element={<PageWrapper> {isOpen ? <JudgeApplication /> : <OpeningSoon onUnlock={() => setIsOpen(true)} />} </PageWrapper>} />
-                <Route path="/apply/mentor" element={<PageWrapper> {isOpen ? <MentorApplication /> : <OpeningSoon onUnlock={() => setIsOpen(true)} />} </PageWrapper>} />
+                <Route path="/apply" element={<PageWrapper> <ApplyOptions /> </PageWrapper>} />
+                <Route path="/apply/hacker" element={<PageWrapper> <Application /> </PageWrapper>} />
+                <Route path="/apply/judge" element={<PageWrapper> <JudgeApplication /> </PageWrapper>} />
+                <Route path="/apply/mentor" element={<PageWrapper> <MentorApplication /> </PageWrapper>} />
                 <Route path="/code-of-conduct" element={<PageWrapper> <CodeOfConduct /> </PageWrapper>} />
                 <Route path="/privacy-policy" element={<PageWrapper> <PrivacyPolicy /> </PageWrapper>} />
                 <Route path="/schedule" element={<PageWrapper> <SchedulePage /> </PageWrapper>} />

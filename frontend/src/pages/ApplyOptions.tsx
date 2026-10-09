@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import stemImg from '../assets/images/background/jpg/uwgb-stem.jpg';
-import { Terminal, ArrowRight, Compass, Landmark, Users, Sparkles } from 'lucide-react';
-import { JUDGE_APPLICATION_CLOSED, HACKER_APPLICATION_DEADLINE } from '../data/constants';
+import { Terminal, ArrowRight, Compass, Landmark, Users } from 'lucide-react';
 import EventCountdown from '../components/common/EventCountdown';
 
 /* Premium spring easing */
@@ -17,13 +16,11 @@ const DEFAULT_SCRIPT = [
   '$ hackgb system --status',
   'Checking core nodes... [OK]',
   'Target: STEM Innovation Center (Oct 17-18, 2026)',
-  'Hacker pipeline: ROLLING ACCEPTANCE (Space available)',
-  JUDGE_APPLICATION_CLOSED
-    ? 'Judge pipeline: CLOSED (Application closed)'
-    : 'Judge pipeline: READY (Awaiting input)',
-  'Mentor pipeline: READY (Awaiting input)',
-  'Handshake complete on tty0.',
-  'Ready to initialize apply options...'
+  'Hacker pipeline: CLOSED (Applications closed)',
+  'Judge pipeline: CLOSED (Applications closed)',
+  'Mentor pipeline: CLOSED (Applications closed)',
+  'Registration pipeline: COMPLETE [CLOSED]',
+  'Ready to initialize HackGB 2026!'
 ];
 
 const HACKER_SCRIPT = [
@@ -210,39 +207,34 @@ const ApplyPipelines = ({ hoveredOption }: ApplyPipelinesProps) => {
 const ApplyOptions = () => {
   const navigate = useNavigate();
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
-  const isHackerDeadlinePassed = new Date() > HACKER_APPLICATION_DEADLINE;
 
   const options = [
     {
       title: 'Hacker Application',
-      description: isHackerDeadlinePassed
-        ? 'Applications for HackGB 2026 are now closed.'
-        : 'Submit your application as a builder or creator. Rolling applications are currently accepted on a space-available basis with limited review priority.',
+      description: 'Hacker applications for HackGB 2026 are now closed. We are no longer accepting new submissions.',
       icon: Compass,
       path: '/apply/hacker',
-      themeColor: isHackerDeadlinePassed ? '#ff5f56' : '#61A644', // Red if closed
-      badge: isHackerDeadlinePassed ? 'Closed' : 'Rolling',
-      disabled: isHackerDeadlinePassed,
+      themeColor: '#ff5f56',
+      badge: 'Closed',
+      disabled: true,
     },
     {
       title: 'Judge Application',
-      description: JUDGE_APPLICATION_CLOSED
-        ? 'Judge applications for HackGB 2026 are now closed.'
-        : 'Submit your application to participate in the hackathon as a professional evaluator.',
+      description: 'Judge applications for HackGB 2026 are now closed. Evaluator positions are filled.',
       icon: Landmark,
       path: '/apply/judge',
-      themeColor: JUDGE_APPLICATION_CLOSED ? '#ff5f56' : '#E37100', // Red if closed
-      badge: JUDGE_APPLICATION_CLOSED ? 'Closed' : 'Judge',
-      disabled: JUDGE_APPLICATION_CLOSED,
+      themeColor: '#ff5f56',
+      badge: 'Closed',
+      disabled: true,
     },
     {
       title: 'Mentor Application',
-      description: 'Submit your application to participate in the hackathon as a guide or technical mentor.',
+      description: 'Mentor applications for HackGB 2026 are now closed. Technical mentor positions are filled.',
       icon: Users,
       path: '/apply/mentor',
-      themeColor: '#5746e3', // Mentor Indigo/Purple
-      badge: 'Mentor',
-      disabled: false,
+      themeColor: '#ff5f56',
+      badge: 'Closed',
+      disabled: true,
     },
   ];
 
@@ -268,9 +260,9 @@ const ApplyOptions = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-              <span className="text-[10px] font-google-mono text-slate-500 ml-3">Registration Setup</span>
+              <span className="text-[10px] font-google-mono text-slate-500 ml-3">Registration Status [CLOSED]</span>
             </div>
-            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#61A644] font-bold bg-[#61A644]/10 px-2 py-0.5 rounded border border-[#61A644]/25">
+            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#ff5f56] font-bold bg-[#ff5f56]/10 px-2 py-0.5 rounded border border-[#ff5f56]/25">
               <Terminal className="w-3.5 h-3.5" />
               <span>apply_options.sh</span>
             </div>
@@ -281,25 +273,25 @@ const ApplyOptions = () => {
             {/* Left Column: Heading and metadata info */}
             <div className="flex-1 p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-black/5">
               <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#61A644]/10 text-[#61A644] font-google-mono font-bold text-[10px] uppercase tracking-wider mb-4 border border-[#61A644]/20">
-                  <span className="w-1.5 h-1.5 bg-[#61A644] rounded-full animate-pulse" />
-                  Apply Now
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#ff5f56]/10 text-[#ff5f56] font-google-mono font-bold text-[10px] uppercase tracking-wider mb-4 border border-[#ff5f56]/20">
+                  <span className="w-1.5 h-1.5 bg-[#ff5f56] rounded-full" />
+                  Applications Closed
                 </span>
                 <h1 className="text-3xl sm:text-4xl font-google font-bold text-[#0C3C34] leading-tight mb-3">
                   HackGB 2026 Registration
                 </h1>
                 <p className="text-slate-705 font-google-text text-sm font-semibold leading-relaxed mb-4">
-                  Join us at the STEM Innovation Center for Green Bay's premier collegiate hackathon. Please select whether you are participating as an active builder (hacker) or evaluative expert (judge).
+                  Join us at the STEM Innovation Center for Green Bay's premier collegiate hackathon. All application pipelines (hacker, judge, and mentor) are now officially closed.
                 </p>
 
                 {/* Event Countdown */}
                 <EventCountdown variant="banner" showNotice={false} className="mb-3.5" />
 
-                {/* Friendly rolling application note in small letters */}
-                <div className="flex items-start gap-2 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[11px] font-google-text text-amber-950 mb-4">
-                  <Sparkles className="w-3.5 h-3.5 text-[#E37100] shrink-0 mt-0.5" />
+                {/* Closed Application Notice */}
+                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-[11px] font-google-text text-red-950 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#ff5f56] shrink-0 mt-1" />
                   <span>
-                    <strong>Still Accepting Applications:</strong> Priority registration closed Oct. 2 at 11:59 PM. We are still accepting applications on a rolling basis with secondary review priority while spots remain!
+                    <strong>Applications are closed:</strong> All applications for HackGB 2026 are now officially closed. Thank you to everyone who registered! We can't wait to see all attendees at the STEM Innovation Center on October 17–18.
                   </span>
                 </div>
 

@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { Terminal } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
 import downtownImg from '../assets/images/background/jpg/downtown-gb.jpg';
+import { MENTOR_APPLICATION_CLOSED } from '../data/constants';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -294,6 +295,7 @@ const MentorApplication = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (MENTOR_APPLICATION_CLOSED) return;
     if (!validateStep(3)) return;
 
     setIsSubmitting(true);
@@ -451,7 +453,60 @@ const MentorApplication = () => {
 
       <div className="w-full max-w-3xl z-10">
         <AnimatePresence mode="wait">
-          {!isSuccess ? (
+          {MENTOR_APPLICATION_CLOSED ? (
+            /* Branded Closed State */
+            <motion.div
+              key="closed"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: spring }}
+              className="bg-white/45 backdrop-blur-xl rounded-2xl border border-white/25 shadow-2xl overflow-hidden flex flex-col min-h-[460px] text-center"
+            >
+              {/* IDE Top Window Bar */}
+              <div className="flex items-center justify-between px-4 py-2 border-b border-black/5 bg-white/30 select-none">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                  <span className="text-[10px] font-google-mono text-slate-500 ml-3">Mentor Application Wizard</span>
+                </div>
+                <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#ff5f56] font-bold bg-[#ff5f56]/10 px-2 py-0.5 rounded border border-[#ff5f56]/25">
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>mentor_setup.js [CLOSED]</span>
+                </div>
+              </div>
+
+              <div className="flex-1 flex flex-col items-center justify-center py-16 px-6">
+                <div className="w-16 h-16 rounded-full bg-[#ff5f56]/10 flex items-center justify-center text-[#ff5f56] text-2xl mb-6 animate-gentle-float">
+                  <FontAwesomeIcon icon={faTimes} />
+                </div>
+                <h2 className="text-2xl font-google font-bold text-[#0C3C34] mb-3">
+                  Applications are Closed
+                </h2>
+                <p className="text-slate-650 font-google-text text-sm max-w-md mb-8">
+                  Mentor applications for HackGB 2026 are now closed. All mentor positions have been filled. Thank you for your interest in guiding our hackers!
+                </p>
+                <button
+                  onClick={() => navigate('/')}
+                  className="bg-[#0C3C34] hover:bg-[#0c3c34]/90 text-white font-google font-bold px-8 py-3 rounded-full transition-all cursor-pointer hover:shadow-lg active:scale-95"
+                >
+                  Back to Home
+                </button>
+              </div>
+
+              {/* IDE Bottom Status Bar */}
+              <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#ff5f56]">●</span>
+                  <span className="font-bold">STATUS: CLOSED</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span>EOF</span>
+                  <span>UTF-8</span>
+                </div>
+              </div>
+            </motion.div>
+          ) : !isSuccess ? (
             <motion.div
               key="wizard"
               initial={{ opacity: 0, scale: 0.95, y: 15 }}

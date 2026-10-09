@@ -8,7 +8,7 @@ import { Terminal, Sparkles } from 'lucide-react';
 import { checkDuplicateEmail } from '../utils/checkDuplicateEmail';
 import { SchoolCombobox } from '../components/common/SchoolCombobox';
 import { COUNTRIES } from '../data/countries';
-import { HACKER_APPLICATION_DEADLINE } from '../data/constants';
+import { ALL_APPLICATIONS_CLOSED, HACKER_APPLICATION_CLOSED, HACKER_APPLICATION_DEADLINE } from '../data/constants';
 import EventCountdown from '../components/common/EventCountdown';
 
 /* Premium spring easing */
@@ -84,7 +84,7 @@ const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf6WdbARvaFg3B
 
 const Application = () => {
   const navigate = useNavigate();
-  const isDeadlinePassed = new Date() > HACKER_APPLICATION_DEADLINE;
+  const isDeadlinePassed = ALL_APPLICATIONS_CLOSED || HACKER_APPLICATION_CLOSED || new Date() > HACKER_APPLICATION_DEADLINE;
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
   const [formData, setFormData] = useState<FormState>(initialFormState);
@@ -445,9 +445,13 @@ const Application = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
               <span className="text-[10px] font-google-mono text-slate-500 ml-3">Hacker Application Wizard</span>
             </div>
-            <div className="flex items-center gap-1.5 font-google-mono text-[9px] text-[#61A644] font-bold bg-[#61A644]/10 px-2 py-0.5 rounded border border-[#61A644]/25">
+            <div className={`flex items-center gap-1.5 font-google-mono text-[9px] font-bold px-2 py-0.5 rounded border ${
+              isDeadlinePassed
+                ? 'text-[#ff5f56] bg-[#ff5f56]/10 border-[#ff5f56]/25'
+                : 'text-[#61A644] bg-[#61A644]/10 border-[#61A644]/25'
+            }`}>
               <Terminal className="w-3.5 h-3.5" />
-              <span>hacker_signup.json</span>
+              <span>{isDeadlinePassed ? 'hacker_signup.json [CLOSED]' : 'hacker_signup.json'}</span>
             </div>
           </div>
 
@@ -1304,13 +1308,13 @@ const Application = () => {
           {/* IDE Bottom Status Bar */}
           <div className="flex justify-between items-center px-4 py-1.5 bg-[#0C3C34] text-white font-google-mono text-[10px] select-none">
             <div className="flex items-center gap-3">
-              <span className="font-bold">APPLY: step {step}</span>
-              <span className="opacity-80">Writing data...</span>
+              <span className="font-bold">{isDeadlinePassed ? 'APPLY: CLOSED' : `APPLY: step ${step}`}</span>
+              <span className="opacity-80">{isDeadlinePassed ? 'Submissions disabled' : 'Writing data...'}</span>
             </div>
             <div className="flex items-center gap-3">
               <span>JSON</span>
               <span>UTF-8</span>
-              <span>Ln {step * 25}, Col 12</span>
+              <span>{isDeadlinePassed ? 'EOF' : `Ln ${step * 25}, Col 12`}</span>
             </div>
           </div>
         </motion.div>
