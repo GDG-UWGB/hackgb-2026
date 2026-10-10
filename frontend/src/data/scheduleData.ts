@@ -3,6 +3,7 @@ import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
+import harrisonMuellerImg from '../assets/images/speakers/harrison-mueller.jpg';
 import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 
@@ -148,7 +149,7 @@ export const saturdaySchedule: ScheduleItem[] = [
     id: 'sat-workshop-3-fti',
     time: '02:30 PM',
     endTime: '03:15 PM',
-    title: 'Company Info & Recruitment Session',
+    title: 'Leading with Energy at FTI: Your Career Starts Here',
     topic: 'Company Overview, Careers & Hiring',
     room: '1965 Room (University Union)',
     category: 'workshop',
@@ -159,11 +160,11 @@ export const saturdaySchedule: ScheduleItem[] = [
     companyLogo: ftiLogo,
     companyLink: 'https://www.faithtechinc.com/',
     speaker: {
-      name: 'Recruiting Team',
-      role: 'Talent Acquisition & Technical Team',
-      company: 'Faith Technologies, Inc. (FTI)',
-      avatarUrl: '',
-      bio: 'Connect with recruiters and team members from Faith Technologies, Inc. (FTI) to learn about open roles, internships, and company culture.',
+      name: 'Harrison Mueller',
+      role: 'Network Engineer',
+      company: 'Faith Technologies Incorporated',
+      avatarUrl: harrisonMuellerImg,
+      bio: 'Network Engineer at Faith Technologies Incorporated. Manages day-to-day operations across multiple sites to maintain a resilient, secure, and high-performing infrastructure. Focuses on proactively monitoring system health, resolving technical challenges, and ensuring continuous enterprise connectivity to keep business operations running without interruption.',
     },
     bufferAfterMinutes: 15,
     bufferDescription: '15-minute buffer before next workshop',

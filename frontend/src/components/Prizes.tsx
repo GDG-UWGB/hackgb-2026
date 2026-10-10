@@ -14,7 +14,6 @@ import elgatoStreamdeckImg from '../assets/images/prizes/elgato_streamdeck.jpg';
 import raspberryPi5Img from '../assets/images/prizes/raspberry_pi_5.jpg';
 import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import lovableLogo from '../assets/images/sponsors/flame/lovable.png';
-import photonLogo from '../assets/images/sponsors/ember/photon.png';
 
 import vultrLogo from '../assets/images/sponsors/mlh/vultr.png';
 import geminiLogo from '../assets/images/sponsors/mlh/gemini.png';
@@ -163,13 +162,6 @@ const prizeCategories: PrizeCategory[] = [
                 desc: "Awarded to the project that demonstrates the most creative and impactful use of Lovable. Each participant receives $100 worth of Lovable credits.",
                 image: lovableLogo
             },
-            { 
-                name: "Best Use of Photon", 
-                prize: "TBD", 
-                desc: "Awarded to the project that demonstrates the strongest use of Photon's API. Participants receive access to Photon's API for use during HackGB.",
-                image: photonLogo,
-                darkBg: true
-            }
         ]
     },
     {

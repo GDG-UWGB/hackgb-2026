@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AnimatedRoutes from './components/layout/AnimatedRoutes';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import ResourcesButton from './components/common/ResourcesButton';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <AnimatedRoutes />
 
         <Footer />
+
+        <ResourcesButton />
       </BrowserRouter>
 
     </>

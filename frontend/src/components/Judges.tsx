@@ -17,6 +17,8 @@ import jacquesPhoto from '../assets/images/judges/jacques.png';
 import karthikPhoto from '../assets/images/judges/karthik.png';
 import kevinPhoto from '../assets/images/judges/kevin-moens.png';
 import davidPhoto from '../assets/images/judges/david-suski.jpg';
+import bryonPhoto from '../assets/images/judges/bryon-cobb.png';
+import reedPhoto from '../assets/images/judges/reed-schubert.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -158,6 +160,24 @@ const judges: Judge[] = [
         photo: sandeepPhoto,
         linkedin: 'https://www.linkedin.com/in/sandeep-bommisetti',
         website: 'https://bommisetti.com/',
+        isMentor: false,
+    },
+    {
+        name: 'Bryon Cobb',
+        title: 'Data Engineer',
+        company: 'Faith Technologies Incorporated',
+        expertise: ['Data Engineering', 'Software Engineering', 'Cloud & Infrastructure'],
+        bio: 'Data Engineer at Faith Technologies Incorporated (FTI). Former U.S. Marine Infantryman and recent graduate from the University of Wisconsin Green Bay with a Bachelor of Science majoring in Computer Science with a focus in Software Engineering. Former FTI Intern, now working within the FTI Data and Analytics team interacting with server accessibility.',
+        photo: bryonPhoto,
+        isMentor: false,
+    },
+    {
+        name: 'Reed Schubert',
+        title: 'AI Engineer',
+        company: 'Faith Technologies Incorporated',
+        expertise: ['Artificial Intelligence', 'Software Engineering', 'Data & Analytics'],
+        bio: 'AI Engineer at Faith Technologies Incorporated. Graduated from Carleton College with a Bachelor of Arts in Computer Science.',
+        photo: reedPhoto,
         isMentor: false,
     },
     {

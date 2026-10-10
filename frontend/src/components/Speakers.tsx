@@ -19,6 +19,7 @@ import {
 import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
 import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
+import harrisonMuellerImg from '../assets/images/speakers/harrison-mueller.jpg';
 import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import mlhLogo from '../assets/images/sponsors/partners/mlh.png';
 
@@ -149,6 +150,34 @@ const confirmedSpeakers: Speaker[] = [
             'Translates mobile and digital IP into physical mechanical arcade units',
             'Hosts hands-on ideation and Shark Tank-style team pitch sessions',
             'Industry leader in real-world game prototyping and cabinet rendering',
+        ],
+    },
+    {
+        id: 'harrison-mueller',
+        name: 'Harrison Mueller',
+        role: 'Network Engineer',
+        company: 'Faith Technologies Incorporated',
+        avatarUrl: harrisonMuellerImg,
+        website: 'https://www.faithtechinc.com/',
+        badges: [
+            { label: 'Network Engineer', bg: 'bg-[#0284C7]/15', text: 'text-[#0284C7]', border: 'border-[#0284C7]/30' },
+            { label: 'Faith Technologies Inc.', bg: 'bg-slate-100', text: 'text-slate-700', border: 'border-slate-200' },
+        ],
+        sessionTitle: 'Leading with Energy at FTI: Your Career Starts Here',
+        sessionTime: 'Saturday, Oct 17 • 2:30 PM – 3:15 PM',
+        sessionRoom: '1965 Room (University Union)',
+        sessionCategory: 'Company Info & Recruitment Session',
+        stats: [
+            { label: 'Company', value: 'FTI' },
+            { label: 'Focus', value: 'Careers' },
+            { label: 'Format', value: 'In-Person' },
+        ],
+        bio: 'Network Engineer at Faith Technologies Incorporated. Manages day-to-day operations across multiple sites to maintain a resilient, secure, and high-performing infrastructure. Focuses on proactively monitoring system health, resolving technical challenges, and ensuring continuous enterprise connectivity to keep business operations running without interruption.',
+        highlights: [
+            'Network Engineer at Faith Technologies Incorporated (FTI)',
+            'Manages multi-site infrastructure operations for resilient, secure enterprise connectivity',
+            'Proactive system health monitoring and technical challenge resolution',
+            'Sharing real-world career insights and opportunities with students at HackGB 2026',
         ],
     },
     {
