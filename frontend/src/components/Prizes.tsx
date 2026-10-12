@@ -36,6 +36,8 @@ import raffleJblTune730btImg from '../assets/images/prizes/raffle/jbl_tune730bt.
 import raffleLegoGameboyImg from '../assets/images/prizes/raffle/lego_gameboy.jpg';
 import raffleJblFlip7Img from '../assets/images/prizes/raffle/jbl_flip7.jpg';
 import raffleAocMonitorImg from '../assets/images/prizes/raffle/aoc_monitor.jpg';
+import rafflePepsPizzaImg from '../assets/images/prizes/raffle/peps_pizza_voucher.jpg';
+import raffleWisco421Img from '../assets/images/prizes/raffle/wisco_421_pizza_oven.png';
 
 export interface RaffleItem {
     name: string;
@@ -360,6 +362,33 @@ const prizeCategories: PrizeCategory[] = [
                         tag: "Portable Display",
                         desc: "Ultra-slim 15.6\" Full HD (1920x1080) IPS portable monitor with USB-C connectivity, ideal for dual-screen productivity anywhere.",
                         image: raffleAocMonitorImg
+                    }
+                ]
+            },
+            {
+                name: "Raffle Draw #4",
+                prize: "17 Pizza Prizes",
+                desc: "A fun community raffle draw generously sponsored by AK Pizza Crust! Win a free Pep's Pizza Co. frozen pizza voucher or one of two Wisco 421 Deluxe Multi-Purpose Pizza Ovens. Cheesy prizes for everyone!",
+                itemsCount: 17,
+                previewChips: [
+                    "15x Pep's Pizza Voucher",
+                    "2x Wisco 421 Pizza Oven",
+                    "Donated by AK Pizza Crust"
+                ],
+                items: [
+                    {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        quantity: 15,
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
+                        name: "Wisco 421 Deluxe Multi-Purpose Pizza Oven",
+                        tag: "Pizza Oven",
+                        quantity: 2,
+                        desc: "Commercially-rated stainless steel countertop oven with 3\"×13\" wide opening, adjustable 150–500°F thermostat, 30-minute timer, quick one-touch 450° setting, and easy-read digital display. Donated by AK Pizza Crust.",
+                        image: raffleWisco421Img
                     }
                 ]
             }
