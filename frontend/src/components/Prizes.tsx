@@ -230,15 +230,17 @@ const prizeCategories: PrizeCategory[] = [
         prizes: [
             { 
                 name: "Raffle Draw #1", 
-                prize: "5 Tech & Gaming Prizes", 
-                desc: "Turn in your raffle tickets during Draw #1 for a chance to win one of 5 awesome gear, gaming, and collectible prizes! All registered hackers are eligible.",
-                itemsCount: 5,
+                prize: "8 Tech, Gaming & Pizza Prizes", 
+                desc: "Turn in your raffle tickets during Draw #1 for a chance to win gear, gaming peripherals, collectibles, and even pizza prizes! All registered hackers are eligible.",
+                itemsCount: 8,
                 previewChips: [
                     "HyperX Keyboard", 
                     "Insignia Stand", 
                     "8BitDo Controller", 
                     "Logitech G305 (White)", 
-                    "LEGO WALL-E & EVE"
+                    "LEGO WALL-E & EVE",
+                    "Pep's Pizza Vouchers",
+                    "Wisco 421 Pizza Oven"
                 ],
                 items: [
                     {
@@ -254,6 +256,12 @@ const prizeCategories: PrizeCategory[] = [
                         image: raffleInsigniaStandImg
                     },
                     {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
                         name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
                         tag: "Wireless Controller",
                         desc: "Transparent Black wireless controller featuring smooth Hall effect joysticks, ultra-low latency wireless connectivity, and remappable bumpers.",
@@ -266,30 +274,43 @@ const prizeCategories: PrizeCategory[] = [
                         image: raffleLogitechG305WhiteImg
                     },
                     {
-                        name: "LEGO - Disney and Pixar WALL-E and EVE (43279)",
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
+                        name: "LEGO - WALL-E and EVE (43279)",
                         tag: "LEGO Collectible",
                         desc: "Detailed 811-piece Disney and Pixar building set featuring posable WALL-E, EVE, and M-O display figures (Set 43279).",
                         image: raffleLegoWalleImg
+                    },
+                    {
+                        name: "Wisco 421 Deluxe Multi-Purpose Pizza Oven & 3 Pep's Pizza Vouchers",
+                        tag: "Pizza Oven + Vouchers",
+                        desc: "Commercially-rated stainless steel countertop oven with adjustable 150–500°F thermostat, 30-minute timer, and easy-read digital display — bundled with 3 Pep's Pizza Co. frozen pizza vouchers. Donated by AK Pizza Crust.",
+                        image: raffleWisco421Img
                     }
                 ]
             },
             { 
                 name: "Raffle Draw #2", 
-                prize: "7 Tech & Gaming Prizes", 
-                desc: "Our largest raffle pool of the weekend with 7 total prizes up for grabs! Featuring multiple chances to win top-tier gaming mice, controllers, keyboards, and a LEGO Technic hypercar.",
-                itemsCount: 7,
+                prize: "10 Tech, Gaming & Pizza Prizes", 
+                desc: "Our largest raffle pool of the weekend! Featuring multiple chances to win top-tier gaming mice, controllers, keyboards, a LEGO Technic hypercar, and pizza prizes.",
+                itemsCount: 10,
                 previewChips: [
                     "2x Logitech G502", 
                     "HyperX Keyboard", 
                     "2x 8BitDo Controller", 
                     "Logitech G305 (Black)", 
-                    "LEGO Bugatti Chiron"
+                    "LEGO Bugatti Chiron",
+                    "Pep's Pizza Vouchers",
+                    "Wisco 421 Pizza Oven"
                 ],
                 items: [
                     {
                         name: "Logitech - G502 HERO Wired Mouse",
                         tag: "Gaming Mouse",
-                        quantity: 2,
                         desc: "World-renowned gaming mouse equipped with the advanced HERO 25K sensor, 11 programmable buttons, customizable RGB lighting, and tunable weights.",
                         image: raffleLogitechG502Img
                     },
@@ -300,9 +321,14 @@ const prizeCategories: PrizeCategory[] = [
                         image: raffleHyperxEveImg
                     },
                     {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
                         name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
                         tag: "Wireless Controller",
-                        quantity: 2,
                         desc: "Transparent Black edition with precision Hall effect thumbsticks, tactile switches, and multi-platform wireless support.",
                         image: raffle8bitdoImg
                     },
@@ -313,24 +339,50 @@ const prizeCategories: PrizeCategory[] = [
                         image: raffleLogitechG305BlackImg
                     },
                     {
+                        name: "Logitech - G502 HERO Wired Mouse",
+                        tag: "Gaming Mouse",
+                        desc: "World-renowned gaming mouse equipped with the advanced HERO 25K sensor, 11 programmable buttons, customizable RGB lighting, and tunable weights.",
+                        image: raffleLogitechG502Img
+                    },
+                    {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        quantity: 2,
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
+                        name: "8BitDo - Ultimate 2C Bluetooth Wireless Gaming Controller",
+                        tag: "Wireless Controller",
+                        desc: "Transparent Black edition with precision Hall effect thumbsticks, tactile switches, and multi-platform wireless support.",
+                        image: raffle8bitdoImg
+                    },
+                    {
                         name: "LEGO - Technic Bugatti Chiron Pur Sport Hypercar (42222)",
                         tag: "LEGO Technic",
                         desc: "Intricate 771-piece Technic hypercar model featuring authentic aerodynamics, working steering, realistic engine, and opening doors (Set 42222).",
                         image: raffleLegoBugattiImg
+                    },
+                    {
+                        name: "Wisco 421 Deluxe Multi-Purpose Pizza Oven & 3 Pep's Pizza Vouchers",
+                        tag: "Pizza Oven + Vouchers",
+                        desc: "Commercially-rated stainless steel countertop oven with adjustable 150–500°F thermostat, 30-minute timer, and easy-read digital display — bundled with 3 Pep's Pizza Co. frozen pizza vouchers. Donated by AK Pizza Crust.",
+                        image: raffleWisco421Img
                     }
                 ]
             },
             { 
                 name: "Raffle Draw #3", 
-                prize: "5 Tech, Audio & Display Prizes", 
-                desc: "The grand finale raffle draw! Featuring high-fidelity wireless headphones, a portable USB-C monitor, waterproof speaker, retro 3D LEGO Game Boy, and Logitech G502.",
-                itemsCount: 5,
+                prize: "8 Tech, Audio & Display Prizes", 
+                desc: "The grand finale raffle draw! Featuring high-fidelity wireless headphones, a portable USB-C monitor, waterproof speaker, retro 3D LEGO Game Boy, Logitech G502, and pizza vouchers.",
+                itemsCount: 8,
                 previewChips: [
                     "JBL Tune 730BT", 
                     "AOC 15.6\" Monitor", 
                     "JBL FLIP7 Speaker", 
                     "LEGO Game Boy 3D", 
-                    "Logitech G502"
+                    "Logitech G502",
+                    "Pep's Pizza Vouchers"
                 ],
                 items: [
                     {
@@ -344,6 +396,25 @@ const prizeCategories: PrizeCategory[] = [
                         tag: "Gaming Mouse",
                         desc: "High-performance wired mouse with 25,600 max DPI HERO sensor, onboard memory profiles, and 11 programmable controls.",
                         image: raffleLogitechG502Img
+                    },
+                    {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        quantity: 2,
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
+                    },
+                    {
+                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
+                        tag: "Pizza Voucher",
+                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
+                        image: rafflePepsPizzaImg
                     },
                     {
                         name: "LEGO - Game Boy 3D (72046)",
@@ -362,33 +433,6 @@ const prizeCategories: PrizeCategory[] = [
                         tag: "Portable Display",
                         desc: "Ultra-slim 15.6\" Full HD (1920x1080) IPS portable monitor with USB-C connectivity, ideal for dual-screen productivity anywhere.",
                         image: raffleAocMonitorImg
-                    }
-                ]
-            },
-            {
-                name: "Raffle Draw #4",
-                prize: "17 Pizza Prizes",
-                desc: "A fun community raffle draw generously sponsored by AK Pizza Crust! Win a free Pep's Pizza Co. frozen pizza voucher or one of two Wisco 421 Deluxe Multi-Purpose Pizza Ovens. Cheesy prizes for everyone!",
-                itemsCount: 17,
-                previewChips: [
-                    "15x Pep's Pizza Voucher",
-                    "2x Wisco 421 Pizza Oven",
-                    "Donated by AK Pizza Crust"
-                ],
-                items: [
-                    {
-                        name: "Pep's Pizza Co. — FREE Frozen Pizza Voucher",
-                        tag: "Pizza Voucher",
-                        quantity: 15,
-                        desc: "Manufacturer coupon redeemable for any one (1) Pep's brand frozen pizza — Drafthaus, Legit, Maestro, or Drafthaus Rising. Max value $12.99. Valid through 12/31/26.",
-                        image: rafflePepsPizzaImg
-                    },
-                    {
-                        name: "Wisco 421 Deluxe Multi-Purpose Pizza Oven",
-                        tag: "Pizza Oven",
-                        quantity: 2,
-                        desc: "Commercially-rated stainless steel countertop oven with 3\"×13\" wide opening, adjustable 150–500°F thermostat, 30-minute timer, quick one-touch 450° setting, and easy-read digital display. Donated by AK Pizza Crust.",
-                        image: raffleWisco421Img
                     }
                 ]
             }
