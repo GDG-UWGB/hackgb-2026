@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, X, Sparkles, Clock } from 'lucide-react';
+import { BookOpen, X, Sparkles, FileText, ExternalLink } from 'lucide-react';
 
 const ResourcesButton = () => {
     const [open, setOpen] = useState(false);
+    const [hasBeenClicked, setHasBeenClicked] = useState(
+        () => localStorage.getItem('resources-btn-clicked') === 'true'
+    );
     const popoverRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -50,25 +53,42 @@ const ResourcesButton = () => {
                             <BookOpen className="w-6 h-6 text-white" />
                         </div>
                         <h3 className="font-google font-bold text-[#0C3C34] text-lg mb-1.5 leading-snug">Hacker Resources</h3>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-google-mono font-bold uppercase tracking-wider bg-[#E37100]/10 text-[#E37100] border border-[#E37100]/25 mb-4">
-                            <Clock className="w-3.5 h-3.5" />
-                            Coming Soon
-                        </span>
-                        <p className="text-slate-500 font-google-text text-sm leading-relaxed">Workshop slides, API docs, starter kits, and other hacker resources will be available here on event day.</p>
+                        <a
+                            href="/participant-guide"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 w-full px-3.5 py-3 rounded-xl bg-slate-50 hover:bg-[#0C3C34]/5 border border-slate-200/80 hover:border-[#0C3C34]/20 transition-all duration-150 group mb-4"
+                        >
+                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0C3C34] to-[#1c6457] flex items-center justify-center shrink-0">
+                                <FileText className="w-4 h-4 text-white" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-[#0C3C34] font-google font-semibold text-sm leading-snug">Participant Guide</p>
+                                <p className="text-slate-400 font-google-text text-xs">hackgb.com/participant-guide</p>
+                            </div>
+                            <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
+                        </a>
+                        <p className="text-slate-500 font-google-text text-sm leading-relaxed">Workshop slides, API docs, and starter kits will be available here on event day.</p>
                         <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-2 text-[11px] font-google-mono text-slate-400">
                             <Sparkles className="w-3.5 h-3.5 text-[#61A644] shrink-0" />
-                            Check back on Oct 17 at 8:00 AM
+                            More resources coming Oct 17 at 8:00 AM
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
 
             <div className="relative">
-                {!open && (
+                {!open && !hasBeenClicked && (
                     <span className="absolute inset-0 rounded-2xl animate-ping bg-[#61A644]/30 pointer-events-none" />
                 )}
                 <motion.button
-                    onClick={() => setOpen((v) => !v)}
+                    onClick={() => {
+                        if (!hasBeenClicked) {
+                            localStorage.setItem('resources-btn-clicked', 'true');
+                            setHasBeenClicked(true);
+                        }
+                        setOpen((v) => !v);
+                    }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.96 }}
                     transition={{ type: 'spring', stiffness: 380, damping: 18 }}
