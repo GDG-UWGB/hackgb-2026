@@ -177,7 +177,7 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
               </a>
 
               <a
-                href="https://hackgb.com/participant-guide.pdf"
+                href="/participant-guide.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/90 hover:bg-[#E37100]/10 border border-slate-200/80 hover:border-[#E37100]/40 transition-all duration-150 group text-left cursor-pointer shadow-2xs hover:shadow-xs"
