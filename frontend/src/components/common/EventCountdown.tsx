@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Calendar, Sparkles, Trophy, MapPin, Zap, ExternalLink, FileText, Code2 } from 'lucide-react';
+import { Clock, Calendar, Sparkles, Trophy, MapPin, ExternalLink, FileText, Code2 } from 'lucide-react';
 import { EVENT_START_DATE } from '../../data/constants';
 
 interface EventCountdownProps {

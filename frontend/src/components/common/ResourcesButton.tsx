@@ -81,7 +81,7 @@ const ResourcesButton = () => {
 
                             {/* Participant Guide Link */}
                             <a
-                                href="https://hackgb.com/participant-guide.pdf"
+                                href="/participant-guide.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-[#E37100]/10 border border-slate-200/80 hover:border-[#E37100]/40 transition-all duration-150 group cursor-pointer"
