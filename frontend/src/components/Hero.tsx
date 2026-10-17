@@ -274,7 +274,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-16 pb-28 sm:pt-20 sm:pb-36 md:pt-20 md:pb-40 overflow-hidden bg-transparent">
+        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-14 pb-8 sm:pt-16 sm:pb-10 md:pt-16 md:pb-12 overflow-hidden bg-transparent">
             {/* Background landmark image with parallax drift */}
             <div className="absolute inset-0 z-0">
                 <img src={foxRiverImg} alt="" decoding="async" className="w-full h-full object-cover opacity-[0.35] parallax-bg" />
@@ -297,12 +297,12 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.85, filter: "blur(12px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     transition={{ duration: 1.2, ease: spring }}
-                    className="mb-3 sm:mb-4"
+                    className="mb-2 sm:mb-3"
                 >
                     <img
                         src={logo}
                         alt="HackGB Phoenix Logo"
-                        className="h-16 sm:h-22 md:h-28 lg:h-32 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
+                        className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
                     />
                 </motion.div>
 
@@ -311,9 +311,9 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.4, ease: spring }}
-                    className="mb-2 sm:mb-3"
+                    className="mb-1.5 sm:mb-2"
                 >
-                    <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-[#0C3C34] font-google font-bold text-xs sm:text-sm uppercase tracking-widest border border-black/5 bg-white shadow-xs">
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[#0C3C34] font-google font-bold text-xs uppercase tracking-widest border border-black/5 bg-white shadow-xs">
                         <span className="w-2 h-2 bg-[#61A644] rounded-full animate-ambient-glow" />
                         Oct 17-18, 2026 • UWGB
                     </span>
@@ -324,7 +324,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.5, ease: spring }}
-                    className="text-4xl sm:text-5xl md:text-6xl font-google font-bold mb-2 sm:mb-3 tracking-tight text-[#0C3C34]"
+                    className="text-3xl sm:text-4xl md:text-5xl font-google font-bold mb-1.5 sm:mb-2 tracking-tight text-[#0C3C34]"
                 >
                     HackGB <span className="text-gradient-phoenix">2026</span>
                 </motion.h1>
@@ -333,7 +333,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.7, ease: spring }}
-                    className="text-sm sm:text-base md:text-lg text-slate-800 max-w-2xl mx-auto mb-4 sm:mb-5 font-google-text"
+                    className="text-xs sm:text-sm md:text-base text-slate-800 max-w-xl mx-auto mb-3 sm:mb-3.5 font-google-text"
                 >
                     UWGB's premier 24-hour collegiate hackathon at the STEM Innovation Center to build, learn, and innovate.
                 </motion.p>
@@ -343,7 +343,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.85, ease: spring }}
-                    className="w-full flex justify-center px-2 mb-4 sm:mb-5"
+                    className="w-full flex justify-center px-2 mb-3 sm:mb-3.5"
                 >
                     <EventCountdown variant="hero" showNotice={true} />
                 </motion.div>
@@ -353,12 +353,12 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 1.0, ease: spring }}
-                    className="flex flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-10 relative z-10"
+                    className="flex flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-5 relative z-10"
                 >
                     {!ALL_APPLICATIONS_CLOSED && (
                         <RouterLink
                             to="/apply"
-                            className="btn-primary px-5 sm:px-8 md:px-10 py-2.5 sm:py-3.5 md:py-4 rounded-full font-google font-bold text-sm sm:text-base md:text-lg cursor-pointer group flex items-center justify-center gap-1.5 sm:gap-2 shadow-md hover:shadow-xl active:scale-95 transition-all whitespace-nowrap"
+                            className="btn-primary px-5 sm:px-8 md:px-9 py-2 sm:py-2.5 md:py-3 rounded-full font-google font-bold text-xs sm:text-sm md:text-base cursor-pointer group flex items-center justify-center gap-1.5 sm:gap-2 shadow-md hover:shadow-xl active:scale-95 transition-all whitespace-nowrap"
                         >
                             {APPLICATIONS_OPEN ? 'Apply Now' : 'Opening Soon'}
                             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -369,7 +369,7 @@ const Hero = () => {
                         smooth={true}
                         duration={500}
                         href="#about"
-                        className="btn-primary px-8 sm:px-10 py-3 sm:py-3.5 md:py-4 rounded-full font-google font-bold text-sm sm:text-base md:text-lg transition-all text-center cursor-pointer shadow-md hover:shadow-xl active:scale-95 whitespace-nowrap group flex items-center justify-center gap-2"
+                        className="btn-primary px-6 sm:px-8 md:px-9 py-2.5 sm:py-3 rounded-full font-google font-bold text-xs sm:text-sm md:text-base transition-all text-center cursor-pointer shadow-md hover:shadow-xl active:scale-95 whitespace-nowrap group flex items-center justify-center gap-2"
                     >
                         <span>Explore the Tour</span>
                         <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />

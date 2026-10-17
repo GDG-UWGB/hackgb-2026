@@ -446,6 +446,24 @@ p {
   animation: ambient-glow 5s ease-in-out infinite;
 }
 
+/* Shimmer sweep — diagonal light-sweep for the live event card */
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% center;
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 300% center;
+    opacity: 0;
+  }
+}
+
 /* #endregion */
 
 /* #region City Tour Dividers */
