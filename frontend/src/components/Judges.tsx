@@ -19,6 +19,7 @@ import kevinPhoto from '../assets/images/judges/kevin-moens.png';
 import davidPhoto from '../assets/images/judges/david-suski.jpg';
 import bryonPhoto from '../assets/images/judges/bryon-cobb.png';
 import reedPhoto from '../assets/images/judges/reed-schubert.jpg';
+import nafiPhoto from '../assets/images/judges/nafi-sabith.jpg';
 
 /* Premium spring easing */
 const spring = [0.22, 1, 0.36, 1] as const;
@@ -235,6 +236,15 @@ const judges: Judge[] = [
         expertise: ['Data Architecture', 'AI/ML', 'Healthcare Tech'],
         bio: 'Founder and technology professional with a background in data architecture, software engineering, and AI/ML, specializing in building scalable, data-driven systems and intelligent products. Her expertise spans data engineering, cloud technologies, machine learning, and product development.',
         linkedin: 'https://www.linkedin.com/in/kumudas/',
+        isMentor: false,
+    },
+    {
+        name: 'Nafi Us Sabbir Sabith',
+        title: 'Assistant Professor of Computer Science',
+        company: 'University of Wisconsin–Green Bay',
+        expertise: ['AI/ML & mHealth', 'Digital Signal Processing', 'AI-Driven Software Engineering'],
+        bio: 'Assistant Professor at UW–Green Bay\'s Resch School of Engineering. His research sits at the intersection of machine learning, digital signal processing, and mobile health — building non-invasive, smartphone-based platforms for real-time physiological monitoring (WBC counting, hemoglobin prediction, SpO₂). He earned his Ph.D. and M.Sc. from Marquette University and holds a B.Sc. from BUET.',
+        photo: nafiPhoto,
         isMentor: false,
     },
 ];

@@ -157,7 +157,7 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
               <span className="text-[9.5px] text-slate-500 font-medium">Quick Access</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <a
                 href="https://docs.google.com/document/d/1P-E8jrExAnHrgGX4moJo-zLXDoccWaqRyp7hnwO1-VQ/edit?usp=sharing"
                 target="_blank"
@@ -173,6 +173,24 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
                     <ExternalLink className="w-2.5 h-2.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
                   </div>
                   <p className="text-[9.5px] text-slate-500 truncate font-medium">APIs, Starter Kits &amp; Docs</p>
+                </div>
+              </a>
+
+              <a
+                href="https://docs.google.com/document/d/17H3Ff8E13-76Z_UMgE05UlvoE9DCnXt4IkUGhI9suYE/edit?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/90 hover:bg-[#ffcc00]/15 border border-slate-200/80 hover:border-[#ffcc00]/50 transition-all duration-150 group text-left cursor-pointer shadow-2xs hover:shadow-xs"
+              >
+                <div className="w-7 h-7 rounded-lg bg-[#ffcc00]/20 text-[#a37c00] group-hover:bg-[#ffcc00] group-hover:text-slate-900 flex items-center justify-center shrink-0 transition-colors">
+                  <Trophy className="w-3.5 h-3.5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[11.5px] font-bold text-[#0C3C34] flex items-center gap-1">
+                    <span>Tracks &amp; Prizes</span>
+                    <ExternalLink className="w-2.5 h-2.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
+                  </div>
+                  <p className="text-[9.5px] text-slate-500 truncate font-medium">Main, Sponsor &amp; MLH</p>
                 </div>
               </a>
 

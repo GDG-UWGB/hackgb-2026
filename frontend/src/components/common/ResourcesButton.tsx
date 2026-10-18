@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, X, Sparkles, FileText, ExternalLink, Code2 } from 'lucide-react';
+import { BookOpen, X, Sparkles, FileText, ExternalLink, Code2, Trophy } from 'lucide-react';
 
 const ResourcesButton = () => {
     const [open, setOpen] = useState(false);
@@ -39,7 +39,7 @@ const ResourcesButton = () => {
                         exit={{ opacity: 0, y: 14, scale: 0.94 }}
                         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                         className="bg-white border border-slate-200/90 rounded-2xl shadow-2xl p-5 relative overflow-hidden"
-                        style={{ width: '320px' }}
+                        style={{ width: '330px' }}
                     >
                         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#0C3C34] via-[#61A644] to-[#E37100]" />
                         <button
@@ -75,6 +75,25 @@ const ResourcesButton = () => {
                                         <span>Developer Resources</span>
                                     </p>
                                     <p className="text-slate-400 font-google-text text-[11px] truncate">APIs, Starter Kits & Docs</p>
+                                </div>
+                                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
+                            </a>
+
+                            {/* Tracks and Prizes Link */}
+                            <a
+                                href="https://docs.google.com/document/d/17H3Ff8E13-76Z_UMgE05UlvoE9DCnXt4IkUGhI9suYE/edit?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl bg-slate-50 hover:bg-[#ffcc00]/15 border border-slate-200/80 hover:border-[#ffcc00]/50 transition-all duration-150 group cursor-pointer"
+                            >
+                                <div className="w-8 h-8 rounded-lg bg-[#ffcc00]/20 text-[#a37c00] group-hover:bg-[#ffcc00] group-hover:text-slate-900 flex items-center justify-center shrink-0 transition-colors">
+                                    <Trophy className="w-4 h-4" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-[#0C3C34] font-google font-semibold text-xs leading-snug flex items-center gap-1">
+                                        <span>Tracks & Prizes</span>
+                                    </p>
+                                    <p className="text-slate-400 font-google-text text-[11px] truncate">Main, Sponsor & MLH Tracks</p>
                                 </div>
                                 <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
                             </a>

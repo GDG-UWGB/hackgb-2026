@@ -223,7 +223,7 @@ const Tracks = () => {
                                 <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
                                 <span className="text-[10px] font-google-mono text-slate-500 ml-3">Choose Your Path</span>
                             </div>
-                            
+
                             {/* Run Code Button */}
                             <button
                                 onClick={handleRunScript}
@@ -237,7 +237,7 @@ const Tracks = () => {
 
                         {/* IDE Main Area Grid */}
                         <div className="flex flex-1 flex-col md:flex-row">
-                            
+
                             {/* File Explorer Sidebar */}
                             <div className="w-full md:w-48 bg-white/20 border-b md:border-b-0 md:border-r border-black/5 p-4 flex flex-col gap-4 font-google-mono shrink-0 select-none">
                                 <div className="flex items-center gap-2 text-slate-400 text-[10px] uppercase font-bold tracking-wider">
@@ -256,11 +256,10 @@ const Tracks = () => {
                                                 <button
                                                     key={idx}
                                                     onClick={() => setActiveIdx(idx)}
-                                                    className={`flex items-center gap-2 text-xs px-2 py-1 rounded transition-all w-full text-left cursor-pointer ${
-                                                        isActive
+                                                    className={`flex items-center gap-2 text-xs px-2 py-1 rounded transition-all w-full text-left cursor-pointer ${isActive
                                                             ? 'bg-[#61A644]/15 text-[#0C3C34] font-bold border border-[#61A644]/20'
                                                             : 'text-slate-550 hover:bg-white/30 hover:text-slate-800'
-                                                    }`}
+                                                        }`}
                                                 >
                                                     <FileCode className="w-3.5 h-3.5 shrink-0" style={{ color: track.color }} />
                                                     <span className="truncate">{track.fileName}</span>
@@ -281,11 +280,10 @@ const Tracks = () => {
                                             <button
                                                 key={idx}
                                                 onClick={() => setActiveIdx(idx)}
-                                                className={`flex items-center gap-2 px-4 py-2 border-r border-black/5 font-google-mono text-[11px] font-medium transition-all cursor-pointer whitespace-nowrap ${
-                                                    isActive
+                                                className={`flex items-center gap-2 px-4 py-2 border-r border-black/5 font-google-mono text-[11px] font-medium transition-all cursor-pointer whitespace-nowrap ${isActive
                                                         ? 'bg-white/60 text-[#0C3C34] border-t-2 border-t-[#61A644]'
                                                         : 'text-slate-500 hover:bg-white/30 hover:text-slate-800'
-                                                }`}
+                                                    }`}
                                             >
                                                 <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: track.color }} />
                                                 {track.fileName}
@@ -358,12 +356,12 @@ const Tracks = () => {
                                                                 line.startsWith('$')
                                                                     ? 'text-slate-200'
                                                                     : line.startsWith('[SUCCESS]')
-                                                                    ? 'text-[#61A644] font-bold flex items-center gap-1'
-                                                                    : line.startsWith('[OK]')
-                                                                    ? 'text-[#61A644]'
-                                                                    : line.startsWith('[WARN]')
-                                                                    ? 'text-[#ffcc00]'
-                                                                    : 'text-green-400/90'
+                                                                        ? 'text-[#61A644] font-bold flex items-center gap-1'
+                                                                        : line.startsWith('[OK]')
+                                                                            ? 'text-[#61A644]'
+                                                                            : line.startsWith('[WARN]')
+                                                                                ? 'text-[#ffcc00]'
+                                                                                : 'text-green-400/90'
                                                             }
                                                         >
                                                             {line.startsWith('[SUCCESS]') && <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />}
@@ -382,9 +380,8 @@ const Tracks = () => {
                                             {tracks.map((_, idx) => (
                                                 <span
                                                     key={idx}
-                                                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                                                        idx === activeIdx ? 'w-3 bg-[#61A644]' : 'bg-slate-200'
-                                                    }`}
+                                                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === activeIdx ? 'w-3 bg-[#61A644]' : 'bg-slate-200'
+                                                        }`}
                                                 />
                                             ))}
                                         </div>

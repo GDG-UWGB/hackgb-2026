@@ -84,33 +84,33 @@ const prizeCategories: PrizeCategory[] = [
         icon: Trophy,
         color: "#ffbd2e",
         prizes: [
-            { 
-                name: "Best Overall Hack", 
-                prize: "Apple 11-inch iPad-A16 128GB - Silver", 
+            {
+                name: "Best Overall Hack",
+                prize: "Apple 11-inch iPad-A16 128GB - Silver",
                 desc: "Awarded to the overall best project at HackGB, excelling in innovation, technical complexity, design, and impact.",
                 image: ipadImg
             },
-            { 
-                name: "Best Hardware Hack", 
-                prize: "CanaKit - Raspberry Pi 5 Essentials Starter Kit (4GB)", 
+            {
+                name: "Best Hardware Hack",
+                prize: "CanaKit - Raspberry Pi 5 Essentials Starter Kit (4GB)",
                 desc: "Awarded to the best integration of physical hardware and software.",
                 image: raspberryPi5Img
             },
-            { 
-                name: "Best Solo Hack", 
-                prize: "Logitech - MX Master 3S Mouse", 
+            {
+                name: "Best Solo Hack",
+                prize: "Logitech - MX Master 3S Mouse",
                 desc: "Awarded to the most outstanding project built entirely by an individual hacker.",
                 image: logitechMx3sImg
             },
-            { 
-                name: "Best Beginner Hack", 
-                prize: "SteelSeries - Apex 3 Gaming Keyboard", 
+            {
+                name: "Best Beginner Hack",
+                prize: "SteelSeries - Apex 3 Gaming Keyboard",
                 desc: "Awarded to the best project submitted by a team consisting entirely of first-time hackers.",
                 image: steelseriesApex3Img
             },
-            { 
-                name: "Best UI/UX Hack", 
-                prize: "Elgato - Stream Deck Mini", 
+            {
+                name: "Best UI/UX Hack",
+                prize: "Elgato - Stream Deck Mini",
                 desc: "Awarded to the project demonstrating exceptional user interface design, user experience, and accessibility.",
                 image: elgatoStreamdeckImg
             }
@@ -121,27 +121,27 @@ const prizeCategories: PrizeCategory[] = [
         icon: Target,
         color: "#61A644",
         prizes: [
-            { 
-                name: "Best Environment & Sustainability", 
-                prize: 'Dell - 27" IPS FHD 144Hz Monitor', 
+            {
+                name: "Best Environment & Sustainability",
+                prize: 'Dell - 27" IPS FHD 144Hz Monitor',
                 desc: "Challenges teams to develop software and hardware solutions aimed at resource conservation, clean energy, and climate action.",
                 image: dellMonitorImg
             },
-            { 
-                name: "Best Education Hack", 
-                prize: "Anker - Soundcore Space 2 Headphones", 
+            {
+                name: "Best Education Hack",
+                prize: "Anker - Soundcore Space 2 Headphones",
                 desc: "Design platforms and tools aimed at making learning more accessible, personalized, and engaging for students of all ages.",
                 image: ankerSpace2Img
             },
-            { 
-                name: "Best Industrial Hack", 
-                prize: "JBL - Charge 6 Portable Speaker", 
+            {
+                name: "Best Industrial Hack",
+                prize: "JBL - Charge 6 Portable Speaker",
                 desc: "Engineer solutions to modernize supply chains, optimize manufacturing, and improve workplace safety through automation and data analysis.",
                 image: jblCharge6Img
             },
-            { 
-                name: "Best Healthcare & Wellness", 
-                prize: "Amazfit - Active 3 Premium Smartwatch", 
+            {
+                name: "Best Healthcare & Wellness",
+                prize: "Amazfit - Active 3 Premium Smartwatch",
                 desc: "Build applications and systems focused on improving patient care, mental wellness, and secure health data management.",
                 image: amazfitActive3Img
             }
@@ -152,15 +152,15 @@ const prizeCategories: PrizeCategory[] = [
         icon: Heart,
         color: "#E37100",
         prizes: [
-            { 
-                name: "Best Use of Modal", 
-                prize: "$1,000 in Modal credits", 
+            {
+                name: "Best Use of Modal",
+                prize: "$1,000 in Modal credits",
                 desc: "Awarded to the project that demonstrates the most innovative and effective use of Modal. Each participant receives $100 in Modal credits, valid for one year.",
                 image: modalLogo
             },
-            { 
-                name: "Best Use of Lovable", 
-                prize: "1-Year Lovable Pro Subscription", 
+            {
+                name: "Best Use of Lovable",
+                prize: "1-Year Lovable Pro Subscription",
                 desc: "Awarded to the project that demonstrates the most creative and impactful use of Lovable. Each participant receives $100 worth of Lovable credits.",
                 image: lovableLogo
             },
@@ -172,51 +172,51 @@ const prizeCategories: PrizeCategory[] = [
         color: "#E73356",
         link: "https://www.mlh.com/events/hackgb/prizes",
         prizes: [
-            { 
-                name: "Best Use of Vultr", 
-                prize: "M5Stack Official Tab5", 
+            {
+                name: "Best Use of Vultr",
+                prize: "M5Stack Official Tab5",
                 desc: "Vultr empowers hackers to bring their high-performance projects to life instantly; providing everything from the speed of one-click deployment and scalable cloud compute to specialized Vultr Cloud GPUs that can power AI-driven applications. Push the limits of what can be built when infrastructure is no longer the bottleneck!",
                 image: vultrLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
-            { 
-                name: "Best Use of Gemini API", 
-                prize: "MLH Swag Kits", 
+            {
+                name: "Best Use of Gemini API",
+                prize: "MLH Swag Kits",
                 desc: "Push the boundaries of what's possible with AI using Google Gemini. Build AI-powered apps with language understanding, research summarization, and multimodal creative generation.",
                 image: geminiLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
-            { 
-                name: "Best Use of Solana", 
-                prize: "Ledger Nano S Plus", 
+            {
+                name: "Best Use of Solana",
+                prize: "Ledger Nano S Plus",
                 desc: "Build fast, scalable, and decentralized applications harnessing Solana's high-speed execution and near-zero transaction costs.",
                 image: solanaLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
-            { 
-                name: "Best Use of Tiger Data", 
-                prize: "Stream Deck Mini", 
+            {
+                name: "Best Use of Tiger Data",
+                prize: "Stream Deck Mini",
                 desc: "Leverage Tiger Data's extension of PostgreSQL for ultra-fast real-time data, time-series metrics, complex analytics, and pre-computed continuous aggregates.",
                 image: tigerDataLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
-            { 
-                name: "Best Use of Presage", 
-                prize: "Fitbit Inspire & Presage Perks", 
+            {
+                name: "Best Use of Presage",
+                prize: "Fitbit Inspire & Presage Perks",
                 desc: "Build with Presage's Human Sensing Layer to track clinically-proven vital signs, movement, emotion, or focus in real time with contactless cameras. Winners also receive free credit refills and 30% off first-year usage.",
                 image: presageLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
-            { 
-                name: "Best Use of DigitalOcean", 
-                prize: "Retro Wireless Mouse", 
+            {
+                name: "Best Use of DigitalOcean",
+                prize: "Retro Wireless Mouse",
                 desc: "Deploy on DigitalOcean's reliable cloud platform using Droplets, Managed Databases, App Platform, or Gradient AI for model training and GPU inference.",
                 image: digitalOceanLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
             },
-            { 
-                name: "Best Domain Name from GoDaddy Registry", 
-                prize: "Digital Gift Card", 
+            {
+                name: "Best Domain Name from GoDaddy Registry",
+                prize: "Digital Gift Card",
                 desc: "Register a creative and memorable domain name with GoDaddy Registry for your hackathon project.",
                 image: goDaddyRegistryLogo,
                 link: "https://www.mlh.com/events/hackgb/prizes"
@@ -228,16 +228,16 @@ const prizeCategories: PrizeCategory[] = [
         icon: Ticket,
         color: "#4A90D9",
         prizes: [
-            { 
-                name: "Raffle Draw #1", 
-                prize: "8 Tech, Gaming & Pizza Prizes", 
+            {
+                name: "Raffle Draw #1",
+                prize: "8 Tech, Gaming & Pizza Prizes",
                 desc: "Turn in your raffle tickets during Draw #1 for a chance to win gear, gaming peripherals, collectibles, and even pizza prizes! All registered hackers are eligible.",
                 itemsCount: 8,
                 previewChips: [
-                    "HyperX Keyboard", 
-                    "Insignia Stand", 
-                    "8BitDo Controller", 
-                    "Logitech G305 (White)", 
+                    "HyperX Keyboard",
+                    "Insignia Stand",
+                    "8BitDo Controller",
+                    "Logitech G305 (White)",
                     "LEGO WALL-E & EVE",
                     "Pep's Pizza Vouchers",
                     "Wisco 421 Pizza Oven"
@@ -293,16 +293,16 @@ const prizeCategories: PrizeCategory[] = [
                     }
                 ]
             },
-            { 
-                name: "Raffle Draw #2", 
-                prize: "10 Tech, Gaming & Pizza Prizes", 
+            {
+                name: "Raffle Draw #2",
+                prize: "10 Tech, Gaming & Pizza Prizes",
                 desc: "Our largest raffle pool of the weekend! Featuring multiple chances to win top-tier gaming mice, controllers, keyboards, a LEGO Technic hypercar, and pizza prizes.",
                 itemsCount: 10,
                 previewChips: [
-                    "2x Logitech G502", 
-                    "HyperX Keyboard", 
-                    "2x 8BitDo Controller", 
-                    "Logitech G305 (Black)", 
+                    "2x Logitech G502",
+                    "HyperX Keyboard",
+                    "2x 8BitDo Controller",
+                    "Logitech G305 (Black)",
                     "LEGO Bugatti Chiron",
                     "Pep's Pizza Vouchers",
                     "Wisco 421 Pizza Oven"
@@ -371,16 +371,16 @@ const prizeCategories: PrizeCategory[] = [
                     }
                 ]
             },
-            { 
-                name: "Raffle Draw #3", 
-                prize: "8 Tech, Audio & Display Prizes", 
+            {
+                name: "Raffle Draw #3",
+                prize: "8 Tech, Audio & Display Prizes",
                 desc: "The grand finale raffle draw! Featuring high-fidelity wireless headphones, a portable USB-C monitor, waterproof speaker, retro 3D LEGO Game Boy, Logitech G502, and pizza vouchers.",
                 itemsCount: 8,
                 previewChips: [
-                    "JBL Tune 730BT", 
-                    "AOC 15.6\" Monitor", 
-                    "JBL FLIP7 Speaker", 
-                    "LEGO Game Boy 3D", 
+                    "JBL Tune 730BT",
+                    "AOC 15.6\" Monitor",
+                    "JBL FLIP7 Speaker",
+                    "LEGO Game Boy 3D",
                     "Logitech G502",
                     "Pep's Pizza Vouchers"
                 ],
@@ -508,7 +508,7 @@ const Prizes = () => {
                                 <motion.div key={categoryIdx} {...fadeUp(0.05 * (categoryIdx + 1))}>
                                     <div className="flex items-center justify-between gap-4 mb-6 border-b border-black/10 pb-4">
                                         <div className="flex items-center gap-3">
-                                            <div 
+                                            <div
                                                 className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-sm bg-white"
                                                 style={{ borderColor: `${category.color}40` }}
                                             >
@@ -519,7 +519,7 @@ const Prizes = () => {
                                             </h3>
                                         </div>
                                         {(category as any).link && (
-                                            <a 
+                                            <a
                                                 href={(category as any).link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -535,18 +535,18 @@ const Prizes = () => {
                                         {category.prizes.map((p, prizeIdx) => {
                                             const id = `${categoryIdx}-${prizeIdx}`;
                                             const isExpanded = expandedId === id;
-                                            
+
                                             return (
-                                                <div 
-                                                    key={prizeIdx} 
+                                                <div
+                                                    key={prizeIdx}
                                                     onClick={() => toggleExpand(id)}
                                                     className="flex flex-col p-4 md:p-5 rounded-xl bg-white/50 border border-black/5 hover:bg-white/80 hover:shadow-md transition-all group cursor-pointer"
                                                 >
                                                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                                                         <div className="flex-1 pr-4">
                                                             <div className="flex items-center gap-3">
-                                                                <ChevronRight 
-                                                                    className={`w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#61A644] transition-transform duration-300 ${isExpanded ? 'rotate-90 text-[#61A644]' : ''}`} 
+                                                                <ChevronRight
+                                                                    className={`w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#61A644] transition-transform duration-300 ${isExpanded ? 'rotate-90 text-[#61A644]' : ''}`}
                                                                 />
                                                                 <h4 className="font-google font-bold text-lg text-[#0C3C34]">{p.name}</h4>
                                                                 {p.itemsCount && (
@@ -594,17 +594,17 @@ const Prizes = () => {
 
                                                                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-4">
                                                                             {p.items.map((item, itemIdx) => (
-                                                                                <div 
+                                                                                <div
                                                                                     key={itemIdx}
                                                                                     className="bg-white/85 rounded-xl p-3.5 border border-black/5 shadow-2xs flex flex-col hover:shadow-md hover:border-[#4A90D9]/30 transition-all group/item"
                                                                                 >
                                                                                     <div className="w-full h-32 bg-white rounded-lg border border-black/5 flex items-center justify-center p-2 mb-3 overflow-hidden">
-                                                                                        <img 
-                                                                                            src={item.image} 
-                                                                                            alt={item.name} 
-                                                                                            loading="lazy" 
-                                                                                            decoding="async" 
-                                                                                            className="w-full h-full object-contain group-hover/item:scale-105 transition-transform duration-300" 
+                                                                                        <img
+                                                                                            src={item.image}
+                                                                                            alt={item.name}
+                                                                                            loading="lazy"
+                                                                                            decoding="async"
+                                                                                            className="w-full h-full object-contain group-hover/item:scale-105 transition-transform duration-300"
                                                                                         />
                                                                                     </div>
                                                                                     <div className="flex items-center justify-between gap-1.5 mb-1.5">
