@@ -50,7 +50,7 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
-  // When event has officially started — Celebration State
+  // When event has ended — Thank You / Wrapped State
   if (timeLeft.isStarted) {
     if (variant === 'pill') {
       return (
@@ -58,11 +58,8 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
           style={GOOGLE_SANS_STYLE}
           className={`font-google inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-xs select-none text-center ${className}`}
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="text-xs font-bold text-[#0C3C34]">HackGB 2026 is LIVE!</span>
+          <Trophy className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+          <span className="text-xs font-bold text-[#0C3C34]">HackGB 2026 — Wrapped! 🎉</span>
         </div>
       );
     }
@@ -71,10 +68,10 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
       return (
         <div
           style={GOOGLE_SANS_STYLE}
-          className={`font-google inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-500/25 text-[#0C3C34] text-xs font-bold select-none ${className}`}
+          className={`font-google inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-400/30 text-[#0C3C34] text-xs font-bold select-none ${className}`}
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-          <span>HackGB is LIVE!</span>
+          <Trophy className="w-3 h-3 text-amber-500 shrink-0" />
+          <span>HackGB 2026 — Wrapped!</span>
         </div>
       );
     }
@@ -83,137 +80,59 @@ const EventCountdown: React.FC<EventCountdownProps> = ({
       return (
         <div
           style={GOOGLE_SANS_STYLE}
-          className={`font-google w-full bg-gradient-to-r from-emerald-50 via-white to-amber-50/50 border border-emerald-500/20 rounded-xl p-3 sm:p-4 select-none ${className}`}
+          className={`font-google w-full bg-gradient-to-r from-amber-50 via-white to-[#61A644]/5 border border-amber-400/20 rounded-xl p-3 sm:p-4 select-none ${className}`}
         >
-          <div className="flex items-center justify-between gap-2.5">
+          <div className="flex items-center justify-between gap-2.5 flex-wrap gap-y-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-600 shrink-0 border border-emerald-500/20">
+              <div className="w-8 h-8 rounded-lg bg-amber-400/15 flex items-center justify-center shrink-0 border border-amber-400/25">
                 <Trophy className="w-4 h-4 text-amber-500" />
               </div>
               <div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Live Now • Oct 17–18, 2026
+                <div className="text-[10px] font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1">
+                  <Sparkles className="w-2.5 h-2.5" />
+                  Event Complete • Oct 17–18, 2026
                 </div>
                 <div className="text-xs sm:text-sm font-bold text-[#0C3C34]">
-                  HackGB 2026 is LIVE at the STEM Innovation Center!
+                  Thanks for attending HackGB 2026 — see you next year! 🎉
                 </div>
               </div>
             </div>
+            <a
+              href="https://hackgb-2026.devpost.com/project-gallery"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0C3C34] hover:bg-[#0a3028] text-white text-[11px] font-bold transition-colors shadow-xs"
+            >
+              <ExternalLink className="w-3 h-3" />
+              Project Gallery
+            </a>
           </div>
         </div>
       );
     }
 
-    // Default 'hero' celebration card — Clean, high-polish light glassmorphism (compact)
+    // Default 'hero' — compact pill row: wrapped badge + Devpost gallery link
     return (
-      <div className={`relative group max-w-[490px] mx-auto w-full select-none ${className}`}>
-        {/* Soft brand ambient glow */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-[#61A644]/15 via-[#E37100]/10 to-[#ffcc00]/15 rounded-3xl blur-lg opacity-60 pointer-events-none" />
-
-        {/* Main Glass Card */}
-        <div
-          style={GOOGLE_SANS_STYLE}
-          className="font-google relative bg-white/90 backdrop-blur-2xl border border-slate-200/90 shadow-[0_8px_28px_rgba(12,60,52,0.06),0_1px_3px_rgba(0,0,0,0.02)] rounded-2xl p-3.5 sm:p-4 transition-all duration-300"
-        >
-          {/* Top subtle bar: Status Beacon & Location */}
-          <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-slate-100">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200/80 shadow-2xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-800">
-                Live Now
-              </span>
-            </div>
-
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-50 text-[10px] sm:text-[11px] font-medium text-slate-600 border border-slate-200/60">
-              <MapPin className="w-3 h-3 text-[#E37100]" />
-              <span>STEM Innovation Center</span>
-            </div>
-          </div>
-
-          {/* Center Content */}
-          <div className="text-center py-0.5">
-            <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#0C3C34] mb-1 flex items-center justify-center gap-1.5 flex-wrap">
-              <span>HackGB 2026 is</span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#61A644] text-white text-base sm:text-lg font-black shadow-xs tracking-wide">
-                LIVE!
-              </span>
-            </h3>
-            <p className="text-[11px] sm:text-xs text-slate-600 font-medium max-w-sm mx-auto leading-snug">
-              Welcome hackers, mentors &amp; judges! 24 hours of building and innovation.
-            </p>
-          </div>
-
-          {/* Event Day Resources Buttons */}
-          <div className="mt-2 pt-2 border-t border-slate-100">
-            <div className="flex items-center justify-between mb-1.5 px-0.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#0C3C34] flex items-center gap-1">
-                <Sparkles className="w-2.5 h-2.5 text-[#61A644]" />
-                Event Day Resources
-              </span>
-              <span className="text-[9.5px] text-slate-500 font-medium">Quick Access</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <a
-                href="https://docs.google.com/document/d/1P-E8jrExAnHrgGX4moJo-zLXDoccWaqRyp7hnwO1-VQ/edit?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/90 hover:bg-[#61A644]/10 border border-slate-200/80 hover:border-[#61A644]/40 transition-all duration-150 group text-left cursor-pointer shadow-2xs hover:shadow-xs"
-              >
-                <div className="w-7 h-7 rounded-lg bg-[#61A644]/15 text-[#0C3C34] group-hover:bg-[#61A644] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
-                  <Code2 className="w-3.5 h-3.5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[11.5px] font-bold text-[#0C3C34] flex items-center gap-1">
-                    <span>Developer Resources</span>
-                    <ExternalLink className="w-2.5 h-2.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
-                  </div>
-                  <p className="text-[9.5px] text-slate-500 truncate font-medium">APIs, Starter Kits &amp; Docs</p>
-                </div>
-              </a>
-
-              <a
-                href="https://docs.google.com/document/d/17H3Ff8E13-76Z_UMgE05UlvoE9DCnXt4IkUGhI9suYE/edit?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/90 hover:bg-[#ffcc00]/15 border border-slate-200/80 hover:border-[#ffcc00]/50 transition-all duration-150 group text-left cursor-pointer shadow-2xs hover:shadow-xs"
-              >
-                <div className="w-7 h-7 rounded-lg bg-[#ffcc00]/20 text-[#a37c00] group-hover:bg-[#ffcc00] group-hover:text-slate-900 flex items-center justify-center shrink-0 transition-colors">
-                  <Trophy className="w-3.5 h-3.5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[11.5px] font-bold text-[#0C3C34] flex items-center gap-1">
-                    <span>Tracks &amp; Prizes</span>
-                    <ExternalLink className="w-2.5 h-2.5 text-slate-400 group-hover:text-[#0C3C34] transition-colors shrink-0" />
-                  </div>
-                  <p className="text-[9.5px] text-slate-500 truncate font-medium">Main, Sponsor &amp; MLH</p>
-                </div>
-              </a>
-
-              <a
-                href="/participant-guide.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/90 hover:bg-[#E37100]/10 border border-slate-200/80 hover:border-[#E37100]/40 transition-all duration-150 group text-left cursor-pointer shadow-2xs hover:shadow-xs"
-              >
-                <div className="w-7 h-7 rounded-lg bg-[#E37100]/15 text-[#E37100] group-hover:bg-[#E37100] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
-                  <FileText className="w-3.5 h-3.5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[11.5px] font-bold text-[#0C3C34] flex items-center gap-1">
-                    <span>Participant Guide</span>
-                    <ExternalLink className="w-2.5 h-2.5 text-slate-400 group-hover:text-[#E37100] transition-colors shrink-0" />
-                  </div>
-                  <p className="text-[9.5px] text-slate-500 truncate font-medium">Schedule, Rules &amp; FAQs (PDF)</p>
-                </div>
-              </a>
-            </div>
-          </div>
+      <div
+        style={GOOGLE_SANS_STYLE}
+        className={`font-google inline-flex flex-wrap items-center justify-center gap-2.5 select-none ${className}`}
+      >
+        {/* Wrapped badge */}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-amber-300/60 shadow-xs">
+          <Trophy className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+          <span className="text-[11px] sm:text-xs font-bold text-[#0C3C34]">HackGB 2026 — Wrapped! 🎉</span>
         </div>
+
+        {/* Devpost gallery CTA */}
+        <a
+          href="https://hackgb-2026.devpost.com/project-gallery"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0C3C34] hover:bg-[#0a3028] text-white text-[11px] sm:text-xs font-bold transition-all duration-150 shadow-xs hover:shadow-md active:scale-95"
+        >
+          <ExternalLink className="w-3 h-3 shrink-0" />
+          View Project Gallery
+        </a>
       </div>
     );
   }

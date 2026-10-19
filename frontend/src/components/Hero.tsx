@@ -302,7 +302,7 @@ const Hero = () => {
                     <img
                         src={logo}
                         alt="HackGB Phoenix Logo"
-                        className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
+                        className="h-20 sm:h-28 md:h-32 lg:h-36 w-auto drop-shadow-[0_8px_32px_rgba(12,60,52,0.12)]"
                     />
                 </motion.div>
 
@@ -324,7 +324,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.9, delay: 0.5, ease: spring }}
-                    className="text-3xl sm:text-4xl md:text-5xl font-google font-bold mb-1.5 sm:mb-2 tracking-tight text-[#0C3C34]"
+                    className="text-4xl sm:text-5xl md:text-6xl font-google font-bold mb-1.5 sm:mb-2 tracking-tight text-[#0C3C34]"
                 >
                     HackGB <span className="text-gradient-phoenix">2026</span>
                 </motion.h1>
