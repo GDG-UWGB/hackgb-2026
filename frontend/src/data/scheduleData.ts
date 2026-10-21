@@ -2,6 +2,7 @@ import modalLogo from '../assets/images/sponsors/phoenix/modal.png';
 import ftiLogo from '../assets/images/sponsors/flame/FTI.png';
 import theVillageLogo from '../assets/images/sponsors/flame/the-village.png';
 import googleLogo from '../assets/images/sponsors/phoenix/google-logo.webp';
+import chrisChanImg from '../assets/images/speakers/chris-chan.jpg';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
 import harrisonMuellerImg from '../assets/images/speakers/harrison-mueller.jpg';
 import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
@@ -54,13 +55,22 @@ export const saturdaySchedule: ScheduleItem[] = [
     id: 'sat-opening',
     time: '11:00 AM',
     endTime: '12:00 PM',
-    title: 'Opening Ceremony',
+    title: 'Opening Ceremony & Keynote: Chris Chan',
     room: 'Christie Theatre, University Union',
     category: 'milestone',
     badge: 'Key Milestone',
     badgeColor: '#E37100',
     accent: '#E37100',
-    desc: 'Welcome addresses from organizers, track announcements, sponsor challenges overview, and rules briefing at Christie Theatre, University Union.',
+    speaker: {
+      name: 'Chris Chan',
+      role: 'CEO & Co-Founder',
+      company: 'Kommon AI',
+      avatarUrl: chrisChanImg,
+      linkedin: 'https://www.linkedin.com/in/chanhacks',
+      bio: 'Serial entrepreneur, 18x hackathon champion (record 13 at Yahoo), 11 U.S. patents, CEO & Co-Founder of Kommon AI, TEDx speaker.',
+    },
+    companyLink: 'https://kommon.ai',
+    desc: 'Welcome addresses from organizers, track announcements, sponsor challenges overview, and rules briefing at Christie Theatre, University Union. Featuring a keynote address from Chris Chan, CEO & Co-Founder of Kommon AI — serial entrepreneur, 18x hackathon champion, and TEDx speaker.',
   },
   {
     id: 'sat-hacking-begins',
@@ -217,6 +227,7 @@ export const saturdaySchedule: ScheduleItem[] = [
      EVENING WORKSHOP & MINI-EVENT BLOCK
      - MLH Hacking with GitHub Copilot: 7:00 PM - 7:45 PM in 1965 Room
      - MLH TechTogether: 8:00 PM - 8:30 PM in 1965 Room
+     - Chris Chan Pitching Workshop: 9:00 PM - 9:45 PM in Phoenix Rooms BC
      ======================================================================= */
   {
     id: 'sat-workshop-copilot',
@@ -265,9 +276,34 @@ export const saturdaySchedule: ScheduleItem[] = [
       avatarUrl: '',
       bio: "Official Major League Hacking (MLH) Coaches leading the TechTogether community initiative at HackGB 2026 to foster an inclusive, welcoming hackathon environment.",
     },
-    bufferAfterMinutes: 90,
-    bufferDescription: 'Open hacking in University Union before 10:00 PM transition to STEM Innovation Center',
+    bufferAfterMinutes: 30,
+    bufferDescription: '30-minute buffer before Chris Chan Pitching Workshop',
     desc: "TechTogether is the nation's largest initiative to address the gender inequities in the hackathon community. Join us for a 30-minute community session to connect, share experiences, and learn how we can build a more welcoming, equitable hackathon culture.",
+  },
+  {
+    id: 'sat-workshop-0-pitching',
+    time: '09:00 PM',
+    endTime: '09:45 PM',
+    title: 'Pitching Workshop: How to Present Your Project',
+    topic: 'Crafting Compelling Pitches for Hackathon Demos',
+    room: 'Phoenix Rooms BC (University Union)',
+    category: 'workshop',
+    isWorkshop: true,
+    badge: 'Kommon AI',
+    badgeColor: '#E37100',
+    accent: '#E37100',
+    companyLink: 'https://kommon.ai',
+    speaker: {
+      name: 'Chris Chan',
+      role: 'CEO & Co-Founder',
+      company: 'Kommon AI',
+      avatarUrl: chrisChanImg,
+      linkedin: 'https://www.linkedin.com/in/chanhacks',
+      bio: 'Serial entrepreneur, 18x hackathon champion (record 13 at Yahoo), 11 U.S. patents, TEDx speaker, and CEO & Co-Founder of Kommon AI. Chris brings firsthand experience winning dozens of hackathons to teach teams how to pitch with clarity and impact.',
+    },
+    bufferAfterMinutes: 15,
+    bufferDescription: '15-minute buffer before venue transition',
+    desc: 'Learn how to craft and deliver a compelling hackathon pitch from Chris Chan — 18x hackathon champion (record 13 wins at Yahoo), TEDx speaker, and CEO of Kommon AI. This workshop covers storytelling, demo structure, slide design, and how to impress judges in 3 minutes or less.',
   },
 
   /* =======================================================================

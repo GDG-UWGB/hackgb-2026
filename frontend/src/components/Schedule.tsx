@@ -30,24 +30,36 @@ interface ScheduleEvent {
 
 const saturdayEvents: ScheduleEvent[] = [
     { time: '08:00 AM', title: 'Check-in & Registration', desc: 'STEM Innovation Center • Check-in and badge pickup.', accent: '#61A644' },
-    { time: '11:00 AM', title: 'Opening Ceremony', desc: 'Christie Theatre, University Union • Welcome address and hackathon kickoff.', accent: '#E37100' },
+    { time: '11:00 AM', title: 'Opening Ceremony & Keynote', desc: 'Christie Theatre, University Union • Welcome address, hackathon kickoff, and keynote by Chris Chan (CEO, Kommon AI).', accent: '#E37100' },
     { time: '12:00 PM', title: 'Hacking Begins', desc: 'Phoenix Room B & C (University Union) • Hacking officially starts.', accent: '#0c3c34' },
     {
         time: '01:00 PM',
-        title: 'Workshops & Info Sessions',
-        desc: 'University Union (1965 Room & Phoenix Rooms BC) & Online • Technical sessions featuring Modal (Online), Google Developer Experts (Phoenix Rooms BC), Faith Technologies, Inc. (FTI), Bay Tek, and MLH evening workshops (GitHub Copilot & TechTogether in 1965 Room with MLH coaches Lucy & Wei).',
+        title: 'Afternoon Workshops & Info Sessions',
+        desc: 'University Union (1965 Room & Phoenix Rooms BC) & Online • Technical sessions: Modal API deep dive (Online), Google Developer Expert AI workshop (Phoenix Rooms BC), Faith Technologies careers session, and Bay Tek arcade pitching workshop.',
         accent: '#ffcc00',
         logos: [
             { name: 'Modal', logo: modalLogo, link: 'https://modal.com' },
             { name: 'Google Developer Experts', logo: googleLogo, link: 'https://developers.google.com/community/experts' },
             { name: 'Faith Technologies, Inc. (FTI)', logo: ftiLogo, link: 'https://www.faithtechinc.com/' },
             { name: 'Bay Tek (The Village)', logo: theVillageLogo, link: 'https://www.thevillage.bz/' },
+        ],
+    },
+    { time: '05:00 PM', title: 'Dinner Break', desc: 'University Union Dining • Dinner served. No workshops during this time.', accent: '#61A644' },
+    {
+        time: '07:00 PM',
+        title: 'Evening MLH Workshops',
+        desc: '1965 Room (University Union) • Hacking with GitHub Copilot (7:00 PM) and TechTogether community session (8:00 PM) with MLH coaches Lucy & Wei.',
+        accent: '#E73356',
+        logos: [
             { name: 'Major League Hacking', logo: mlhLogo, link: 'https://mlh.io' },
         ],
     },
+    { time: '09:00 PM', title: 'Pitching Workshop: How to Present Your Project', desc: 'Phoenix Rooms BC (University Union) • Chris Chan (CEO, Kommon AI) — 18x hackathon champion — walks you through crafting a winning pitch.', accent: '#E37100' },
+    { time: '10:00 PM', title: 'Return to STEM Innovation Center', desc: 'STEM Innovation Center • University Union closes. All hackers move to STEM for overnight hacking.', accent: '#0c3c34' },
 ];
 
 const sundayEvents: ScheduleEvent[] = [
+    { time: '08:00 AM', title: 'Breakfast Provided', desc: 'STEM Innovation Center • Breakfast served before the final push.', accent: '#ffbd2e' },
     { time: '12:00 PM', title: 'Hacking Ends & Submissions Due', desc: 'STEM Innovation Center • Code freeze and Devpost deadline.', accent: '#EA4335' },
     { time: '01:00 PM', title: 'Judging & Project Expo', desc: 'STEM Innovation Center • Live gallery demos open to judges and attendees.', accent: '#61A644' },
     { time: '05:00 PM', title: 'Closing Ceremony', desc: 'Christie Theatre, University Union • Keynote address and weekend recap.', accent: '#0c3c34' },

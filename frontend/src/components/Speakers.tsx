@@ -17,6 +17,7 @@ import {
     ArrowRight,
 } from 'lucide-react';
 import titletownImg from '../assets/images/background/jpg/titletown-district.jpg';
+import chrisChanImg from '../assets/images/speakers/chris-chan.jpg';
 import kiruthikaImg from '../assets/images/speakers/kiruthika-subramani.png';
 import patScanlanImg from '../assets/images/speakers/pat-scanlan.png';
 import harrisonMuellerImg from '../assets/images/speakers/harrison-mueller.jpg';
@@ -60,6 +61,41 @@ export interface Speaker {
 }
 
 const confirmedSpeakers: Speaker[] = [
+    {
+        id: 'chris-chan',
+        name: 'Chris Chan',
+        role: 'CEO & Co-Founder',
+        company: 'Kommon AI',
+        avatarUrl: chrisChanImg,
+        linkedin: 'https://www.linkedin.com/in/chanhacks',
+        website: 'https://kommon.ai',
+        badges: [
+            { label: 'Keynote Speaker', bg: 'bg-[#E37100]/15', text: 'text-[#E37100]', border: 'border-[#E37100]/30' },
+            { label: 'Kommon AI', bg: 'bg-[#0C3C34]/10', text: 'text-[#0C3C34]', border: 'border-[#0C3C34]/20' },
+            { label: 'TEDx Speaker', bg: 'bg-purple-500/10', text: 'text-purple-800', border: 'border-purple-500/20' },
+        ],
+        sessionTitle: 'Keynote Address & Pitching Workshop',
+        sessionTime: 'Sat, Oct 17 • Keynote (Opening) & Pitching Workshop 9:00 PM',
+        sessionRoom: 'Christie Theatre & Phoenix Rooms BC (University Union)',
+        sessionCategory: 'Keynote & Pitching Workshop',
+        stats: [
+            { label: 'Hackathon Wins', value: '18' },
+            { label: 'U.S. Patents', value: '11' },
+            { label: 'Yahoo Record', value: '13×' },
+            { label: 'Companies', value: '2x' },
+        ],
+        bio: 'Serial entrepreneur, software engineer, and award-winning hackathon champion with 18 wins — including a record 13 at Yahoo. Holds 11 U.S. patents and previously worked at Yahoo and Splunk. Co-founded the venture-backed fintech startup Tanda. As CEO & Co-Founder of Kommon AI, Chris is building AI-powered automation for construction and field-service businesses. A TEDx speaker and passionate advocate for innovation.',
+        highlights: [
+            '18 hackathon wins, including a record-setting 13 at Yahoo',
+            'Holds 11 U.S. patents across software and product innovations',
+            'CEO & Co-Founder of Kommon AI — AI automation for construction & field service',
+            'Co-founder of venture-backed fintech startup Tanda',
+            'Formerly at Yahoo and Splunk as a software engineer',
+            'TEDx speaker and passionate advocate for next-generation entrepreneurship',
+            'Served as Keynote Speaker at HackGB 2026 (Oct 17–18, UWGB)',
+            'Led a Pitching Workshop to help participants present their projects',
+        ],
+    },
     {
         id: 'andrew-hinh',
         name: 'Andrew Hinh',
